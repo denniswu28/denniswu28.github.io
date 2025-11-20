@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              body: ['Inter', 'sans-serif'],
+              headline: ['"Space Grotesk"', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <style type="text/tailwindcss">
+        body { 
+          @apply font-body bg-gray-50 text-gray-800;
+        }
+        h1, h2, h3, h4, h5, h6 { 
+          @apply font-headline;
+        }
+    </style>
+</head>
+<body>
+<div class="max-w-4xl mx-auto p-4 sm:p-8 text-gray-800 bg-gray-50">
+<header class="text-center my-12 md:my-20">
+<h1 class="text-4xl md:text-6xl font-bold tracking-tight">Tianrui Dennis Wu</h1>
+</header>
+<section class="my-16">
+<h2 class="text-3xl font-bold border-b-2 border-indigo-500 pb-2 mb-8">Experience</h2>
+<div class="space-y-8">
+<div>
+<h3 class="text-2xl font-semibold">Quantitative Researcher</h3>
+<p class="text-lg text-indigo-600">InsightCheck Investment Co., Ltd. | Shenzhen, China</p>
+<p class="text-sm text-gray-500 mt-1">February 2025 - Current</p>
+<p class="mt-3 text-gray-700">Designed and deployed quantitative models for equity and cryptocurrency markets by researching market microstructure, order book dynamics, and high-frequency factors. Successfully implemented strategies in live trading, including a market-making model that achieved positive returns after fees. Engineered and optimized a high-performance order book reconstruction engine using market-by-order data, achieving ~1 second processing for the full A-share universe with validated accuracy. Proficient in Python data analysis libraries (Pandas, NumPy, Polars) and learned Rust for performance-critical systems. Read research reports and macroeconomic papers to design new fundamentals- and microstructure-based factors for low-frequency A-shares cross-section portfolio optimization. Constructed intraday factor validation and backtesting pipeline, with 62 intraday factors validated to be high IC and ICIR.</p>
+</div>
+<div>
+<h3 class="text-2xl font-semibold">Research Fellow</h3>
+<p class="text-lg text-indigo-600">Caltech SURF Program | Pasadena CA</p>
+<p class="text-sm text-gray-500 mt-1">June 2024 - August 2024</p>
+<p class="mt-3 text-gray-700">Developed a Convolutional Neural Network (ResUNet) to predict and correct for observational biases in cosmological data for the SPHEREx survey. The model achieved &lt;1% prediction error, significantly improving the measurement accuracy of the primordial non-Gaussianity parameter of our universe. Managed the end-to-end project lifecycle, from drafting the initial proposal and generating mock data catalogs to delivering final reports and presenting findings to a faculty committee.</p>
+</div>
+<div>
+<h3 class="text-2xl font-semibold">Research Assistant</h3>
+<p class="text-lg text-indigo-600">Duke Cosmology Group | Durham, NC</p>
+<p class="text-sm text-gray-500 mt-1">May 2022 - present</p>
+<p class="mt-3 text-gray-700">Built a Python and SQL-based data pipeline to analyze and synthesize large-scale simulated datasets from multiple observatories. Employed Markov Chain Monte Carlo (MCMC) methods to model complex matter dynamics, test hypotheses, and constrain key underlying cosmological parameters. Engineered novel statistical techniques to merge disparate datasets, effectively reducing noise to isolate signal. This innovation led to a 120% increase in the model&#x27;s statistical power, significantly improving the precision of estimates for unobservable drivers like dark matter and dark energy.</p>
+</div>
+<div>
+<h3 class="text-2xl font-semibold">Research Assistant</h3>
+<p class="text-lg text-indigo-600">Duke High Energy Physics Group | Durham, NC</p>
+<p class="text-sm text-gray-500 mt-1">September 2021 - August 2022</p>
+<p class="mt-3 text-gray-700">Implemented and optimized computational graphic algorithm in C++ with Prof. Ashutosh Kotwal for the Large Hadron Collider. Developed particle collision fragment path reconstruction algorithms on FPGA architecture. Achieved throughput of &lt;25 ns to allow reconstruction of fragment paths from 70 collisions–a three order of magnitude increase in efficiency.</p>
+</div>
+<div>
+<h3 class="text-2xl font-semibold">Teaching Assistant</h3>
+<p class="text-lg text-indigo-600">Math Department, Duke University | Durham, NC</p>
+<p class="text-sm text-gray-500 mt-1">April 2022 - April 2024</p>
+<p class="mt-3 text-gray-700">Assisted over 40 students with Multivariable Calculus and Linear Algebra in the Math Help Room and Office Hours. Rated &quot;Excellent&quot; by supervisor and peers in the annual TA review of 2023 and 2024.</p>
+</div>
+<div>
+<h3 class="text-2xl font-semibold">Founder</h3>
+<p class="text-lg text-indigo-600">Duke Astronomy Club | Duke</p>
+<p class="text-sm text-gray-500 mt-1">2021 - present</p>
+<p class="mt-3 text-gray-700">Founded and leading the first Astronomy Club at Duke; organize weekly stargazing events at Duke Teaching Observatory with 100+ audiences; held 6 astronomy events with more than 300+ students.</p>
+</div>
+<div>
+<h3 class="text-2xl font-semibold">President</h3>
+<p class="text-lg text-indigo-600">Society of Physics Students, Duke University | Duke University</p>
+<p class="text-sm text-gray-500 mt-1">2023 - present</p>
+<p class="mt-3 text-gray-700">Hosted multiple physics events, including 4 research panels, student-faculty dinner, grad school panel. Organized SPS Zone 5 meeting with 100+ participants, won 2023 Outstanding Chapter Award.</p>
+</div>
+</div>
+</section>
+<section class="my-16">
+<h2 class="text-3xl font-bold border-b-2 border-indigo-500 pb-2 mb-8">Skills</h2>
+<div class="flex flex-wrap gap-2">
+<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Python</span>
+<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Rust</span>
+<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">LaTeX</span>
+<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Linux/Unix</span>
+<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">C/C++</span>
+<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Julia</span>
+<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">SQL</span>
+<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Java</span>
+<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">MATLAB</span>
+<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Git</span>
+<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">PostgreSQL</span>
+<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">VS Code</span>
+<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">NumPy</span>
+<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">pandas</span>
+<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">polars</span>
+<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Matplotlib</span>
+<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">PyTorch</span>
+<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Data Analysis</span>
+<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Data Engineering</span>
+<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">MLOps</span>
+<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Cloud Computing</span>
+<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Factor Research</span>
+<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Market Microstructure Modeling</span>
+</div>
+</section>
+</div>
+</body>
+</html>
