@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tianrui Wu</title>
-    <meta name="description" content="Quantitative Researcher and Physics/Math Scholar at Duke University.">
+    <meta name="description" content="Quantitative Researcher and Physics/Math Student at Duke University.">
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚛️</text></svg>">
     
@@ -15,7 +15,7 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
-            color: #000;
+            color: #111;
             background-color: #fff;
             -webkit-font-smoothing: antialiased;
         }
@@ -34,33 +34,45 @@
             border-bottom: 1px solid #e0e0e0;
         }
 
-        .name { font-size: 3.5rem; font-weight: 300; margin-bottom: 15px; line-height: 1.1; color: #000; }
+        .name { 
+            font-size: 3.5rem; 
+            font-weight: 300; 
+            margin-bottom: 25px; 
+            line-height: 1.1; 
+            color: #000; 
+        }
         .first-name { font-weight: 700; }
+
+        .description {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            max-width: 850px;
+            color: #333;
+            margin-bottom: 25px;
+        }
         
-        .contact-info {
+        .description p { margin-bottom: 15px; }
+
+        .email-typewriter {
             font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-            font-size: 0.9rem;
-            color: #444;
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 15px;
+            font-size: 0.95em;
+            background-color: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #333;
         }
 
-        .contact-item {
-            background-color: #f5f5f5;
-            padding: 4px 8px;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        .contact-line {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.85rem;
+            color: #555;
+            margin-top: 20px;
         }
 
         /* --- GRID SYSTEM (Left Sidebar / Right Main) --- */
         .content-grid {
             display: grid;
-            /* 280px sidebar on left, rest is main content */
-            grid-template-columns: 280px 1fr; 
+            grid-template-columns: 280px 1fr; /* 280px Sidebar, Rest Main */
             gap: 80px;
             margin-bottom: 100px;
             align-items: start;
@@ -99,7 +111,7 @@
 
         /* --- MAIN COLUMN (TIMELINE) --- */
         .section-header {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 300;
             margin-bottom: 40px;
             color: #000;
@@ -111,15 +123,15 @@
 
         .timeline {
             position: relative;
-            padding-left: 80px; /* Space for the date */
+            padding-left: 85px; /* Space for the date */
         }
 
         /* Vertical Line */
         .timeline::before {
             content: "";
             position: absolute;
-            left: 95px; /* Adjust based on padding */
-            top: 10px;
+            left: 100px; /* Line position */
+            top: 12px;
             bottom: 0;
             width: 2px;
             background: #e0e0e0;
@@ -132,8 +144,8 @@
         .timeline-item::before {
             content: "";
             position: absolute;
-            left: 11px; /* Relative to content padding */
-            top: 8px;
+            left: 16px; /* Relative to content padding */
+            top: 10px;
             width: 6px;
             height: 6px;
             background: #fff;
@@ -144,9 +156,9 @@
 
         .timeline-date {
             position: absolute;
-            left: -95px;
+            left: -100px;
             top: 4px;
-            width: 80px;
+            width: 85px;
             text-align: right;
             font-weight: 600;
             font-size: 0.85rem;
@@ -155,7 +167,7 @@
         }
 
         .timeline-content {
-            padding-left: 30px;
+            padding-left: 35px;
             position: relative;
         }
 
@@ -196,14 +208,14 @@
             position: absolute;
             left: 0;
             font-weight: bold;
-            color: #A51C30;
+            color: #A51C30; /* Crimson Accent */
             top: -1px;
             font-size: 1.2em;
         }
 
         /* Logo Placeholder */
         .logo-container { position: absolute; top: 0; right: 0; }
-        .inst-logo { height: 45px; width: auto; border-radius: 4px; opacity: 0.9; }
+        .inst-logo { height: 45px; width: auto; border-radius: 4px; opacity: 0.95; }
 
         /* Social Icons */
         .social-links { display: flex; gap: 15px; margin-top: 20px; }
@@ -222,12 +234,13 @@
                 position: static; 
                 display: inline-block;
                 background: #f0f0f0;
-                padding: 2px 6px;
+                padding: 2px 8px;
                 border-radius: 4px;
-                margin-bottom: 8px;
+                margin-bottom: 10px;
                 text-align: left;
                 width: auto;
                 color: #333;
+                font-size: 0.8rem;
             }
             .timeline-content { padding-left: 0; }
             .logo-container { position: static; margin-bottom: 10px; }
@@ -241,12 +254,21 @@
         
         <header class="header-section">
             <h1 class="name"><span class="first-name">Tianrui</span> Wu</h1>
-            <div class="contact-info">
-                <span class="contact-item">tianrui.wu@duke.edu</span>
-                <span class="contact-item">denniswu501@gmail.com</span>
-                <span class="contact-item">(984) 377-9159</span>
-            </div>
             
+            <div class="description">
+                 <p>Welcome! I'm a Quantitative Researcher and an undergraduate. My work sits at the intersection of quantitative finance and astrophysics research. At <strong>InsightCheck</strong>, I design high-frequency trading strategies and model market microstructure for equity and cryptocurrency markets using Rust and Python.</p>
+                 
+                 <p>My academic roots lie in astrophysics and cosmology. As a <strong>Caltech SURF</strong> fellow, I developed deep learning pipelines to correct observational biases in cosmological data. Previously, I engineered a data processing and analysis pipeline for the Roman Space Telescope.</p>
+                 
+                 <p>I was also the President of the <strong>Society of Physics Students</strong> and the founder of the Duke Astronomy Club. I am currently completing my B.S. in Mathematics and Physics.</p>
+                 
+                 <p>You can reach me at <span class="email-typewriter">denniswu501@gmail.com</span> and find my CV <a href="#" class="page-link">here</a>.</p>
+            </div>
+
+            <div class="contact-line">
+                (984) 377-9159 • tianrui.wu@duke.edu
+            </div>
+
             <div class="social-links">
                 <a href="https://www.linkedin.com/in/dennis-tianrui-wu" class="social-link" aria-label="LinkedIn" target="_blank">
                     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -274,13 +296,26 @@
                 </div>
 
                 <div class="sidebar-section">
+                    <h4 class="sidebar-title">Publications</h4>
+                    <div class="edu-item">
+                        <span class="edu-degree" style="margin-bottom: 6px;"><strong>Riess, A.G., Scolnic, D., et al. (Wu, T. included)</strong></span>
+                        <p class="edu-meta" style="line-height: 1.4;">"JWST Validates HST Distance Measurements..."<br><em style="color:#000;">Accepted by ApJ (2024)</em></p>
+                    </div>
+                    <div class="edu-item">
+                        <span class="edu-degree" style="margin-bottom: 6px;"><strong>Lin, C.-H., Wu, T., Troxel, M.A., et al.</strong></span>
+                        <p class="edu-meta" style="line-height: 1.4;">"Deblending LSST photometry and redshifts..."<br><em style="color:#000;">In Prep (2024)</em></p>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
                     <h4 class="sidebar-title">Coursework</h4>
                     <ul class="sidebar-list">
-                        <li>Probabilities</li>
-                        <li>Statistical Inference</li>
+                        <li>Probabilities & Statistical Inference</li>
                         <li>Bayesian Statistics</li>
                         <li>Machine Learning Algorithms</li>
                         <li>Regression Analysis</li>
+                        [cite_start]<li>General Relativity [cite: 209]</li>
+                        [cite_start]<li>Quantum Mechanics [cite: 209]</li>
                     </ul>
                 </div>
 
@@ -293,15 +328,15 @@
                         </li>
                         <li>
                             <span class="sidebar-label">Familiar Languages</span>
-                            C/C++, Julia, SQL, Java, MATLAB
+                            [cite_start]C/C++, Julia, SQL, Java, MATLAB [cite: 8]
                         </li>
                         <li>
                             <span class="sidebar-label">Tools</span>
-                            Git, PostgreSQL, VS Code, NumPy, Pandas, Polars, Matplotlib, PyTorch
+                            Git, PostgreSQL, VS Code, NumPy, Pandas, Polars, PyTorch, Docker
                         </li>
                         <li>
                             <span class="sidebar-label">Core Skills</span>
-                            Data Analysis, Data Engineering, MLOps, Cloud Computing, Factor Research, Market Microstructure Modeling
+                            [cite_start]HFT Strategies [cite: 16][cite_start], Market Microstructure [cite: 16][cite_start], Factor Mining [cite: 18][cite_start], Order Book Reconstruction [cite: 23]
                         </li>
                     </ul>
                 </div>
@@ -309,20 +344,34 @@
 
             <main class="main-column">
                 
-                <h2 class="section-header">Professional & Research Experience</h2>
+                <h2 class="section-header">Experience</h2>
                 <div class="timeline">
                     
                     <div class="timeline-item">
-                        <span class="timeline-date">Feb 2025 — Present</span>
+                        <span class="timeline-date">May 2025 — Present</span>
+                        <div class="timeline-content">
+                            <h3>Quantitative Researcher
+                                <div class="logo-container"><img src="https://placehold.co/100x45?text=Crypto+Fund" class="inst-logo" alt="Prop Shop"></div>
+                            </h3>
+                            <span class="role-subtitle">Cryptocurrency Proprietary Trading Firm (Confidential)</span>
+                            <ul class="content-bullets">
+                                [cite_start]<li><strong>Execution Algorithms:</strong> Designed algorithms based on alpha signals and microstructure (TWAP, VWAP, IS) for major CEXs (Okx, Coinbase, Binance), reducing slippage costs by ~2bps[cite: 16].</li>
+                                <li><strong>Alpha Strategy:</strong> Leveraged deep learning to predict short-term price dynamics. [cite_start]Achieved a post-fee Sharpe ratio > 10 on Coinbase with stable operation for 2+ months[cite: 17].</li>
+                                [cite_start]<li><strong>Factor Mining:</strong> Systematically integrated 200+ medium-to-high frequency factors (k-line, order book, derivatives), significantly improving win rates in live models[cite: 18].</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="timeline-date">Feb 2025 — Aug 2025</span>
                         <div class="timeline-content">
                             <h3>Quantitative Researcher
                                 <div class="logo-container"><img src="https://placehold.co/100x45?text=InsightCheck" class="inst-logo" alt="InsightCheck"></div>
                             </h3>
                             <span class="role-subtitle">InsightCheck Investment Co., Ltd. | Shenzhen, China</span>
                             <ul class="content-bullets">
-                                <li>Designed and deployed quantitative models for equity and cryptocurrency markets by researching market microstructure, order book dynamics, and high-frequency factors. Successfully implemented strategies in live trading, including a market-making model that achieved positive returns after fees.</li>
-                                <li>Engineered and optimized a high-performance order book reconstruction engine using market-by-order data, achieving ~1 second processing for the full A-share universe with validated accuracy. Proficient in Python data analysis libraries (Pandas, NumPy, Polars) and learned Rust for performance-critical systems.</li>
-                                <li>Read research reports and macroeconomic papers to design new fundamentals- and microstructure-based factors for low-frequency A-shares cross-section portfolio optimization. Constructed intraday factor validation and backtesting pipeline, with 62 intraday factors validated to be high IC and ICIR.</li>
+                                <li><strong>Market Microstructure:</strong> Modeled order book queues and position controls. [cite_start]Constructed 15 high-Sharpe factors (sec/min frequency) and 2 market-making models with 2bps avg post-fee return[cite: 21, 22].</li>
+                                [cite_start]<li><strong>Infrastructure:</strong> Built an optimized order book reconstruction engine (Level-3 data) in Rust/Python, achieving 100% accuracy and ~1s processing speed for the full A-share universe[cite: 23].</li>
                             </ul>
                         </div>
                     </div>
@@ -335,8 +384,22 @@
                             </h3>
                             <span class="role-subtitle">Caltech | Mentor: Dr. Olivier Doré (JPL)</span>
                             <ul class="content-bullets">
-                                <li>Developed a Convolutional Neural Network (ResUNet) to predict and correct for observational biases in cosmological data for the SPHEREx survey. The model achieved <1% prediction error, significantly improving the measurement accuracy of the primordial non-Gaussianity parameter of our universe.</li>
-                                <li>Managed the end-to-end project lifecycle, from drafting the initial proposal and generating mock data catalogs to delivering final reports and presenting findings to a faculty committee.</li>
+                                <li>Developed a Convolutional Neural Network (ResUNet) to predict and correct for observational biases in cosmological data for the SPHEREx survey. [cite_start]The model achieved <1% prediction error[cite: 41].</li>
+                                [cite_start]<li>Enhanced the accuracy of primordial non-Gaussianity parameter inference by 40%, improving understanding of early inflation dynamics[cite: 42].</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="timeline-date">Sept 2023 — Aug 2024</span>
+                        <div class="timeline-content">
+                            <h3>Research Assistant
+                                <div class="logo-container"><img src="https://placehold.co/50x50?text=Duke" class="inst-logo" alt="Duke"></div>
+                            </h3>
+                            <span class="role-subtitle">Duke Cosmology Group | [cite_start]Mentor: Prof. Daniel Scolnic [cite: 133]</span>
+                            <ul class="content-bullets">
+                                [cite_start]<li>Developed a Python pipeline to create synthetic stellar catalogs and extract features from H-R diagrams[cite: 135].</li>
+                                <li>Compared JWST distance measurement results against recent literature; quantified galaxy-dust correlations using SDSS data. [cite_start]Results contributed to a paper accepted by ApJ[cite: 138].</li>
                             </ul>
                         </div>
                     </div>
@@ -349,8 +412,8 @@
                             </h3>
                             <span class="role-subtitle">Duke Cosmology Group | Mentor: Prof. Michael A. Troxel</span>
                             <ul class="content-bullets">
-                                <li>Built a Python and SQL-based data pipeline to analyze and synthesize large-scale simulated datasets from multiple observatories. Employed Markov Chain Monte Carlo (MCMC) methods to model complex matter dynamics, test hypotheses, and constrain key underlying cosmological parameters.</li>
-                                <li>Engineered novel statistical techniques to merge disparate datasets, effectively reducing noise to isolate signal. This innovation led to a 120% increase in the model's statistical power, significantly improving the precision of estimates for unobservable drivers like dark matter and dark energy.</li>
+                                [cite_start]<li>Developed a pipeline for joint analysis of Roman Space Telescope and Rubin Observatory simulations[cite: 129].</li>
+                                [cite_start]<li>Employed MCMC methods to constrain cosmological parameters; identified synergies that increased the Figure of Merit by 20%[cite: 130].</li>
                             </ul>
                         </div>
                     </div>
@@ -363,8 +426,21 @@
                             </h3>
                             <span class="role-subtitle">Duke High Energy Physics Group (LHC) | Mentor: Prof. Ashutosh Kotwal</span>
                             <ul class="content-bullets">
-                                <li>Implemented and optimized computational graphic algorithm in C++ for the Large Hadron Collider.</li>
-                                <li>Developed particle collision fragment path reconstruction algorithms on FPGA architecture. Achieved throughput of <25 ns to allow reconstruction of fragment paths from 70 collisions–a three order of magnitude increase in efficiency.</li>
+                                [cite_start]<li>Implemented and optimized computational graphic algorithm in C++ for the Large Hadron Collider[cite: 65].</li>
+                                <li>Developed particle collision fragment path reconstruction algorithms on FPGA architecture. [cite_start]Achieved throughput of <25 ns[cite: 66].</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="timeline-date">Mar 2020 — Present</span>
+                        <div class="timeline-content">
+                            <h3>Open-Source Intelligence Analyst
+                                <div class="logo-container"><img src="https://placehold.co/50x50?text=Oryx" class="inst-logo" alt="Oryx"></div>
+                            </h3>
+                            [cite_start]<span class="role-subtitle">Oryx (Volunteer/Remote) [cite: 193]</span>
+                            <ul class="content-bullets">
+                                [cite_start]<li>Geo-located footage and tracked material losses based on visual evidence from social media; contributed 47 recorded geo-locations to the database[cite: 194].</li>
                             </ul>
                         </div>
                     </div>
