@@ -4,17 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tianrui Wu</title>
-    <meta name="description" content="Quantitative Researcher and Physics/Math Scholar at Duke University.">
+    <meta name="description" content="Quantitative Researcher and Physics/Math Scholar.">
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚛️</text></svg>">
     
     <style>
         /* --- RESET & BASICS --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
@@ -24,63 +20,34 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        a {
-            color: #A51C30; /* Crimson red */
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.2s ease;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
+        a { color: #A51C30; text-decoration: none; font-weight: 500; transition: all 0.2s ease; }
+        a:hover { text-decoration: underline; }
 
         /* --- LAYOUT CONTAINERS --- */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
 
         .header-section {
             margin-top: 80px;
             margin-bottom: 60px;
-            border-bottom: 2px solid #000; /* Divider line */
+            border-bottom: 2px solid #000;
             padding-bottom: 40px;
         }
 
         /* --- GRID SYSTEM --- */
         .content-grid {
             display: grid;
-            grid-template-columns: 1fr 300px; /* Main content takes rest, Side takes 300px */
+            grid-template-columns: 1fr 300px; /* Main 1fr, Sidebar 300px */
             gap: 60px;
             margin-bottom: 100px;
-            align-items: start; /* Aligns content to top */
+            align-items: start;
         }
 
         /* --- TYPOGRAPHY --- */
-        .name {
-            font-size: 3.5rem;
-            font-weight: 300;
-            margin-bottom: 20px;
-            line-height: 1.1;
-            color: #000;
-        }
-
-        .first-name {
-            font-weight: 700;
-        }
-
-        .description {
-            font-size: 1rem;
-            line-height: 1.7;
-            max-width: 800px;
-        }
-
-        .description p {
-            margin-bottom: 20px;
-        }
-
+        .name { font-size: 3.5rem; font-weight: 300; margin-bottom: 20px; line-height: 1.1; color: #000; }
+        .first-name { font-weight: 700; }
+        .description { font-size: 1rem; line-height: 1.7; max-width: 800px; }
+        .description p { margin-bottom: 20px; }
+        
         .email-typewriter {
             font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
             font-size: 0.95em;
@@ -90,11 +57,8 @@
             color: #333;
         }
 
-        /* --- SIDEBAR (EDUCATION) STYLES --- */
-        .sidebar {
-            position: sticky;
-            top: 40px; /* Sticks to top when scrolling */
-        }
+        /* --- SIDEBAR (EDUCATION) --- */
+        .sidebar { position: sticky; top: 40px; }
 
         .sidebar-section h3 {
             font-size: 1.2rem;
@@ -105,32 +69,18 @@
             margin-bottom: 20px;
         }
 
-        .edu-item {
-            margin-bottom: 30px;
-        }
-
-        .edu-school {
-            font-weight: 700;
-            font-size: 1.1rem;
-            display: block;
-        }
-
-        .edu-degree {
-            font-style: italic;
-            color: #555;
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        .edu-details {
-            font-size: 0.9rem;
-            color: #444;
-        }
+        .edu-item { margin-bottom: 30px; }
+        .edu-school { font-weight: 700; font-size: 1.1rem; display: block; }
+        .edu-degree { font-style: italic; color: #555; display: block; margin-bottom: 8px; }
+        .edu-details { font-size: 0.9rem; color: #444; }
 
         /* --- TIMELINE STRUCTURE --- */
+        /* Note: Each section (Exp, Lead, Honor) gets its own .timeline div */
         .timeline {
             position: relative;
             padding-left: 70px;
+            /* Margin bottom creates space after the group before the next header */
+            margin-bottom: 60px; 
         }
 
         /* The vertical line */
@@ -144,10 +94,10 @@
             background: #000;
         }
 
-        .timeline-item {
-            position: relative;
-            margin-bottom: 60px;
-        }
+        .timeline-item { position: relative; margin-bottom: 60px; }
+
+        /* PREVENTS dangling line at the end of a section */
+        .timeline-item:last-child { margin-bottom: 0; }
 
         /* The Dot */
         .timeline-item::before {
@@ -175,102 +125,42 @@
             color: #000;
         }
 
-        .timeline-content {
-            padding-left: 40px;
-            position: relative;
-        }
-
-        .timeline-content h3 {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: #000;
-            padding-right: 100px;
-        }
-
-        .timeline-content p {
-            margin-bottom: 12px;
-            color: #333;
-        }
-
-        .timeline-content em {
-            color: #555;
-            font-style: italic;
-            display: block;
-            margin-bottom: 12px;
-        }
+        .timeline-content { padding-left: 40px; position: relative; }
+        .timeline-content h3 { font-size: 1.4rem; font-weight: 600; margin-bottom: 5px; color: #000; padding-right: 100px; }
+        .timeline-content p { margin-bottom: 12px; color: #333; }
+        .timeline-content em { color: #555; font-style: italic; display: block; margin-bottom: 12px; }
 
         /* Logo Positioning */
-        .logo-container {
-            position: absolute;
-            top: 0;
-            right: 0;
-        }
-
-        .inst-logo {
-            height: 50px;
-            width: auto;
-            border-radius: 4px;
-        }
+        .logo-container { position: absolute; top: 0; right: 0; }
+        .inst-logo { height: 50px; width: auto; border-radius: 4px; }
 
         /* Honors List */
-        .achievement-list {
-            list-style: none;
-        }
-        
-        .achievement-list li {
-            margin-bottom: 12px;
-            position: relative;
-            padding-left: 20px;
-        }
+        .achievement-list { list-style: none; }
+        .achievement-list li { margin-bottom: 12px; position: relative; padding-left: 20px; }
+        .achievement-list li::before { content: "•"; position: absolute; left: 0; color: #666; font-weight: bold; }
 
-        .achievement-list li::before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: #666;
-            font-weight: bold;
-        }
-
+        /* Headers between sections */
         .section-divider {
             font-size: 1.5rem; 
             font-weight: 300; 
-            margin: 60px 0 40px 0; 
+            margin: 0 0 40px 0; /* No top margin, relied on previous block's margin */
             border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
         }
 
-        /* --- SOCIAL ICONS --- */
-        .social-links {
-            display: flex;
-            gap: 20px;
-            margin-top: 20px;
-        }
+        /* Social Icons */
+        .social-links { display: flex; gap: 20px; margin-top: 20px; }
         .social-link { color: #666; }
         .social-link:hover { color: #000; }
 
-        /* --- RESPONSIVE --- */
+        /* Mobile */
         @media (max-width: 900px) {
-            .content-grid {
-                grid-template-columns: 1fr; /* Stack columns */
-                gap: 40px;
-            }
-
-            .sidebar {
-                position: static; /* Remove sticky on mobile */
-                border-top: 2px solid #000;
-                padding-top: 40px;
-            }
-
-            .timeline { padding-left: 0; }
+            .content-grid { grid-template-columns: 1fr; gap: 40px; }
+            .sidebar { position: static; border-top: 2px solid #000; padding-top: 40px; }
+            .timeline { padding-left: 0; margin-bottom: 40px; }
             .timeline::before { display: none; }
             .timeline-item::before { display: none; }
-            .timeline-date { 
-                position: static; 
-                display: block; 
-                text-align: left; 
-                margin-bottom: 5px;
-                color: #666;
-            }
+            .timeline-date { position: static; display: block; text-align: left; margin-bottom: 5px; color: #666; }
             .timeline-content { padding-left: 0; }
             .logo-container { position: static; margin-bottom: 10px; }
             .timeline-content h3 { padding-right: 0; }
@@ -281,13 +171,10 @@
     <div class="container">
         
         <div class="header-section">
-            <h1 class="name">
-                <span class="first-name">Tianrui</span> Wu
-            </h1>
+            <h1 class="name"><span class="first-name">Tianrui</span> Wu</h1>
             <div class="description">
-                 <p>Welcome. I am a Quantitative Researcher and Physicist based at Duke University. My work spans market microstructure modeling, high-frequency trading strategies, and high-energy physics simulations at the Large Hadron Collider.</p>
-                 <p>You can reach me at <span class="email-typewriter">tianrui.wu@duke.edu</span>.</p>
-                 
+                 <p>Welcome! I am a Physics and Math Student and part-time Quantitative Researcher. My work spans market microstructure modeling, high-frequency trading strategies, deep learning model pipeline, and astrophysics research.</p>
+                 <p>You can reach me at <span class="email-typewriter">denniswu501@gmail.com</span>.</p>
                  <div class="social-links">
                     <a href="https://www.linkedin.com/in/dennis-tianrui-wu" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
                         <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -300,16 +187,14 @@
             
             <div class="main-column">
                 
+                <h3 class="section-divider" style="margin-top: 0; border: none;">Experience</h3>
                 <div class="timeline">
                     
                     <div class="timeline-item">
                         <span class="timeline-date">2025—</span>
                         <div class="timeline-content">
-                            <h3>
-                                Quantitative Researcher
-                                <div class="logo-container">
-                                    <img src="https://placehold.co/100x50?text=InsightCheck" class="inst-logo" alt="InsightCheck">
-                                </div>
+                            <h3>Quantitative Researcher
+                                <div class="logo-container"><img src="https://placehold.co/100x50?text=InsightCheck" class="inst-logo" alt="InsightCheck"></div>
                             </h3>
                             <p><em>InsightCheck Investment Co., Ltd.</em></p>
                             <p>Designed and deployed quantitative models for equity and cryptocurrency markets by researching market microstructure, order book dynamics, and high-frequency factors. Successfully implemented strategies in live trading, including a market-making model that achieved positive returns after fees.</p>
@@ -321,11 +206,8 @@
                     <div class="timeline-item">
                         <span class="timeline-date">2024</span>
                         <div class="timeline-content">
-                            <h3>
-                                Research Fellow (SURF)
-                                <div class="logo-container">
-                                    <img src="https://placehold.co/60x60?text=Caltech" class="inst-logo" alt="Caltech">
-                                </div>
+                            <h3>Research Fellow (SURF)
+                                <div class="logo-container"><img src="https://placehold.co/60x60?text=Caltech" class="inst-logo" alt="Caltech"></div>
                             </h3>
                             <p><em>Caltech | Mentor: Dr. Olivier Doré (JPL)</em></p>
                             <p>Developed a Convolutional Neural Network (ResUNet) to predict and correct for observational biases in cosmological data for the SPHEREx survey. The model achieved <1% prediction error, significantly improving the measurement accuracy of the primordial non-Gaussianity parameter of our universe.</p>
@@ -336,11 +218,8 @@
                     <div class="timeline-item">
                         <span class="timeline-date">2022—</span>
                         <div class="timeline-content">
-                            <h3>
-                                Research Assistant
-                                <div class="logo-container">
-                                    <img src="https://placehold.co/60x60?text=Duke" class="inst-logo" alt="Duke">
-                                </div>
+                            <h3>Research Assistant
+                                <div class="logo-container"><img src="https://placehold.co/60x60?text=Duke" class="inst-logo" alt="Duke"></div>
                             </h3>
                             <p><em>Duke Cosmology Group | Mentor: Prof. Michael A. Troxel</em></p>
                             <p>Built a Python and SQL-based data pipeline to analyze and synthesize large-scale simulated datasets from multiple observatories. Employed Markov Chain Monte Carlo (MCMC) methods to model complex matter dynamics, test hypotheses, and constrain key underlying cosmological parameters.</p>
@@ -351,11 +230,8 @@
                     <div class="timeline-item">
                         <span class="timeline-date">2021—2022</span>
                         <div class="timeline-content">
-                            <h3>
-                                Research Assistant
-                                <div class="logo-container">
-                                    <img src="https://placehold.co/60x60?text=CERN" class="inst-logo" alt="CERN">
-                                </div>
+                            <h3>Research Assistant
+                                <div class="logo-container"><img src="https://placehold.co/60x60?text=CERN" class="inst-logo" alt="CERN"></div>
                             </h3>
                             <p><em>Duke High Energy Physics Group (LHC) | Mentor: Prof. Ashutosh Kotwal</em></p>
                             <p>Implemented and optimized computational graphic algorithms in C++ for the Large Hadron Collider. Developed particle collision fragment path reconstruction algorithms on FPGA architecture. Achieved throughput of <25 ns to allow reconstruction of fragment paths from 70 collisions–a three order of magnitude increase in efficiency.</p>
@@ -370,9 +246,9 @@
                             <p>Assisted over 40 students with Multivariable Calculus and Linear Algebra in the Math Help Room and Office Hours. Rated "Excellent" by supervisor and peers in the annual TA review of 2023 and 2024.</p>
                         </div>
                     </div>
-
-                    <h3 class="section-divider">Leadership</h3>
-
+                </div> 
+                <h3 class="section-divider">Leadership</h3>
+                <div class="timeline">
                     <div class="timeline-item">
                         <span class="timeline-date">Founder</span>
                         <div class="timeline-content">
@@ -388,9 +264,9 @@
                             <p>Hosted multiple physics events, including 4 research panels, student-faculty dinner, grad school panel. Organized SPS Zone 5 meeting with 100+ participants, won 2023 Outstanding Chapter Award.</p>
                         </div>
                     </div>
-
-                    <h3 class="section-divider">Honors & Awards</h3>
-
+                </div>
+                <h3 class="section-divider">Honors & Awards</h3>
+                <div class="timeline">
                     <div class="timeline-item">
                         <span class="timeline-date">Awards</span>
                         <div class="timeline-content">
@@ -403,25 +279,23 @@
                             </ul>
                         </div>
                     </div>
-
                 </div>
+
             </div>
 
             <aside class="sidebar">
                 <div class="sidebar-section">
                     <h3>Education</h3>
-                    
                     <div class="edu-item">
                         <span class="edu-school">Duke University</span>
-                        <span class="edu-degree">B.S. Mathematics & Physics</span>
+                        <span class="edu-degree">Major in Mathematics & Physics</span>
                         <span class="edu-degree">Minor in Computer Science</span>
-                        <p class="edu-details">2021 — 2026</p>
+                        <p class="edu-details">2021 — 2024</p>
                         <p class="edu-details">GPA: 3.9 / 4.0</p>
                         <p class="edu-details">Physics GPA: 4.0 / 4.0</p>
                     </div>
                 </div>
-
-                </aside>
+            </aside>
 
         </div>
     </div>
