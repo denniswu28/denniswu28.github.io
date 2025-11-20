@@ -1,114 +1,339 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              body: ['Inter', 'sans-serif'],
-              headline: ['"Space Grotesk"', 'sans-serif'],
+    <title>TIANRUI WU</title>
+    <meta name="description" content="">
+    
+    <meta property="og:title" content="TIANRUI WU">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="TIANRUI WU">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TIANRUI WU">
+    <meta name="twitter:description" content="">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚛️</text></svg>">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #fafafa;
+        }
+        
+        code, pre {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        
+        .name {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .first-name {
+            color: #666;
+            font-weight: 400;
+        }
+        
+        .subtitle {
+            font-size: 1.125rem;
+            color: #4a4a4a;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+        
+        .description {
+            font-size: 1.0625rem;
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+        }
+        
+        .description p {
+            margin-bottom: 1.25rem;
+        }
+        
+        .page-link {
+            color: #0066cc;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+        
+        .page-link:hover {
+            border-bottom-color: #0066cc;
+        }
+        
+        .email-typewriter {
+            font-family: 'JetBrains Mono', monospace;
+            background: #f0f0f0;
+            padding: 0.125rem 0.375rem;
+            border-radius: 3px;
+        }
+        
+        .cv-link {
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .cv-link:hover {
+            text-decoration: underline;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-link {
+            color: #666;
+            transition: color 0.2s;
+        }
+        
+        .social-link:hover {
+            color: #0066cc;
+        }
+        
+        .timeline {
+            margin-top: 3rem;
+        }
+        
+        .timeline-item {
+            margin-bottom: 4rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+        
+        .timeline-date {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: block;
+            margin-bottom: 1rem;
+        }
+        
+        .timeline-content h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+        
+        .timeline-content p {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .timeline-content em {
+            color: #666;
+            font-style: italic;
+        }
+        
+        blockquote {
+            margin: 1.5rem 0;
+            padding-left: 1rem;
+            border-left: 3px solid #ddd;
+            color: #666;
+            font-size: 0.95rem;
+            font-style: italic;
+        }
+        
+        @media (max-width: 768px) {
+            .name {
+                font-size: 2rem;
             }
-          }
-        }
-      }
-    </script>
-    <style type="text/tailwindcss">
-        body { 
-          @apply font-body bg-gray-50 text-gray-800;
-        }
-        h1, h2, h3, h4, h5, h6 { 
-          @apply font-headline;
+            
+            .container {
+                padding: 2rem 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
-<div class="max-w-4xl mx-auto p-4 sm:p-8 text-gray-800 bg-gray-50">
-<header class="text-center my-12 md:my-20">
-<h1 class="text-4xl md:text-6xl font-bold tracking-tight">Tianrui Dennis Wu</h1>
-</header>
-<section class="my-16">
-<h2 class="text-3xl font-bold border-b-2 border-indigo-500 pb-2 mb-8">Experience</h2>
-<div class="space-y-8">
-<div>
-<h3 class="text-2xl font-semibold">Quantitative Researcher</h3>
-<p class="text-lg text-indigo-600">InsightCheck Investment Co., Ltd. | Shenzhen, China</p>
-<p class="text-sm text-gray-500 mt-1">February 2025 - August 2025</p>
-<p class="mt-3 text-gray-700">Designed and deployed quantitative models for equity and cryptocurrency markets by researching market microstructure, order book dynamics, and high-frequency factors. Successfully implemented strategies in live trading, including a market-making model that achieved positive returns after fees. Engineered and optimized a high-performance order book reconstruction engine using market-by-order data, achieving ~1 second processing for the full A-share universe with validated accuracy. Proficient in Python data analysis libraries (Pandas, NumPy, Polars) and learned Rust for performance-critical systems. Read research reports and macroeconomic papers to design new fundamentals- and microstructure-based factors for low-frequency A-shares cross-section portfolio optimization. Constructed intraday factor validation and backtesting pipeline, with 62 intraday factors validated to be high IC and ICIR.</p>
-</div>
-<div>
-<h3 class="text-2xl font-semibold">Research Fellow</h3>
-<p class="text-lg text-indigo-600">Caltech SURF Program | Pasadena CA</p>
-<p class="text-sm text-gray-500 mt-1">June 2024 - August 2024</p>
-<p class="mt-3 text-gray-700">Developed a Convolutional Neural Network (ResUNet) to predict and correct for observational biases in cosmological data for the SPHEREx survey. The model achieved &lt;1% prediction error, significantly improving the measurement accuracy of the primordial non-Gaussianity parameter of our universe. Managed the end-to-end project lifecycle, from drafting the initial proposal and generating mock data catalogs to delivering final reports and presenting findings to a faculty committee.</p>
-</div>
-<div>
-<h3 class="text-2xl font-semibold">Research Assistant</h3>
-<p class="text-lg text-indigo-600">Duke Cosmology Group | Durham, NC</p>
-<p class="text-sm text-gray-500 mt-1">May 2022 - December 2024</p>
-<p class="mt-3 text-gray-700">Built a Python and SQL-based data pipeline to analyze and synthesize large-scale simulated datasets from multiple observatories. Employed Markov Chain Monte Carlo (MCMC) methods to model complex matter dynamics, test hypotheses, and constrain key underlying cosmological parameters. Engineered novel statistical techniques to merge disparate datasets, effectively reducing noise to isolate signal. This innovation led to a 120% increase in the model&#x27;s statistical power, significantly improving the precision of estimates for unobservable drivers like dark matter and dark energy.</p>
-</div>
-<div>
-<h3 class="text-2xl font-semibold">Research Assistant</h3>
-<p class="text-lg text-indigo-600">Duke High Energy Physics Group | Durham, NC</p>
-<p class="text-sm text-gray-500 mt-1">September 2021 - August 2022</p>
-<p class="mt-3 text-gray-700">Implemented and optimized computational graphic algorithm in C++ with Prof. Ashutosh Kotwal for the Large Hadron Collider. Developed particle collision fragment path reconstruction algorithms on FPGA architecture. Achieved throughput of &lt;25 ns to allow reconstruction of fragment paths from 70 collisions–a three order of magnitude increase in efficiency.</p>
-</div>
-<div>
-<h3 class="text-2xl font-semibold">Teaching Assistant</h3>
-<p class="text-lg text-indigo-600">Math Department, Duke University | Durham, NC</p>
-<p class="text-sm text-gray-500 mt-1">April 2022 - April 2024</p>
-<p class="mt-3 text-gray-700">Assisted over 40 students with Multivariable Calculus and Linear Algebra in the Math Help Room and Office Hours. Rated &quot;Excellent&quot; by supervisor and peers in the annual TA review of 2023 and 2024.</p>
-</div>
-<div>
-<h3 class="text-2xl font-semibold">Founder</h3>
-<p class="text-lg text-indigo-600">Duke Astronomy Club | Duke</p>
-<p class="text-sm text-gray-500 mt-1">2021 - 2024</p>
-<p class="mt-3 text-gray-700">Founded and leading the first Astronomy Club at Duke; organize weekly stargazing events at Duke Teaching Observatory with 100+ audiences; held 6 astronomy events with more than 300+ students.</p>
-</div>
-<div>
-<h3 class="text-2xl font-semibold">President</h3>
-<p class="text-lg text-indigo-600">Society of Physics Students, Duke University | Duke University</p>
-<p class="text-sm text-gray-500 mt-1">2023 - 2024</p>
-<p class="mt-3 text-gray-700">Hosted multiple physics events, including 4 research panels, student-faculty dinner, grad school panel. Organized SPS Zone 5 meeting with 100+ participants, won 2023 Outstanding Chapter Award.</p>
-</div>
-</div>
-</section>
-<section class="my-16">
-<h2 class="text-3xl font-bold border-b-2 border-indigo-500 pb-2 mb-8">Skills</h2>
-<div class="flex flex-wrap gap-2">
-<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Python</span>
-<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Rust</span>
-<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">LaTeX</span>
-<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Linux/Unix</span>
-<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">C/C++</span>
-<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Julia</span>
-<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">SQL</span>
-<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Java</span>
-<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">MATLAB</span>
-<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Git</span>
-<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">PostgreSQL</span>
-<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">VS Code</span>
-<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">NumPy</span>
-<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">pandas</span>
-<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">polars</span>
-<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Matplotlib</span>
-<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">PyTorch</span>
-<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Data Analysis</span>
-<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Data Engineering</span>
-<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">MLOps</span>
-<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Cloud Computing</span>
-<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Factor Research</span>
-<span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">Market Microstructure Modeling</span>
-</div>
-</section>
-</div>
+    <div class="container">
+        <div class="main-content">
+            <div class="text-content">
+                <h1 class="name">
+                    <span class="first-name">TIANRUI</span> WU
+                </h1>
+                
+                
+                
+                <div class="description">
+                     
+                     <p>You can reach me at <span class="email-typewriter">tianrui.wu@duke.edu</span>.</p>
+                </div>
+
+                
+                <div class="social-links">
+                    
+                    <a href="https://www.linkedin.com/in/dennis-tianrui-wu" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </a>
+                    
+                    
+                </div>
+                
+            </div>
+            
+            
+            <div class="research-section">
+                <div class="timeline">
+                    
+                    <div class="timeline-item">
+                        <span class="timeline-date">02/2025—Current</span>
+                        <div class="timeline-content">
+                            <h3>Quantitative Researcher</h3>
+                            <p><em>InsightCheck Investment Co., Ltd.</em></p>
+                            <p>Designed and deployed quantitative models for equity and cryptocurrency markets by researching market microstructure, order book dynamics, and high-frequency factors. Successfully implemented strategies in live trading, including a market-making model that achieved positive returns after fees.
+Engineered and optimized a high-performance order book reconstruction engine using market-by-order data, achieving ~1 second processing for the full A-share universe with validated accuracy. Proficient in Python data analysis libraries (Pandas, NumPy, Polars) and learned Rust for performance-critical systems.
+Read research reports and macroeconomic papers to design new fundamentals- and microstructure-based factors for low-frequency A-shares cross-section portfolio optimization. Constructed intraday factor validation and backtesting pipeline, with 62 intraday factors validated to be high IC and ICIR.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <span class="timeline-date">06/2024—08/2024</span>
+                        <div class="timeline-content">
+                            <h3>RESEARCH FELLOW</h3>
+                            <p><em>Caltech SURF Program</em></p>
+                            <p>Mentor: Dr. Olivier Doré, JPL Principal Scientist
+Developed a Convolutional Neural Network (ResUNet) to predict and correct for observational biases in cosmological data for the SPHEREx survey. The model achieved <1% prediction error, significantly improving the measurement accuracy of the primordial non-Gaussianity parameter of our universe.
+Managed the end-to-end project lifecycle, from drafting the initial proposal and generating mock data catalogs to delivering final reports and presenting findings to a faculty committee.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <span class="timeline-date">05/2022—present</span>
+                        <div class="timeline-content">
+                            <h3>RESEARCH ASSISTANT</h3>
+                            <p><em>Duke Cosmology Group</em></p>
+                            <p>Mentor: Prof. Michael A. Troxel
+Built a Python and SQL-based data pipeline to analyze and synthesize large-scale simulated datasets from multiple observatories. Employed Markov Chain Monte Carlo (MCMC) methods to model complex matter dynamics, test hypotheses, and constrain key underlying cosmological parameters.
+Engineered novel statistical techniques to merge disparate datasets, effectively reducing noise to isolate signal. This innovation led to a 120% increase in the model's statistical power, significantly improving the precision of estimates for unobservable drivers like dark matter and dark energy.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <span class="timeline-date">09/2021—08/2022</span>
+                        <div class="timeline-content">
+                            <h3>RESEARCH ASSISTANT</h3>
+                            <p><em>Duke High Energy Physics Group</em></p>
+                            <p>Implemented and optimized computational graphic algorithm in C++ with Prof. Ashutosh Kotwal for the Large Hadron Collider. Developed particle collision fragment path reconstruction algorithms on FPGA architecture. Achieved throughput of <25 ns to allow reconstruction of fragment paths from 70 collisions–a three order of magnitude increase in efficiency.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <span class="timeline-date">04/2022—04/2024</span>
+                        <div class="timeline-content">
+                            <h3>TEACHING ASSISTANT</h3>
+                            <p><em>Math Department, Duke University</em></p>
+                            <p>Assisted over 40 students with Multivariable Calculus and Linear Algebra in the Math Help Room and Office Hours. Rated "Excellent" by supervisor and peers in the annual TA review of 2023 and 2024.</p>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <div class="timeline-item">
+                        <span class="timeline-date">08/2021—05/2026</span>
+                        <div class="timeline-content">
+                            <h3>B.S. in Mathematics and Physics, Minor in CS</h3>
+                            <p><em>Duke University</em></p>
+                            <p>GPA: 3.9/4.0, Physics GPA 4.0/4.0</p>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h3>ACHIEVEMENTS</h3>
+                                <p><strong>award:</strong> Jocelyn Bell Burnell Outstanding Leadership Scholarship</p><p><strong>description:</strong> Society of Physics Students’ highest award based on leadership and dedication in Physics.</p><p><strong>year:</strong> 2024</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h3>ACHIEVEMENTS</h3>
+                                <p><strong>award:</strong> Sigma Pi Sigma Membership (invitation-only)</p><p><strong>description:</strong> Awarded to Physics juniors and seniors for exceptional achievement in physics and astronomy.</p><p><strong>year:</strong> 2024</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h3>ACHIEVEMENTS</h3>
+                                <p><strong>award:</strong> Duke Faculty Scholar</p><p>Finalist, departmental nominee. Highest award given by Duke University faculty to undergraduates, nomination only through departments.</p><p><strong>year:</strong> 2024</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h3>ACHIEVEMENTS</h3>
+                                <p><strong>award:</strong> Regeneron International Science and Engineering Fair</p><p><strong>description:</strong> Physics 3rd Grand Award. Ranked 5th out of 100+ finalists, 1st in China National Team.</p><p><strong>year:</strong> 2021</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h3>ACHIEVEMENTS</h3>
+                                <p><strong>award:</strong> British Physics Olympiad</p><p>Top Gold Award; 9th/3500. Highest award in British Physics Olympiad for foreign citizens, only awarded to 50 individuals.</p><p><strong>year:</strong> 2021</p>
+                            </div>
+                        </div>
+                        
+                    
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h3>LEADERSHIP</h3>
+                                <p><strong>role:</strong> Founder, Duke Astronomy Club</p><p>Founded and leading the first Astronomy Club at Duke; organize weekly stargazing events at Duke Teaching Observatory with 100+ audiences; held 6 astronomy events with more than 300+ students.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <h3>LEADERSHIP</h3>
+                                <p><strong>role:</strong> President, Society of Physics Students</p><p>Hosted multiple physics events, including 4 research panels, student-faculty dinner, grad school panel. Organized SPS Zone 5 meeting with 100+ participants, won 2023 Outstanding Chapter Award.</p>
+                            </div>
+                        </div>
+                        
+                    
+                </div>
+            </div>
+            
+        </div>
+    </div>
 </body>
 </html>
