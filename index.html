@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tianrui Wu</title>
-    <meta name="description" content="Quantitative Researcher and Physics/Math Scholar.">
+    <meta name="description" content="Quantitative Researcher and Physics/Math Scholar at Duke University.">
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚛️</text></svg>">
     
@@ -24,143 +24,211 @@
         a:hover { text-decoration: underline; }
 
         /* --- LAYOUT CONTAINERS --- */
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 30px; }
 
+        /* --- HEADER SECTION --- */
         .header-section {
-            margin-top: 80px;
+            margin-top: 60px;
             margin-bottom: 60px;
-            border-bottom: 2px solid #000;
             padding-bottom: 40px;
+            border-bottom: 1px solid #e0e0e0;
         }
 
-        /* --- GRID SYSTEM --- */
+        .name { font-size: 3.5rem; font-weight: 300; margin-bottom: 15px; line-height: 1.1; color: #000; }
+        .first-name { font-weight: 700; }
+        
+        .contact-info {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9rem;
+            color: #444;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .contact-item {
+            background-color: #f5f5f5;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* --- GRID SYSTEM (Left Sidebar / Right Main) --- */
         .content-grid {
             display: grid;
-            grid-template-columns: 1fr 300px; /* Main 1fr, Sidebar 300px */
-            gap: 60px;
+            /* 280px sidebar on left, rest is main content */
+            grid-template-columns: 280px 1fr; 
+            gap: 80px;
             margin-bottom: 100px;
             align-items: start;
         }
 
-        /* --- TYPOGRAPHY --- */
-        .name { font-size: 3.5rem; font-weight: 300; margin-bottom: 20px; line-height: 1.1; color: #000; }
-        .first-name { font-weight: 700; }
-        .description { font-size: 1rem; line-height: 1.7; max-width: 800px; }
-        .description p { margin-bottom: 20px; }
-        
-        .email-typewriter {
-            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-            font-size: 0.95em;
-            background-color: #f5f5f5;
-            padding: 2px 4px;
-            border-radius: 3px;
-            color: #333;
+        /* --- SIDEBAR STYLES --- */
+        .sidebar {
+            position: sticky;
+            top: 40px; /* Sticks to top on scroll */
         }
 
-        /* --- SIDEBAR (EDUCATION) --- */
-        .sidebar { position: sticky; top: 40px; }
+        .sidebar-section { margin-bottom: 50px; }
 
-        .sidebar-section h3 {
-            font-size: 1.2rem;
+        .sidebar-title {
+            font-size: 0.85rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 2px solid #000;
-            padding-bottom: 10px;
+            letter-spacing: 1.5px;
+            font-weight: 700;
+            color: #999;
             margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
         }
 
-        .edu-item { margin-bottom: 30px; }
-        .edu-school { font-weight: 700; font-size: 1.1rem; display: block; }
-        .edu-degree { font-style: italic; color: #555; display: block; margin-bottom: 8px; }
-        .edu-details { font-size: 0.9rem; color: #444; }
+        /* Education Specifics */
+        .edu-item { margin-bottom: 20px; }
+        .edu-school { font-weight: 700; font-size: 1.1rem; display: block; color: #000; }
+        .edu-degree { font-size: 0.95rem; line-height: 1.4; display: block; margin: 5px 0; }
+        .edu-meta { font-size: 0.9rem; color: #555; display: block; margin-bottom: 4px; }
+        .edu-honors { font-size: 0.85rem; color: #A51C30; font-style: italic; margin-top: 5px; display: block; }
 
-        /* --- TIMELINE STRUCTURE --- */
-        /* Note: Each section (Exp, Lead, Honor) gets its own .timeline div */
+        /* Skills/Coursework Lists */
+        .sidebar-list { list-style: none; font-size: 0.9rem; color: #333; }
+        .sidebar-list li { margin-bottom: 10px; line-height: 1.5; }
+        .sidebar-label { font-weight: 600; color: #000; display: block; margin-bottom: 2px; }
+
+        /* --- MAIN COLUMN (TIMELINE) --- */
+        .section-header {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+            color: #000;
+            border-bottom: 1px solid #000;
+            padding-bottom: 10px;
+            margin-top: 60px; /* Spacing between sections */
+        }
+        .section-header:first-child { margin-top: 0; }
+
         .timeline {
             position: relative;
-            padding-left: 70px;
-            /* Margin bottom creates space after the group before the next header */
-            margin-bottom: 60px; 
+            padding-left: 80px; /* Space for the date */
         }
 
-        /* The vertical line */
+        /* Vertical Line */
         .timeline::before {
             content: "";
             position: absolute;
-            left: 85px;
+            left: 95px; /* Adjust based on padding */
             top: 10px;
             bottom: 0;
             width: 2px;
-            background: #000;
+            background: #e0e0e0;
         }
 
-        .timeline-item { position: relative; margin-bottom: 60px; }
-
-        /* PREVENTS dangling line at the end of a section */
+        .timeline-item { position: relative; margin-bottom: 50px; }
         .timeline-item:last-child { margin-bottom: 0; }
 
-        /* The Dot */
+        /* Dot */
         .timeline-item::before {
             content: "";
             position: absolute;
-            left: 11px; 
-            top: 10px;
-            width: 4px;
-            height: 4px;
-            background: #000000;
-            border: 3px solid #000000;
+            left: 11px; /* Relative to content padding */
+            top: 8px;
+            width: 6px;
+            height: 6px;
+            background: #fff;
+            border: 3px solid #000;
             border-radius: 50%;
             z-index: 2;
         }
 
         .timeline-date {
             position: absolute;
-            left: -80px;
-            top: 6px;
-            width: 65px;
+            left: -95px;
+            top: 4px;
+            width: 80px;
             text-align: right;
             font-weight: 600;
             font-size: 0.85rem;
-            white-space: nowrap;
+            color: #888;
+            font-family: -apple-system, sans-serif;
+        }
+
+        .timeline-content {
+            padding-left: 30px;
+            position: relative;
+        }
+
+        /* Content Typography */
+        .timeline-content h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 4px;
             color: #000;
+            padding-right: 60px; /* Space for logo */
         }
 
-        .timeline-content { padding-left: 40px; position: relative; }
-        .timeline-content h3 { font-size: 1.4rem; font-weight: 600; margin-bottom: 5px; color: #000; padding-right: 100px; }
-        .timeline-content p { margin-bottom: 12px; color: #333; }
-        .timeline-content em { color: #555; font-style: italic; display: block; margin-bottom: 12px; }
+        .role-subtitle {
+            font-size: 1rem;
+            color: #555;
+            font-style: italic;
+            margin-bottom: 12px;
+            display: block;
+        }
 
-        /* Logo Positioning */
+        .timeline-content p { margin-bottom: 10px; font-size: 1rem; color: #333; }
+        
+        /* Bullet Points in Timeline */
+        .content-bullets {
+            list-style: none;
+            margin-top: 10px;
+        }
+        .content-bullets li {
+            position: relative;
+            padding-left: 18px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #444;
+        }
+        .content-bullets li::before {
+            content: "›";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            color: #A51C30;
+            top: -1px;
+            font-size: 1.2em;
+        }
+
+        /* Logo Placeholder */
         .logo-container { position: absolute; top: 0; right: 0; }
-        .inst-logo { height: 50px; width: auto; border-radius: 4px; }
-
-        /* Honors List */
-        .achievement-list { list-style: none; }
-        .achievement-list li { margin-bottom: 12px; position: relative; padding-left: 20px; }
-        .achievement-list li::before { content: "•"; position: absolute; left: 0; color: #666; font-weight: bold; }
-
-        /* Headers between sections */
-        .section-divider {
-            font-size: 1.5rem; 
-            font-weight: 300; 
-            margin: 0 0 40px 0; /* No top margin, relied on previous block's margin */
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-        }
+        .inst-logo { height: 45px; width: auto; border-radius: 4px; opacity: 0.9; }
 
         /* Social Icons */
-        .social-links { display: flex; gap: 20px; margin-top: 20px; }
-        .social-link { color: #666; }
-        .social-link:hover { color: #000; }
+        .social-links { display: flex; gap: 15px; margin-top: 20px; }
+        .social-link svg { width: 24px; height: 24px; color: #666; transition: color 0.2s; }
+        .social-link:hover svg { color: #000; }
 
-        /* Mobile */
+        /* --- RESPONSIVE --- */
         @media (max-width: 900px) {
-            .content-grid { grid-template-columns: 1fr; gap: 40px; }
-            .sidebar { position: static; border-top: 2px solid #000; padding-top: 40px; }
-            .timeline { padding-left: 0; margin-bottom: 40px; }
+            .content-grid { grid-template-columns: 1fr; gap: 50px; }
+            .sidebar { position: static; border-bottom: 1px solid #eee; padding-bottom: 40px; }
+            
+            .timeline { padding-left: 0; }
             .timeline::before { display: none; }
             .timeline-item::before { display: none; }
-            .timeline-date { position: static; display: block; text-align: left; margin-bottom: 5px; color: #666; }
+            .timeline-date { 
+                position: static; 
+                display: inline-block;
+                background: #f0f0f0;
+                padding: 2px 6px;
+                border-radius: 4px;
+                margin-bottom: 8px;
+                text-align: left;
+                width: auto;
+                color: #333;
+            }
             .timeline-content { padding-left: 0; }
             .logo-container { position: static; margin-bottom: 10px; }
             .timeline-content h3 { padding-right: 0; }
@@ -168,86 +236,153 @@
     </style>
 </head>
 <body>
+
     <div class="container">
         
-        <div class="header-section">
+        <header class="header-section">
             <h1 class="name"><span class="first-name">Tianrui</span> Wu</h1>
-            <div class="description">
-                 <p>Welcome! I am a Physics and Math Student and part-time Quantitative Researcher. My work spans market microstructure modeling, high-frequency trading strategies, deep learning model pipeline, and astrophysics research.</p>
-                 <p>You can reach me at <span class="email-typewriter">denniswu501@gmail.com</span>.</p>
-                 <div class="social-links">
-                    <a href="https://www.linkedin.com/in/dennis-tianrui-wu" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
-                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                    </a>
-                </div>
+            <div class="contact-info">
+                <span class="contact-item">tianrui.wu@duke.edu</span>
+                <span class="contact-item">denniswu501@gmail.com</span>
+                <span class="contact-item">(984) 377-9159</span>
             </div>
-        </div>
+            
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/dennis-tianrui-wu" class="social-link" aria-label="LinkedIn" target="_blank">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+            </div>
+        </header>
 
         <div class="content-grid">
             
-            <div class="main-column">
+            <aside class="sidebar">
                 
-                <h3 class="section-divider" style="margin-top: 0; border: none;">Experience</h3>
+                <div class="sidebar-section">
+                    <h4 class="sidebar-title">Education</h4>
+                    <div class="edu-item">
+                        <span class="edu-school">Duke University</span>
+                        <span class="edu-meta">Durham, NC | Aug 2021 – May 2026</span>
+                        <span class="edu-degree">B.S. Mathematics & Physics</span>
+                        <span class="edu-degree">Minor in Computer Science</span>
+                        <span class="edu-meta">Currently in Gap Year</span>
+                        
+                        <span class="edu-honors">GPA: 3.9 / 4.0</span>
+                        <span class="edu-honors">Physics GPA: 4.0 / 4.0</span>
+                        <span class="edu-honors">Dean's List with Distinction</span>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <h4 class="sidebar-title">Coursework</h4>
+                    <ul class="sidebar-list">
+                        <li>Probabilities</li>
+                        <li>Statistical Inference</li>
+                        <li>Bayesian Statistics</li>
+                        <li>Machine Learning Algorithms</li>
+                        <li>Regression Analysis</li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-section">
+                    <h4 class="sidebar-title">Technical Skills</h4>
+                    <ul class="sidebar-list">
+                        <li>
+                            <span class="sidebar-label">Proficient Languages</span>
+                            Python, Rust, LaTeX, Linux/Unix
+                        </li>
+                        <li>
+                            <span class="sidebar-label">Familiar Languages</span>
+                            C/C++, Julia, SQL, Java, MATLAB
+                        </li>
+                        <li>
+                            <span class="sidebar-label">Tools</span>
+                            Git, PostgreSQL, VS Code, NumPy, Pandas, Polars, Matplotlib, PyTorch
+                        </li>
+                        <li>
+                            <span class="sidebar-label">Core Skills</span>
+                            Data Analysis, Data Engineering, MLOps, Cloud Computing, Factor Research, Market Microstructure Modeling
+                        </li>
+                    </ul>
+                </div>
+            </aside>
+
+            <main class="main-column">
+                
+                <h2 class="section-header">Professional & Research Experience</h2>
                 <div class="timeline">
                     
                     <div class="timeline-item">
-                        <span class="timeline-date">2025—</span>
+                        <span class="timeline-date">Feb 2025 — Present</span>
                         <div class="timeline-content">
                             <h3>Quantitative Researcher
-                                <div class="logo-container"><img src="https://placehold.co/100x50?text=InsightCheck" class="inst-logo" alt="InsightCheck"></div>
+                                <div class="logo-container"><img src="https://placehold.co/100x45?text=InsightCheck" class="inst-logo" alt="InsightCheck"></div>
                             </h3>
-                            <p><em>InsightCheck Investment Co., Ltd.</em></p>
-                            <p>Designed and deployed quantitative models for equity and cryptocurrency markets by researching market microstructure, order book dynamics, and high-frequency factors. Successfully implemented strategies in live trading, including a market-making model that achieved positive returns after fees.</p>
-                            <p>Engineered and optimized a high-performance order book reconstruction engine using market-by-order data, achieving ~1 second processing for the full A-share universe with validated accuracy. Proficient in Python data analysis libraries (Pandas, NumPy, Polars) and learned Rust for performance-critical systems.</p>
-                            <p>Read research reports and macroeconomic papers to design new fundamentals- and microstructure-based factors for low-frequency A-shares cross-section portfolio optimization. Constructed intraday factor validation and backtesting pipeline, with 62 intraday factors validated to be high IC and ICIR.</p>
+                            <span class="role-subtitle">InsightCheck Investment Co., Ltd. | Shenzhen, China</span>
+                            <ul class="content-bullets">
+                                <li>Designed and deployed quantitative models for equity and cryptocurrency markets by researching market microstructure, order book dynamics, and high-frequency factors. Successfully implemented strategies in live trading, including a market-making model that achieved positive returns after fees.</li>
+                                <li>Engineered and optimized a high-performance order book reconstruction engine using market-by-order data, achieving ~1 second processing for the full A-share universe with validated accuracy. Proficient in Python data analysis libraries (Pandas, NumPy, Polars) and learned Rust for performance-critical systems.</li>
+                                <li>Read research reports and macroeconomic papers to design new fundamentals- and microstructure-based factors for low-frequency A-shares cross-section portfolio optimization. Constructed intraday factor validation and backtesting pipeline, with 62 intraday factors validated to be high IC and ICIR.</li>
+                            </ul>
                         </div>
                     </div>
 
                     <div class="timeline-item">
-                        <span class="timeline-date">2024</span>
+                        <span class="timeline-date">Summer 2024</span>
                         <div class="timeline-content">
-                            <h3>Research Fellow (SURF)
-                                <div class="logo-container"><img src="https://placehold.co/60x60?text=Caltech" class="inst-logo" alt="Caltech"></div>
+                            <h3>Research Fellow (SURF Program)
+                                <div class="logo-container"><img src="https://placehold.co/50x50?text=Caltech" class="inst-logo" alt="Caltech"></div>
                             </h3>
-                            <p><em>Caltech | Mentor: Dr. Olivier Doré (JPL)</em></p>
-                            <p>Developed a Convolutional Neural Network (ResUNet) to predict and correct for observational biases in cosmological data for the SPHEREx survey. The model achieved <1% prediction error, significantly improving the measurement accuracy of the primordial non-Gaussianity parameter of our universe.</p>
-                            <p>Managed the end-to-end project lifecycle, from drafting the initial proposal and generating mock data catalogs to delivering final reports and presenting findings to a faculty committee.</p>
+                            <span class="role-subtitle">Caltech | Mentor: Dr. Olivier Doré (JPL)</span>
+                            <ul class="content-bullets">
+                                <li>Developed a Convolutional Neural Network (ResUNet) to predict and correct for observational biases in cosmological data for the SPHEREx survey. The model achieved <1% prediction error, significantly improving the measurement accuracy of the primordial non-Gaussianity parameter of our universe.</li>
+                                <li>Managed the end-to-end project lifecycle, from drafting the initial proposal and generating mock data catalogs to delivering final reports and presenting findings to a faculty committee.</li>
+                            </ul>
                         </div>
                     </div>
 
                     <div class="timeline-item">
-                        <span class="timeline-date">2022—</span>
-                        <div class="timeline-content">
-                            <h3>Research Assistant
-                                <div class="logo-container"><img src="https://placehold.co/60x60?text=Duke" class="inst-logo" alt="Duke"></div>
-                            </h3>
-                            <p><em>Duke Cosmology Group | Mentor: Prof. Michael A. Troxel</em></p>
-                            <p>Built a Python and SQL-based data pipeline to analyze and synthesize large-scale simulated datasets from multiple observatories. Employed Markov Chain Monte Carlo (MCMC) methods to model complex matter dynamics, test hypotheses, and constrain key underlying cosmological parameters.</p>
-                            <p>Engineered novel statistical techniques to merge disparate datasets, effectively reducing noise to isolate signal. This innovation led to a 120% increase in the model's statistical power, significantly improving the precision of estimates for unobservable drivers like dark matter and dark energy.</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <span class="timeline-date">2021—2022</span>
+                        <span class="timeline-date">May 2022 — Present</span>
                         <div class="timeline-content">
                             <h3>Research Assistant
-                                <div class="logo-container"><img src="https://placehold.co/60x60?text=CERN" class="inst-logo" alt="CERN"></div>
+                                <div class="logo-container"><img src="https://placehold.co/50x50?text=Duke" class="inst-logo" alt="Duke"></div>
                             </h3>
-                            <p><em>Duke High Energy Physics Group (LHC) | Mentor: Prof. Ashutosh Kotwal</em></p>
-                            <p>Implemented and optimized computational graphic algorithms in C++ for the Large Hadron Collider. Developed particle collision fragment path reconstruction algorithms on FPGA architecture. Achieved throughput of <25 ns to allow reconstruction of fragment paths from 70 collisions–a three order of magnitude increase in efficiency.</p>
+                            <span class="role-subtitle">Duke Cosmology Group | Mentor: Prof. Michael A. Troxel</span>
+                            <ul class="content-bullets">
+                                <li>Built a Python and SQL-based data pipeline to analyze and synthesize large-scale simulated datasets from multiple observatories. Employed Markov Chain Monte Carlo (MCMC) methods to model complex matter dynamics, test hypotheses, and constrain key underlying cosmological parameters.</li>
+                                <li>Engineered novel statistical techniques to merge disparate datasets, effectively reducing noise to isolate signal. This innovation led to a 120% increase in the model's statistical power, significantly improving the precision of estimates for unobservable drivers like dark matter and dark energy.</li>
+                            </ul>
                         </div>
                     </div>
 
                     <div class="timeline-item">
-                        <span class="timeline-date">2022—2024</span>
+                        <span class="timeline-date">2021 — 2022</span>
+                        <div class="timeline-content">
+                            <h3>Research Assistant
+                                <div class="logo-container"><img src="https://placehold.co/50x50?text=CERN" class="inst-logo" alt="CERN"></div>
+                            </h3>
+                            <span class="role-subtitle">Duke High Energy Physics Group (LHC) | Mentor: Prof. Ashutosh Kotwal</span>
+                            <ul class="content-bullets">
+                                <li>Implemented and optimized computational graphic algorithm in C++ for the Large Hadron Collider.</li>
+                                <li>Developed particle collision fragment path reconstruction algorithms on FPGA architecture. Achieved throughput of <25 ns to allow reconstruction of fragment paths from 70 collisions–a three order of magnitude increase in efficiency.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="timeline-date">2022 — 2024</span>
                         <div class="timeline-content">
                             <h3>Teaching Assistant</h3>
-                            <p><em>Math Department, Duke University</em></p>
-                            <p>Assisted over 40 students with Multivariable Calculus and Linear Algebra in the Math Help Room and Office Hours. Rated "Excellent" by supervisor and peers in the annual TA review of 2023 and 2024.</p>
+                            <span class="role-subtitle">Duke University Math Department</span>
+                            <ul class="content-bullets">
+                                <li>Assisted over 40 students with Multivariable Calculus and Linear Algebra in the Math Help Room and Office Hours.</li>
+                                <li>Rated "Excellent" by supervisor and peers in the annual TA review of 2023 and 2024.</li>
+                            </ul>
                         </div>
                     </div>
-                </div> 
-                <h3 class="section-divider">Leadership</h3>
+                </div>
+
+                <h2 class="section-header">Leadership</h2>
                 <div class="timeline">
                     <div class="timeline-item">
                         <span class="timeline-date">Founder</span>
@@ -265,38 +400,51 @@
                         </div>
                     </div>
                 </div>
-                <h3 class="section-divider">Honors & Awards</h3>
+
+                <h2 class="section-header">Achievements</h2>
                 <div class="timeline">
                     <div class="timeline-item">
-                        <span class="timeline-date">Awards</span>
+                        <span class="timeline-date">2024</span>
                         <div class="timeline-content">
-                            <ul class="achievement-list">
-                                <li><strong>Jocelyn Bell Burnell Outstanding Leadership Scholarship (2024):</strong> Society of Physics Students’ highest award based on leadership and dedication in Physics.</li>
-                                <li><strong>Sigma Pi Sigma Membership (2024):</strong> Invitation-only, awarded to Physics juniors/seniors for exceptional achievement.</li>
-                                <li><strong>Duke Faculty Scholar Finalist (2024):</strong> Highest award given by Duke University faculty to undergraduates, nomination only through departments.</li>
-                                <li><strong>British Physics Olympiad (2021):</strong> Top Gold Award; 9th/3500. Highest award in British Physics Olympiad for foreign citizens, only awarded to 50 individuals.</li>
-                                <li><strong>Regeneron International Science and Engineering Fair (2021):</strong> Physics 3rd Grand Award. Ranked 5th out of 100+ finalists, 1st in China National Team.</li>
-                            </ul>
+                            <h3>Jocelyn Bell Burnell Outstanding Leadership Scholarship</h3>
+                            <p>Society of Physics Students’ highest award based on leadership and dedication in Physics.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <span class="timeline-date">2024</span>
+                        <div class="timeline-content">
+                            <h3>Sigma Pi Sigma Membership</h3>
+                            <p>Invitation-only. Awarded to Physics juniors and seniors for exceptional achievement in physics and astronomy.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="timeline-date">2024</span>
+                        <div class="timeline-content">
+                            <h3>Duke Faculty Scholar Finalist</h3>
+                            <p>Departmental nominee. Highest award given by Duke University faculty to undergraduates, nomination only through departments.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="timeline-date">2021</span>
+                        <div class="timeline-content">
+                            <h3>Regeneron ISEF - Physics 3rd Grand Award</h3>
+                            <p>Ranked 5th out of 100+ finalists, 1st in China National Team.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="timeline-date">2021</span>
+                        <div class="timeline-content">
+                            <h3>British Physics Olympiad - Top Gold Award</h3>
+                            <p>Ranked 9th/3500. Highest award in British Physics Olympiad for foreign citizens, only awarded to 50 individuals.</p>
                         </div>
                     </div>
                 </div>
 
-            </div>
-
-            <aside class="sidebar">
-                <div class="sidebar-section">
-                    <h3>Education</h3>
-                    <div class="edu-item">
-                        <span class="edu-school">Duke University</span>
-                        <span class="edu-degree">Major in Mathematics & Physics</span>
-                        <span class="edu-degree">Minor in Computer Science</span>
-                        <p class="edu-details">2021 — 2024</p>
-                        <p class="edu-details">GPA: 3.9 / 4.0</p>
-                        <p class="edu-details">Physics GPA: 4.0 / 4.0</p>
-                    </div>
-                </div>
-            </aside>
-
+            </main>
         </div>
     </div>
 </body>
