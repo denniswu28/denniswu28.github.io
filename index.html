@@ -1,682 +1,393 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tianrui Wu</title>
-    <meta name="description" content="Quantitative Trader/Researcher and Physics/Math Student.">
-    
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚛️</text></svg>">
-    
-    <style>
-        /* --- RESET & BASICS --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tianrui (Dennis) Wu — Quantitative Trader & Researcher</title>
+<meta name="description" content="Tianrui (Dennis) Wu — Quantitative Trader & Researcher. Live crypto market-making, HFT, and factor research; ML and Bayesian inference.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📈</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;450;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBFAF8; --paper-2:#F4F2ED; --ink:#14171A; --graphite:#565C64;
+  --crimson:#A51C30; --crimson-deep:#7E1626; --pnl:#1F7A54; --hair:#E6E1D8;
+  --shadow:0 1px 2px rgba(20,23,26,.04),0 8px 30px rgba(20,23,26,.06);
+  --disp:'Space Grotesk',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+  --maxw:1120px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--crimson);color:#fff}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #111;
-            background-color: #fff;
-            -webkit-font-smoothing: antialiased;
-        }
+/* ---------- NAV ---------- */
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);background:rgba(251,250,248,.82);border-bottom:1px solid var(--hair)}
+.nav-in{max-width:var(--maxw);margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-family:var(--disp);font-weight:700;letter-spacing:-.02em;font-size:1.05rem}
+.brand .dot{color:var(--crimson)}
+.nav-links{display:flex;gap:26px;font-size:.9rem;font-weight:500}
+.nav-links a{color:var(--graphite);transition:color .2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{font-family:var(--mono);font-size:.8rem;border:1px solid var(--ink);padding:7px 13px;border-radius:6px;transition:all .2s}
+.nav-cta:hover{background:var(--ink);color:var(--paper)}
+@media(max-width:760px){.nav-links{display:none}}
 
-        a { color: #A51C30; text-decoration: none; font-weight: 500; transition: all 0.2s ease; }
-        a:hover { text-decoration: underline; }
+/* ---------- HERO ---------- */
+.hero{position:relative;padding:96px 0 70px;overflow:hidden}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--hair) 1px,transparent 1px),linear-gradient(90deg,var(--hair) 1px,transparent 1px);background-size:44px 44px;opacity:.35;mask-image:radial-gradient(circle at 70% 30%,#000,transparent 72%)}
+.hero svg.chart{position:absolute;right:-40px;top:40px;width:min(56%,640px);height:auto;opacity:.9;pointer-events:none}
+.hero-in{position:relative;z-index:2}
+.eyebrow{font-family:var(--mono);font-size:.8rem;letter-spacing:.06em;color:var(--crimson);text-transform:uppercase;margin-bottom:20px}
+.hero h1{font-family:var(--disp);font-weight:700;font-size:clamp(2.6rem,6vw,4.6rem);line-height:1.02;letter-spacing:-.03em;max-width:14ch}
+.hero h1 em{font-style:normal;color:var(--crimson)}
+.hero .lede{margin-top:24px;font-size:1.12rem;max-width:52ch;color:#2b3036}
+.hero .row{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.btn{font-family:var(--mono);font-size:.86rem;padding:11px 18px;border-radius:8px;border:1px solid var(--ink);transition:all .2s}
+.btn.solid{background:var(--ink);color:var(--paper)}
+.btn.solid:hover{background:var(--crimson);border-color:var(--crimson)}
+.btn.ghost:hover{background:var(--paper-2)}
+.socials{display:flex;gap:14px;margin-left:6px}
+.socials a{color:var(--graphite);transition:color .2s,transform .2s}
+.socials a:hover{color:var(--ink);transform:translateY(-2px)}
+.socials svg{width:21px;height:21px;display:block}
 
-        /* --- LAYOUT CONTAINERS --- */
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 30px; }
+/* metric ticker */
+.ticker{margin-top:52px;display:flex;gap:0;flex-wrap:wrap;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.ticker .cell{flex:1 1 160px;padding:20px 22px 18px;border-right:1px solid var(--hair)}
+.ticker .cell:last-child{border-right:0}
+.ticker .n{font-family:var(--mono);font-weight:600;font-size:1.5rem;letter-spacing:-.02em}
+.ticker .n .u{color:var(--pnl)}
+.ticker .l{font-size:.82rem;color:var(--graphite);margin-top:4px}
 
-        /* --- HEADER SECTION --- */
-        .header-section {
-            margin-top: 60px;
-            margin-bottom: 60px;
-            padding-bottom: 40px;
-            border-bottom: 1px solid #e0e0e0;
-        }
+/* ---------- SECTION SHELL ---------- */
+.section{padding:88px 0;border-top:1px solid var(--hair)}
+.s-head{display:flex;align-items:baseline;gap:16px;margin-bottom:14px}
+.s-index{font-family:var(--mono);font-size:.82rem;color:var(--crimson)}
+.s-title{font-family:var(--disp);font-weight:600;font-size:clamp(1.6rem,3.4vw,2.3rem);letter-spacing:-.02em}
+.s-sub{color:var(--graphite);max-width:60ch;margin-bottom:48px}
 
-        .name { 
-            font-size: 3.5rem; 
-            font-weight: 300; 
-            margin-bottom: 25px; 
-            line-height: 1.1; 
-            color: #000; 
-        }
-        .first-name { font-weight: 700; }
+/* ---------- ENTRY (experience / project) ---------- */
+.entry{display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:center;padding:38px 0;border-top:1px dashed var(--hair)}
+.entry:first-of-type{border-top:0}
+.entry.flip .entry-media{order:-1}
+.entry-head .role{font-family:var(--disp);font-weight:600;font-size:1.35rem;letter-spacing:-.01em}
+.entry-head .org{color:var(--crimson);font-weight:600;margin-top:2px}
+.entry-head .meta{font-family:var(--mono);font-size:.78rem;color:var(--graphite);margin-top:8px;display:flex;gap:14px;flex-wrap:wrap}
+.entry-body{margin-top:16px;color:#2b3036;font-size:1.01rem}
+.entry-body p{margin-bottom:10px}
+.chips{margin-top:16px;display:flex;gap:8px;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:.74rem;padding:6px 10px;border-radius:6px;background:var(--paper-2);border:1px solid var(--hair);color:#33383e}
+.chip b{color:var(--pnl);font-weight:600}
 
-        .description {
-            font-size: 1.05rem;
-            line-height: 1.7;
-            max-width: 850px;
-            color: #333;
-            margin-bottom: 25px;
-        }
-        
-        .description p { margin-bottom: 15px; }
+/* photo frames */
+.frames{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.frame{position:relative;aspect-ratio:4/3;border-radius:12px;overflow:hidden;border:1px solid var(--hair);background:var(--paper-2);box-shadow:var(--shadow)}
+.frame::before{content:"";position:absolute;inset:9px;border:1.5px dashed #cfc9bd;border-radius:8px;pointer-events:none;z-index:1;transition:opacity .3s}
+.frame .ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;padding:14px;z-index:0}
+.frame .ph svg{width:26px;height:26px;color:#b8b1a3}
+.frame .ph .lab{font-size:.72rem;color:#8b8578;font-weight:500}
+.frame .ph .path{font-family:var(--mono);font-size:.66rem;color:#a49d8f;word-break:break-all}
+.frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;transition:transform .5s ease}
+.frame:hover img{transform:scale(1.04)}
+.frame.is-empty img{display:none}
+.frame:not(.is-empty)::before{opacity:0}
 
-        .email-typewriter {
-            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-            font-size: 0.95em;
-            background-color: #f5f5f5;
-            padding: 2px 6px;
-            border-radius: 4px;
-            color: #333;
-        }
+/* ---------- PUBLICATIONS ---------- */
+.pub{display:grid;grid-template-columns:auto 1fr;gap:18px;padding:20px 0;border-top:1px solid var(--hair)}
+.pub .venue{font-family:var(--mono);font-size:.74rem;font-weight:600;color:#fff;background:var(--ink);padding:5px 9px;border-radius:5px;height:fit-content;white-space:nowrap}
+.pub .venue.prep{background:var(--crimson)}
+.pub .t{font-weight:600;font-size:1.02rem}
+.pub .a{color:var(--graphite);font-size:.92rem;margin-top:3px}
 
-        .contact-line {
-            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-            font-size: 0.85rem;
-            color: #555;
-            margin-top: 20px;
-        }
+/* ---------- SKILLS ---------- */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+.skill{border:1px solid var(--hair);border-radius:12px;padding:22px;background:#fff}
+.skill h4{font-family:var(--mono);font-size:.76rem;text-transform:uppercase;letter-spacing:.05em;color:var(--crimson);margin-bottom:12px}
+.skill .tags{display:flex;gap:7px;flex-wrap:wrap}
+.skill .tags span{font-size:.86rem;color:#33383e}
+.skill .tags span:not(:last-child)::after{content:"·";margin-left:7px;color:#c9c2b5}
 
-        /* --- GRID SYSTEM (Left Sidebar / Right Main) --- */
-        .content-grid {
-            display: grid;
-            grid-template-columns: 280px 1fr; /* 280px Sidebar, Rest Main */
-            gap: 80px;
-            margin-bottom: 100px;
-            align-items: start;
-        }
+/* ---------- EDU / CONTACT ---------- */
+.edu-row{display:flex;justify-content:space-between;gap:20px;padding:20px 0;border-top:1px solid var(--hair);flex-wrap:wrap}
+.edu-row .sch{font-family:var(--disp);font-weight:600;font-size:1.12rem}
+.edu-row .deg{color:#2b3036}
+.edu-row .yr{font-family:var(--mono);font-size:.82rem;color:var(--graphite)}
+.contact{padding:96px 0 40px;border-top:1px solid var(--hair)}
+.contact h2{font-family:var(--disp);font-weight:700;font-size:clamp(2rem,5vw,3.4rem);letter-spacing:-.02em;line-height:1.05}
+.contact a.mail{color:var(--crimson);border-bottom:2px solid transparent;transition:border-color .2s}
+.contact a.mail:hover{border-color:var(--crimson)}
+.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:30px 0;border-top:1px solid var(--hair);font-size:.85rem;color:var(--graphite)}
+.foot a{color:var(--ink);border-bottom:1px solid var(--hair)}
+.foot a:hover{border-color:var(--ink)}
 
-        /* --- SIDEBAR STYLES --- */
-        .sidebar {
-            position: sticky;
-            top: 40px; /* Sticks to top on scroll */
-        }
+/* ---------- REVEAL ANIMATION ---------- */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i,0)*90ms)}
+.reveal.from-left{transform:translateX(-46px)}
+.reveal.from-right{transform:translateX(46px)}
+.reveal.in{opacity:1;transform:none}
+.hero .anim{opacity:0;transform:translateY(22px);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:calc(var(--d,0)*120ms)}
+@keyframes rise{to{opacity:1;transform:none}}
+svg.chart .line{stroke-dasharray:2400;stroke-dashoffset:2400;animation:draw 2.6s cubic-bezier(.4,0,.2,1) .3s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+svg.chart .fill{opacity:0;animation:fadein 1.6s ease 1.6s forwards}
+@keyframes fadein{to{opacity:.10}}
 
-        .sidebar-section { margin-bottom: 50px; }
-
-        .sidebar-title {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            font-weight: 700;
-            color: #999;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-        }
-
-        /* Education Specifics */
-        .edu-item { margin-bottom: 20px; }
-        .edu-school { font-weight: 700; font-size: 1.1rem; display: block; color: #000; }
-        .edu-degree { font-size: 0.95rem; line-height: 1.4; display: block; margin: 5px 0; }
-        .edu-meta { font-size: 0.9rem; color: #555; display: block; margin-bottom: 4px; }
-        .edu-honors { font-size: 0.85rem; color: #A51C30; font-style: italic; margin-top: 5px; display: block; }
-
-        /* Skills/Coursework Lists */
-        .sidebar-list { list-style: none; font-size: 0.9rem; color: #333; }
-        .sidebar-list li { margin-bottom: 10px; line-height: 1.5; }
-        .sidebar-label { font-weight: 600; color: #000; display: block; margin-bottom: 2px; }
-
-        /* --- MAIN COLUMN (TIMELINE) --- */
-        .section-header {
-            font-size: 1.6rem;
-            font-weight: 300;
-            margin-bottom: 40px;
-            color: #000;
-            border-bottom: 1px solid #000;
-            padding-bottom: 10px;
-            margin-top: 60px; /* Spacing between sections */
-        }
-        .section-header:first-child { margin-top: 0; }
-
-        .timeline {
-            position: relative;
-            padding-left: 85px; /* Space for the date */
-        }
-
-        /* Vertical Line */
-        .timeline::before {
-            content: "";
-            position: absolute;
-            left: 100px; /* Line position */
-            top: 12px;
-            bottom: 0;
-            width: 2px;
-            background: #e0e0e0;
-        }
-
-        .timeline-item { position: relative; margin-bottom: 50px; }
-        .timeline-item:last-child { margin-bottom: 0; }
-
-        /* Dot */
-        .timeline-item::before {
-            content: "";
-            position: absolute;
-            left: 16px; /* Relative to content padding */
-            top: 10px;
-            width: 6px;
-            height: 6px;
-            background: #fff;
-            border: 3px solid #000;
-            border-radius: 50%;
-            z-index: 2;
-        }
-
-        .timeline-date {
-            position: absolute;
-            left: -100px;
-            top: 4px;
-            width: 85px;
-            text-align: right;
-            font-weight: 600;
-            font-size: 0.85rem;
-            color: #888;
-            font-family: -apple-system, sans-serif;
-        }
-
-        .timeline-content {
-            padding-left: 35px;
-            position: relative;
-        }
-
-        /* Content Typography */
-        .timeline-content h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 4px;
-            color: #000;
-            padding-right: 60px; /* Space for logo */
-        }
-
-        .role-subtitle {
-            font-size: 1rem;
-            color: #555;
-            font-style: italic;
-            margin-bottom: 12px;
-            display: block;
-        }
-
-        .timeline-content p { margin-bottom: 10px; font-size: 1rem; color: #333; }
-        
-        /* Bullet Points in Timeline */
-        .content-bullets {
-            list-style: none;
-            margin-top: 10px;
-        }
-        .content-bullets li {
-            position: relative;
-            padding-left: 18px;
-            margin-bottom: 8px;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: #444;
-        }
-        .content-bullets li::before {
-            content: "›";
-            position: absolute;
-            left: 0;
-            font-weight: bold;
-            color: #A51C30; /* Crimson Accent */
-            top: -1px;
-            font-size: 1.2em;
-        }
-
-        /* Logo Placeholder */
-        .logo-container { position: absolute; top: 0; right: 0; }
-        .inst-logo { height: 45px; width: auto; border-radius: 4px; opacity: 0.95; }
-
-        /* Social Icons */
-        .social-links { display: flex; gap: 15px; margin-top: 20px; }
-        .social-link svg { width: 24px; height: 24px; color: #666; transition: color 0.2s; }
-        .social-link:hover svg { color: #000; }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 900px) {
-            .content-grid { grid-template-columns: 1fr; gap: 50px; }
-            .sidebar { position: static; border-bottom: 1px solid #eee; padding-bottom: 40px; }
-            
-            .timeline { padding-left: 0; }
-            .timeline::before { display: none; }
-            .timeline-item::before { display: none; }
-            .timeline-date { 
-                position: static; 
-                display: inline-block;
-                background: #f0f0f0;
-                padding: 2px 8px;
-                border-radius: 4px;
-                margin-bottom: 10px;
-                text-align: left;
-                width: auto;
-                color: #333;
-                font-size: 0.8rem;
-            }
-            .timeline-content { padding-left: 0; }
-            .logo-container { position: static; margin-bottom: 10px; }
-            .timeline-content h3 { padding-right: 0; }
-        }
-    </style>
+@media(max-width:820px){
+  .entry{grid-template-columns:1fr;gap:26px}
+  .entry.flip .entry-media{order:0}
+  .hero svg.chart{opacity:.28;top:auto;bottom:0}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal,.hero .anim{opacity:1!important;transform:none!important;animation:none!important;transition:none!important}
+  svg.chart .line{stroke-dashoffset:0;animation:none}
+  svg.chart .fill{opacity:.10;animation:none}
+}
+:focus-visible{outline:2px solid var(--crimson);outline-offset:3px;border-radius:3px}
+</style>
 </head>
 <body>
 
-    <div class="container">
-        
-        <header class="header-section">
-            <h1 class="name"><span class="first-name">Tianrui</span> Wu</h1>
-            
-            <div class="description">
-                 <p>Welcome! I'm a Quantitative Trader and Researcher, and an undergraduate, working at the intersection of quantitative finance and astrophysics research. I currently trade and build strategies at a <strong>stealthy quant firm</strong> focused on cryptocurrency markets, where I design machine-learning forecasting and high-frequency strategies, market-making and execution algorithms, and large-scale factor research in Python and Rust.</p>
-                 
-                 <p>My academic roots lie in astrophysics and cosmology. I'm currently developing a Baryon Acoustic Oscillation (BAO) analysis pipeline at the <strong>Arizona Cosmology Lab</strong> with Prof. Tim Eifler. As a <strong>Caltech SURF</strong> fellow on the SPHEREx team, I built deep-learning pipelines to correct observational biases in cosmological data, and I previously engineered analysis pipelines for the Roman Space Telescope and the Rubin Observatory. This work has led to publications in <em>ApJ</em> and <em>MNRAS</em>, with a first-author paper now in preparation.</p>
-                 
-                 <p>I was also the President of the <strong>Society of Physics Students</strong> and the founder of the Duke Astronomy Club. I'm completing my B.S. in Physics and Mathematics at the University of Arizona (expected 2027), after which I plan to spend several years building practical expertise in AI and data-intensive systems before pursuing a PhD.</p>
-                 
-                <p>You can reach me at <span class="email-typewriter">denniswu501@gmail.com</span>. Find my CV <a href="files/CV_Tianrui_Wu.pdf" class="page-link">here</a> and my latest résumé <a href="files/Resume_Dennis_Wu_v11_Quant.pdf" class="page-link">here</a>.</p>
-            </div>
-
-            <div class="contact-line">
-                (984) 377-9159 • twu2@arizona.edu
-            </div>
-
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/dennis-tianrui-wu" class="social-link" aria-label="LinkedIn" target="_blank">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                </a>
-                <a href="https://github.com/denniswu28" class="social-link" aria-label="GitHub" target="_blank">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.014 2.898-.014 3.293 0 .322.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-                </a>
-            </div>
-        </header>
-
-        <div class="content-grid">
-            
-            <aside class="sidebar">
-                
-                <div class="sidebar-section">
-                    <h4 class="sidebar-title">Education</h4>
-                    <div class="edu-item">
-                        <span class="edu-school">University of Arizona</span>
-                        <span class="edu-meta">Tucson, AZ  Jan 2026 – Dec 2026</span>
-                        <span class="edu-degree">BS in Mathematics & Physics</span>
-                        
-                        <span class="edu-honors">GPA: 3.9 / 4.0</span>
-                        <span class="edu-honors">Global Wildcat Scholarship</span>
-                    </div>
-                    <div class="edu-item">
-                        <span class="edu-school">Duke University</span>
-                        <span class="edu-meta">Durham, NC | Aug 2021 – Dec 2024</span>
-                        <span class="edu-degree">Major in Mathematics & Physics</span>
-                        <span class="edu-degree">Minor in Computer Science</span>
-                        
-                        <span class="edu-honors">GPA: 3.9 / 4.0</span>
-                        <span class="edu-honors">Physics GPA: 4.0 / 4.0</span>
-                        <span class="edu-honors">4 x Dean's List with Distinction</span>
-                    </div>
-                </div>
-
-                <div class="sidebar-section">
-                    <h4 class="sidebar-title">Publications</h4>
-                    <div class="edu-item">
-                        <a href="https://iopscience.iop.org/article/10.3847/1538-4357/ad8c21" target="_blank">
-                            <span class="edu-degree" style="margin-bottom: 6px;"><strong>Riess, A.G., Scolnic, D., et al. (Wu, T. included)</strong></span>
-                            <p class="edu-meta" style="line-height: 1.4;">"JWST Validates HST Distance Measurements..."<br><em style="color:#000;"></em></p>
-                        </a>
-                    </div>
-                    <div class="edu-item">
-                        <a href="https://academic.oup.com/mnras" target="_blank">
-                            <span class="edu-degree" style="margin-bottom: 6px;"><strong>Alarcón, A., Aldoroty, L., Beltz-Mohrmann, G., et al. (Wu, T. included)</strong></span>
-                            <p class="edu-meta" style="line-height: 1.4;">"OpenUniverse2024: A Shared, Simulated View of the Sky..."<br><em style="color:#000;">MNRAS, 544(4), 3799–3823 (2025)</em></p>
-                        </a>
-                    </div>
-                    <div class="edu-item">
-                        <span class="edu-degree" style="margin-bottom: 6px;"><strong>Wu, T., Paillas, E., et al.</strong></span>
-                        <p class="edu-meta" style="line-height: 1.4;">"BAO Reconstruction with Photometric Redshift Smearing"<br><em style="color:#000;">First author, in preparation (2026)</em></p>
-                    </div>
-                </div>
-
-                <div class="sidebar-section">
-                    <h4 class="sidebar-title">Coursework</h4>
-                    <ul class="sidebar-list">
-                        <li>General Relativity & Cosmology</li>
-                        <li>Quantum Mechanics</li>
-                        <li>Stellar Astrophysics</li>
-                        <li>Bayesian Statistics & Inference</li>
-                        <li>Machine Learning Algorithms</li>
-                        <li>Abstract Algebra</li>
-                        <li>Differential Geometry</li>
-                    </ul>
-                </div>
-
-                <div class="sidebar-section">
-                    <h4 class="sidebar-title">Technical Skills</h4>
-                    <ul class="sidebar-list">
-                        <li>
-                            <span class="sidebar-label">Proficient Languages</span>
-                            Python, Rust, LaTeX, Linux/Unix
-                        </li>
-                        <li>
-                            <span class="sidebar-label">Familiar Languages</span>
-                            C/C++, Julia, SQL, Java, MATLAB
-                        </li>
-                        <li>
-                            <span class="sidebar-label">Tools</span>
-                            Git, VSCode, NumPy, Pandas, Polars, PyTorch, CosmoSIS
-                        </li>
-                        <li>
-                            <span class="sidebar-label">Core Skills</span>
-                            Data Analysis, Deep Learning Pipeline, MLOps, Market Microstructure, HFT Strategies, Factor Mining
-                        </li>
-                    </ul>
-                </div>
-            </aside>
-
-            <main class="main-column">
-                
-                <h2 class="section-header">Experience</h2>
-                <div class="timeline">
-                    
-                    <div class="timeline-item">
-                        <span class="timeline-date">Aug 2025 — Present</span>
-                        <div class="timeline-content">
-                            <h3>Quantitative Trader & Researcher
-                                <div class="logo-container"><img src="https://placehold.co/100x45?text=Crypto+Prop+Shop" class="inst-logo" alt="Prop Shop"></div>
-                            </h3>
-                            <span class="role-subtitle">A Stealthy Quant Firm · Crypto Proprietary Trading</span>
-                            <ul class="content-bullets">
-                                <li><strong>Proprietary Strategy:</strong> Built a short-term forecasting engine using an LSTM-based neural network with phase-space features and managed the full MLOps lifecycle with MLFlow. Deployed a live taker HFT strategy delivering post-fee Sharpe > 10 with consistent profit over 3+ months on Coinbase.</li>
-                                <li><strong>Market Making:</strong> Designed a dual-engine backtest stack (vectorized engine + L2 queue-model engine) to balance speed and fidelity, then implemented a grid-based market-making strategy with ~10 out-of-sample Sharpe over 1.5 months.</li>
-                                <li><strong>Execution Research:</strong> Architected execution algorithms (TWAP, VWAP, IS) driven by microstructure signals across major CEXs (OKX, Coinbase, Binance), achieving ~2bps slippage reduction over 5 months.</li>
-                                <li><strong>Factor Research:</strong> Engineered 200+ multi-frequency factors (OHLCV, order book, derivatives) with automated decay analysis and cross-sectional ranking, lifting live-model win rates by 3.1%.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <span class="timeline-date">Jan 2026 — Present</span>
-                        <div class="timeline-content">
-                            <h3>Research Assistant
-                                <div class="logo-container"><img src="https://placehold.co/100x45?text=Arizona+Cosmology+Lab" class="inst-logo" alt="Arizona Cosmology Lab"></div>
-                            </h3>
-                            <span class="role-subtitle">Arizona Cosmology Lab, University of Arizona | Mentor: Prof. Tim Eifler</span>
-                            <ul class="content-bullets">
-                                <li>Building a Baryon Acoustic Oscillation (BAO) analysis pipeline that quantifies the impact of photometric redshift smearing on standard-ruler calibration, a key systematic for next-generation surveys including Roman and Rubin.</li>
-                                <li>Developing a forward-model framework that propagates photo-z uncertainty through BAO reconstruction, with a first-author publication in preparation.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <span class="timeline-date">Feb 2025 — Aug 2025</span>
-                        <div class="timeline-content">
-                            <h3>Quantitative Researcher
-                                <div class="logo-container"><img src="images/insightcheck-logo.jpg" class="inst-logo" alt="InsightCheck"></div>
-                            </h3>
-                            <span class="role-subtitle">InsightCheck Investment Co., Ltd. | Shenzhen, China</span>
-                            <ul class="content-bullets">
-                                <li><strong>Market Microstructure:</strong> Modeled order book queues and position controls. Constructed 15 high-Sharpe factors (sec/min frequency) and 2 market-making models with 2bps avg post-fee return.</li>
-                                <li><strong>Data Infrastructure:</strong> Built an optimized order book reconstruction engine (Level-3 data) in Rust/Python, achieving 100% accuracy and ~1s processing speed for the full A-share universe.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <span class="timeline-date">Jun 2024 — Aug 2024</span>
-                        <div class="timeline-content">
-                            <h3>Research Fellow (SURF Program)
-                                <div class="logo-container"><img src="images/Caltech-logo.png" class="inst-logo" alt="Caltech"></div>
-                            </h3>
-                            <span class="role-subtitle">SPHEREx Team, Caltech | Mentor: Dr. Olivier Doré (JPL)</span>
-                            <ul class="content-bullets">
-                                <li>Developed a convolutional neural network (ResUNet) to predict window function effects on galaxy power spectrum measurements.</li>
-                                <li>Enhanced accuracy of local primordial non-Gaussianity $f_{NL}$ parameter inference for SPHEREx by 40%.</li>
-                                <li>Generated lognormal mock catalogs with real SPHEREx survey masks using Julia/Python simulation program.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <span class="timeline-date">Sept 2023 — Aug 2024</span>
-                        <div class="timeline-content">
-                            <h3>Research Assistant
-                                <div class="logo-container"><img src="images/duke-cosmology-logo.png" class="inst-logo" alt="Duke"></div>
-                            </h3>
-                            <span class="role-subtitle">Duke Cosmology Group | Mentor: Prof. Daniel Scolnic</span>
-                            <ul class="content-bullets">
-                                <li>Developed a Python pipeline to create synthetic stellar catalogs and extract features from H-R diagrams for Distance Ladder calibration.</li>
-                                <li>Compared JWST distance measurement results from recent literature and quantified galaxy-dust correlations using latest SDSS data with SQL queries.</li>
-                                <li>Contributed to a joint paper accepted by The Astrophysical Journal (ApJ).</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <span class="timeline-date">May 2022 — Dec 2024</span>
-                        <div class="timeline-content">
-                            <h3>Research Assistant
-                                <div class="logo-container"><img src="images/duke-cosmology-logo.png" class="inst-logo" alt="Duke"></div>
-                            </h3>
-                            <span class="role-subtitle">Duke Cosmology Group | Mentor: Prof. Michael A. Troxel</span>
-                            <ul class="content-bullets">
-                                <li>Developed a pipeline for joint analysis of Roman Space Telescope and Rubin Observatory simulations.</li>
-                                <li>Employed MCMC inference and evaluated mode-based strategies, resulting in a 20% increase in the Figure of Merit for cosmological parameter constraints.</li>
-                                <li>Designed and implemented a Python-based weak gravitational lensing analysis algorithm, effectively processing over 1000 datasets.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <span class="timeline-date">May 2023 — Aug 2023</span>
-                        <div class="timeline-content">
-                            <h3>Team Lead (Data-plus Program)
-                                <div class="logo-container"><img src="images/Duke-DataPlus-logo.png" class="inst-logo" alt="Duke Data-plus"></div>
-                            </h3>
-                            <span class="role-subtitle">Quantifying Wetland Carbon Emissions in Southeastern US</span>
-                            <ul class="content-bullets">
-                                <li>Wrote and optimized a Random Forest model and a layered Shiny web app for visualization.</li>
-                                <li>Employed climatology knowledge to an adaptive missing value imputation method  to clean hundreds of feature data points.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <span class="timeline-date">Sept 2021 — Aug 2022</span>
-                        <div class="timeline-content">
-                            <h3>Research Assistant
-                                <div class="logo-container"><img src="images/CERN-logo.png" class="inst-logo" alt="CERN"></div>
-                            </h3>
-                            <span class="role-subtitle">Duke High Energy Physics Group (LHC) | Mentor: Prof. Ashutosh Kotwal</span>
-                            <ul class="content-bullets">
-                                <li>Implemented and optimized computational graphic algorithm in C++ for particle collision fragment path reconstruction on FPGA architecture.</li>
-                                <li>Achieved throughput of < 25 ns to allow reconstruction of fragment paths from 70 collisions—a several order of magnitude increase in efficiency.</li>
-                                <li>Work contributed to an article published in *Journal of High Energy Physics*.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- <div class="timeline-item">
-                        <span class="timeline-date">Mar 2020 — Present</span>
-                        <div class="timeline-content">
-                            <h3>Open-Source Intelligence Analyst
-                                <div class="logo-container"><img src="images/Oryx-logo.png" class="inst-logo" alt="Oryx"></div>
-                            </h3>
-                            <span class="role-subtitle">Oryx (Volunteer/Remote)</span>
-                            <ul class="content-bullets">
-                                <li>Geo-located footage and kept track of material losses based on visual evidence and social media intelligence.</li>
-                                <li>Contributed 47 recorded geo-locations to the database.</li>
-                            </ul>
-                        </div>
-                    </div> -->
-
-                    <div class="timeline-item">
-                        <span class="timeline-date">Aug 2022 — Apr 2024</span>
-                        <div class="timeline-content">
-                            <h3>Teaching Assistant
-                                <div class="logo-container"><img src="images/Dukemath-logo.png" class="inst-logo" alt="Duke University"></div>
-                            </h3>
-                            <span class="role-subtitle">Duke University Math Department</span>
-                            <ul class="content-bullets">
-                                <li>Assisted over 40 students with Multivariable Calculus and Linear Algebra in the Math Help Room and Office Hours.</li>
-                                <li>Rated "Excellent" with a score of 30/30 by supervisor and peers in the annual TA review of 2023 and 2024.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <span class="timeline-date">Jul 2020 — Aug 2020</span>
-                        <div class="timeline-content">
-                            <h3>Computer Vision Algorithm Engineer
-                                <div class="logo-container"><img src="images/Deepcode-logo.png" class="inst-logo" alt="Deepcode Robotics"></div>
-                            </h3>
-                            <span class="role-subtitle">Zhejiang Deepcode Robotics Co., Ltd</span>
-                            <ul class="content-bullets">
-                                <li>Designed, coded, and debugged Computer Vision algorithms for tennis coach-bots.</li>
-                                <li>Implemented research results on object identification and tracking, achieving 97% detection of fast tennis balls.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <h2 class="section-header">Quant Projects</h2>
-                <div class="timeline">
-
-                    <div class="timeline-item">
-                        <span class="timeline-date">2025</span>
-                        <div class="timeline-content">
-                            <h3>Crypto Market Maker with Backtest Engine
-                                <div class="logo-container"><img src="https://placehold.co/100x45?text=Python+Rust+PyTorch" class="inst-logo" alt="Python / Rust / PyTorch"></div>
-                            </h3>
-                            <span class="role-subtitle">Independent Project | Python, Rust, PyTorch</span>
-                            <ul class="content-bullets">
-                                <li>Independently built a live alpha-infused market-making framework for crypto, combining EWMA flow alphas with a CNN that captures order-book patterns through a phase-space feature representation.</li>
-                                <li>Deployed the live strategy with daily positive profit on large-tick assets; the project led directly to my recruitment into my current quant role.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <span class="timeline-date">2026</span>
-                        <div class="timeline-content">
-                            <h3>IMC Prosperity 4 — Trading Competition
-                                <div class="logo-container"><img src="https://placehold.co/100x45?text=Python" class="inst-logo" alt="Python"></div>
-                            </h3>
-                            <span class="role-subtitle">Global Algorithmic Trading Competition | Python</span>
-                            <ul class="content-bullets">
-                                <li>Developed an automated bot exploiter that identifies exploitable market participants through behavioral fingerprinting and systematically profits from predictable counterparties.</li>
-                                <li>Optimized the strategy with fair-value estimation and informed-flow market making, finishing in the top 3% globally.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <h2 class="section-header">Leadership</h2>
-                <div class="timeline">
-                    
-                    <div class="timeline-item">
-                        <span class="timeline-date">Sept 2021 — Dec 2024</span>
-                        <div class="timeline-content">
-                            <h3>Founder, President
-                                <div class="logo-container"><img src="images/stargazing-logo.png" class="inst-logo" alt="Stargazing Devils"></div>
-                            </h3>
-                            <span class="role-subtitle"> Stargazing Devils Astronomy Club @ Duke University</span>
-                            <ul class="content-bullets">
-                                <li>Founded and lead the first Astronomy Club at Duke; organized weekly astronomy open house at the Duke Teaching Observatory with 100+ audiences.</li>
-                                <li>Served as a NASA Partner Eclipse Ambassador; secured funding and organized trips for 14 students to the 2023/2024 solar eclipses.</li>
-                                <li>Organized solar eclipse watch party with 300+ participants. Hosted 20+ astrophotography events with the Skynet platform and telescopes.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <span class="timeline-date">Jun 2022 — Dec 2024</span>
-                        <div class="timeline-content">
-                            <h3>Chapter President
-                                <div class="logo-container"><img src="images/SPS-logo.png" class="inst-logo" alt="SPS"></div>
-                            </h3>
-                            <span class="role-subtitle">Society of Physics Students @ Duke University</span>
-                            <ul class="content-bullets">
-                                <li>Revived chapter from pandemic; organized four research panels and six student-faculty seminars/tours.</li>
-                                <li>Organized the 2023 SPS Zone 5 meeting with 100+ participants, winning the 2023 Outstanding Chapter Award.</li>
-                                <li>Launched MATLAB and LATEX workshops, grad school info panels, and a Women's mentorship program.</li>
-                                <li>Volunteered 35+ hours in departmental physics outreach to 7 local schools and science fairs.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <span class="timeline-date">Jun 2022 — May 2024</span>
-                        <div class="timeline-content">
-                            <h3>Student Ambassador
-                                <div class="logo-container"><img src="images/APS-logo.jpg" class="inst-logo" alt="APS"></div>
-                            </h3>
-                            <span class="role-subtitle">American Physical Society</span>
-                            <ul class="content-bullets">
-                                <li>Invited to the 2023/2024 APS Leadership Meetings to advocate on policy priorities for the physics community on US Congressional Visits Day.</li>
-                                <li>Hosted the PULSE Webinar Series (Physics Undergraduates Learning and Sharing Experiences) as Technology Chair.</li>
-                                <li>Organized physics study sessions, manuscript workshops, and publication parties.</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <span class="timeline-date">Sept 2021 — Aug 2024</span>
-                        <div class="timeline-content">
-                            <h3>Peer Reviewer, Editor
-                                <div class="logo-container"><img src="images/Duke-vertices-logo.jpg" class="inst-logo" alt="Duke Vertices"></div>
-                            </h3>
-                            <span class="role-subtitle">Duke Vertices Science Journal</span>
-                            <ul class="content-bullets">
-                                <li>Implemented a synopsis system for general audiences that resulted in a 210% increase in website visits.</li>
-                                <li>Review 2 manuscripts per month on STEM topics; invited by editor-in-chief to join the Executive Team.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <h2 class="section-header">Achievements</h2>
-                <div class="timeline">
-
-                    <div class="timeline-item">
-                        <span class="timeline-date">2026</span>
-                        <div class="timeline-content">
-                            <h3>US Physicists' Tournament — National 1st Place</h3>
-                            <p>Team Captain. Led the national team to first place and advanced to the International Physicists' Tournament (IPT).</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <span class="timeline-date">2024</span>
-                        <div class="timeline-content">
-                            <h3>Jocelyn Bell Burnell Outstanding Leadership Scholarship</h3>
-                            <p>Society of Physics Students’ highest award based on leadership and dedication in Physics.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <span class="timeline-date">2024</span>
-                        <div class="timeline-content">
-                            <h3>Sigma Pi Sigma Honor Society Membership</h3>
-                            <p>Invitation-only. Awarded to Physics juniors and seniors for exceptional achievement in physics and astronomy.</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <span class="timeline-date">2024</span>
-                        <div class="timeline-content">
-                            <h3>Duke Faculty Scholar Finalist</h3>
-                            <p>Departmental nominee. Highest award given by Duke University faculty to undergraduates, nomination only through departments.</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <span class="timeline-date">2021</span>
-                        <div class="timeline-content">
-                            <h3>Regeneron ISEF - Physics 3rd Grand Award</h3>
-                            <p>Ranked 5th out of 100+ finalists, 1st in National Team.</p>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item">
-                        <span class="timeline-date">2021</span>
-                        <div class="timeline-content">
-                            <h3>British Physics Olympiad - Top Gold Award</h3>
-                            <p>Ranked 9th/3500. Highest award in British Physics Olympiad for foreign citizens, only awarded to 50 individuals.</p>
-                        </div>
-                    </div>
-                </div>
-
-            </main>
-        </div>
+<nav class="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top">Tianrui Wu<span class="dot">.</span></a>
+    <div class="nav-links">
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#contact">Contact</a>
     </div>
+    <a class="nav-cta" href="files/Resume_Dennis_Wu.pdf" target="_blank" rel="noopener">Résumé ↗</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-grid"></div>
+  <svg class="chart" viewBox="0 0 700 420" fill="none" aria-hidden="true">
+    <polygon class="fill" fill="#A51C30" points="0,300 60,280 120,300 180,240 240,260 300,190 360,210 420,150 480,180 540,110 600,140 660,80 700,100 700,420 0,420"/>
+    <polyline class="line" stroke="#A51C30" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" points="0,300 60,280 120,300 180,240 240,260 300,190 360,210 420,150 480,180 540,110 600,140 660,80 700,100"/>
+  </svg>
+  <div class="wrap hero-in">
+    <p class="eyebrow anim" style="--d:0">Live markets · Crypto · HFT</p>
+    <h1 class="anim" style="--d:1">Quantitative <em>Trader</em><br>& Researcher.</h1>
+    <p class="lede anim" style="--d:2">I design and trade live systematic strategies — machine-learning forecasting, market making, execution, and factor research — at a stealthy crypto proprietary trading firm. My edge comes from the same place as my physics: modeling noisy systems and finding structure others miss.</p>
+    <div class="row anim" style="--d:3">
+      <a class="btn solid" href="files/Resume_Dennis_Wu.pdf" target="_blank" rel="noopener">Résumé</a>
+      <a class="btn ghost" href="files/CV_Tianrui_Wu.pdf" target="_blank" rel="noopener">Academic CV</a>
+      <div class="socials">
+        <a href="https://github.com/denniswu28" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.51 11.51 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.014 2.898-.014 3.293 0 .322.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+        <a href="https://www.linkedin.com/in/dennis-tianrui-wu" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 110-4.124 2.062 2.062 0 010 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+      </div>
+    </div>
+    <div class="ticker anim" style="--d:4">
+      <div class="cell"><div class="n"><span class="u">&gt;10</span></div><div class="l">Post-fee Sharpe, live taker HFT</div></div>
+      <div class="cell"><div class="n">200<span class="u">+</span></div><div class="l">Multi-frequency factors engineered</div></div>
+      <div class="cell"><div class="n">~2<span class="u">bps</span></div><div class="l">Execution slippage reduced</div></div>
+      <div class="cell"><div class="n">3<span class="u">×</span></div><div class="l">Peer-reviewed / in-prep papers</div></div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="wrap">
+    <div class="s-head reveal"><span class="s-index">01</span><h2 class="s-title">Experience</h2></div>
+    <p class="s-sub reveal" style="--i:1">Two years building production trading systems across crypto and A-share markets — from signal to execution to infrastructure.</p>
+
+    <article class="entry">
+      <div class="entry-head-wrap reveal from-left">
+        <div class="entry-head">
+          <div class="role">Quantitative Trader &amp; Researcher</div>
+          <div class="org">Stealthy Quant Firm · Crypto Prop Trading</div>
+          <div class="meta"><span>Aug 2025 — Present</span><span>Remote</span></div>
+        </div>
+        <div class="entry-body">
+          <p>Own strategies end to end: an LSTM forecasting engine with phase-space features and a full MLFlow MLOps loop, a dual-engine backtest stack, and live market-making and execution across major CEXs.</p>
+          <div class="chips">
+            <span class="chip">Taker HFT · Sharpe <b>&gt;10</b></span>
+            <span class="chip">Grid MM · <b>~10</b> OOS Sharpe</span>
+            <span class="chip">Execution · <b>~2bps</b></span>
+            <span class="chip">Factors · <b>+3.1%</b> win rate</span>
+          </div>
+        </div>
+      </div>
+      <div class="entry-media frames reveal from-right" style="--i:1">
+        <figure class="frame"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 5-6 4 4"/></svg><span class="lab">Add photo</span><span class="path">images/quant/qrigin-1.jpg</span></div><img src="images/quant/qrigin-1.jpg" alt="Trading system / desk" loading="lazy" onerror="this.closest('.frame').classList.add('is-empty')"></figure>
+        <figure class="frame"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 5-6 4 4"/></svg><span class="lab">Add photo</span><span class="path">images/quant/qrigin-2.jpg</span></div><img src="images/quant/qrigin-2.jpg" alt="Strategy / backtest" loading="lazy" onerror="this.closest('.frame').classList.add('is-empty')"></figure>
+      </div>
+    </article>
+
+    <article class="entry flip">
+      <div class="entry-head-wrap reveal from-right">
+        <div class="entry-head">
+          <div class="role">Quantitative Research Intern</div>
+          <div class="org">InsightCheck Investment · $300M AUM</div>
+          <div class="meta"><span>Feb 2025 — Aug 2025</span><span>Shenzhen, China</span></div>
+        </div>
+        <div class="entry-body">
+          <p>Built alpha and infrastructure for A-share cross-sectional trading: fundamental and microstructure factors in Polars, and an L2/L3 order-book reconstruction engine migrated to C++.</p>
+          <div class="chips">
+            <span class="chip">62 intraday factors · IC <b>&gt;0.01</b></span>
+            <span class="chip">Dask backtester · <b>10×</b> faster</span>
+            <span class="chip">Order-book · C++</span>
+          </div>
+        </div>
+      </div>
+      <div class="entry-media frames reveal from-left" style="--i:1">
+        <figure class="frame"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 5-6 4 4"/></svg><span class="lab">Add photo</span><span class="path">images/quant/insightcheck-1.jpg</span></div><img src="images/quant/insightcheck-1.jpg" alt="InsightCheck 1" loading="lazy" onerror="this.closest('.frame').classList.add('is-empty')"></figure>
+        <figure class="frame"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 5-6 4 4"/></svg><span class="lab">Add photo</span><span class="path">images/quant/insightcheck-2.jpg</span></div><img src="images/quant/insightcheck-2.jpg" alt="InsightCheck 2" loading="lazy" onerror="this.closest('.frame').classList.add('is-empty')"></figure>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="wrap">
+    <div class="s-head reveal"><span class="s-index">02</span><h2 class="s-title">Quant Projects</h2></div>
+    <p class="s-sub reveal" style="--i:1">Independent systems, built and deployed on real markets and competitions.</p>
+
+    <article class="entry">
+      <div class="entry-head-wrap reveal from-left">
+        <div class="entry-head">
+          <div class="role">Crypto Market Maker w/ Backtest Engine</div>
+          <div class="org">Independent · Python, Rust, PyTorch</div>
+          <div class="meta"><span>2025</span><span>Live deployment</span></div>
+        </div>
+        <div class="entry-body">
+          <p>A live, alpha-infused market-making framework combining EWMA flow alphas with a CNN that reads order-book patterns through a phase-space representation. Ran with daily positive PnL on large-tick assets — and led directly to my current quant role.</p>
+          <div class="chips"><span class="chip">EWMA flow alphas</span><span class="chip">Order-book CNN</span><span class="chip"><b>Daily +PnL</b> live</span></div>
+        </div>
+      </div>
+      <div class="entry-media frames reveal from-right" style="--i:1">
+        <figure class="frame"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 5-6 4 4"/></svg><span class="lab">Add photo</span><span class="path">images/quant/market-maker-1.jpg</span></div><img src="images/quant/market-maker-1.jpg" alt="Market maker 1" loading="lazy" onerror="this.closest('.frame').classList.add('is-empty')"></figure>
+        <figure class="frame"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 5-6 4 4"/></svg><span class="lab">Add photo</span><span class="path">images/quant/market-maker-2.jpg</span></div><img src="images/quant/market-maker-2.jpg" alt="Market maker 2" loading="lazy" onerror="this.closest('.frame').classList.add('is-empty')"></figure>
+      </div>
+    </article>
+
+    <article class="entry flip">
+      <div class="entry-head-wrap reveal from-right">
+        <div class="entry-head">
+          <div class="role">IMC Prosperity 4 — Trading Competition</div>
+          <div class="org">Global algorithmic competition · Python</div>
+          <div class="meta"><span>2026</span><span>Top 3% globally</span></div>
+        </div>
+        <div class="entry-body">
+          <p>Built an automated bot exploiter that fingerprints predictable counterparties by behavior, paired with fair-value estimation and informed-flow market making across asset classes.</p>
+          <div class="chips"><span class="chip">Behavioral fingerprinting</span><span class="chip">Informed-flow MM</span><span class="chip"><b>Top 3%</b> / global</span></div>
+        </div>
+      </div>
+      <div class="entry-media frames reveal from-left" style="--i:1">
+        <figure class="frame"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 5-6 4 4"/></svg><span class="lab">Add photo</span><span class="path">images/quant/imc-prosperity-1.jpg</span></div><img src="images/quant/imc-prosperity-1.jpg" alt="IMC 1" loading="lazy" onerror="this.closest('.frame').classList.add('is-empty')"></figure>
+        <figure class="frame"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 5-6 4 4"/></svg><span class="lab">Add photo</span><span class="path">images/quant/imc-prosperity-2.jpg</span></div><img src="images/quant/imc-prosperity-2.jpg" alt="IMC 2" loading="lazy" onerror="this.closest('.frame').classList.add('is-empty')"></figure>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- RESEARCH HIGHLIGHT -->
+<section class="section" id="research">
+  <div class="wrap">
+    <div class="s-head reveal"><span class="s-index">03</span><h2 class="s-title">Research Edge</h2></div>
+    <p class="s-sub reveal" style="--i:1">The quant work rests on real scientific computing: deep learning, Bayesian inference, and large-scale data pipelines. A fuller account lives on my <a href="academic/" style="color:var(--crimson)">academic site</a>.</p>
+
+    <article class="entry">
+      <div class="entry-head-wrap reveal from-left">
+        <div class="entry-head">
+          <div class="role">ML for Cosmological Inference (SURF)</div>
+          <div class="org">Caltech · SPHEREx Team (NASA/JPL)</div>
+          <div class="meta"><span>Jun 2024 — Aug 2024</span><span>Pasadena, CA</span></div>
+        </div>
+        <div class="entry-body">
+          <p>Built a ResUNet CNN in PyTorch to deconvolve instrument effects from galaxy power spectra, owning the full pipeline — synthetic data, distributed HPC training, and validation against analytic baselines — to sub-percent precision.</p>
+          <div class="chips"><span class="chip">PyTorch · ResUNet</span><span class="chip">Linux HPC</span><span class="chip"><b>Sub-%</b> error</span></div>
+        </div>
+      </div>
+      <div class="entry-media frames reveal from-right" style="--i:1">
+        <figure class="frame"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 5-6 4 4"/></svg><span class="lab">Add photo</span><span class="path">images/quant/caltech-1.jpg</span></div><img src="images/quant/caltech-1.jpg" alt="Caltech 1" loading="lazy" onerror="this.closest('.frame').classList.add('is-empty')"></figure>
+        <figure class="frame"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 5-6 4 4"/></svg><span class="lab">Add photo</span><span class="path">images/quant/caltech-2.jpg</span></div><img src="images/quant/caltech-2.jpg" alt="Caltech 2" loading="lazy" onerror="this.closest('.frame').classList.add('is-empty')"></figure>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section class="section" id="publications">
+  <div class="wrap">
+    <div class="s-head reveal"><span class="s-index">04</span><h2 class="s-title">Publications</h2></div>
+    <div style="margin-top:14px">
+      <div class="pub reveal"><span class="venue prep">In prep</span><div><div class="t">BAO Reconstruction with Photometric Redshift Smearing</div><div class="a">Wu, T., Paillas, E., et al. — first author, in preparation (2026)</div></div></div>
+      <div class="pub reveal" style="--i:1"><span class="venue">MNRAS</span><div><div class="t">OpenUniverse2024: A Shared, Simulated View of the Sky</div><div class="a">Alarcón, A., Aldoroty, L., Beltz-Mohrmann, G., et al. (Wu, T. included) — MNRAS 544(4), 3799–3823 (2025)</div></div></div>
+      <div class="pub reveal" style="--i:2"><span class="venue">ApJ</span><div><div class="t">JWST Validates HST Distance Measurements</div><div class="a">Riess, A. G., Scolnic, D., et al. (Wu, T. included) — ApJ (2024)</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="wrap">
+    <div class="s-head reveal"><span class="s-index">05</span><h2 class="s-title">Toolkit</h2></div>
+    <div class="skills" style="margin-top:14px">
+      <div class="skill reveal"><h4>Languages</h4><div class="tags"><span>Python</span><span>Rust</span><span>C/C++</span><span>SQL</span><span>MATLAB</span><span>LaTeX</span></div></div>
+      <div class="skill reveal" style="--i:1"><h4>ML &amp; Data</h4><div class="tags"><span>PyTorch</span><span>MLFlow</span><span>Polars</span><span>pandas / NumPy</span><span>Dask</span></div></div>
+      <div class="skill reveal" style="--i:2"><h4>Quant</h4><div class="tags"><span>Market microstructure</span><span>Optimal execution</span><span>Backtesting</span><span>Factor research</span></div></div>
+      <div class="skill reveal" style="--i:3"><h4>Methods</h4><div class="tags"><span>Deep learning</span><span>Bayesian inference</span><span>Statistical modeling</span><span>Parallel computing</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section" id="education">
+  <div class="wrap">
+    <div class="s-head reveal"><span class="s-index">06</span><h2 class="s-title">Education</h2></div>
+    <div style="margin-top:14px">
+      <div class="edu-row reveal"><div><div class="sch">University of Arizona</div><div class="deg">B.S. Physics &amp; Mathematics · Global Wildcat Scholarship</div></div><div class="yr">2026 — 2027<br>GPA 3.9 · Major 4.0</div></div>
+      <div class="edu-row reveal" style="--i:1"><div><div class="sch">Duke University</div><div class="deg">Physics &amp; Mathematics, Minor in CS</div></div><div class="yr">2021 — 2024<br>GPA 3.9 · Physics 4.0</div></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow" style="color:var(--crimson)">Let's talk markets</p>
+      <h2>Open to 2027 quant<br>trading &amp; research roles.</h2>
+      <p style="margin-top:22px;font-size:1.1rem;max-width:48ch;color:#2b3036">Reach me at <a class="mail" href="mailto:tianrui.dennis.wu@gmail.com">tianrui.dennis.wu@gmail.com</a> — or connect below.</p>
+      <div class="row" style="margin-top:26px;display:flex;gap:14px;flex-wrap:wrap">
+        <a class="btn solid" href="files/Resume_Dennis_Wu.pdf" target="_blank" rel="noopener">Résumé</a>
+        <a class="btn ghost" href="https://github.com/denniswu28" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/dennis-tianrui-wu" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Tianrui (Dennis) Wu</span>
+    <span>Looking for the research side? <a href="academic/">Academic site →</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var els=document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+  },{threshold:.14,rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
 </body>
 </html>
