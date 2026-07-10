@@ -109,6 +109,9 @@ body[data-site] .brand .star{color:var(--signal)}
 body[data-site] .nav-links{font-family:var(--interface);font-size:.72rem;letter-spacing:.05em;text-transform:uppercase}
 body[data-site] .nav-links a{color:var(--text-soft)}
 body[data-site] .nav-links a:hover{color:var(--signal)}
+.nav-actions{display:flex;align-items:center;gap:8px}
+body[data-site] .nav-portal{border-color:var(--signal);background:var(--signal);color:var(--void)}
+body[data-site] .nav-portal:hover{border-color:var(--positive);background:var(--positive);color:var(--void)}
 
 body[data-site] .nav-cta,
 body[data-site] .btn,
@@ -165,6 +168,17 @@ body[data-site] .hero .lede,
 body[data-site] .entry-body,
 body[data-site] .deg,
 body[data-site] .contact p{color:var(--text-soft)!important}
+.profile-gateway{
+  display:grid;gap:5px;width:min(660px,100%);margin-top:25px;padding:16px 18px 17px;
+  border:1px solid rgba(var(--signal-rgb),.58);background:linear-gradient(110deg,rgba(var(--signal-rgb),.13),rgba(7,14,22,.38));
+  clip-path:polygon(0 0,calc(100% - 17px) 0,100% 17px,100% 100%,17px 100%,0 calc(100% - 17px));
+  transition:border-color .2s,background .2s,transform .2s;
+}
+.profile-gateway:hover{border-color:var(--positive);background:linear-gradient(110deg,rgba(83,255,177,.13),rgba(7,14,22,.48));transform:translateY(-2px)}
+.gateway-kicker{color:var(--signal);font:500 .59rem/1.35 var(--interface);letter-spacing:.12em;text-transform:uppercase}
+.gateway-title{font:600 clamp(1rem,2vw,1.25rem)/1.25 var(--display);letter-spacing:.01em;text-transform:uppercase}
+.gateway-title b{color:var(--positive)}
+.gateway-copy{max-width:68ch;color:var(--text-soft);font-size:.82rem;line-height:1.55}
 body[data-site] .ticker{border-color:var(--line);background:rgba(7,14,22,.46)}
 body[data-site] .ticker .cell{border-color:var(--line)}
 body[data-site] .ticker .n{color:var(--text)}
@@ -243,6 +257,10 @@ body[data-site] .frame.is-empty .ph .lab{font-size:0}
 body[data-site] .frame.is-empty .ph .lab::after{content:"MEDIA CHANNEL // STANDBY";font:500 .6rem/1.4 var(--interface);font-size:.6rem;letter-spacing:.08em}
 body[data-site="quant"] .frame.is-empty .ph .lab::after{content:"PRIVATE SYSTEM // REDACTED"}
 body[data-site="academic"] .frame.is-empty .ph .lab::after{content:"RESEARCH MEDIA // PENDING"}
+.frame.logo-frame{background:#f5f7fa}
+.frame.logo-frame::before{display:none}
+.frame.logo-frame img{object-fit:contain;padding:clamp(16px,3vw,34px);background:#f5f7fa;transform:none!important}
+.frame.logo-frame.dark-logo,.frame.logo-frame.dark-logo img{background:#303030}
 
 .org-mark{
   width:54px;
@@ -318,6 +336,8 @@ body[data-site="academic"] .frame.is-empty .ph .lab::after{content:"RESEARCH MED
 .console-copy{padding:30px;border-right:1px solid var(--line)}
 .console-copy h3{font-size:clamp(1.25rem,2.5vw,1.8rem);text-transform:uppercase;letter-spacing:.03em;line-height:1.15}
 .console-copy>p{margin-top:13px;color:var(--text-soft);font-size:.94rem}
+.model-equation{display:grid;gap:6px;padding:12px;border-left:2px solid var(--signal);background:rgba(var(--signal-rgb),.045);font:500 .68rem/1.45 var(--interface);color:#bdd5dc!important}
+.model-equation span{overflow-wrap:anywhere}
 .control{display:block;margin-top:22px}
 .control-head{display:flex;justify-content:space-between;gap:16px;margin-bottom:9px;color:#a9c0c9;font:500 .67rem/1.3 var(--interface);letter-spacing:.05em;text-transform:uppercase}
 .control output{color:var(--signal)}
@@ -333,15 +353,18 @@ body[data-site="academic"] .frame.is-empty .ph .lab::after{content:"RESEARCH MED
 .plot-grid line{stroke:var(--line);stroke-width:1}
 .plot-axis{stroke:rgba(255,255,255,.30);stroke-width:1}
 .plot-zero{stroke:rgba(255,212,121,.5);stroke-dasharray:5 6}
-.plot-primary,.plot-secondary{fill:none;stroke-linecap:square;stroke-linejoin:round}
+.plot-primary,.plot-secondary,.plot-tertiary{fill:none;stroke-linecap:square;stroke-linejoin:round}
 .plot-primary{stroke:var(--signal);stroke-width:3;filter:drop-shadow(0 0 7px rgba(var(--signal-rgb),.32))}
 .plot-secondary{stroke:var(--positive);stroke-width:1.6;stroke-dasharray:5 5;opacity:.72}
+.plot-tertiary{stroke:var(--warning);stroke-width:1.6;stroke-dasharray:5 5;opacity:.78}
+.plot-marker{stroke:rgba(255,255,255,.42);stroke-width:1;stroke-dasharray:3 5}
 .plot-fill{fill:url(#quant-fill);opacity:.16}
 .academic-fill{fill:url(#academic-fill);opacity:.14}
 .plot-label{fill:#78909d;font:500 10px var(--interface);letter-spacing:.03em}
 .plot-legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:4px;color:#8ba2ad;font:500 .58rem/1.4 var(--interface);letter-spacing:.08em;text-transform:uppercase}
 .plot-legend span::before{content:"";display:inline-block;width:18px;height:2px;margin:0 7px 3px 0;background:var(--signal)}
 .plot-legend span:nth-child(2)::before{background:var(--positive)}
+.quote-legend span:nth-child(3)::before{background:var(--warning)}
 .plot-note{margin-top:9px;color:#718894;font:400 .58rem/1.5 var(--interface);letter-spacing:.02em}
 
 body[data-site] .pub{border-color:var(--line);transition:background .2s,padding .2s}
@@ -356,6 +379,9 @@ body[data-site] .skill{background:rgba(9,18,27,.88)}
 body[data-site] .skill h4{color:var(--signal)}
 body[data-site] .skill .tags span{color:#b7c8cf}
 body[data-site] .edu-row{border-color:var(--line)}
+.edu-notes{display:grid;gap:5px;margin:11px 0 0;padding:0;list-style:none;color:var(--text-soft);font-size:.84rem;line-height:1.55}
+.edu-notes li{position:relative;padding-left:14px}
+.edu-notes li::before{content:"+";position:absolute;left:0;color:var(--signal);font-family:var(--interface)}
 body[data-site] .contact a.mail{color:var(--signal)}
 body[data-site] .foot{color:#78909d}
 body[data-site] .foot a{color:var(--text);border-color:var(--line)}
@@ -373,6 +399,8 @@ body[data-site] .foot a{color:var(--text);border-color:var(--line)}
   body[data-site] .nav-in::before{left:20px}
   body[data-site] .hero{padding-top:90px}
   body[data-site] .hero h1{font-size:clamp(2.1rem,12vw,3rem)}
+  body[data-site] .nav-resume{display:none}
+  .profile-gateway{padding:14px 15px 15px}
   .console-copy,.console-viz{padding:22px 17px}
   .metric-grid{grid-template-columns:1fr}
   .honor-grid{grid-template-columns:1fr}

@@ -164,7 +164,10 @@ svg.chart .fill{opacity:0;animation:fadein 1.6s ease 1.6s forwards}
       <a href="#publications">Publications</a>
       <a href="#contact">Contact</a>
     </div>
-    <a class="nav-cta" href="files/Wu,%20Tianrui_Resume.pdf" target="_blank" rel="noopener">Résumé ↗</a>
+    <div class="nav-actions">
+      <a class="nav-cta nav-portal" href="academic/">Academic profile →</a>
+      <a class="nav-cta nav-resume" href="files/Wu,%20Tianrui_Resume.pdf" target="_blank" rel="noopener">Résumé ↗</a>
+    </div>
   </div>
 </nav>
 
@@ -177,8 +180,13 @@ svg.chart .fill{opacity:0;animation:fadein 1.6s ease 1.6s forwards}
   <div class="wrap hero-in">
     <p class="eyebrow anim" style="--d:0">Live markets · Crypto · HFT</p>
     <h1 class="anim" style="--d:1">Quantitative <em>Trader</em><br>& Researcher.</h1>
-    <p class="lede anim" style="--d:2">I design and trade live systematic strategies — machine-learning forecasting, market making, execution, and factor research — at a stealthy crypto proprietary trading firm. My edge comes from the same place as my physics: modeling noisy systems and finding structure others miss.</p>
-    <div class="row anim" style="--d:3">
+    <p class="lede anim" style="--d:2">I design and trade live systematic strategies — machine-learning forecasting, market making, execution, and factor research — at Qrigin Capital. My edge comes from the same place as my physics: modeling noisy systems and finding structure others miss.</p>
+    <a class="profile-gateway anim" style="--d:3" href="academic/">
+      <span class="gateway-kicker">Alternate profile // Physics &amp; cosmology</span>
+      <span class="gateway-title">Explore my academic research profile <b>→</b></span>
+      <span class="gateway-copy">Cosmology, Bayesian inference, scientific machine learning, publications, and research at Arizona, Caltech, Duke, and CERN.</span>
+    </a>
+    <div class="row anim" style="--d:4">
       <a class="btn solid" href="files/Wu,%20Tianrui_Resume.pdf" target="_blank" rel="noopener">Résumé</a>
       <a class="btn ghost" href="files/CV_Tianrui_Wu.pdf" target="_blank" rel="noopener">Academic CV</a>
       <div class="socials">
@@ -186,13 +194,13 @@ svg.chart .fill{opacity:0;animation:fadein 1.6s ease 1.6s forwards}
         <a href="https://www.linkedin.com/in/dennis-tianrui-wu" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 110-4.124 2.062 2.062 0 010 4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
       </div>
     </div>
-    <div class="ticker anim" style="--d:4">
-      <div class="cell"><div class="n"><span class="u">&gt;10</span></div><div class="l">Post-fee Sharpe, live taker HFT</div></div>
+    <div class="ticker anim" style="--d:5">
+      <div class="cell"><div class="n"><span class="u">8.2</span></div><div class="l">Post-fee Sharpe, live taker HFT</div></div>
       <div class="cell"><div class="n">200<span class="u">+</span></div><div class="l">Multi-frequency factors engineered</div></div>
       <div class="cell"><div class="n">~2<span class="u">bps</span></div><div class="l">Execution slippage reduced</div></div>
       <div class="cell"><div class="n">3<span class="u">×</span></div><div class="l">Peer-reviewed / in-prep papers</div></div>
     </div>
-    <div class="logo-rail anim" style="--d:5" aria-label="Organizations and research institutions">
+    <div class="logo-rail anim" style="--d:6" aria-label="Organizations and research institutions">
       <span class="logo-rail-label">Selected systems<br>&amp; institutions</span>
       <span class="logo-tile dark"><img data-logo src="images/insightcheck-logo.jpg" alt="InsightCheck Investment"></span>
       <span class="logo-tile"><img data-logo src="images/Caltech-logo.png" alt="Caltech"></span>
@@ -206,41 +214,46 @@ svg.chart .fill{opacity:0;animation:fadein 1.6s ease 1.6s forwards}
 <!-- INTERACTIVE QUANT LAB -->
 <section class="section lab-section" id="lab" data-section-label="INTERACTIVE / PUBLIC-SAFE MODEL">
   <div class="wrap">
-    <div class="s-head reveal"><span class="s-index">LAB / 00</span><h2 class="s-title">Microstructure Lab</h2></div>
-    <p class="s-sub reveal" style="--i:1">A small interactive model of the trade-off between expected alpha, implementation shortfall, order size, and urgency.</p>
+    <div class="s-head reveal"><span class="s-index">LAB / 00</span><h2 class="s-title">Inventory-Aware Quoting Lab</h2></div>
+    <p class="s-sub reveal" style="--i:1">A transparent, normalized Avellaneda–Stoikov model showing how inventory, volatility, and risk aversion skew a market maker's reservation price and spread.</p>
     <div class="research-console reveal" style="--i:2" data-quant-lab>
-      <div class="console-bar"><span class="console-title">EXECUTION_MODEL // v1.4</span><span class="console-status">SIMULATION ONLINE</span></div>
+      <div class="console-bar"><span class="console-title">QUOTE_CONTROL // AVELLANEDA–STOIKOV</span><span class="console-status">MODEL ONLINE</span></div>
       <div class="console-grid">
         <div class="console-copy">
-          <h3>Expected net edge vs. holding horizon</h3>
-          <p>Increase order size or urgency to see modeled slippage consume gross alpha. This is a conceptual, public-safe simulator—not live firm data or investment advice.</p>
+          <h3>Reservation price &amp; optimal spread</h3>
+          <p>The model shifts fair value away from accumulated inventory and widens quotes as short-horizon volatility or risk aversion rises. It is a public teaching model—not proprietary Qrigin Capital logic.</p>
+          <p class="model-equation"><span>r = s − qγσ²τ</span><span>δ* = ½γσ²τ + γ⁻¹ ln(1 + γ/κ)</span></p>
           <label class="control">
-            <span class="control-head"><span>Order size</span><output data-q-size-out>35% ADV</output></span>
-            <input data-q-size type="range" min="10" max="100" value="35" aria-label="Order size as percentage of displayed volume">
+            <span class="control-head"><span>Inventory q</span><output data-q-inventory-out>+0.35</output></span>
+            <input data-q-inventory type="range" min="-100" max="100" value="35" aria-label="Normalized inventory">
           </label>
           <label class="control">
-            <span class="control-head"><span>Execution urgency</span><output data-q-urgency-out>52 / 100</output></span>
-            <input data-q-urgency type="range" min="0" max="100" value="52" aria-label="Execution urgency">
+            <span class="control-head"><span>1-minute volatility σ</span><output data-q-vol-out>8.0 bps</output></span>
+            <input data-q-vol type="range" min="20" max="200" value="80" aria-label="One minute volatility in basis points">
+          </label>
+          <label class="control">
+            <span class="control-head"><span>Risk aversion γ</span><output data-q-gamma-out>0.040 / bps</output></span>
+            <input data-q-gamma type="range" min="10" max="100" value="40" aria-label="Inventory risk aversion per basis point">
           </label>
           <div class="metric-grid" aria-live="polite">
-            <div class="metric"><span class="value" data-q-slippage>—</span><span class="label">Modeled shortfall</span></div>
-            <div class="metric"><span class="value" data-q-fill-rate>—</span><span class="label">Expected fill</span></div>
-            <div class="metric"><span class="value" data-q-edge>—</span><span class="label">Peak net edge</span></div>
+            <div class="metric"><span class="value" data-q-reservation>—</span><span class="label">Reservation shift</span></div>
+            <div class="metric"><span class="value" data-q-spread>—</span><span class="label">Optimal total spread</span></div>
+            <div class="metric"><span class="value" data-q-quotes>—</span><span class="label">Bid / ask vs mid</span></div>
           </div>
         </div>
         <div class="console-viz">
-          <svg viewBox="0 0 620 280" role="img" aria-label="Interactive line plot of modeled gross alpha and expected net edge over a sixty second holding horizon">
-            <defs><linearGradient id="quant-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#79f7ff"/><stop offset="1" stop-color="#79f7ff" stop-opacity="0"/></linearGradient></defs>
+          <svg viewBox="0 0 620 280" role="img" aria-label="Interactive plot of reservation price, bid quote, and ask quote offsets across normalized inventory">
             <g class="plot-grid"><line x1="46" y1="22" x2="594" y2="22"/><line x1="46" y1="78" x2="594" y2="78"/><line x1="46" y1="134" x2="594" y2="134"/><line x1="46" y1="190" x2="594" y2="190"/><line x1="46" y1="246" x2="594" y2="246"/><line x1="46" y1="22" x2="46" y2="246"/><line x1="183" y1="22" x2="183" y2="246"/><line x1="320" y1="22" x2="320" y2="246"/><line x1="457" y1="22" x2="457" y2="246"/><line x1="594" y1="22" x2="594" y2="246"/></g>
-            <line class="plot-zero" x1="46" y1="162" x2="594" y2="162"/>
-            <path class="plot-fill" data-q-fill/>
-            <path class="plot-secondary" data-q-gross/>
-            <path class="plot-primary" data-q-net/>
-            <text class="plot-label" x="46" y="268">0s</text><text class="plot-label" x="303" y="268">30s</text><text class="plot-label" x="570" y="268">60s</text>
-            <text class="plot-label" x="6" y="26">+10</text><text class="plot-label" x="20" y="166">0</text><text class="plot-label" x="8" y="246">−6</text>
+            <line class="plot-zero" x1="46" y1="134" x2="594" y2="134"/>
+            <line class="plot-marker" data-q-marker x1="416" y1="22" x2="416" y2="246"/>
+            <path class="plot-tertiary" data-q-ask/>
+            <path class="plot-primary" data-q-reservation-line/>
+            <path class="plot-secondary" data-q-bid/>
+            <text class="plot-label" x="38" y="268">−1</text><text class="plot-label" x="316" y="268">0</text><text class="plot-label" x="588" y="268">+1</text>
+            <text class="plot-label" x="5" y="26" data-q-ymax>+</text><text class="plot-label" x="20" y="138">0</text><text class="plot-label" x="5" y="246" data-q-ymin>−</text>
           </svg>
-          <div class="plot-legend"><span>Expected net edge</span><span>Gross alpha</span></div>
-          <p class="plot-note">MODEL SPACE // relative bps · deterministic concept curve · no proprietary series exposed</p>
+          <div class="plot-legend quote-legend"><span>Reservation price</span><span>Bid quote</span><span>Ask quote</span></div>
+          <p class="plot-note">NORMALIZED MODEL // τ = 1 minute · κ = 0.35 / bps · offsets shown relative to mid · no proprietary data</p>
         </div>
       </div>
     </div>
@@ -257,24 +270,27 @@ svg.chart .fill{opacity:0;animation:fadein 1.6s ease 1.6s forwards}
       <div class="entry-head-wrap reveal from-left">
         <span class="org-mark glyph" aria-hidden="true">QF // 01</span>
         <div class="entry-head">
-          <div class="role">Quantitative Trader &amp; Researcher</div>
-          <div class="org">Stealthy Quant Firm · Crypto Prop Trading</div>
-          <div class="meta"><span>Aug 2025 — Present</span><span>Remote</span></div>
+          <div class="role">Quantitative Researcher &amp; Systematic Trader</div>
+          <div class="org">Qrigin Capital · Crypto Proprietary Trading · $35M</div>
+          <div class="meta"><span>Aug 2025 — May 2026 full-time · May 2026 — Present part-time</span><span>Remote</span></div>
         </div>
         <div class="entry-body">
-          <p>Own strategies end to end: an LSTM forecasting engine with phase-space features and a full MLFlow MLOps loop, a dual-engine backtest stack, and live market-making and execution across major CEXs.</p>
+          <p>Own strategies end to end: an LSTM forecasting engine with phase-space features and a full MLflow lifecycle, 200+ multi-frequency factors, a dual-engine tick backtest stack, and live market-making, execution, and CTA trading across major CEXs.</p>
           <div class="chips">
-            <span class="chip">Taker HFT · Sharpe <b>&gt;10</b></span>
-            <span class="chip">Grid MM · <b>~10</b> OOS Sharpe</span>
+            <span class="chip">Taker HFT · Sharpe <b>8.2</b></span>
+            <span class="chip">Grid MM · <b>9</b> OOS Sharpe</span>
             <span class="chip">Execution · <b>~2bps</b></span>
-            <span class="chip">Factors · <b>+3.1%</b> win rate</span>
+            <span class="chip"><b>200+</b> factors · <b>+3.1%</b> win rate</span>
           </div>
           <details class="deep-dive" open>
             <summary>Production &amp; risk notes</summary>
             <ul class="impact-list">
-              <li><strong>Trading operations:</strong> ran live market-making and CTA workflows across OKX, Binance, and Coinbase, including P&amp;L, TCA, fee, fill, and latency analysis.</li>
-              <li><strong>Risk:</strong> monitored leverage, position, beta, and drawdown limits; halted or flattened strategies on breaches and led postmortem attribution before restart.</li>
-              <li><strong>Research leadership:</strong> led a two-person pod, reviewed methodology and production code, and held the final research gate before live deployment.</li>
+              <li><strong>Alpha &amp; direction:</strong> integrated 200+ OHLCV, order-book, derivatives, and cross-sectional factors with automated decay analysis; deployed the short-reversion taker strategy on Coinbase International at 8.2 post-fee Sharpe over three months.</li>
+              <li><strong>Execution &amp; market making:</strong> modulated child-order aggressiveness with microstructure timing overlays, cutting slippage by about 2 bps versus TWAP; validated a grid strategy with vectorized sweeps and L2 queue-position fills at 9 out-of-sample Sharpe.</li>
+              <li><strong>Trading operations:</strong> ran CTA books across OKX, Binance, and Coinbase, tuning systematic parameters and discretionary risk while owning P&amp;L monitoring, TCA, and fee analysis.</li>
+              <li><strong>Risk:</strong> directed multi-strategy risk across $35M in prop/client capital using Grafana, leverage, position, and beta limits plus pre/post volatility and model attribution; trimmed exposure ahead of the October crash.</li>
+              <li><strong>Additional leadership:</strong> led a two-person research pod, mentored junior researchers, and reviewed methodology and production code before live deployment.</li>
+              <li><strong>Production stack:</strong> Python, PyTorch, MLflow, Polars, pandas, NumPy, REST/WebSocket CEX APIs, Linux, and Git.</li>
             </ul>
           </details>
         </div>
@@ -294,24 +310,25 @@ svg.chart .fill{opacity:0;animation:fadein 1.6s ease 1.6s forwards}
           <div class="meta"><span>Feb 2025 — Aug 2025</span><span>Shenzhen, China</span></div>
         </div>
         <div class="entry-body">
-          <p>Built alpha and infrastructure for A-share cross-sectional trading: fundamental and microstructure factors in Polars, and an L2/L3 order-book reconstruction engine migrated to C++.</p>
+          <p>Built market-neutral statistical arbitrage, alpha factors, and infrastructure across equity and futures markets for a $300M systematic fund with a CTA desk.</p>
           <div class="chips">
             <span class="chip">62 intraday factors · IC <b>&gt;0.01</b></span>
             <span class="chip">Dask backtester · <b>10×</b> faster</span>
-            <span class="chip">Order-book · C++</span>
+            <span class="chip">Order-book · <b>~1 sec/day</b></span>
           </div>
           <details class="deep-dive">
             <summary>Research &amp; infrastructure notes</summary>
             <ul class="impact-list">
               <li><strong>Statistical arbitrage:</strong> combined PCA-derived factors, mean reversion, and a covariance risk model in a market-neutral long/short strategy with ~2.4 post-cost backtest Sharpe.</li>
               <li><strong>Market data:</strong> built an L3 market-by-order reconstruction engine that processed a full day of the A-share universe in about one second.</li>
-              <li><strong>Iteration speed:</strong> cut distributed evaluation cycles to roughly 15 minutes with Dask.</li>
+              <li><strong>Iteration speed:</strong> built a Dask distributed backtester that cut evaluation cycles by 10× to roughly 15 minutes.</li>
+              <li><strong>Research stack:</strong> Python, Polars, Dask, C++, SQL, Linux, and Git.</li>
             </ul>
           </details>
         </div>
       </div>
       <div class="entry-media frames reveal from-left" style="--i:1">
-        <figure class="frame"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 5-6 4 4"/></svg><span class="lab">Add photo</span><span class="path">images/insightcheck-logo.jpg</span></div><img src="images/insightcheck-logo.jpg" alt="InsightCheck Investment" loading="lazy" onerror="this.closest('.frame').classList.add('is-empty')"></figure>
+        <figure class="frame logo-frame dark-logo"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 5-6 4 4"/></svg><span class="lab">Add photo</span><span class="path">images/insightcheck-logo.jpg</span></div><img src="images/insightcheck-logo.jpg" alt="InsightCheck Investment" loading="lazy" onerror="this.closest('.frame').classList.add('is-empty')"></figure>
         <figure class="frame is-empty"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 5-6 4 4"/></svg><span class="lab">Private system</span></div></figure>
       </div>
     </article>
@@ -333,12 +350,12 @@ svg.chart .fill{opacity:0;animation:fadein 1.6s ease 1.6s forwards}
           <div class="meta"><span>2025</span><span>Live deployment</span></div>
         </div>
         <div class="entry-body">
-          <p>A live, alpha-infused market-making framework combining EWMA flow alphas with a CNN that reads order-book patterns through a phase-space representation. Ran with daily positive PnL on large-tick assets — and led directly to my current quant role.</p>
-          <div class="chips"><span class="chip">EWMA flow alphas</span><span class="chip">Order-book CNN</span><span class="chip"><b>Daily +PnL</b> live</span></div>
+          <p>Built and deployed a live ETH market-making framework on OKX, combining EWMA flow alphas with a CNN that reads order-book patterns through a phase-space representation. It averaged 0.5–1% daily returns and led directly to recruitment at Qrigin Capital.</p>
+          <div class="chips"><span class="chip">EWMA flow alphas</span><span class="chip">Order-book CNN</span><span class="chip"><b>0.5–1%</b> daily return</span></div>
           <details class="deep-dive">
             <summary>Deployment notes</summary>
             <ul class="impact-list">
-              <li>Combined an exchange WebSocket feed, fee-aware fills, and Grafana monitoring with a fast research/backtest loop in Python and Rust.</li>
+              <li>Combined an OKX WebSocket feed, fee-aware fills, Grafana monitoring, and a high-speed backtest loop using pandas, Polars, NumPy, Numba, PyTorch, and Rust.</li>
               <li>The live system became the technical work sample that led to recruitment into proprietary trading.</li>
             </ul>
           </details>
@@ -355,12 +372,12 @@ svg.chart .fill{opacity:0;animation:fadein 1.6s ease 1.6s forwards}
         <span class="org-mark glyph" aria-hidden="true">IMC // 03%</span>
         <div class="entry-head">
           <div class="role">IMC Prosperity 4 — Trading Competition</div>
-          <div class="org">Global algorithmic competition · Python</div>
-          <div class="meta"><span>2026</span><span>Top 3% globally</span></div>
+          <div class="org">Global algorithmic competition · Python, PyTorch, Rust</div>
+          <div class="meta"><span>2026</span><span>Top 3% of 6,000+ teams</span></div>
         </div>
         <div class="entry-body">
-          <p>Built an automated bot exploiter that fingerprints predictable counterparties by behavior, paired with fair-value estimation and informed-flow market making across asset classes.</p>
-          <div class="chips"><span class="chip">Behavioral fingerprinting</span><span class="chip">Informed-flow MM</span><span class="chip"><b>Top 3%</b> / global</span></div>
+          <p>Ranked in the top 3% of 6,000+ teams using market making and cross-asset arbitrage driven by behavioral fingerprinting of counterparties, fair-value estimation, and informed-flow detection.</p>
+          <div class="chips"><span class="chip">Behavioral fingerprinting</span><span class="chip">Cross-asset arbitrage</span><span class="chip"><b>Top 3%</b> / 6,000+</span></div>
         </div>
       </div>
       <div class="entry-media frames reveal from-left" style="--i:1">
@@ -375,10 +392,36 @@ svg.chart .fill{opacity:0;animation:fadein 1.6s ease 1.6s forwards}
 <section class="section" id="research" data-section-label="TRANSFER / SCIENCE">
   <div class="wrap">
     <div class="s-head reveal"><span class="s-index">03</span><h2 class="s-title">Research Edge</h2></div>
-    <p class="s-sub reveal" style="--i:1">The quant work rests on real scientific computing: deep learning, Bayesian inference, and large-scale data pipelines. A fuller account lives on my <a href="academic/" style="color:var(--crimson)">academic site</a>.</p>
+    <p class="s-sub reveal" style="--i:1">The quant work rests on real scientific computing: deep learning, Bayesian inference, and large-scale data pipelines. Every research project from my résumé is summarized here; papers, figures, and the full story live on my <a href="academic/" style="color:var(--crimson)">academic profile</a>.</p>
 
     <article class="entry">
       <div class="entry-head-wrap reveal from-left">
+        <span class="org-mark glyph" aria-hidden="true">BAO // 26</span>
+        <div class="entry-head">
+          <div class="role">Density-Field Forecasting with High-Redshift Uncertainty</div>
+          <div class="org">University of Arizona · Cosmology Lab</div>
+          <div class="meta"><span>2026</span><span>First-author project</span></div>
+        </div>
+        <div class="entry-body">
+          <p>Led the analysis with a PI and postdoctoral researcher, diagnosing a systematic bias in a Bayesian MCMC inference pipeline and correcting it through cross-validated covariance estimation across a 250-cell parameter-sensitivity grid.</p>
+          <div class="chips"><span class="chip">Bias reduced <b>6×</b></span><span class="chip"><b>250-cell</b> sensitivity grid</span><span class="chip">PRD paper in prep</span></div>
+          <details class="deep-dive">
+            <summary>Research notes</summary>
+            <ul class="impact-list">
+              <li>Built the forward-model framework propagating photometric-redshift measurement uncertainty through BAO reconstruction on large simulated datasets.</li>
+              <li>Used Python, pandas, NumPy, Numba, Bayesian inference, and Linux HPC as the project's sole analyst.</li>
+            </ul>
+          </details>
+        </div>
+      </div>
+      <div class="entry-media frames reveal from-right" style="--i:1">
+        <figure class="frame is-empty"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 5-6 4 4"/></svg><span class="lab">Research visual</span></div></figure>
+        <figure class="frame is-empty"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 5-6 4 4"/></svg><span class="lab">Research visual</span></div></figure>
+      </div>
+    </article>
+
+    <article class="entry flip">
+      <div class="entry-head-wrap reveal from-right">
         <span class="org-mark"><img data-logo src="images/Caltech-logo.png" alt="Caltech"></span>
         <div class="entry-head">
           <div class="role">ML for Cosmological Inference (SURF)</div>
@@ -390,8 +433,34 @@ svg.chart .fill{opacity:0;animation:fadein 1.6s ease 1.6s forwards}
           <div class="chips"><span class="chip">PyTorch · ResUNet</span><span class="chip">Linux HPC</span><span class="chip"><b>Sub-%</b> error</span></div>
         </div>
       </div>
+      <div class="entry-media frames reveal from-left" style="--i:1">
+        <figure class="frame logo-frame"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 5-6 4 4"/></svg><span class="lab">Add photo</span><span class="path">images/Caltech-logo.png</span></div><img src="images/Caltech-logo.png" alt="California Institute of Technology" loading="lazy" onerror="this.closest('.frame').classList.add('is-empty')"></figure>
+        <figure class="frame is-empty"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 5-6 4 4"/></svg><span class="lab">Research visual</span></div></figure>
+      </div>
+    </article>
+
+    <article class="entry">
+      <div class="entry-head-wrap reveal from-left">
+        <span class="org-mark"><img data-logo src="images/Duke-logo.png" alt="Duke University"></span>
+        <div class="entry-head">
+          <div class="role">Dark Matter, Weak Lensing &amp; the Distance Ladder</div>
+          <div class="org">Duke Cosmology Group</div>
+          <div class="meta"><span>2022 — 2024</span><span>Durham, NC</span></div>
+        </div>
+        <div class="entry-body">
+          <p>Built Python pipelines generating synthetic stellar catalogs and analyzing 120 TB of simulations to extract features for distance calibration and weak-lensing maps, then applied MCMC-based Bayesian inference to constrain cosmological parameters.</p>
+          <div class="chips"><span class="chip"><b>120 TB</b> simulations</span><span class="chip">MCMC · Bayesian</span><span class="chip">ApJ + MNRAS papers</span></div>
+          <details class="deep-dive">
+            <summary>Research notes</summary>
+            <ul class="impact-list">
+              <li>Quantified correlations and built catalog-generation and weak-lensing analysis workflows on Linux HPC.</li>
+              <li>The work contributed to <em>JWST Validates HST Distance Measurements</em> (ApJ, 2024) and <em>OpenUniverse2024</em> (MNRAS, 2025).</li>
+            </ul>
+          </details>
+        </div>
+      </div>
       <div class="entry-media frames reveal from-right" style="--i:1">
-        <figure class="frame"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 5-6 4 4"/></svg><span class="lab">Add photo</span><span class="path">images/Caltech-logo.png</span></div><img src="images/Caltech-logo.png" alt="California Institute of Technology" loading="lazy" onerror="this.closest('.frame').classList.add('is-empty')"></figure>
+        <figure class="frame logo-frame"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 5-6 4 4"/></svg><span class="lab">Duke</span></div><img src="images/Duke-logo.png" alt="Duke University" loading="lazy" onerror="this.closest('.frame').classList.add('is-empty')"></figure>
         <figure class="frame is-empty"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 5-6 4 4"/></svg><span class="lab">Research visual</span></div></figure>
       </div>
     </article>
@@ -415,10 +484,12 @@ svg.chart .fill{opacity:0;animation:fadein 1.6s ease 1.6s forwards}
   <div class="wrap">
     <div class="s-head reveal"><span class="s-index">05</span><h2 class="s-title">Toolkit</h2></div>
     <div class="skills" style="margin-top:14px">
-      <div class="skill reveal"><h4>Languages</h4><div class="tags"><span>Python</span><span>Rust</span><span>C/C++</span><span>SQL</span><span>MATLAB</span><span>LaTeX</span></div></div>
-      <div class="skill reveal" style="--i:1"><h4>ML &amp; Data</h4><div class="tags"><span>PyTorch</span><span>MLFlow</span><span>Polars</span><span>pandas / NumPy</span><span>Dask</span></div></div>
-      <div class="skill reveal" style="--i:2"><h4>Quant</h4><div class="tags"><span>Market microstructure</span><span>Optimal execution</span><span>Backtesting</span><span>Factor research</span></div></div>
-      <div class="skill reveal" style="--i:3"><h4>Methods</h4><div class="tags"><span>Deep learning</span><span>Bayesian inference</span><span>Statistical modeling</span><span>Parallel computing</span></div></div>
+      <div class="skill reveal"><h4>Programming</h4><div class="tags"><span>Python</span><span>Rust</span><span>C/C++</span><span>PostgreSQL</span><span>Unix / Linux</span><span>Git</span></div></div>
+      <div class="skill reveal" style="--i:1"><h4>ML &amp; Data</h4><div class="tags"><span>PyTorch</span><span>MLflow</span><span>Polars</span><span>pandas</span><span>NumPy</span><span>Numba</span><span>Dask</span></div></div>
+      <div class="skill reveal" style="--i:2"><h4>Quant</h4><div class="tags"><span>Market microstructure</span><span>Live strategy development</span><span>Optimal execution</span><span>Backtesting</span><span>Factor research</span><span>Signal evaluation</span></div></div>
+      <div class="skill reveal" style="--i:3"><h4>Methods</h4><div class="tags"><span>Deep learning</span><span>Bayesian inference</span><span>MCMC</span><span>Statistical modeling</span><span>Parallel computing</span><span>Linux HPC</span></div></div>
+      <div class="skill reveal" style="--i:4"><h4>Market Exposure</h4><div class="tags"><span>Digital assets</span><span>Commodity futures</span><span>Global equities</span><span>Options · Akuna 101/201</span><span>Prediction markets</span></div></div>
+      <div class="skill reveal" style="--i:5"><h4>Languages &amp; Interests</h4><div class="tags"><span>English</span><span>Mandarin</span><span>Poker</span><span>GeoGuessr</span><span>Tabletop wargaming</span><span>Strategy games</span><span>Chaos theory</span><span>Forecasting</span><span>Astrophotography</span><span>Science fiction</span></div></div>
     </div>
   </div>
 </section>
@@ -428,8 +499,14 @@ svg.chart .fill{opacity:0;animation:fadein 1.6s ease 1.6s forwards}
   <div class="wrap">
     <div class="s-head reveal"><span class="s-index">06</span><h2 class="s-title">Education</h2></div>
     <div style="margin-top:14px">
-      <div class="edu-row reveal"><div><div class="sch">University of Arizona</div><div class="deg">B.S. Physics &amp; Mathematics · Global Wildcat Scholarship</div><div class="course-line">Stochastic Calculus · Statistical Machine Learning · Computational Physics</div></div><div class="yr">2026 — 2027<br>GPA 3.9 · Major 4.0</div></div>
-      <div class="edu-row reveal" style="--i:1"><div><div class="sch">Duke University</div><div class="deg">Physics &amp; Mathematics, Minor in CS</div><div class="course-line">Advanced Probability · Graduate Machine Learning · Real Analysis · Data Structures</div></div><div class="yr">2021 — 2024<br>GPA 3.9 · Physics 4.0</div></div>
+      <div class="edu-row reveal">
+        <div><div class="sch">University of Arizona</div><div class="deg">B.S. Physics &amp; Mathematics · expected May 2027</div><div class="course-line">Stochastic Calculus · Statistical Machine Learning · Advanced Mathematical Modeling · Computational Physics</div><ul class="edu-notes"><li>Dean's List; Global Wildcat Scholarship ($10,000/year merit award).</li><li>Researcher in the Arizona Cosmology Lab; first-author BAO reconstruction paper in preparation.</li></ul></div>
+        <div class="yr">Jan 2026 — May 2027<br>GPA 3.87 / 4.0</div>
+      </div>
+      <div class="edu-row reveal" style="--i:1">
+        <div><div class="sch">Duke University</div><div class="deg">Physics &amp; Mathematics · Computer Science minor · transferred, degree not conferred</div><div class="course-line">Real Analysis · Advanced Probability · Statistical Learning &amp; Inference · Graduate Machine Learning · Game Theory</div><ul class="edu-notes"><li>Dean's List with distinction; 2024 Faculty Scholars finalist, Duke's sole physics nominee.</li><li>Mathematics TA (2022–2024), teaching 40+ students weekly in multivariable calculus, linear algebra, and probability; rated 30/30 “Excellent.”</li><li>Founder &amp; President, Duke Astronomy Club; Chapter President, Society of Physics Students; APS Student Ambassador; Senior Editor, Duke Vertices Science Journal.</li><li>Led a four-person Duke Data+ team building random forest, SVM, and MLP models with an R Shiny analytics app.</li></ul></div>
+        <div class="yr">Aug 2021 — Dec 2024<br>GPA 3.92 / 4.0</div>
+      </div>
     </div>
   </div>
 </section>
@@ -437,13 +514,17 @@ svg.chart .fill{opacity:0;animation:fadein 1.6s ease 1.6s forwards}
 <!-- DISTINCTIONS -->
 <section class="section" id="distinctions" data-section-label="COMPETITION / SIGNAL">
   <div class="wrap">
-    <div class="s-head reveal"><span class="s-index">07</span><h2 class="s-title">Selected Distinctions</h2></div>
-    <p class="s-sub reveal" style="--i:1">A competitive track record across trading, physics, and independent research.</p>
+    <div class="s-head reveal"><span class="s-index">07</span><h2 class="s-title">Honors &amp; Awards</h2></div>
+    <p class="s-sub reveal" style="--i:1">The complete competitive and awarded distinctions listed on my primary résumé.</p>
     <div class="honor-grid">
       <article class="honor-card reveal"><span class="year">2026</span><h3>US Physicists' Tournament</h3><p>National 1st place as team captain; advanced to the international round.</p></article>
-      <article class="honor-card reveal" style="--i:1"><span class="year">2026</span><h3>IMC Prosperity 4</h3><p>Top 3% globally in the multi-round algorithmic trading competition.</p></article>
+      <article class="honor-card reveal" style="--i:1"><span class="year">2021</span><h3>British Physics Olympiad</h3><p>Top Gold award, placing among the top ten competitors.</p></article>
       <article class="honor-card reveal" style="--i:2"><span class="year">2024</span><h3>Faculty Scholars Finalist</h3><p>Duke's sole physics nominee for its highest undergraduate distinction.</p></article>
-      <article class="honor-card reveal" style="--i:3"><span class="year">2021</span><h3>ISEF Grand Award</h3><p>Third Grand Award in Physics &amp; Astronomy for chaos-theory research.</p></article>
+      <article class="honor-card reveal" style="--i:3"><span class="year">2021</span><h3>Regeneron ISEF</h3><p>Third Grand Award in Physics &amp; Astronomy, placing in the top ten.</p></article>
+      <article class="honor-card reveal"><span class="year">2024</span><h3>J. B. Burnell Scholarship</h3><p>Sole recipient of the Outstanding Leadership Scholarship.</p></article>
+      <article class="honor-card reveal" style="--i:1"><span class="year">2024</span><h3>Sigma Pi Sigma</h3><p>Inducted into the physics honor society for top academic achievement.</p></article>
+      <article class="honor-card reveal" style="--i:2"><span class="year">2023</span><h3>Outstanding Chapter Award</h3><p>Society of Physics Students chapter recognition.</p></article>
+      <article class="honor-card reveal" style="--i:3"><span class="year">2026</span><h3>IMC Prosperity 4</h3><p>Top 3% of 6,000+ teams in the algorithmic trading competition.</p></article>
     </div>
   </div>
 </section>
@@ -456,7 +537,7 @@ svg.chart .fill{opacity:0;animation:fadein 1.6s ease 1.6s forwards}
     <div class="reveal">
       <p class="eyebrow" style="color:var(--crimson)">Let's talk markets</p>
       <h2>Open to 2027 quant<br>trading &amp; research roles.</h2>
-      <p style="margin-top:22px;font-size:1.1rem;max-width:48ch;color:#2b3036">Reach me at <a class="mail" href="mailto:tianrui.dennis.wu@gmail.com">tianrui.dennis.wu@gmail.com</a> — or connect below.</p>
+      <p style="margin-top:22px;font-size:1.1rem;max-width:58ch;color:#2b3036">Reach me at <a class="mail" href="mailto:denniswu501@gmail.com">denniswu501@gmail.com</a> or <a class="mail" href="tel:+19843779159">+1 (984) 377-9159</a> — or connect below.</p>
       <div class="row" style="margin-top:26px;display:flex;gap:14px;flex-wrap:wrap">
         <a class="btn solid" href="files/Wu,%20Tianrui_Resume.pdf" target="_blank" rel="noopener">Résumé</a>
         <a class="btn ghost" href="https://github.com/denniswu28" target="_blank" rel="noopener">GitHub</a>

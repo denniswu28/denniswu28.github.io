@@ -79,6 +79,11 @@ body[data-site="academic"] .section::after{
 }
 .org-mark img{display:block;width:100%;height:100%;object-fit:contain}
 
+.frame.logo-frame{background:#f7f8fc}
+.frame.logo-frame::before{display:none}
+.frame.logo-frame img{object-fit:contain;padding:clamp(16px,3vw,34px);background:#f7f8fc;transform:none!important}
+.frame.logo-frame.dark-logo,.frame.logo-frame.dark-logo img{background:#0d3c9d}
+
 .research-console{
   position:relative;
   overflow:hidden;

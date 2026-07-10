@@ -30,44 +30,66 @@
 
   var quantLab=document.querySelector('[data-quant-lab]');
   if(quantLab){
-    var sizeInput=quantLab.querySelector('[data-q-size]');
-    var urgencyInput=quantLab.querySelector('[data-q-urgency]');
-    var sizeOut=quantLab.querySelector('[data-q-size-out]');
-    var urgencyOut=quantLab.querySelector('[data-q-urgency-out]');
-    var netPath=quantLab.querySelector('[data-q-net]');
-    var grossPath=quantLab.querySelector('[data-q-gross]');
-    var fillPath=quantLab.querySelector('[data-q-fill]');
-    var slippageOut=quantLab.querySelector('[data-q-slippage]');
-    var fillOut=quantLab.querySelector('[data-q-fill-rate]');
-    var edgeOut=quantLab.querySelector('[data-q-edge]');
+    var inventoryInput=quantLab.querySelector('[data-q-inventory]');
+    var volInput=quantLab.querySelector('[data-q-vol]');
+    var gammaInput=quantLab.querySelector('[data-q-gamma]');
+    var inventoryOut=quantLab.querySelector('[data-q-inventory-out]');
+    var volOut=quantLab.querySelector('[data-q-vol-out]');
+    var gammaOut=quantLab.querySelector('[data-q-gamma-out]');
+    var reservationPath=quantLab.querySelector('[data-q-reservation-line]');
+    var bidPath=quantLab.querySelector('[data-q-bid]');
+    var askPath=quantLab.querySelector('[data-q-ask]');
+    var marker=quantLab.querySelector('[data-q-marker]');
+    var reservationOut=quantLab.querySelector('[data-q-reservation]');
+    var spreadOut=quantLab.querySelector('[data-q-spread]');
+    var quotesOut=quantLab.querySelector('[data-q-quotes]');
+    var yMaxOut=quantLab.querySelector('[data-q-ymax]');
+    var yMinOut=quantLab.querySelector('[data-q-ymin]');
+
+    function signed(value){
+      return (value>=0?'+':'−')+Math.abs(value).toFixed(2);
+    }
 
     function updateQuant(){
-      var size=Number(sizeInput.value);
-      var urgency=Number(urgencyInput.value);
-      var slippage=.35+size*.025+urgency*.018;
-      var fill=Math.min(99,42+urgency*.5+(100-size)*.15);
-      var gross=[];
-      var net=[];
-      for(var i=0;i<64;i++){
-        var t=i/63*60;
-        var alpha=(8.7-size*.018)*(1-Math.exp(-t/(7+urgency*.055)))-.042*t;
-        var implementation=slippage*(1+.40*Math.exp(-t/11))+size*.004*(t/60);
-        gross.push(alpha);
-        net.push(alpha-implementation);
+      var inventory=Number(inventoryInput.value)/100;
+      var sigma=Number(volInput.value)/10;
+      var gamma=Number(gammaInput.value)/1000;
+      var tau=1;
+      var kappa=.35;
+      var riskTerm=gamma*sigma*sigma*tau;
+      var halfSpread=.5*riskTerm+(1/gamma)*Math.log(1+gamma/kappa);
+      var reservations=[];
+      var bids=[];
+      var asks=[];
+      for(var i=0;i<81;i++){
+        var q=-1+(i/80)*2;
+        var reservation=-q*riskTerm;
+        reservations.push(reservation);
+        bids.push(reservation-halfSpread);
+        asks.push(reservation+halfSpread);
       }
-      var peak=Math.max.apply(null,net);
-      sizeOut.textContent=size+'% ADV';
-      urgencyOut.textContent=urgency+' / 100';
-      slippageOut.textContent=slippage.toFixed(2)+' bps';
-      fillOut.textContent=fill.toFixed(0)+'%';
-      edgeOut.textContent=peak.toFixed(2)+' bps';
-      var netD=svgPath(net,-6,10);
-      netPath.setAttribute('d',netD);
-      grossPath.setAttribute('d',svgPath(gross,-6,10));
-      fillPath.setAttribute('d',svgArea(net,-6,10,0));
+      var currentReservation=-inventory*riskTerm;
+      var currentBid=currentReservation-halfSpread;
+      var currentAsk=currentReservation+halfSpread;
+      var plotBound=Math.max(8,riskTerm+halfSpread)*1.12;
+      inventoryOut.textContent=(inventory>=0?'+':'−')+Math.abs(inventory).toFixed(2);
+      volOut.textContent=sigma.toFixed(1)+' bps';
+      gammaOut.textContent=gamma.toFixed(3)+' / bps';
+      reservationOut.textContent=signed(currentReservation)+' bps';
+      spreadOut.textContent=(2*halfSpread).toFixed(2)+' bps';
+      quotesOut.textContent=signed(currentBid)+' / '+signed(currentAsk);
+      reservationPath.setAttribute('d',svgPath(reservations,-plotBound,plotBound));
+      bidPath.setAttribute('d',svgPath(bids,-plotBound,plotBound));
+      askPath.setAttribute('d',svgPath(asks,-plotBound,plotBound));
+      var markerX=46+((inventory+1)/2)*548;
+      marker.setAttribute('x1',markerX.toFixed(1));
+      marker.setAttribute('x2',markerX.toFixed(1));
+      yMaxOut.textContent='+'+plotBound.toFixed(0);
+      yMinOut.textContent='−'+plotBound.toFixed(0);
     }
-    sizeInput.addEventListener('input',updateQuant);
-    urgencyInput.addEventListener('input',updateQuant);
+    inventoryInput.addEventListener('input',updateQuant);
+    volInput.addEventListener('input',updateQuant);
+    gammaInput.addEventListener('input',updateQuant);
     updateQuant();
   }
 
