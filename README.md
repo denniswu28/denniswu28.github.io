@@ -92,3 +92,14 @@ entry. To add another image, replace a standby frame with this pattern.
   <img src="images/quant/result.jpg" alt="Describe the result" loading="lazy">
 </figure>
 ```
+
+## Interactive quant lab
+
+The root site includes a public-safe research-to-production lab with execution,
+LSTM architecture, risk scenario, and market-making ingestion modules.
+
+- Data schemas and templates are in `data/`.
+- Hosting and privacy decisions are documented in `INTERACTIVE_ROADMAP.md`.
+- Execution and market-making CSV files are parsed locally in the browser.
+- Demo, observed, hypothetical, and literature-inspired claims must remain
+  visibly labeled.

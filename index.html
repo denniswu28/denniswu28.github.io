@@ -5,6 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tianrui (Dennis) Wu | Quantitative Trader & Researcher</title>
 <meta name="description" content="Tianrui (Dennis) Wu, Quantitative Trader & Researcher. Live crypto market-making, HFT, and factor research; ML and Bayesian inference.">
+<link rel="canonical" href="https://denniswu28.github.io/">
+<meta property="og:title" content="Tianrui (Dennis) Wu | Quantitative Trader & Researcher">
+<meta property="og:description" content="Public-safe quantitative research, live trading systems, execution analysis, and interactive market models.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://denniswu28.github.io/">
+<meta property="og:image" content="https://denniswu28.github.io/images/Protrait.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tianrui (Dennis) Wu | Quantitative Trader & Researcher">
+<meta name="twitter:description" content="Public-safe quantitative research, live trading systems, execution analysis, and interactive market models.">
+<meta name="twitter:image" content="https://denniswu28.github.io/images/Protrait.jpg">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📈</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -151,8 +161,25 @@ svg.chart .fill{opacity:0;animation:fadein 1.6s ease 1.6s forwards}
 :focus-visible{outline:2px solid var(--crimson);outline-offset:3px;border-radius:3px}
 </style>
 <link rel="stylesheet" href="sci-fi.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Tianrui Wu",
+  "alternateName": "Dennis Wu",
+  "url": "https://denniswu28.github.io/",
+  "image": "https://denniswu28.github.io/images/Protrait.jpg",
+  "jobTitle": "Quantitative Researcher and Systematic Trader",
+  "sameAs": [
+    "https://github.com/denniswu28",
+    "https://www.linkedin.com/in/dennis-tianrui-wu"
+  ]
+}
+</script>
 </head>
 <body data-site="quant">
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
 
 <nav class="nav">
   <div class="nav-in">
@@ -160,7 +187,7 @@ svg.chart .fill{opacity:0;animation:fadein 1.6s ease 1.6s forwards}
     <div class="nav-links">
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
-      <a href="#lab">Signal Lab</a>
+      <a href="#public-lab">Public Lab</a>
       <a href="#publications">Publications</a>
       <a href="#contact">Contact</a>
     </div>
@@ -170,6 +197,8 @@ svg.chart .fill{opacity:0;animation:fadein 1.6s ease 1.6s forwards}
     </div>
   </div>
 </nav>
+
+<main id="main-content">
 
 <header class="hero" id="top">
   <div class="hero-grid"></div>
@@ -208,8 +237,6 @@ svg.chart .fill{opacity:0;animation:fadein 1.6s ease 1.6s forwards}
     </div>
   </div>
 </header>
-
-<main>
 
 <!-- INTERACTIVE QUANT LAB -->
 <section class="section lab-section" id="lab" data-section-label="INTERACTIVE / PUBLIC-SAFE MODEL">
@@ -260,6 +287,133 @@ svg.chart .fill{opacity:0;animation:fadein 1.6s ease 1.6s forwards}
   </div>
 </section>
 
+<!-- PUBLIC-SAFE EVIDENCE LAB -->
+<section class="section evidence-section" id="public-lab" data-section-label="EVIDENCE / INTERACTIVE / LOCAL-FIRST">
+  <div class="wrap">
+    <div class="s-head reveal"><span class="s-index">LAB / 01</span><h2 class="s-title">Research to Production Lab</h2></div>
+    <p class="s-sub reveal" style="--i:1">Interactive, public-safe demonstrations of how I evaluate execution, structure forecasting research, and reason about portfolio risk. Demo values are illustrative until labeled as observed.</p>
+
+    <div class="evidence-principles reveal" style="--i:2" aria-label="Research principles">
+      <span>MEASURABLE OUTCOMES</span>
+      <span>FULL PIPELINE OWNERSHIP</span>
+      <span>LOCAL DATA PARSING</span>
+      <span>NO PROPRIETARY LOGIC</span>
+    </div>
+
+    <div class="evidence-grid">
+      <article class="evidence-card evidence-card-wide reveal" data-execution-lab>
+        <header class="evidence-card-head">
+          <div><span class="evidence-kicker">EXECUTION // DEMO DATA</span><h3>Four-Month Journal Explorer</h3></div>
+          <span class="evidence-state" data-exec-state>ILLUSTRATIVE</span>
+        </header>
+        <p class="evidence-copy">Inspect daily execution quality across a rolling window, then move through individual sessions. When a public-safe journal is selected, parsing happens only in this browser tab.</p>
+
+        <div class="evidence-controls execution-controls">
+          <label>Visible window
+            <select data-exec-window aria-label="Visible execution journal window">
+              <option value="30">30 days</option>
+              <option value="60">60 days</option>
+              <option value="120" selected>120 days</option>
+            </select>
+          </label>
+          <label>Example day
+            <input data-exec-day type="range" min="0" max="119" value="119" aria-label="Select an example day from the execution journal">
+          </label>
+        </div>
+
+        <div class="evidence-metrics" aria-live="polite">
+          <div><span data-exec-date>DAY 120</span><small>Selected session</small></div>
+          <div><span data-exec-slippage>1.2 bps</span><small>Realized slippage</small></div>
+          <div><span data-exec-fill>94.0%</span><small>Fill rate</small></div>
+          <div><span data-exec-is>1.7 bps</span><small>Implementation shortfall</small></div>
+        </div>
+
+        <div class="evidence-chart-shell">
+          <svg class="evidence-chart" viewBox="0 0 720 260" role="img" aria-label="Interactive execution journal chart showing daily realized slippage and implementation shortfall">
+            <g class="evidence-chart-grid" aria-hidden="true">
+              <line x1="48" y1="28" x2="696" y2="28"/><line x1="48" y1="84" x2="696" y2="84"/><line x1="48" y1="140" x2="696" y2="140"/><line x1="48" y1="196" x2="696" y2="196"/><line x1="48" y1="232" x2="696" y2="232"/>
+            </g>
+            <path class="execution-path execution-path-secondary" data-exec-is-path/>
+            <path class="execution-path" data-exec-slip-path/>
+            <line class="execution-marker" data-exec-marker x1="696" y1="24" x2="696" y2="232"/>
+            <text class="evidence-axis-label" x="8" y="33">+6</text><text class="evidence-axis-label" x="20" y="145">0</text><text class="evidence-axis-label" x="8" y="235">−4</text>
+          </svg>
+          <div class="evidence-legend"><span>Realized slippage</span><span>Implementation shortfall</span></div>
+        </div>
+
+        <div class="local-upload">
+          <label class="local-upload-label" for="execution-journal-file">Load public-safe execution CSV</label>
+          <input id="execution-journal-file" data-exec-file type="file" accept=".csv,text/csv">
+          <p data-exec-file-status>Expected columns: date, slippage_bps, fill_rate, implementation_shortfall_bps</p>
+        </div>
+      </article>
+
+      <article class="evidence-card evidence-card-wide reveal" style="--i:1" data-lstm-lab>
+        <header class="evidence-card-head">
+          <div><span class="evidence-kicker">FORECASTING // LITERATURE-INSPIRED</span><h3>Illustrative LSTM Research Architecture</h3></div>
+          <span class="evidence-state">NOT PROPRIETARY</span>
+        </header>
+        <p class="evidence-copy">This is a plausible public architecture, not Qrigin code or a representation of private model details. Select a stage to inspect its research purpose and validation burden.</p>
+
+        <div class="architecture-flow" role="list" aria-label="Illustrative LSTM forecasting pipeline">
+          <button class="architecture-node is-active" type="button" role="listitem" data-lstm-node data-title="Market Event Inputs" data-copy="Synchronize trades, top-of-book and depth updates, then derive public microstructure features such as spread, imbalance, signed flow and short-horizon volatility." data-output="Time-aligned event tensor">01<span>EVENTS</span></button>
+          <button class="architecture-node" type="button" role="listitem" data-lstm-node data-title="Causal Normalization" data-copy="Apply rolling, train-only normalization and stationarity-oriented transforms. Every feature must be available at decision time to prevent leakage." data-output="Leakage-safe features">02<span>NORMALIZE</span></button>
+          <button class="architecture-node" type="button" role="listitem" data-lstm-node data-title="Spatial Encoder" data-copy="Use compact one-dimensional convolutions or an inception-style block to combine related levels and channels before temporal modeling, following the public DeepLOB design pattern." data-output="Local book-state embedding">03<span>ENCODE</span></button>
+          <button class="architecture-node" type="button" role="listitem" data-lstm-node data-title="Temporal LSTM" data-copy="Model longer event dependencies with gated memory. Hidden size, sequence length and dropout are selected only through walk-forward validation." data-output="Temporal state vector">04<span>MEMORY</span></button>
+          <button class="architecture-node" type="button" role="listitem" data-lstm-node data-title="Multi-Horizon Heads" data-copy="Estimate directional probability, expected move or uncertainty across several short horizons. Forecast quality is not treated as trading quality." data-output="Forecast distribution">05<span>FORECAST</span></button>
+          <button class="architecture-node" type="button" role="listitem" data-lstm-node data-title="Decision and Risk Gate" data-copy="Combine calibrated confidence with fees, spread, impact, inventory and risk limits. Abstain when expected edge does not clear the full trading-cost hurdle." data-output="Trade, size or abstain">06<span>GATE</span></button>
+        </div>
+
+        <div class="architecture-detail" aria-live="polite">
+          <div><span>SELECTED STAGE</span><h4 data-lstm-detail-title>Market Event Inputs</h4></div>
+          <p data-lstm-detail-copy>Synchronize trades, top-of-book and depth updates, then derive public microstructure features such as spread, imbalance, signed flow and short-horizon volatility.</p>
+          <code data-lstm-detail-output>OUTPUT // Time-aligned event tensor</code>
+        </div>
+        <p class="evidence-sources">Research basis: <a href="https://direct.mit.edu/neco/article/9/8/1735/6109/Long-Short-Term-Memory" target="_blank" rel="noopener">Hochreiter and Schmidhuber, 1997</a> · <a href="https://arxiv.org/abs/1808.03668" target="_blank" rel="noopener">DeepLOB</a> · <a href="https://arxiv.org/abs/2403.09267" target="_blank" rel="noopener">Deep Limit Order Book Forecasting</a></p>
+      </article>
+
+      <article class="evidence-card reveal" style="--i:2" data-risk-lab>
+        <header class="evidence-card-head">
+          <div><span class="evidence-kicker">RISK // HYPOTHETICAL</span><h3>October Shock Comparison</h3></div>
+          <span class="evidence-state">SCENARIO</span>
+        </header>
+        <p class="evidence-copy">Compare unchanged exposure with a fivefold cut to 20%. This is a linear teaching scenario, not verified portfolio P&amp;L.</p>
+        <div class="evidence-controls risk-controls">
+          <label>Market shock <output data-risk-shock-out>25%</output><input data-risk-shock type="range" min="5" max="45" value="25"></label>
+          <label>Exposure after cut <output data-risk-exposure-out>20%</output><input data-risk-exposure type="range" min="10" max="100" value="20"></label>
+        </div>
+        <div class="risk-bars" aria-live="polite">
+          <div><span>No reduction</span><div class="risk-track"><i data-risk-full-bar></i></div><strong data-risk-full>−25.0%</strong></div>
+          <div><span>Risk-managed</span><div class="risk-track"><i class="managed" data-risk-managed-bar></i></div><strong data-risk-managed>−5.0%</strong></div>
+        </div>
+        <div class="risk-saved"><span>Illustrative drawdown avoided</span><strong data-risk-saved>20.0 pp</strong></div>
+        <p class="evidence-note">Assumes linear exposure, no hedge basis, no execution cost, no recovery and identical underlying return.</p>
+      </article>
+
+      <article class="evidence-card reveal" style="--i:3" data-mm-ingest>
+        <header class="evidence-card-head">
+          <div><span class="evidence-kicker">MARKET MAKING // INGESTION READY</span><h3>Public-Safe Data Contract</h3></div>
+          <span class="evidence-state" data-mm-state>WAITING</span>
+        </header>
+        <p class="evidence-copy">Validate a future market-making CSV before visualization. Only the header and row count are inspected, locally in your browser.</p>
+        <div class="data-contract">
+          <code>timestamp</code><code>equity</code><code>equity_no_fee</code><code>position</code><code>price</code>
+        </div>
+        <div class="local-upload">
+          <label class="local-upload-label" for="market-making-file">Validate market-making CSV</label>
+          <input id="market-making-file" data-mm-file type="file" accept=".csv,text/csv">
+          <p data-mm-status>No file selected. Data is never uploaded.</p>
+        </div>
+        <div class="ingest-result" aria-live="polite">
+          <div><span data-mm-rows>0</span><small>Rows</small></div>
+          <div><span data-mm-columns>0 / 5</span><small>Required columns</small></div>
+        </div>
+        <p class="evidence-note">The next pass can add synchronized equity, fee drag, inventory and price charts with 1-day, 1-week and full-history zoom.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- EXPERIENCE -->
 <section class="section" id="experience" data-section-label="PRODUCTION / MARKETS">
   <div class="wrap">
@@ -296,7 +450,12 @@ svg.chart .fill{opacity:0;animation:fadein 1.6s ease 1.6s forwards}
         </div>
       </div>
       <div class="entry-media frames reveal from-right" style="--i:1">
-        <figure class="frame backtest-frame"><img src="images/Backtest.jpg" alt="Grid market-making backtest showing equity, position, and market price" loading="lazy"></figure>
+        <figure class="frame backtest-frame">
+          <button class="frame-inspect-trigger" type="button" data-image-open aria-label="Open the backtest chart in an interactive viewer">
+            <img src="images/Backtest.jpg" alt="Grid market-making backtest showing equity, position, and market price" loading="lazy">
+            <span>EXPAND / ZOOM</span>
+          </button>
+        </figure>
         <figure class="frame is-empty"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 15l5-5 4 4 5-6 4 4"/></svg><span class="lab">Private system</span></div></figure>
       </div>
     </article>
@@ -529,8 +688,6 @@ svg.chart .fill{opacity:0;animation:fadein 1.6s ease 1.6s forwards}
   </div>
 </section>
 
-</main>
-
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="wrap">
@@ -546,6 +703,29 @@ svg.chart .fill{opacity:0;animation:fadein 1.6s ease 1.6s forwards}
     </div>
   </div>
 </section>
+
+</main>
+
+<dialog class="image-inspector" data-image-inspector aria-labelledby="image-inspector-title">
+  <div class="image-inspector-shell">
+    <header class="image-inspector-head">
+      <div>
+        <span class="eyebrow">MEDIA INSPECTOR</span>
+        <h2 id="image-inspector-title">Backtest Detail</h2>
+      </div>
+      <button class="image-inspector-close" type="button" data-image-close aria-label="Close image viewer">CLOSE</button>
+    </header>
+    <div class="image-inspector-controls">
+      <label for="image-inspector-zoom">Zoom</label>
+      <input id="image-inspector-zoom" type="range" min="100" max="300" value="100" step="10" data-image-zoom>
+      <output data-image-zoom-output for="image-inspector-zoom">100%</output>
+    </div>
+    <div class="image-inspector-viewport">
+      <img src="images/Backtest.jpg" alt="Expanded grid market-making backtest showing equity, position, and market price" data-image-target>
+    </div>
+    <p class="image-inspector-note">Use the zoom control, then scroll within the chart. This viewer runs entirely in the browser.</p>
+  </div>
+</dialog>
 
 <footer>
   <div class="wrap foot">
