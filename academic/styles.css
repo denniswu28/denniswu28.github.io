@@ -14,6 +14,206 @@ body {
     background-color: #fff;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+.skip-link {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 100;
+    padding: 10px 14px;
+    color: #fff;
+    background: #7f1728;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-decoration: none;
+    transform: translateY(-160%);
+    transition: transform 0.2s ease;
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
+
+/* Accessible page index */
+.page-index {
+    position: fixed;
+    z-index: 20;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.page-index-toggle {
+    display: none;
+}
+
+.page-index-panel {
+    position: fixed;
+    top: 80px;
+    left: max(12px, calc(50% - 710px));
+    width: 140px;
+    max-height: calc(100vh - 104px);
+    overflow-y: auto;
+    padding: 13px 10px 12px;
+    color: #171717;
+    border: 1px solid rgba(0, 0, 0, 0.24);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 14px 42px rgba(0, 0, 0, 0.13);
+    backdrop-filter: blur(12px);
+}
+
+.page-index-panel[hidden] {
+    display: none !important;
+}
+
+.page-index-title {
+    margin: 0 6px 8px;
+    color: #7f1728;
+    font-size: 0.65rem;
+    font-weight: 800;
+    line-height: 1.3;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.page-index-list {
+    display: grid;
+    gap: 2px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.page-index-list a {
+    position: relative;
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    align-items: center;
+    min-height: 34px;
+    padding: 5px 5px 5px 8px;
+    color: #4d4d4d;
+    font-size: 0.7rem;
+    font-weight: 600;
+    line-height: 1.35;
+    text-decoration: none;
+}
+
+.page-index-list a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 7px;
+    bottom: 7px;
+    width: 3px;
+    background: transparent;
+}
+
+.page-index-list a span {
+    color: #777;
+    font-size: 0.61rem;
+}
+
+.page-index-list a:hover {
+    color: #000;
+    background: rgba(127, 23, 40, 0.07);
+}
+
+.page-index-list a[aria-current="location"] {
+    color: #000;
+    background: rgba(127, 23, 40, 0.1);
+    font-weight: 800;
+}
+
+.page-index-list a[aria-current="location"]::before {
+    background: #7f1728;
+}
+
+.page-index-list a[aria-current="location"] span {
+    color: #7f1728;
+}
+
+.page-index :focus-visible,
+.skip-link:focus-visible {
+    outline: 3px solid #7f1728;
+    outline-offset: 3px;
+}
+
+#academic-overview,
+#academic-arizona,
+#academic-spherex,
+#academic-duke,
+#academic-teaching,
+#academic-recognition,
+#academic-contact {
+    scroll-margin-top: 24px;
+}
+
+@media (max-width: 1439px) {
+    .page-index {
+        z-index: 30;
+    }
+
+    .page-index-toggle {
+        position: fixed;
+        left: 16px;
+        bottom: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        min-width: 92px;
+        min-height: 44px;
+        padding: 10px 14px;
+        color: #fff;
+        border: 2px solid #7f1728;
+        border-radius: 6px;
+        background: #7f1728;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
+        font-size: 0.72rem;
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+    }
+
+    .page-index-toggle-mark {
+        font-size: 0.95rem;
+        line-height: 1;
+    }
+
+    .page-index-toggle[aria-expanded="true"] {
+        color: #7f1728;
+        background: #fff;
+    }
+
+    .page-index-panel {
+        top: auto;
+        left: 16px;
+        bottom: 70px;
+        width: min(270px, calc(100vw - 32px));
+        max-height: min(70vh, 520px);
+        padding: 16px 13px;
+    }
+
+    .page-index-list a {
+        min-height: 40px;
+        font-size: 0.78rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    .skip-link {
+        transition: none;
+    }
+}
+
 body::before {
     content: "";
     position: fixed;

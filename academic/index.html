@@ -22,8 +22,29 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <main class="main-content">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <nav class="page-index" aria-label="Page index" data-page-index>
+        <button class="page-index-toggle" type="button" aria-expanded="false" aria-controls="academic-page-index" data-index-toggle>
+            <span class="page-index-toggle-mark" aria-hidden="true">☰</span>
+            <span>Index</span>
+        </button>
+        <div class="page-index-panel" id="academic-page-index" data-index-panel hidden>
+            <p class="page-index-title" aria-hidden="true">Page / Index</p>
+            <ol class="page-index-list">
+                <li><a href="#academic-overview" data-index-link><span aria-hidden="true">00</span>Overview</a></li>
+                <li><a href="#academic-arizona" data-index-link><span aria-hidden="true">01</span>Arizona</a></li>
+                <li><a href="#academic-spherex" data-index-link><span aria-hidden="true">02</span>SPHEREx</a></li>
+                <li><a href="#academic-duke" data-index-link><span aria-hidden="true">03</span>Duke</a></li>
+                <li><a href="#academic-teaching" data-index-link><span aria-hidden="true">04</span>Teaching</a></li>
+                <li><a href="#academic-recognition" data-index-link><span aria-hidden="true">05</span>Recognition</a></li>
+                <li><a href="#academic-contact" data-index-link><span aria-hidden="true">06</span>Contact</a></li>
+            </ol>
+        </div>
+    </nav>
+
+    <div class="container" id="academic-overview">
+        <main class="main-content" id="main-content">
             <aside class="image-content" aria-label="Profile and contact links">
                 <img src="../images/Protrait.jpg" alt="Tianrui Dennis Wu at the Grand Canyon" class="profile-image">
                 <div class="social-links">
@@ -73,7 +94,7 @@
 
             <section class="research-section" aria-label="Academic research timeline">
                 <div class="timeline">
-                    <article class="timeline-item">
+                    <article class="timeline-item" id="academic-arizona">
                         <span class="timeline-date">2026+</span>
                         <div class="timeline-content">
                             <h3 class="title-with-logos">
@@ -99,7 +120,7 @@
                         </div>
                     </article>
 
-                    <article class="timeline-item">
+                    <article class="timeline-item" id="academic-spherex">
                         <span class="timeline-date">2024</span>
                         <div class="timeline-content">
                             <h3 class="title-with-logos">
@@ -119,7 +140,7 @@
                         </div>
                     </article>
 
-                    <article class="timeline-item">
+                    <article class="timeline-item" id="academic-duke">
                         <span class="timeline-date">2022-24</span>
                         <div class="timeline-content">
                             <h3 class="title-with-logos">
@@ -140,7 +161,7 @@
                         </div>
                     </article>
 
-                    <article class="timeline-item">
+                    <article class="timeline-item" id="academic-teaching">
                         <span class="timeline-date">2021-27</span>
                         <div class="timeline-content">
                             <h3>Physics, Mathematics, Teaching, and Leadership</h3>
@@ -156,7 +177,7 @@
                         </div>
                     </article>
 
-                    <article class="timeline-item">
+                    <article class="timeline-item" id="academic-recognition">
                         <span class="timeline-date">2021-26</span>
                         <div class="timeline-content">
                             <h3>Selected Recognition</h3>
@@ -171,7 +192,7 @@
                         </div>
                     </article>
 
-                    <article class="timeline-item contact-item">
+                    <article class="timeline-item contact-item" id="academic-contact">
                         <span class="timeline-date">Now</span>
                         <div class="timeline-content">
                             <h3>Contact</h3>
@@ -185,5 +206,6 @@
             </footer>
         </main>
     </div>
+    <script src="../site.js"></script>
 </body>
 </html>
