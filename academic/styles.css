@@ -5,13 +5,32 @@
 }
 
 body {
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     line-height: 1.6;
     color: #000;
     background-color: #fff;
 }
 
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.90), rgba(255, 255, 255, 0.90)),
+        url("../images/academic/jwst-cosmic-cliffs.webp");
+    background-position: center, center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .container {
+    position: relative;
+    z-index: 1;
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 20px;
@@ -257,8 +276,25 @@ blockquote p {
 
 /* Research Section */
 .research-section {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
     margin-bottom: 70px;
     text-align: left;
+}
+
+.research-section::before {
+    content: "";
+    position: absolute;
+    inset: -20px -40px;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.89), rgba(255, 255, 255, 0.89)),
+        url("../images/academic/jwst-pillars.webp");
+    background-position: center, right 12% top 120px;
+    background-repeat: no-repeat;
+    background-size: cover, min(820px, 92vw) auto;
 }
 
 .research-section h3 {
@@ -504,6 +540,7 @@ blockquote p {
 /* Timeline Styles */
 .timeline {
     position: relative;
+    z-index: 1;
     padding-left: 70px;
     top: -10px;
 }
@@ -647,6 +684,7 @@ blockquote {
 
 .title-with-logos {
     position: relative;
+    padding-right: 170px;
 }
 
 .kronohealth-logos {
@@ -1229,6 +1267,12 @@ blockquote {
     max-width: 128px;
 }
 
+.institution-logo.lab-wordmark {
+    width: 150px;
+    max-width: 150px;
+    max-height: 46px;
+}
+
 .dark-logo {
     padding: 6px 9px;
     background: #111;
@@ -1256,6 +1300,20 @@ blockquote {
 
 .contact-item {
     margin-bottom: 0;
+}
+
+.image-credits {
+    clear: both;
+    margin: 34px 0 28px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(0, 0, 0, 0.16);
+    color: #555;
+    font-size: 0.74rem;
+    line-height: 1.55;
+}
+
+.image-credits a {
+    color: #7f1728;
 }
 
 /* Reusable multimedia blocks. Place one inside any .timeline-content element. */
@@ -1304,6 +1362,20 @@ blockquote {
 }
 
 @media (max-width: 768px) {
+    body::before {
+        position: absolute;
+        background-position: center, 58% top;
+    }
+
+    .research-section::before {
+        inset: -10px -15px;
+        background-image:
+            linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)),
+            url("../images/academic/jwst-pillars.webp");
+        background-position: center, 68% top 80px;
+        background-size: cover, 720px auto;
+    }
+
     .profile-placeholder {
         width: 240px;
         height: 240px;
@@ -1314,6 +1386,10 @@ blockquote {
         transform: none;
         margin: 14px 0 4px;
         justify-content: flex-start;
+    }
+
+    .title-with-logos {
+        padding-right: 0;
     }
 
     .timeline-content ul,
@@ -1339,6 +1415,11 @@ blockquote {
 }
 
 @media (max-width: 480px) {
+    .name {
+        font-size: 1.75rem;
+        overflow-wrap: anywhere;
+    }
+
     .profile-placeholder {
         width: 200px;
         height: 200px;

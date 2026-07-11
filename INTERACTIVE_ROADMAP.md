@@ -20,7 +20,7 @@ Official references
 - [Citadel quantitative research candidate FAQ](https://www.citadel.com/careers/career-perspectives/candidate-faqs-quantitative-research/)
 - [Optiver early-career research and trading guidance](https://www.optiver.com/working-at-optiver/early-careers/)
 
-## Current annotated profile
+## Current quantitative finance profile
 
 The root site contains five static modules.
 

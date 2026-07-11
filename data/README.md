@@ -3,7 +3,7 @@
 ## Market-making daily returns
 
 `market-making-daily-returns.csv` is the source for the cumulative-return and
-drawdown curves in the annotated quantitative profile.
+drawdown curves in the quantitative finance profile.
 
 | Column | Unit | Meaning |
 | --- | --- | --- |

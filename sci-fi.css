@@ -266,6 +266,12 @@ body[data-site="academic"] .frame.is-empty .ph .lab::after{content:"RESEARCH MED
 .frame.logo-frame::before{display:none}
 .frame.logo-frame img{object-fit:contain;padding:clamp(16px,3vw,34px);background:#f5f7fa;transform:none!important}
 .frame.logo-frame.dark-logo,.frame.logo-frame.dark-logo img{background:#303030}
+.frame.lab-logo-frame img{padding:clamp(18px,3vw,38px) clamp(12px,2vw,24px)}
+.frame.scientific-frame,.frame.scientific-frame img{background:#02070c}
+.frame.scientific-frame img{object-fit:contain;padding:4px;transform:none!important}
+.frame-credit{position:absolute;left:8px;right:8px;bottom:8px;z-index:4;margin:0;color:#e9f7fb;font:500 .5rem/1.35 var(--interface);letter-spacing:.035em;text-transform:uppercase;pointer-events:none}
+.frame-credit a{display:inline-block;padding:5px 7px;color:inherit;background:rgba(2,8,13,.82);border:1px solid rgba(255,255,255,.16);pointer-events:auto}
+.frame-credit a:hover,.frame-credit a:focus-visible{color:var(--positive);border-color:var(--positive)}
 
 .org-mark{
   width:54px;
@@ -360,7 +366,7 @@ body[data-site] .foot a{color:var(--text);border-color:var(--line)}
 .image-inspector-viewport img{display:block;width:100%;max-width:none;height:auto;transition:width .12s ease}
 .image-inspector-note{margin:10px 0 0;color:var(--text-soft);font-size:.72rem}
 
-/* Annotated quantitative profile */
+/* Quantitative finance profile */
 .skip-link{
   position:fixed;
   top:10px;

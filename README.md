@@ -93,7 +93,7 @@ entry. To add another image, replace a standby frame with this pattern.
 </figure>
 ```
 
-## Annotated quantitative profile
+## Quantitative finance profile
 
 The root site presents five static case-study modules tied directly to the
 Qrigin Capital experience: LSTM alpha and direction, market making and
