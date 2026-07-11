@@ -8,13 +8,15 @@
 
     <meta property="og:title" content="Tianrui (Dennis) Wu">
     <meta property="og:description" content="Quantitative trader and researcher working across systematic trading, machine learning, and cosmology.">
+    <meta property="og:image" content="https://denniswu28.github.io/images/Protrait.jpg">
     <meta property="og:url" content="https://denniswu28.github.io">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Tianrui (Dennis) Wu">
 
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Tianrui (Dennis) Wu">
     <meta name="twitter:description" content="Quantitative trader and researcher working across systematic trading, machine learning, and cosmology.">
+    <meta name="twitter:image" content="https://denniswu28.github.io/images/Protrait.jpg">
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📈</text></svg>">
     <link rel="stylesheet" href="styles.css">
@@ -23,10 +25,7 @@
     <div class="container">
         <main class="main-content">
             <aside class="image-content" aria-label="Profile and contact links">
-                <div class="profile-image profile-placeholder" role="img" aria-label="Tianrui Dennis Wu monogram">
-                    <span>TW</span>
-                    <small>Quant · Physics</small>
-                </div>
+                <img src="images/Protrait.jpg" alt="Tianrui Dennis Wu at the Grand Canyon" class="profile-image">
                 <div class="social-links">
                     <a href="mailto:denniswu501@gmail.com" class="social-link" aria-label="Email">
                         <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true">
@@ -60,13 +59,13 @@
                 <h1 class="name"><span class="first-name">Tianrui (Dennis)</span> Wu</h1>
 
                 <p class="subtitle">
-                    I build systematic trading strategies and scientific models for noisy, high-dimensional systems—from live crypto markets to the large-scale structure of the universe.
+                    I am a Physics and Mathematics student at the University of Arizona and a Quantitative Researcher and Trader at Qrigin Capital.
                 </p>
 
                 <div class="description">
-                    <p>Welcome! I am a quantitative researcher and systematic trader at <strong>Qrigin Capital</strong>, where I work on machine-learning forecasting, market making, execution, and factor research. My production work spans high-frequency crypto strategies, order-book signals, and robust research infrastructure.</p>
-                    <p>I am also completing a B.S. in Physics and Mathematics at the <a href="https://www.arizona.edu/" class="page-link" target="_blank" rel="noopener noreferrer">University of Arizona</a>. My academic research uses Bayesian inference, deep learning, and large-scale scientific computing for cosmology, with prior work at <a href="https://www.caltech.edu/" class="page-link" target="_blank" rel="noopener noreferrer">Caltech</a> and <a href="https://www.duke.edu/" class="page-link" target="_blank" rel="noopener noreferrer">Duke University</a>.</p>
-                    <p>I am interested in market microstructure, forecasting, scientific machine learning, and the common problem underneath them: finding stable structure in systems dominated by uncertainty.</p>
+                    <p>I am currently pursuing a double major in Physics and Mathematics at the <a href="https://www.arizona.edu/" class="page-link" target="_blank" rel="noopener noreferrer">University of Arizona</a> and expect to graduate in May 2027. I work with Professor Tim Eifler in the Arizona Cosmology Lab.</p>
+                    <p>At <strong>Qrigin Capital</strong>, I develop short-term forecasting models, market-making systems, execution algorithms, and multi-frequency factors for live trading. My research uses Python, Rust, PyTorch, MLflow, Polars, PostgreSQL, and Linux.</p>
+                    <p>My prior research at <a href="https://www.caltech.edu/" class="page-link" target="_blank" rel="noopener noreferrer">Caltech</a> and <a href="https://www.duke.edu/" class="page-link" target="_blank" rel="noopener noreferrer">Duke University</a> focused on cosmological inference, scientific machine learning, and large survey simulations.</p>
                 </div>
             </div>
 
@@ -75,31 +74,48 @@
             <section class="research-section" aria-label="Experience and research timeline">
                 <div class="timeline">
                     <article class="timeline-item">
-                        <span class="timeline-date">2025—</span>
+                        <span class="timeline-date">2025+</span>
                         <div class="timeline-content">
                             <h3>Quantitative Research and Systematic Trading</h3>
-                            <p><em>Qrigin Capital · Quantitative Researcher &amp; Systematic Trader</em></p>
-                            <p>I design, test, and trade production crypto strategies across forecasting, market making, and execution. The work covers the full research loop: sourcing microstructure data, engineering signals, evaluating them out of sample, translating forecasts into positions, and monitoring live behavior.</p>
+                            <p><em>Qrigin Capital Co., Ltd. · Quantitative Researcher and Trader · August 2025 to Present</em></p>
                             <ul>
-                                <li>Built a live taker HFT strategy with an 8.2 post-fee Sharpe ratio.</li>
-                                <li>Developed a grid market-making strategy with an out-of-sample Sharpe near 9.</li>
-                                <li>Engineered more than 200 multi-frequency factors and improved signal win rate by 3.1%.</li>
-                                <li>Reduced execution slippage by roughly two basis points through order placement and routing research.</li>
+                                <li><strong>Deep Learning.</strong> Developed a short-term forecasting engine using an LSTM-based neural network with phase-space features and managed the full MLOps lifecycle with MLflow. Deployed it as a live high-frequency taker strategy with a consistent post-fee Sharpe of approximately 8 over more than three months.</li>
+                                <li><strong>Market Making and Backtesting.</strong> Built a dual-engine backtesting stack from scratch, consisting of a vectorized engine and an L2 order-queue tick model, optimized for speed and fidelity. Built a grid-based market-making model with an out-of-sample Sharpe of approximately 10 over three months.</li>
+                                <li><strong>Optimal Execution.</strong> Architected TWAP, VWAP, and IS execution algorithms from market-microstructure signals across three major exchanges, reducing realized slippage by approximately 2 bps over five months.</li>
+                                <li><strong>Factor Research.</strong> Engineered more than 200 multi-frequency factors across OHLCV, order-book, and derivatives data with automated decay analysis and cross-sectional ranking, improving live-model win rates by 3.1%.</li>
+                                <li><strong>Research Leadership.</strong> Led a two-person research pod spanning production code, factor research, and market-making models. Served as primary reviewer on methodology and coding standards before live deployment and mentored junior researchers.</li>
                             </ul>
-                            <blockquote><em>Research stack: Python, Rust, PyTorch, Polars, PostgreSQL, Linux, and production exchange APIs.</em></blockquote>
+                            <blockquote><em>Qrigin Capital is a $35M proprietary trading firm. This page includes only public-safe descriptions from my résumé.</em></blockquote>
+                            <figure class="media-module backtest-module">
+                                <img src="images/Backtest.jpg" alt="Backtest showing equity, fee-adjusted equity, position, and market price" loading="lazy">
+                                <figcaption>Grid-based market-making backtest with equity, fee-adjusted equity, position, and market price.</figcaption>
+                            </figure>
                         </div>
                     </article>
 
                     <article class="timeline-item">
-                        <span class="timeline-date">2026—</span>
+                        <span class="timeline-date">2026+</span>
                         <div class="timeline-content">
                             <h3 class="title-with-logos">
                                 Density-Field Forecasting with High-Redshift Uncertainty
                                 <span class="institution-logo-container"><img src="images/Oryx-logo.png" class="institution-logo" alt="University of Arizona"></span>
                             </h3>
-                            <p><em>Arizona Cosmology Lab · Research Assistant · Advisor: Professor Tim Eifler</em></p>
-                            <p>I am leading a study of baryon acoustic oscillation reconstruction under photometric-redshift smearing. I built a 250-cell sensitivity grid and a modeling pipeline that reduced reconstruction bias by a factor of six. The project combines simulation, uncertainty propagation, and statistical validation and is being prepared as a first-author paper.</p>
-                            <p>I presented the work in the cosmology session at the SPHEREx Science Team Face-to-Face E4 meeting at IPAC, Caltech.</p>
+                            <p><em>Arizona Cosmology Lab, University of Arizona · Research Assistant · January 2026 to Present</em></p>
+                            <ul>
+                                <li><strong>Project Leadership.</strong> Leading a first-author study of baryon acoustic oscillation reconstruction under photometric-redshift smearing, independently designing the analysis and coordinating with the PI and a postdoctoral collaborator across the full pipeline, from simulated-catalog generation through Bayesian posterior inference. A first-author publication is in preparation.</li>
+                                <li><strong>Forward Modeling.</strong> Building a forward-model framework that propagates photometric-redshift uncertainty through BAO reconstruction to quantify its effect on standard-ruler calibration, a leading systematic for next-generation surveys including Roman and Rubin.</li>
+                                <li><strong>Systematics Control.</strong> Diagnosed and corrected a systematic bias in the Bayesian MCMC inference pipeline by cross-validating two independent covariance-estimation methods across a 250-cell parameter sensitivity grid, reducing the bias by four to six times.</li>
+                                <li><strong>Sensitivity Analysis.</strong> Mapped the smearing amplitude at which reconstruction's benefit decays from a 20 to 40 percent precision gain to statistical insignificance using Monte Carlo simulation over a 25-realization ensemble.</li>
+                            </ul>
+
+                            <!--
+                            MULTIMEDIA MODULE EXAMPLE
+                            Copy this figure into any timeline-content block and update the file and caption.
+                            <figure class="media-module">
+                                <img src="images/academic/your-image.jpg" alt="Describe the research image">
+                                <figcaption>Explain what the reader is seeing and why it matters.</figcaption>
+                            </figure>
+                            -->
                         </div>
                     </article>
 
@@ -110,12 +126,11 @@
                                 Intraday Factor Research and Backtesting Infrastructure
                                 <span class="institution-logo-container dark-logo"><img src="images/insightcheck-logo.jpg" class="institution-logo wide" alt="InsightCheck Investment"></span>
                             </h3>
-                            <p><em>InsightCheck Investment · Quantitative Research Intern · Shenzhen, China</em></p>
-                            <p>I researched Chinese A-share intraday signals at a $300M asset manager, producing 62 order-book and trade-flow factors with information coefficients above 0.01. I also rebuilt the research path around parallel and columnar tools so that ideas could move from raw ticks to portfolio tests much faster.</p>
+                            <p><em>InsightCheck Investment · Quantitative Research Intern · February 2025 to August 2025</em></p>
                             <ul>
-                                <li>Built a Dask-based distributed backtester that ran roughly ten times faster.</li>
-                                <li>Processed a day of order-book data in about one second with optimized C++ and Python components.</li>
-                                <li>Standardized factor evaluation, neutralization, turnover, and robustness diagnostics.</li>
+                                <li><strong>Statistical Arbitrage.</strong> Developed a market-neutral long/short equity strategy combining PCA-derived statistical factors with mean-reversion signals and a covariance-based risk model, backtested to a post-cost Sharpe of approximately 2.4.</li>
+                                <li><strong>Alpha Research.</strong> Designed fundamental and microstructure-based factors for cross-sectional portfolio optimization of A-share equities using Polars. Validated 62 intraday factors with daily information coefficient above 0.01.</li>
+                                <li><strong>Systems and Scale.</strong> Built an L3 order-book reconstruction engine, prototyped in Python and migrated to C++, that processes the full A-share universe in approximately one second. Built a Dask-based distributed backtester that cut evaluation cycles tenfold to approximately 15 minutes.</li>
                             </ul>
                         </div>
                     </article>
@@ -127,26 +142,34 @@
                                 Machine Learning for Cosmological Inference
                                 <span class="institution-logo-container"><img src="images/Caltech-logo.png" class="institution-logo wide" alt="Caltech"></span>
                             </h3>
-                            <p><em>Caltech SURF · SPHEREx Team (NASA/JPL) · Mentor: Dr. Olivier Doré</em></p>
-                            <p>I developed a PyTorch residual U-Net to infer survey window functions for SPHEREx. The model reached sub-percent prediction error and was trained and evaluated on Linux high-performance computing systems. I presented the final work to the SPHEREx collaboration.</p>
+                            <p><em>SPHEREx Team, Caltech · Summer Research Fellow · June 2024 to August 2024</em></p>
+                            <ul>
+                                <li>Built a ResUNet convolutional neural network in PyTorch to deconvolve instrument window-function effects from galaxy power spectra, achieving sub-percentage prediction error on validation data.</li>
+                                <li>Owned the full ML pipeline, including lognormal mock catalog generation with real SPHEREx survey masks, distributed training on Linux HPC, and validation against analytic baselines.</li>
+                                <li>Delivered the project proposal, two interim reports, final presentation, and final report to the SPHEREx faculty committee.</li>
+                            </ul>
                         </div>
                     </article>
 
                     <article class="timeline-item">
-                        <span class="timeline-date">2022—24</span>
+                        <span class="timeline-date">2022-24</span>
                         <div class="timeline-content">
                             <h3 class="title-with-logos">
                                 Weak Lensing, the Distance Ladder, and Survey Simulations
                                 <span class="institution-logo-container"><img src="images/Duke-logo.png" class="institution-logo wide" alt="Duke University"></span>
                             </h3>
-                            <p><em>Duke Cosmology Group · Research Assistant</em></p>
-                            <p>At Duke, I worked with Professors Michael Troxel and Daniel Scolnic on weak-lensing systematics and the extragalactic distance ladder. The work included MCMC and Bayesian inference, validation over 120 TB of simulation data, and collaborative analysis for next-generation sky surveys.</p>
-                            <p>I contributed to <a href="https://academic.oup.com/mnras/article/544/4/3799/8300363" class="page-link" target="_blank" rel="noopener noreferrer"><em>OpenUniverse2024: A Shared, Simulated View of the Sky</em></a> in <em>MNRAS</em> and to <a href="https://arxiv.org/abs/2408.11770" class="page-link" target="_blank" rel="noopener noreferrer"><em>JWST Validates HST Distance Measurements</em></a> in <em>The Astrophysical Journal</em>.</p>
+                            <p><em>Cosmology Group, Duke University · Research Assistant · May 2022 to December 2024</em></p>
+                            <ul>
+                                <li>Engineered a Python pipeline for joint statistical analysis on 120 TB datasets from Roman Space Telescope and Rubin Observatory simulations, constructing two-point correlation functions and implementing Bayesian inference via MCMC chains to constrain cosmological parameters.</li>
+                                <li>Evaluated mode-based strategies and ground-space survey synergies for photometric redshift calibration. New methods yielded a 20% increase in Figure of Merit and tighter constraints on cosmic homogeneity.</li>
+                                <li>Developed a Python pipeline to generate synthetic stellar catalogs and extract features from Hertzsprung-Russell diagrams. Integrated novel distance calibration methods into a unified framework for cross-team comparisons.</li>
+                            </ul>
+                            <p>I contributed to <a href="https://academic.oup.com/mnras/article/544/4/3799/8300363" class="page-link" target="_blank" rel="noopener noreferrer"><em>OpenUniverse2024: A Shared, Simulated View of the Sky for the Next Generation of Cosmological Surveys</em></a> in <em>MNRAS</em> and <a href="https://arxiv.org/abs/2408.11770" class="page-link" target="_blank" rel="noopener noreferrer"><em>JWST Validates HST Distance Measurements: Selection of Supernova Subsample Explains Differences in JWST Estimates of Local H<sub>0</sub></em></a> in <em>ApJ</em>.</p>
                         </div>
                     </article>
 
                     <article class="timeline-item">
-                        <span class="timeline-date">2025—26</span>
+                        <span class="timeline-date">2025-26</span>
                         <div class="timeline-content">
                             <h3>Independent Trading Systems</h3>
                             <p><em>Market-making research · Algorithmic competitions</em></p>
@@ -156,12 +179,12 @@
                     </article>
 
                     <article class="timeline-item">
-                        <span class="timeline-date">2021—27</span>
+                        <span class="timeline-date">2021-27</span>
                         <div class="timeline-content">
                             <h3>Physics, Mathematics, Teaching, and Leadership</h3>
-                            <p><em>University of Arizona · Duke University</em></p>
-                            <p>I study physics and mathematics, with coursework in stochastic calculus, statistical machine learning, real analysis, advanced probability, game theory, and computational physics. I expect to graduate from the University of Arizona in May 2027; before transferring, I studied Physics and Mathematics with a Computer Science minor at Duke.</p>
-                            <p>At Duke, I taught more than 40 students each week in multivariable calculus, linear algebra, and probability. I also founded the Stargazing Devils Astronomy Club, led the Society of Physics Students chapter, served as an APS Student Ambassador, and edited the Duke Vertices science journal.</p>
+                            <p><em>University of Arizona · January 2026 to May 2027</em></p>
+                            <p>I am pursuing a double major in Physics and Mathematics at the University of Arizona and hold a 3.87/4.00 GPA. I previously pursued a double major in Physics and Mathematics with a minor in Computer Science at Duke University, where I held a 3.92/4.00 GPA and a 4.00 Physics GPA.</p>
+                            <p>At Duke, I supported more than 40 students weekly in Multivariable Calculus, Linear Algebra, and Advanced Probability. I founded the first Astronomy Club at Duke, organized weekly observatory open houses with more than 100 attendees, led the Society of Physics Students chapter, served as an APS Student Ambassador, and reviewed two STEM manuscripts per month for Duke Vertices.</p>
                             <div class="logo-strip" aria-label="Selected organizations">
                                 <img src="images/Duke-logo.png" alt="Duke University">
                                 <img src="images/SPS-logo.png" alt="Society of Physics Students">
@@ -172,16 +195,16 @@
                     </article>
 
                     <article class="timeline-item">
-                        <span class="timeline-date">2021—26</span>
+                        <span class="timeline-date">2021-26</span>
                         <div class="timeline-content">
                             <h3>Selected Recognition</h3>
                             <ul>
-                                <li><strong>US Physicists' Tournament:</strong> national first place as team captain, advancing to the international round (2026).</li>
-                                <li><strong>IMC Prosperity 4:</strong> top 3% of more than 6,000 teams (2026).</li>
-                                <li><strong>Duke Faculty Scholars:</strong> sole physics nominee and finalist (2024).</li>
-                                <li><strong>J. B. Burnell Scholarship:</strong> sole recipient of the Outstanding Leadership Scholarship (2024).</li>
-                                <li><strong>Regeneron ISEF:</strong> Third Grand Award in Physics &amp; Astronomy (2021).</li>
-                                <li><strong>British Physics Olympiad:</strong> Top Gold, placing among the top ten competitors (2021).</li>
+                                <li><strong>US Physicists' Tournament.</strong> National first place as team captain, advancing to the international round in 2026.</li>
+                                <li><strong>IMC Prosperity 4.</strong> Top 3% of more than 6,000 teams in 2026.</li>
+                                <li><strong>Faculty Scholars Finalist.</strong> Sole physics nominee and among Duke's highest undergraduate honors in 2024.</li>
+                                <li><strong>Jocelyn Bell Burnell Outstanding Leadership Scholarship.</strong> $6,000 and sole recipient nationwide in 2024.</li>
+                                <li><strong>Regeneron ISEF.</strong> Third Grand Award in Physics and Astronomy in 2021.</li>
+                                <li><strong>British Physics Olympiad.</strong> Top Gold Medalist, ranked in the national top ten in 2021.</li>
                             </ul>
                         </div>
                     </article>

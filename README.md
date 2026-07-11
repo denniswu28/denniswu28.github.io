@@ -22,7 +22,62 @@ Then visit `http://localhost:8000/`.
 
 ## Profile photo
 
-The portrait area currently uses a `TW` monogram because the repository does
-not contain a professional headshot. To add one later, replace the
-`.profile-placeholder` element in `index.html` with an image using the existing
-`profile-image` class.
+The portrait area currently uses `images/Protrait.jpg`. To replace it, add the
+new file under `images/`, update the `src` on the `profile-image` element in
+`index.html`, and update the Open Graph and Twitter image paths in the page
+header. The frame crops the image to a centered square on desktop and mobile.
+
+## Add multimedia
+
+Multimedia belongs inside the `.timeline-content` block for the relevant job,
+research project, or activity. Put local files in `images/quant/` or
+`images/academic/` and use a relative path from `index.html`.
+
+Single image
+
+```html
+<figure class="media-module">
+  <img src="images/academic/bao-results.jpg" alt="BAO reconstruction result">
+  <figcaption>BAO reconstruction performance under redshift smearing.</figcaption>
+</figure>
+```
+
+Local video
+
+```html
+<figure class="media-module">
+  <video controls preload="metadata" poster="images/quant/demo-poster.jpg">
+    <source src="images/quant/strategy-demo.mp4" type="video/mp4">
+  </video>
+  <figcaption>Public-safe demonstration of the research workflow.</figcaption>
+</figure>
+```
+
+Two-item gallery
+
+```html
+<div class="media-grid">
+  <figure class="media-module">
+    <img src="images/academic/result-a.jpg" alt="First result">
+    <figcaption>First result.</figcaption>
+  </figure>
+  <figure class="media-module">
+    <img src="images/academic/result-b.jpg" alt="Second result">
+    <figcaption>Second result.</figcaption>
+  </figure>
+</div>
+```
+
+YouTube or another iframe embed
+
+```html
+<figure class="media-module">
+  <iframe src="https://www.youtube.com/embed/VIDEO_ID"
+          title="Project presentation" loading="lazy" allowfullscreen></iframe>
+  <figcaption>Project presentation.</figcaption>
+</figure>
+```
+
+The image and video modules inherit the same border, spacing, radius, and
+responsive behavior as the rest of the site. The gallery becomes one column on
+small screens.
