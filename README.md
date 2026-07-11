@@ -99,8 +99,12 @@ The root site presents five static case-study modules tied directly to the
 Qrigin Capital experience: LSTM alpha and direction, market making and
 backtesting, optimal execution, factor research, and portfolio risk.
 
-- The market-making equity and drawdown curves use all 120 observations in
-  `data/market-making-daily-returns.csv`.
+- The market-making cumulative-return and drawdown curves start at 0%, use all
+  120 observations in `data/market-making-daily-returns.csv`, and emphasize a
+  7-day EMA over the faint exact path.
+- The execution comparison uses the completed 31-day aggregate artifact in
+  `data/best_31_day_aggregate_metrics_2025-10-15_to_2025-11-14.csv`, with the
+  accompanying daily return series retained separately in `data/`.
 - Curves are embedded as inline SVG so the profile works on GitHub Pages and
   when `index.html` is opened directly.
 - Profile direction and hosting notes are documented in

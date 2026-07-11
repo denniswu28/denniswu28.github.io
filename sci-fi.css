@@ -410,6 +410,10 @@ body[data-site] .foot a{color:var(--text);border-color:var(--line)}
 .profile-curve.warning{stroke:var(--warning);stroke-width:1.55;opacity:.82;filter:none}
 .profile-curve.stepped{stroke-width:1.7}
 .profile-area{fill:url(#mm-equity-fill)}
+.market-making-visual .profile-area{opacity:.08}
+.market-making-visual .profile-curve.observed{opacity:.18;stroke-width:1;filter:none}
+.market-making-visual .profile-curve.smoothed{stroke-width:3;opacity:1}
+.market-making-visual .profile-curve.warning.smoothed{stroke-width:2}
 .profile-label,.curve-direct-label,.profile-axis{fill:#78909d;font:600 10px var(--interface);letter-spacing:.08em}
 .profile-label{fill:#92a9b3}
 .curve-direct-label{fill:var(--signal);font-size:9px}
@@ -420,6 +424,12 @@ body[data-site] .foot a{color:var(--text);border-color:var(--line)}
 .positive-text{fill:var(--positive)}
 .warning-text{fill:var(--warning)}
 .execution-orders circle{fill:var(--signal);stroke:#06101a;stroke-width:2;vector-effect:non-scaling-stroke}
+.benchmark-baseline{stroke-dasharray:5 6}
+.benchmark-gap{fill:none;stroke:var(--positive);stroke-width:1;vector-effect:non-scaling-stroke}
+.benchmark-points circle{stroke:#06101a;stroke-width:2;vector-effect:non-scaling-stroke}
+.benchmark-points .primary-point{fill:var(--signal)}
+.benchmark-points .warning-point{fill:var(--warning)}
+.benchmark-points .muted-point{fill:#8297a1}
 .event-line{stroke:var(--warning);stroke-width:1;stroke-dasharray:4 6;vector-effect:non-scaling-stroke}
 
 @media(max-width:900px){

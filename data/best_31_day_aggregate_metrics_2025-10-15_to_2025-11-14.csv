@@ -1,0 +1,29 @@
+metric,value,unit,status,definition
+window_start,2025-10-15,date,available,First observation date
+window_end,2025-11-14,date,available,Last observation date
+observations,31,days,available,Number of daily return observations
+slippage_vs_is,,bps,unavailable,The 31-day completed artifact has no validated arrival-price benchmark series
+slippage_vs_twap_mean,3.2172,bps,available,Mean signed daily execution slippage versus the stored one-second TWAP benchmark; positive is favorable
+slippage_vs_twap_median,3.2625,bps,available,Median signed daily execution slippage versus TWAP
+slippage_vs_twap_std,3.9198,bps,available,Sample dispersion of daily TWAP slippage
+slippage_vs_twap_min,-3.3385,bps,available,Worst daily TWAP slippage
+slippage_vs_twap_max,13.0342,bps,available,Best daily TWAP slippage
+slippage_vs_vwap,,bps,unavailable,The 31-day completed artifact does not retain the market-volume path required for a true VWAP benchmark
+slippage_improvement_vs_vwap_reference,2.3381365549,bps,available,Selected-run mean TWAP slippage minus the VWAP-reference run mean TWAP slippage over matched dates
+vwap_reference_mean_twap_slippage,0.8790638951,bps,available,Mean TWAP slippage of the matched VWAP-reference run
+cumulative_return,13.3250064845,decimal,available,Compounded return from the exported daily return series
+maximum_drawdown,-0.5579257844,decimal,available,Minimum chained-equity value divided by its prior peak minus one
+mean_daily_return,0.1092354687,decimal,available,Arithmetic mean of daily net returns
+median_daily_return,0.0549135809,decimal,available,Median daily net return
+daily_return_volatility,0.2147783114,decimal,available,Sample standard deviation of daily net returns
+annualized_volatility_365d,4.1033338779,decimal,available,Daily return volatility multiplied by square root of 365
+annualized_sharpe_365d,9.7167199346,ratio,available,Mean daily return divided by daily volatility and multiplied by square root of 365; zero risk-free rate
+annualized_sortino_365d,19.5787793875,ratio,available,Mean daily return divided by negative-return deviation and multiplied by square root of 365; zero target return
+positive_day_rate,0.6451612903,decimal,available,Fraction of observations with positive returns
+best_daily_return,0.6336713061,decimal,available,Maximum daily net return
+worst_daily_return,-0.3092751896,decimal,available,Minimum daily net return
+profit_factor,4.6673434288,ratio,available,Sum of positive daily returns divided by absolute sum of negative daily returns
+aggregate_fill_rate,0.4286877724,decimal,available,Mean aggregate fill rate across the completed run
+aggregate_cancel_rate,0.5901,decimal,available,Aggregate cancellation ratio; no order-level data included
+aggregate_fee_rate,-1.7934,bps,available,Aggregate fee divided by aggregate executed volume
+aggregate_overrate,0.0015497506,decimal,available,Mean aggregate over-execution ratio

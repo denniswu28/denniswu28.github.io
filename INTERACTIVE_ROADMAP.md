@@ -25,14 +25,15 @@ Official references
 The root site contains five static modules.
 
 1. Alpha and direction with LSTM system traces
-2. Market-making normalized equity and drawdown from 120 daily returns
-3. Optimal execution benchmark and microstructure-aware trajectories
+2. Market-making cumulative return from 0% and drawdown, with 7-day EMA curves
+3. Optimal execution improvement versus TWAP and the matched VWAP-reference run
 4. Factor information-decay curves across research horizons
 5. Portfolio response curves for full and 20% exposure around the October event
 
 The market-making visualization is derived from
-`data/market-making-daily-returns.csv`. Other modules use restrained method
-views until matching time-series data is added.
+`data/market-making-daily-returns.csv`. The execution endpoints are derived from
+`data/best_31_day_aggregate_metrics_2025-10-15_to_2025-11-14.csv`. Modules
+without matching time-series data use restrained method views.
 
 ## Hosting decision
 
