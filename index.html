@@ -7,13 +7,13 @@
 <meta name="description" content="Tianrui (Dennis) Wu, Quantitative Trader & Researcher. Live crypto market-making, HFT, and factor research; ML and Bayesian inference.">
 <link rel="canonical" href="https://denniswu28.github.io/">
 <meta property="og:title" content="Tianrui (Dennis) Wu | Quantitative Trader & Researcher">
-<meta property="og:description" content="Public-safe quantitative research, live trading systems, execution analysis, and interactive market models.">
+<meta property="og:description" content="An annotated quantitative profile spanning live trading systems, LSTM forecasting, market making, execution, factor research, and portfolio risk.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://denniswu28.github.io/">
 <meta property="og:image" content="https://denniswu28.github.io/images/Protrait.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Tianrui (Dennis) Wu | Quantitative Trader & Researcher">
-<meta name="twitter:description" content="Public-safe quantitative research, live trading systems, execution analysis, and interactive market models.">
+<meta name="twitter:description" content="An annotated quantitative profile spanning live trading systems, LSTM forecasting, market making, execution, factor research, and portfolio risk.">
 <meta name="twitter:image" content="https://denniswu28.github.io/images/Protrait.jpg">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📈</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -187,7 +187,7 @@ svg.chart .fill{opacity:0;animation:fadein 1.6s ease 1.6s forwards}
     <div class="nav-links">
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
-      <a href="#public-lab">Public Lab</a>
+      <a href="#quant-profile">Quant Profile</a>
       <a href="#publications">Publications</a>
       <a href="#contact">Contact</a>
     </div>
@@ -238,177 +238,123 @@ svg.chart .fill{opacity:0;animation:fadein 1.6s ease 1.6s forwards}
   </div>
 </header>
 
-<!-- INTERACTIVE QUANT LAB -->
-<section class="section lab-section" id="lab" data-section-label="INTERACTIVE / PUBLIC-SAFE MODEL">
+<!-- ANNOTATED QUANTITATIVE PROFILE -->
+<section class="section quant-profile" id="quant-profile" data-section-label="SYSTEMS / EVIDENCE / PROFILE">
   <div class="wrap">
-    <div class="s-head reveal"><span class="s-index">LAB / 00</span><h2 class="s-title">Inventory-Aware Quoting Lab</h2></div>
-    <p class="s-sub reveal" style="--i:1">A transparent, normalized Avellaneda–Stoikov model showing how inventory, volatility, and risk aversion skew a market maker's reservation price and spread.</p>
-    <div class="research-console reveal" style="--i:2" data-quant-lab>
-      <div class="console-bar"><span class="console-title">QUOTE_CONTROL // AVELLANEDA–STOIKOV</span><span class="console-status">MODEL ONLINE</span></div>
-      <div class="console-grid">
-        <div class="console-copy">
-          <h3>Reservation price &amp; optimal spread</h3>
-          <p>The model shifts fair value away from accumulated inventory and widens quotes as short-horizon volatility or risk aversion rises. It is a public teaching model, not proprietary Qrigin Capital logic.</p>
-          <p class="model-equation"><span>r = s − qγσ²τ</span><span>δ* = ½γσ²τ + γ⁻¹ ln(1 + γ/κ)</span></p>
-          <label class="control">
-            <span class="control-head"><span>Inventory q</span><output data-q-inventory-out>+0.35</output></span>
-            <input data-q-inventory type="range" min="-100" max="100" value="35" aria-label="Normalized inventory">
-          </label>
-          <label class="control">
-            <span class="control-head"><span>1-minute volatility σ</span><output data-q-vol-out>8.0 bps</output></span>
-            <input data-q-vol type="range" min="20" max="200" value="80" aria-label="One minute volatility in basis points">
-          </label>
-          <label class="control">
-            <span class="control-head"><span>Risk aversion γ</span><output data-q-gamma-out>0.040 / bps</output></span>
-            <input data-q-gamma type="range" min="10" max="100" value="40" aria-label="Inventory risk aversion per basis point">
-          </label>
-          <div class="metric-grid" aria-live="polite">
-            <div class="metric"><span class="value" data-q-reservation>...</span><span class="label">Reservation shift</span></div>
-            <div class="metric"><span class="value" data-q-spread>...</span><span class="label">Optimal total spread</span></div>
-            <div class="metric"><span class="value" data-q-quotes>...</span><span class="label">Bid / ask vs mid</span></div>
-          </div>
+    <div class="s-head reveal"><span class="s-index">PROFILE / 01</span><h2 class="s-title">Annotated Quantitative Profile</h2></div>
+    <p class="s-sub reveal" style="--i:1">Five views into the systems I have researched, deployed, and managed at Qrigin Capital, from signal formation through execution and portfolio risk.</p>
+
+    <div class="profile-modules">
+      <article class="profile-module reveal">
+        <div class="profile-copy">
+          <span class="profile-index">01 / ALPHA &amp; DIRECTION</span>
+          <h3>Alpha &amp; Direction with LSTM</h3>
+          <p>Developed a short-term forecasting engine using an LSTM-based neural network with phase-space features and managed the full MLflow lifecycle; deployed it as a live high-frequency taker strategy with a consistent post-fee Sharpe of approximately 8 over more than three months.</p>
+          <div class="profile-tags"><span>Phase-space features</span><span>LSTM state</span><span>MLflow lifecycle</span><span>Live taker strategy</span></div>
         </div>
-        <div class="console-viz">
-          <svg viewBox="0 0 620 280" role="img" aria-label="Interactive plot of reservation price, bid quote, and ask quote offsets across normalized inventory">
-            <g class="plot-grid"><line x1="46" y1="22" x2="594" y2="22"/><line x1="46" y1="78" x2="594" y2="78"/><line x1="46" y1="134" x2="594" y2="134"/><line x1="46" y1="190" x2="594" y2="190"/><line x1="46" y1="246" x2="594" y2="246"/><line x1="46" y1="22" x2="46" y2="246"/><line x1="183" y1="22" x2="183" y2="246"/><line x1="320" y1="22" x2="320" y2="246"/><line x1="457" y1="22" x2="457" y2="246"/><line x1="594" y1="22" x2="594" y2="246"/></g>
-            <line class="plot-zero" x1="46" y1="134" x2="594" y2="134"/>
-            <line class="plot-marker" data-q-marker x1="416" y1="22" x2="416" y2="246"/>
-            <path class="plot-tertiary" data-q-ask/>
-            <path class="plot-primary" data-q-reservation-line/>
-            <path class="plot-secondary" data-q-bid/>
-            <text class="plot-label" x="38" y="268">−1</text><text class="plot-label" x="316" y="268">0</text><text class="plot-label" x="588" y="268">+1</text>
-            <text class="plot-label" x="5" y="26" data-q-ymax>+</text><text class="plot-label" x="20" y="138">0</text><text class="plot-label" x="5" y="246" data-q-ymin>−</text>
+        <figure class="profile-visual">
+          <svg viewBox="0 0 680 310" role="img" aria-labelledby="alpha-title alpha-desc">
+            <title id="alpha-title">LSTM forecasting system traces</title>
+            <desc id="alpha-desc">Four aligned curves show feature state, recurrent memory, forecast confidence, and the resulting direction signal through time.</desc>
+            <g class="profile-grid"><line x1="42" y1="55" x2="638" y2="55"/><line x1="42" y1="119" x2="638" y2="119"/><line x1="42" y1="183" x2="638" y2="183"/><line x1="42" y1="247" x2="638" y2="247"/><line x1="42" y1="25" x2="42" y2="278"/><line x1="191" y1="25" x2="191" y2="278"/><line x1="340" y1="25" x2="340" y2="278"/><line x1="489" y1="25" x2="489" y2="278"/><line x1="638" y1="25" x2="638" y2="278"/></g>
+            <path class="profile-curve muted" d="M42 58 C74 26 103 84 136 52 S196 31 225 62 S285 89 316 48 S377 22 409 60 S469 87 500 44 S562 30 590 59 S620 69 638 49"/>
+            <path class="profile-curve secondary" d="M42 122 C82 111 105 135 145 117 S209 102 247 126 S312 139 350 111 S416 97 451 122 S516 141 551 111 S611 101 638 115"/>
+            <path class="profile-curve primary" d="M42 186 C86 202 108 159 153 178 S220 211 261 173 S326 148 368 181 S435 207 475 166 S543 150 581 178 S620 184 638 160"/>
+            <path class="profile-curve positive stepped" d="M42 264 L102 264 L102 229 L165 229 L165 264 L231 264 L231 229 L301 229 L301 264 L372 264 L372 229 L438 229 L438 264 L506 264 L506 229 L574 229 L574 264 L638 264"/>
+            <text class="profile-label" x="52" y="42">FEATURE STATE</text><text class="profile-label" x="52" y="106">LSTM MEMORY</text><text class="profile-label" x="52" y="170">FORECAST CONFIDENCE</text><text class="profile-label" x="52" y="235">DIRECTION</text>
+            <text class="profile-axis" x="42" y="297">EVENT WINDOW</text><text class="profile-axis end" x="638" y="297">DECISION</text>
           </svg>
-          <div class="plot-legend quote-legend"><span>Reservation price</span><span>Bid quote</span><span>Ask quote</span></div>
-          <p class="plot-note">NORMALIZED MODEL // τ = 1 minute · κ = 0.35 / bps · offsets shown relative to mid · no proprietary data</p>
+          <figcaption>Method view of the forecasting path from market state to trade direction.</figcaption>
+        </figure>
+      </article>
+
+      <article class="profile-module profile-module-flip reveal" style="--i:1">
+        <div class="profile-copy">
+          <span class="profile-index">02 / MARKET MAKING</span>
+          <h3>Market Making &amp; Backtesting</h3>
+          <p>Built a dual-engine backtesting stack from scratch, a vectorized engine plus an L2 order-queue tick model optimized for both speed and fidelity, and a grid-based market-making model with an out-of-sample Sharpe of approximately 10 over three months.</p>
+          <div class="profile-tags"><span>120 daily observations</span><span>Vectorized sweeps</span><span>L2 queue fills</span><span>Out-of-sample</span></div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PUBLIC-SAFE EVIDENCE LAB -->
-<section class="section evidence-section" id="public-lab" data-section-label="EVIDENCE / INTERACTIVE / LOCAL-FIRST">
-  <div class="wrap">
-    <div class="s-head reveal"><span class="s-index">LAB / 01</span><h2 class="s-title">Research to Production Lab</h2></div>
-    <p class="s-sub reveal" style="--i:1">Interactive, public-safe demonstrations of how I evaluate execution, structure forecasting research, and reason about portfolio risk. Demo values are illustrative until labeled as observed.</p>
-
-    <div class="evidence-principles reveal" style="--i:2" aria-label="Research principles">
-      <span>MEASURABLE OUTCOMES</span>
-      <span>FULL PIPELINE OWNERSHIP</span>
-      <span>LOCAL DATA PARSING</span>
-      <span>NO PROPRIETARY LOGIC</span>
-    </div>
-
-    <div class="evidence-grid">
-      <article class="evidence-card evidence-card-wide reveal" data-execution-lab>
-        <header class="evidence-card-head">
-          <div><span class="evidence-kicker">EXECUTION // DEMO DATA</span><h3>Four-Month Journal Explorer</h3></div>
-          <span class="evidence-state" data-exec-state>ILLUSTRATIVE</span>
-        </header>
-        <p class="evidence-copy">Inspect daily execution quality across a rolling window, then move through individual sessions. When a public-safe journal is selected, parsing happens only in this browser tab.</p>
-
-        <div class="evidence-controls execution-controls">
-          <label>Visible window
-            <select data-exec-window aria-label="Visible execution journal window">
-              <option value="30">30 days</option>
-              <option value="60">60 days</option>
-              <option value="120" selected>120 days</option>
-            </select>
-          </label>
-          <label>Example day
-            <input data-exec-day type="range" min="0" max="119" value="119" aria-label="Select an example day from the execution journal">
-          </label>
-        </div>
-
-        <div class="evidence-metrics" aria-live="polite">
-          <div><span data-exec-date>DAY 120</span><small>Selected session</small></div>
-          <div><span data-exec-slippage>1.2 bps</span><small>Realized slippage</small></div>
-          <div><span data-exec-fill>94.0%</span><small>Fill rate</small></div>
-          <div><span data-exec-is>1.7 bps</span><small>Implementation shortfall</small></div>
-        </div>
-
-        <div class="evidence-chart-shell">
-          <svg class="evidence-chart" viewBox="0 0 720 260" role="img" aria-label="Interactive execution journal chart showing daily realized slippage and implementation shortfall">
-            <g class="evidence-chart-grid" aria-hidden="true">
-              <line x1="48" y1="28" x2="696" y2="28"/><line x1="48" y1="84" x2="696" y2="84"/><line x1="48" y1="140" x2="696" y2="140"/><line x1="48" y1="196" x2="696" y2="196"/><line x1="48" y1="232" x2="696" y2="232"/>
-            </g>
-            <path class="execution-path execution-path-secondary" data-exec-is-path/>
-            <path class="execution-path" data-exec-slip-path/>
-            <line class="execution-marker" data-exec-marker x1="696" y1="24" x2="696" y2="232"/>
-            <text class="evidence-axis-label" x="8" y="33">+6</text><text class="evidence-axis-label" x="20" y="145">0</text><text class="evidence-axis-label" x="8" y="235">−4</text>
+        <figure class="profile-visual profile-visual-observed">
+          <svg viewBox="0 0 700 310" role="img" aria-labelledby="mm-title mm-desc">
+            <title id="mm-title">Market-making cumulative equity and drawdown</title>
+            <desc id="mm-desc">Normalized cumulative equity from a baseline of 100 and its drawdown, calculated from 120 daily returns between February and May 2026.</desc>
+            <defs><linearGradient id="mm-equity-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#79f7ff" stop-opacity=".24"/><stop offset="1" stop-color="#79f7ff" stop-opacity="0"/></linearGradient></defs>
+            <g class="profile-grid"><line x1="40" y1="32" x2="660" y2="32"/><line x1="40" y1="80" x2="660" y2="80"/><line x1="40" y1="128" x2="660" y2="128"/><line x1="40" y1="176" x2="660" y2="176"/><line x1="40" y1="218" x2="660" y2="218"/><line x1="40" y1="276" x2="660" y2="276"/><line x1="40" y1="32" x2="40" y2="276"/><line x1="195" y1="32" x2="195" y2="276"/><line x1="350" y1="32" x2="350" y2="276"/><line x1="505" y1="32" x2="505" y2="276"/><line x1="660" y1="32" x2="660" y2="276"/></g>
+            <path class="profile-area" d="M40 176 L45.2 171 L50.3 160.7 L55.5 152.2 L60.7 139.8 L65.8 120.4 L71 120.5 L76.2 116.9 L81.3 113.9 L86.5 112.7 L91.7 112.8 L96.8 117 L102 112.9 L107.2 111.2 L112.3 110.6 L117.5 115.7 L122.7 111.8 L127.8 110.2 L133 107.3 L138.2 104.8 L143.3 100.3 L148.5 98.6 L153.7 99 L158.8 103.3 L164 101.7 L169.2 112.2 L174.3 114.1 L179.5 115.2 L184.7 114.6 L189.8 115.1 L195 109.1 L200.2 104.1 L205.3 111.3 L210.5 109.9 L215.7 110.1 L220.8 109.4 L226 108.6 L231.2 105.7 L236.3 102.5 L241.5 98.2 L246.7 100 L251.8 102.4 L257 102.3 L262.2 103.9 L267.3 100.7 L272.5 95 L277.7 101 L282.8 98.4 L288 93.9 L293.2 94.3 L298.3 92.2 L303.5 88.9 L308.7 86.2 L313.8 83.5 L319 85.2 L324.2 84.2 L329.3 85.9 L334.5 84.4 L339.7 83.3 L344.8 79.4 L350 78.8 L355.2 76.9 L360.3 76.6 L365.5 76.9 L370.7 77.7 L375.8 72.6 L381 73.7 L386.2 71.1 L391.3 69 L396.5 65.1 L401.7 68.6 L406.8 67.5 L412 67.2 L417.2 64.2 L422.3 60.6 L427.5 59.3 L432.7 53.6 L437.8 52 L443 50.7 L448.2 50 L453.3 49.5 L458.5 51.8 L463.7 52.2 L468.8 51.3 L474 50.7 L479.2 51 L484.3 50.8 L489.5 50.1 L494.7 49.4 L499.8 45.3 L505 46 L510.2 45 L515.3 44.3 L520.5 44.4 L525.7 43.3 L530.8 43 L536 41.3 L541.2 40.8 L546.3 39.8 L551.5 40.6 L556.7 39.4 L561.8 38.9 L567 37.4 L572.2 37.4 L577.3 36.5 L582.5 38 L587.7 35.2 L592.8 36.8 L598 35 L603.2 33.7 L608.3 33.1 L613.5 33.2 L618.7 32.6 L623.8 32 L629 32 L634.2 32.3 L639.3 32.3 L644.5 33.6 L649.7 36.5 L654.8 37.1 L660 36.5 L660 176 L40 176 Z"/>
+            <path class="profile-curve primary observed" d="M40 176 L45.2 171 L50.3 160.7 L55.5 152.2 L60.7 139.8 L65.8 120.4 L71 120.5 L76.2 116.9 L81.3 113.9 L86.5 112.7 L91.7 112.8 L96.8 117 L102 112.9 L107.2 111.2 L112.3 110.6 L117.5 115.7 L122.7 111.8 L127.8 110.2 L133 107.3 L138.2 104.8 L143.3 100.3 L148.5 98.6 L153.7 99 L158.8 103.3 L164 101.7 L169.2 112.2 L174.3 114.1 L179.5 115.2 L184.7 114.6 L189.8 115.1 L195 109.1 L200.2 104.1 L205.3 111.3 L210.5 109.9 L215.7 110.1 L220.8 109.4 L226 108.6 L231.2 105.7 L236.3 102.5 L241.5 98.2 L246.7 100 L251.8 102.4 L257 102.3 L262.2 103.9 L267.3 100.7 L272.5 95 L277.7 101 L282.8 98.4 L288 93.9 L293.2 94.3 L298.3 92.2 L303.5 88.9 L308.7 86.2 L313.8 83.5 L319 85.2 L324.2 84.2 L329.3 85.9 L334.5 84.4 L339.7 83.3 L344.8 79.4 L350 78.8 L355.2 76.9 L360.3 76.6 L365.5 76.9 L370.7 77.7 L375.8 72.6 L381 73.7 L386.2 71.1 L391.3 69 L396.5 65.1 L401.7 68.6 L406.8 67.5 L412 67.2 L417.2 64.2 L422.3 60.6 L427.5 59.3 L432.7 53.6 L437.8 52 L443 50.7 L448.2 50 L453.3 49.5 L458.5 51.8 L463.7 52.2 L468.8 51.3 L474 50.7 L479.2 51 L484.3 50.8 L489.5 50.1 L494.7 49.4 L499.8 45.3 L505 46 L510.2 45 L515.3 44.3 L520.5 44.4 L525.7 43.3 L530.8 43 L536 41.3 L541.2 40.8 L546.3 39.8 L551.5 40.6 L556.7 39.4 L561.8 38.9 L567 37.4 L572.2 37.4 L577.3 36.5 L582.5 38 L587.7 35.2 L592.8 36.8 L598 35 L603.2 33.7 L608.3 33.1 L613.5 33.2 L618.7 32.6 L623.8 32 L629 32 L634.2 32.3 L639.3 32.3 L644.5 33.6 L649.7 36.5 L654.8 37.1 L660 36.5"/>
+            <path class="profile-curve warning observed" d="M40 218 L45.2 218 L50.3 218 L55.5 218 L60.7 218 L65.8 218 L71 217.3 L76.2 218 L81.3 218 L86.5 218 L91.7 217.6 L96.8 202 L102 217.2 L107.2 218 L112.3 218 L117.5 199.2 L122.7 213.5 L127.8 218 L133 218 L138.2 218 L143.3 218 L148.5 218 L153.7 216.7 L158.8 201.4 L164 207.2 L169.2 170.6 L174.3 163.8 L179.5 160 L184.7 162 L189.8 160.3 L195 181.5 L200.2 198.8 L205.3 173.7 L210.5 178.5 L215.7 177.8 L220.8 180.4 L226 183 L231.2 193.2 L236.3 204.3 L241.5 218 L246.7 211.8 L251.8 203.3 L257 203.6 L262.2 198.1 L267.3 209 L272.5 218 L277.7 197.5 L282.8 206.5 L288 218 L293.2 216.6 L298.3 218 L303.5 218 L308.7 218 L313.8 218 L319 212.3 L324.2 215.5 L329.3 209.9 L334.5 214.9 L339.7 218 L344.8 218 L350 218 L355.2 218 L360.3 218 L365.5 216.9 L370.7 214.4 L375.8 218 L381 214.6 L386.2 218 L391.3 218 L396.5 218 L401.7 207.4 L406.8 210.5 L412 211.7 L417.2 218 L422.3 218 L427.5 218 L432.7 218 L437.8 218 L443 218 L448.2 218 L453.3 218 L458.5 211.3 L463.7 210.3 L468.8 212.7 L474 214.4 L479.2 213.5 L484.3 214.1 L489.5 216.4 L494.7 218 L499.8 218 L505 215.9 L510.2 218 L515.3 218 L520.5 217.7 L525.7 218 L530.8 218 L536 218 L541.2 218 L546.3 218 L551.5 215.9 L556.7 218 L561.8 218 L567 218 L572.2 217.9 L577.3 218 L582.5 213.8 L587.7 218 L592.8 213.7 L598 218 L603.2 218 L608.3 218 L613.5 217.7 L618.7 218 L623.8 218 L629 217.9 L634.2 217.1 L639.3 217.1 L644.5 213.6 L649.7 205.6 L654.8 204 L660 205.8"/>
+            <text class="profile-label" x="50" y="50">NORMALIZED EQUITY</text><text class="profile-label warning-text" x="50" y="244">DRAWDOWN</text>
+            <text class="profile-axis" x="40" y="298">FEB 2026</text><text class="profile-axis end" x="660" y="298">MAY 2026</text>
           </svg>
-          <div class="evidence-legend"><span>Realized slippage</span><span>Implementation shortfall</span></div>
-        </div>
-
-        <div class="local-upload">
-          <label class="local-upload-label" for="execution-journal-file">Load public-safe execution CSV</label>
-          <input id="execution-journal-file" data-exec-file type="file" accept=".csv,text/csv">
-          <p data-exec-file-status>Expected columns: date, slippage_bps, fill_rate, implementation_shortfall_bps</p>
-        </div>
+          <figcaption>Observed daily return series, normalized to a 100 baseline.</figcaption>
+        </figure>
       </article>
 
-      <article class="evidence-card evidence-card-wide reveal" style="--i:1" data-lstm-lab>
-        <header class="evidence-card-head">
-          <div><span class="evidence-kicker">FORECASTING // LITERATURE-INSPIRED</span><h3>Illustrative LSTM Research Architecture</h3></div>
-          <span class="evidence-state">NOT PROPRIETARY</span>
-        </header>
-        <p class="evidence-copy">This is a plausible public architecture, not Qrigin code or a representation of private model details. Select a stage to inspect its research purpose and validation burden.</p>
-
-        <div class="architecture-flow" role="list" aria-label="Illustrative LSTM forecasting pipeline">
-          <button class="architecture-node is-active" type="button" role="listitem" data-lstm-node data-title="Market Event Inputs" data-copy="Synchronize trades, top-of-book and depth updates, then derive public microstructure features such as spread, imbalance, signed flow and short-horizon volatility." data-output="Time-aligned event tensor">01<span>EVENTS</span></button>
-          <button class="architecture-node" type="button" role="listitem" data-lstm-node data-title="Causal Normalization" data-copy="Apply rolling, train-only normalization and stationarity-oriented transforms. Every feature must be available at decision time to prevent leakage." data-output="Leakage-safe features">02<span>NORMALIZE</span></button>
-          <button class="architecture-node" type="button" role="listitem" data-lstm-node data-title="Spatial Encoder" data-copy="Use compact one-dimensional convolutions or an inception-style block to combine related levels and channels before temporal modeling, following the public DeepLOB design pattern." data-output="Local book-state embedding">03<span>ENCODE</span></button>
-          <button class="architecture-node" type="button" role="listitem" data-lstm-node data-title="Temporal LSTM" data-copy="Model longer event dependencies with gated memory. Hidden size, sequence length and dropout are selected only through walk-forward validation." data-output="Temporal state vector">04<span>MEMORY</span></button>
-          <button class="architecture-node" type="button" role="listitem" data-lstm-node data-title="Multi-Horizon Heads" data-copy="Estimate directional probability, expected move or uncertainty across several short horizons. Forecast quality is not treated as trading quality." data-output="Forecast distribution">05<span>FORECAST</span></button>
-          <button class="architecture-node" type="button" role="listitem" data-lstm-node data-title="Decision and Risk Gate" data-copy="Combine calibrated confidence with fees, spread, impact, inventory and risk limits. Abstain when expected edge does not clear the full trading-cost hurdle." data-output="Trade, size or abstain">06<span>GATE</span></button>
+      <article class="profile-module reveal" style="--i:2">
+        <div class="profile-copy">
+          <span class="profile-index">03 / OPTIMAL EXECUTION</span>
+          <h3>Optimal Execution</h3>
+          <p>Architected execution algorithms including TWAP, VWAP, and implementation shortfall from market-microstructure signals across three major exchanges, reducing realized slippage by approximately 2 bps over five months.</p>
+          <div class="profile-tags"><span>TWAP</span><span>VWAP</span><span>Implementation shortfall</span><span>Microstructure timing</span></div>
         </div>
-
-        <div class="architecture-detail" aria-live="polite">
-          <div><span>SELECTED STAGE</span><h4 data-lstm-detail-title>Market Event Inputs</h4></div>
-          <p data-lstm-detail-copy>Synchronize trades, top-of-book and depth updates, then derive public microstructure features such as spread, imbalance, signed flow and short-horizon volatility.</p>
-          <code data-lstm-detail-output>OUTPUT // Time-aligned event tensor</code>
-        </div>
-        <p class="evidence-sources">Research basis: <a href="https://direct.mit.edu/neco/article/9/8/1735/6109/Long-Short-Term-Memory" target="_blank" rel="noopener">Hochreiter and Schmidhuber, 1997</a> · <a href="https://arxiv.org/abs/1808.03668" target="_blank" rel="noopener">DeepLOB</a> · <a href="https://arxiv.org/abs/2403.09267" target="_blank" rel="noopener">Deep Limit Order Book Forecasting</a></p>
+        <figure class="profile-visual">
+          <svg viewBox="0 0 680 290" role="img" aria-labelledby="execution-title execution-desc">
+            <title id="execution-title">Execution cost trajectories</title>
+            <desc id="execution-desc">Two normalized curves compare a benchmark schedule with a microstructure-aware execution path over an order horizon.</desc>
+            <g class="profile-grid"><line x1="42" y1="36" x2="638" y2="36"/><line x1="42" y1="100" x2="638" y2="100"/><line x1="42" y1="164" x2="638" y2="164"/><line x1="42" y1="228" x2="638" y2="228"/><line x1="42" y1="36" x2="42" y2="228"/><line x1="191" y1="36" x2="191" y2="228"/><line x1="340" y1="36" x2="340" y2="228"/><line x1="489" y1="36" x2="489" y2="228"/><line x1="638" y1="36" x2="638" y2="228"/></g>
+            <path class="profile-curve muted" d="M42 211 C108 203 135 186 194 178 S300 153 342 139 S444 110 492 89 S581 57 638 42"/>
+            <path class="profile-curve primary" d="M42 211 C101 207 139 194 193 190 S288 173 340 164 S433 144 489 132 S579 109 638 96"/>
+            <g class="execution-orders"><circle cx="96" cy="201" r="4"/><circle cx="168" cy="194" r="4"/><circle cx="255" cy="180" r="4"/><circle cx="346" cy="163" r="4"/><circle cx="444" cy="143" r="4"/><circle cx="535" cy="121" r="4"/><circle cx="620" cy="101" r="4"/></g>
+            <text class="curve-direct-label muted-text" x="503" y="75">TWAP BENCHMARK</text><text class="curve-direct-label" x="466" y="157">MICROSTRUCTURE-AWARE</text>
+            <text class="profile-axis" x="42" y="258">ORDER ARRIVAL</text><text class="profile-axis end" x="638" y="258">COMPLETION</text>
+          </svg>
+          <figcaption>Method view of normalized cumulative execution cost across an order horizon.</figcaption>
+        </figure>
       </article>
 
-      <article class="evidence-card reveal" style="--i:2" data-risk-lab>
-        <header class="evidence-card-head">
-          <div><span class="evidence-kicker">RISK // HYPOTHETICAL</span><h3>October Shock Comparison</h3></div>
-          <span class="evidence-state">SCENARIO</span>
-        </header>
-        <p class="evidence-copy">Compare unchanged exposure with a fivefold cut to 20%. This is a linear teaching scenario, not verified portfolio P&amp;L.</p>
-        <div class="evidence-controls risk-controls">
-          <label>Market shock <output data-risk-shock-out>25%</output><input data-risk-shock type="range" min="5" max="45" value="25"></label>
-          <label>Exposure after cut <output data-risk-exposure-out>20%</output><input data-risk-exposure type="range" min="10" max="100" value="20"></label>
+      <article class="profile-module profile-module-flip reveal" style="--i:3">
+        <div class="profile-copy">
+          <span class="profile-index">04 / FACTOR RESEARCH</span>
+          <h3>Factor Research</h3>
+          <p>Engineered more than 200 multi-frequency factors across OHLCV, order-book, and derivatives data with automated decay analysis and cross-sectional ranking, improving live-model win rates by 3.1%.</p>
+          <div class="profile-tags"><span>200+ factors</span><span>Multi-frequency</span><span>Decay analysis</span><span>Cross-sectional rank</span></div>
         </div>
-        <div class="risk-bars" aria-live="polite">
-          <div><span>No reduction</span><div class="risk-track"><i data-risk-full-bar></i></div><strong data-risk-full>−25.0%</strong></div>
-          <div><span>Risk-managed</span><div class="risk-track"><i class="managed" data-risk-managed-bar></i></div><strong data-risk-managed>−5.0%</strong></div>
-        </div>
-        <div class="risk-saved"><span>Illustrative drawdown avoided</span><strong data-risk-saved>20.0 pp</strong></div>
-        <p class="evidence-note">Assumes linear exposure, no hedge basis, no execution cost, no recovery and identical underlying return.</p>
+        <figure class="profile-visual">
+          <svg viewBox="0 0 680 290" role="img" aria-labelledby="factor-title factor-desc">
+            <title id="factor-title">Factor decay profiles</title>
+            <desc id="factor-desc">Three normalized curves show how OHLCV, order-book, and derivatives factor information decays across forward horizons.</desc>
+            <g class="profile-grid"><line x1="42" y1="36" x2="638" y2="36"/><line x1="42" y1="100" x2="638" y2="100"/><line x1="42" y1="164" x2="638" y2="164"/><line x1="42" y1="228" x2="638" y2="228"/><line x1="42" y1="36" x2="42" y2="228"/><line x1="191" y1="36" x2="191" y2="228"/><line x1="340" y1="36" x2="340" y2="228"/><line x1="489" y1="36" x2="489" y2="228"/><line x1="638" y1="36" x2="638" y2="228"/></g>
+            <path class="profile-curve primary" d="M42 48 C103 58 127 85 187 99 S285 133 340 145 S439 170 492 181 S584 197 638 204"/>
+            <path class="profile-curve secondary" d="M42 66 C101 70 139 91 196 111 S292 151 347 166 S447 190 500 199 S590 208 638 212"/>
+            <path class="profile-curve warning" d="M42 88 C109 94 141 111 202 129 S302 164 357 180 S458 199 511 207 S596 215 638 218"/>
+            <text class="curve-direct-label" x="500" y="176">ORDER BOOK</text><text class="curve-direct-label secondary-text" x="500" y="198">OHLCV</text><text class="curve-direct-label warning-text" x="500" y="220">DERIVATIVES</text>
+            <text class="profile-axis" x="42" y="258">SHORT HORIZON</text><text class="profile-axis end" x="638" y="258">LONG HORIZON</text>
+          </svg>
+          <figcaption>Method view of normalized information decay across research horizons.</figcaption>
+        </figure>
       </article>
 
-      <article class="evidence-card reveal" style="--i:3" data-mm-ingest>
-        <header class="evidence-card-head">
-          <div><span class="evidence-kicker">MARKET MAKING // INGESTION READY</span><h3>Public-Safe Data Contract</h3></div>
-          <span class="evidence-state" data-mm-state>WAITING</span>
-        </header>
-        <p class="evidence-copy">Validate a future market-making CSV before visualization. Only the header and row count are inspected, locally in your browser.</p>
-        <div class="data-contract">
-          <code>timestamp</code><code>equity</code><code>equity_no_fee</code><code>position</code><code>price</code>
+      <article class="profile-module reveal" style="--i:4">
+        <div class="profile-copy">
+          <span class="profile-index">05 / PORTFOLIO RISK</span>
+          <h3>Risk Management</h3>
+          <p>Directed multi-strategy risk across $35M in prop and client capital using Grafana, leverage, position, and beta limits plus pre/post volatility and model attribution; trimmed exposure ahead of the October crash.</p>
+          <div class="profile-tags"><span>Fivefold exposure cut</span><span>Position limits</span><span>Beta limits</span><span>Model attribution</span></div>
         </div>
-        <div class="local-upload">
-          <label class="local-upload-label" for="market-making-file">Validate market-making CSV</label>
-          <input id="market-making-file" data-mm-file type="file" accept=".csv,text/csv">
-          <p data-mm-status>No file selected. Data is never uploaded.</p>
-        </div>
-        <div class="ingest-result" aria-live="polite">
-          <div><span data-mm-rows>0</span><small>Rows</small></div>
-          <div><span data-mm-columns>0 / 5</span><small>Required columns</small></div>
-        </div>
-        <p class="evidence-note">The next pass can add synchronized equity, fee drag, inventory and price charts with 1-day, 1-week and full-history zoom.</p>
+        <figure class="profile-visual">
+          <svg viewBox="0 0 680 290" role="img" aria-labelledby="risk-title risk-desc">
+            <title id="risk-title">Portfolio response around the October market shock</title>
+            <desc id="risk-desc">Two normalized curves compare unchanged exposure with exposure reduced to 20 percent before an October market shock.</desc>
+            <g class="profile-grid"><line x1="42" y1="36" x2="638" y2="36"/><line x1="42" y1="100" x2="638" y2="100"/><line x1="42" y1="164" x2="638" y2="164"/><line x1="42" y1="228" x2="638" y2="228"/><line x1="42" y1="36" x2="42" y2="228"/><line x1="191" y1="36" x2="191" y2="228"/><line x1="340" y1="36" x2="340" y2="228"/><line x1="489" y1="36" x2="489" y2="228"/><line x1="638" y1="36" x2="638" y2="228"/></g>
+            <line class="event-line" x1="340" y1="36" x2="340" y2="228"/><text class="profile-label" x="352" y="55">OCTOBER SHOCK</text>
+            <path class="profile-curve muted" d="M42 86 C112 82 162 92 220 87 S292 81 326 91 C348 122 367 181 401 205 S472 190 515 180 S589 170 638 166"/>
+            <path class="profile-curve positive" d="M42 86 C112 82 162 92 220 87 S292 81 326 91 C348 98 370 112 402 116 S473 108 516 103 S589 99 638 96"/>
+            <text class="curve-direct-label positive-text" x="488" y="93">20% EXPOSURE</text><text class="curve-direct-label muted-text" x="481" y="185">FULL EXPOSURE</text>
+            <text class="profile-axis" x="42" y="258">PRE-EVENT</text><text class="profile-axis end" x="638" y="258">POST-EVENT</text>
+          </svg>
+          <figcaption>Scenario view using the stated reduction from full exposure to 20%.</figcaption>
+        </figure>
       </article>
     </div>
   </div>

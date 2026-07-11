@@ -93,13 +93,15 @@ entry. To add another image, replace a standby frame with this pattern.
 </figure>
 ```
 
-## Interactive quant lab
+## Annotated quantitative profile
 
-The root site includes a public-safe research-to-production lab with execution,
-LSTM architecture, risk scenario, and market-making ingestion modules.
+The root site presents five static case-study modules tied directly to the
+Qrigin Capital experience: LSTM alpha and direction, market making and
+backtesting, optimal execution, factor research, and portfolio risk.
 
-- Data schemas and templates are in `data/`.
-- Hosting and privacy decisions are documented in `INTERACTIVE_ROADMAP.md`.
-- Execution and market-making CSV files are parsed locally in the browser.
-- Demo, observed, hypothetical, and literature-inspired claims must remain
-  visibly labeled.
+- The market-making equity and drawdown curves use all 120 observations in
+  `data/market-making-daily-returns.csv`.
+- Curves are embedded as inline SVG so the profile works on GitHub Pages and
+  when `index.html` is opened directly.
+- Profile direction and hosting notes are documented in
+  `INTERACTIVE_ROADMAP.md`.
