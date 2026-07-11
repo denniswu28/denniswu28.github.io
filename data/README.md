@@ -34,8 +34,9 @@ normalized progress shape rather than implying a missing daily series.
 
 `best_31_day_vwap_relative_returns_2025-10-15_to_2025-11-14.csv` contains the
 31 accompanying daily strategy returns and reproduces the aggregate compounded
-return. It does not contain daily slippage versus TWAP, so it is not used to
-invent a daily benchmark-improvement path.
+return. The upper execution panel compounds this series from a 0% baseline and
+shows a 5-day EMA over the faint exact path. It does not contain daily slippage
+versus TWAP, so the lower benchmark panel continues to use aggregate endpoints.
 
 ## Future execution journal
 

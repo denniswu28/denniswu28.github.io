@@ -26,7 +26,7 @@ The root site contains five static modules.
 
 1. Alpha and direction with LSTM system traces
 2. Market-making cumulative return from 0% and drawdown, with 7-day EMA curves
-3. Optimal execution improvement versus TWAP and the matched VWAP-reference run
+3. Optimal execution with an observed 31-day relative-return curve and TWAP comparison
 4. Factor information-decay curves across research horizons
 5. Portfolio response curves for full and 20% exposure around the October event
 

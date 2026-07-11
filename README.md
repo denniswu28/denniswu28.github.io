@@ -104,7 +104,8 @@ backtesting, optimal execution, factor research, and portfolio risk.
   7-day EMA over the faint exact path.
 - The execution comparison uses the completed 31-day aggregate artifact in
   `data/best_31_day_aggregate_metrics_2025-10-15_to_2025-11-14.csv`, with the
-  accompanying daily return series retained separately in `data/`.
+  accompanying daily return series rendered as an observed 5-day EMA over its
+  exact compounded path.
 - Curves are embedded as inline SVG so the profile works on GitHub Pages and
   when `index.html` is opened directly.
 - Profile direction and hosting notes are documented in

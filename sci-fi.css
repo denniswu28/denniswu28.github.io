@@ -430,6 +430,9 @@ body[data-site] .foot a{color:var(--text);border-color:var(--line)}
 .benchmark-points .primary-point{fill:var(--signal)}
 .benchmark-points .warning-point{fill:var(--warning)}
 .benchmark-points .muted-point{fill:#8297a1}
+.execution-return-area{fill:url(#execution-return-fill)}
+.execution-evidence .execution-raw{stroke:#88a0aa;stroke-width:1;opacity:.25;filter:none}
+.execution-evidence .execution-smooth{stroke-width:3}
 .event-line{stroke:var(--warning);stroke-width:1;stroke-dasharray:4 6;vector-effect:non-scaling-stroke}
 
 @media(max-width:900px){
