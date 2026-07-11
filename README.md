@@ -1,43 +1,54 @@
 # denniswu28.github.io
 
-Personal portfolio for Tianrui (Dennis) Wu.
+Personal portfolio for Tianrui (Dennis) Wu with separate quant and academic
+profiles.
 
-The live site uses the format, system-font stack, black-and-white theme, crimson
-link color, portrait layout, and timeline treatment of
-[alekkemeny/alekkemeny.com](https://github.com/alekkemeny/alekkemeny.com),
-adapted to Dennis's quantitative trading and academic work.
+## Sites
 
-The previous two-profile design is preserved in `archive/previous-site/` with
-its original HTML, CSS, JavaScript, and deployment notes.
+| Profile | Source | Local URL |
+| --- | --- | --- |
+| Quant trading | `index.html` | `http://localhost:8000/` |
+| Academic research | `academic/index.html` | `http://localhost:8000/academic/` |
+
+The quant profile uses the original dark interface in `sci-fi.css` with
+interactions from `site.js`. The academic profile uses the portrait and timeline
+format adapted from
+[alekkemeny/alekkemeny.com](https://github.com/alekkemeny/alekkemeny.com).
+
+The earlier files remain in `archive/previous-site/`.
 
 ## Preview
 
-Open `index.html` directly or run a local static server:
+Run a local static server from the repository root.
 
 ```powershell
 python -m http.server 8000
 ```
 
-Then visit `http://localhost:8000/`.
+## Academic portrait
 
-## Profile photo
+The academic profile uses `images/Protrait.jpg`. To replace it, add the new
+file under `images/` and update these locations in `academic/index.html`.
 
-The portrait area currently uses `images/Protrait.jpg`. To replace it, add the
-new file under `images/`, update the `src` on the `profile-image` element in
-`index.html`, and update the Open Graph and Twitter image paths in the page
-header. The frame crops the image to a centered square on desktop and mobile.
+- The `profile-image` source
+- The Open Graph image
+- The Twitter image
 
-## Add multimedia
+The horizontal divider clears the complete portrait block, including its four
+social buttons and Curriculum Vitae link.
 
-Multimedia belongs inside the `.timeline-content` block for the relevant job,
-research project, or activity. Put local files in `images/quant/` or
-`images/academic/` and use a relative path from `index.html`.
+## Academic multimedia
+
+Add multimedia inside the `.timeline-content` block for the relevant research
+project. Paths begin with `../images/` because the academic page is one folder
+below the repository root.
 
 Single image
 
 ```html
 <figure class="media-module">
-  <img src="images/academic/bao-results.jpg" alt="BAO reconstruction result">
+  <img src="../images/academic/bao-results.jpg"
+       alt="BAO reconstruction result">
   <figcaption>BAO reconstruction performance under redshift smearing.</figcaption>
 </figure>
 ```
@@ -46,10 +57,11 @@ Local video
 
 ```html
 <figure class="media-module">
-  <video controls preload="metadata" poster="images/quant/demo-poster.jpg">
-    <source src="images/quant/strategy-demo.mp4" type="video/mp4">
+  <video controls preload="metadata"
+         poster="../images/academic/demo-poster.jpg">
+    <source src="../images/academic/research-demo.mp4" type="video/mp4">
   </video>
-  <figcaption>Public-safe demonstration of the research workflow.</figcaption>
+  <figcaption>Research workflow demonstration.</figcaption>
 </figure>
 ```
 
@@ -58,26 +70,25 @@ Two-item gallery
 ```html
 <div class="media-grid">
   <figure class="media-module">
-    <img src="images/academic/result-a.jpg" alt="First result">
+    <img src="../images/academic/result-a.jpg" alt="First result">
     <figcaption>First result.</figcaption>
   </figure>
   <figure class="media-module">
-    <img src="images/academic/result-b.jpg" alt="Second result">
+    <img src="../images/academic/result-b.jpg" alt="Second result">
     <figcaption>Second result.</figcaption>
   </figure>
 </div>
 ```
 
-YouTube or another iframe embed
+The gallery becomes one column on small screens.
+
+## Quant multimedia
+
+The backtest is displayed in a compact `.frame.backtest-frame` inside the Qrigin
+entry. To add another image, replace a standby frame with this pattern.
 
 ```html
-<figure class="media-module">
-  <iframe src="https://www.youtube.com/embed/VIDEO_ID"
-          title="Project presentation" loading="lazy" allowfullscreen></iframe>
-  <figcaption>Project presentation.</figcaption>
+<figure class="frame">
+  <img src="images/quant/result.jpg" alt="Describe the result" loading="lazy">
 </figure>
 ```
-
-The image and video modules inherit the same border, spacing, radius, and
-responsive behavior as the rest of the site. The gallery becomes one column on
-small screens.
