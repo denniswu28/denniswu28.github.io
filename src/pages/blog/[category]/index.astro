@@ -1,0 +1,35 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageIntro from '../../../components/PageIntro.astro';
+import { filterPublished, sortNewest } from '../../../lib/content';
+
+export async function getStaticPaths() {
+  const categoryCopy = {
+    'quant-research': { title: 'Quant Research', description: 'Fundamentals, microstructure, execution, market making, and reproducible empirical research.' },
+    physics: { title: 'Physics', description: 'Cosmology, survey simulations, scientific inference, papers, and visualization methods.' },
+    'ai-safety': { title: 'AI Safety', description: 'Technically grounded work on evaluation, robustness, oversight, and autonomous-system failure modes.' }
+  } as const;
+  const articles = filterPublished(await getCollection('articles'));
+  return Object.entries(categoryCopy).map(([category, copy]) => ({
+    params: { category },
+    props: { copy, articles: sortNewest(articles.filter((article) => article.data.category === category)) }
+  }));
+}
+
+interface Props {
+  copy: { title: string; description: string };
+  articles: CollectionEntry<'articles'>[];
+}
+const { copy, articles } = Astro.props;
+const category = Astro.params.category!;
+---
+
+<BaseLayout title={copy.title} description={copy.description}>
+  <div class="shell"><PageIntro eyebrow="Blog / editorial track" title={copy.title} description={copy.description} compact /></div>
+  <section class="section">
+    <div class="shell">
+      {articles.length > 0 ? <div class="post-list">{articles.map((article) => <a class="post-row" href={`/blog/${category}/${article.data.slug}/`}><span class="date-block">{article.data.publishedAt.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</span><div><h2>{article.data.title}</h2><p>{article.data.abstract}</p></div><span class="text-link">Read →</span></a>)}</div> : <div class="empty-state"><h2>No article is published in this track yet.</h2><p>The category is reserved, but the site will not fabricate a post to fill it. Drafts and private metadata are excluded from the public build.</p></div>}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,24 @@
+{
+  "name": "denniswu28.github.io",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro dev",
+    "build": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro check && cross-env ASTRO_TELEMETRY_DISABLED=1 astro build && node scripts/validate-build.mjs",
+    "check": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro check",
+    "preview": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro preview",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.7.3",
+    "astro": "^6.0.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "cross-env": "^10.1.0",
+    "typescript": "^5.9.0",
+    "vitest": "^4.1.10"
+  }
+}

@@ -1,0 +1,60 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import { calculateEquitySummary, parseEquityCsv } from '../lib/portfolio';
+
+interface Props {
+  dataUrl: string;
+}
+
+const { dataUrl } = Astro.props;
+if (!/^\/data\/[a-z0-9._-]+\.csv$/.test(dataUrl)) throw new Error('Invalid public portfolio data path.');
+
+const csv = fs.readFileSync(path.join(process.cwd(), 'public', dataUrl.slice(1)), 'utf8');
+const observations = parseEquityCsv(csv);
+const summary = calculateEquitySummary(observations);
+
+const width = 760;
+const height = 320;
+const margin = { top: 24, right: 24, bottom: 48, left: 70 };
+const plotWidth = width - margin.left - margin.right;
+const plotHeight = height - margin.top - margin.bottom;
+const range = Math.max(summary.maximum.equity - summary.minimum.equity, 1);
+const yMin = summary.minimum.equity - range * 0.08;
+const yMax = summary.maximum.equity + range * 0.08;
+const x = (index: number) => margin.left + (index / (observations.length - 1)) * plotWidth;
+const y = (value: number) => margin.top + ((yMax - value) / (yMax - yMin)) * plotHeight;
+const points = observations.map((item, index) => `${x(index).toFixed(2)},${y(item.equity).toFixed(2)}`).join(' ');
+const yTicks = Array.from({ length: 4 }, (_, index) => yMin + ((yMax - yMin) * index) / 3);
+const xTickIndexes = [0, Math.round((observations.length - 1) / 3), Math.round(((observations.length - 1) * 2) / 3), observations.length - 1];
+const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+const moneyPrecise = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2 });
+const dateLabel = (date: string) => new Date(`${date}T00:00:00Z`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
+---
+
+<section aria-labelledby="portfolio-observed-results">
+  <h2 id="portfolio-observed-results">Observed results</h2>
+  <div class="metric-grid">
+    <article class="metric"><strong>{(summary.simpleReturn * 100).toFixed(2)}%</strong><span>Simple observed-period change</span><p>{moneyPrecise.format(summary.start.equity)} to {moneyPrecise.format(summary.end.equity)}</p></article>
+    <article class="metric"><strong>{moneyPrecise.format(summary.absoluteChange)}</strong><span>Observed equity change</span><p>Across {summary.observations} supplied snapshots</p></article>
+    <article class="metric"><strong>{(summary.maxDrawdown * 100).toFixed(2)}%</strong><span>Maximum snapshot-to-snapshot drawdown</span><p>{dateLabel(summary.drawdownPeak.date)} to {dateLabel(summary.drawdownTrough.date)}</p></article>
+  </div>
+
+  <figure class="evidence-visual portfolio-equity-chart">
+    <svg viewBox={`0 0 ${width} ${height}`} role="img" aria-labelledby="portfolio-equity-title portfolio-equity-description">
+      <title id="portfolio-equity-title">Sanitized historical total-equity observations</title>
+      <desc id="portfolio-equity-description">Total equity rose from {moneyPrecise.format(summary.start.equity)} on {summary.start.date} to {moneyPrecise.format(summary.end.equity)} on {summary.end.date}. The maximum observed drawdown was {(summary.maxDrawdown * 100).toFixed(2)} percent.</desc>
+      {yTicks.map((tick) => (
+        <g>
+          <line x1={margin.left} x2={width - margin.right} y1={y(tick)} y2={y(tick)} stroke="rgba(151, 177, 191, .18)" stroke-width="1" />
+          <text x={margin.left - 12} y={y(tick) + 3} text-anchor="end">{money.format(tick)}</text>
+        </g>
+      ))}
+      {xTickIndexes.map((index) => <text x={x(index)} y={height - 17} text-anchor="middle">{dateLabel(observations[index].date)}</text>)}
+      <polyline points={points} fill="none" stroke="var(--signal)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" />
+      <circle cx={x(0)} cy={y(summary.start.equity)} r="5" fill="var(--signal)" />
+      <circle cx={x(observations.length - 1)} cy={y(summary.end.equity)} r="5" fill="var(--signal)" />
+    </svg>
+    <figcaption>Recorded account snapshots, not exchange-verified daily closes. The public series excludes securities, quantities, trade prices, and live positions.</figcaption>
+  </figure>
+</section>

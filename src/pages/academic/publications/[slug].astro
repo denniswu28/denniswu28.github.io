@@ -1,0 +1,49 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PdfPreview from '../../../components/PdfPreview.astro';
+import { filterPublished } from '../../../lib/content';
+
+export async function getStaticPaths() {
+  const publications = filterPublished(await getCollection('publications'));
+  return publications.map((entry) => ({ params: { slug: entry.data.slug }, props: { entry } }));
+}
+
+interface Props { entry: CollectionEntry<'publications'>; }
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const publicationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ScholarlyArticle',
+  headline: entry.data.title,
+  description: entry.data.abstract,
+  datePublished: entry.data.publishedAt.toISOString(),
+  dateModified: entry.data.updatedAt.toISOString(),
+  author: { '@type': 'Person', name: 'Tianrui Wu' },
+  isPartOf: entry.data.journalUrl
+};
+---
+
+<BaseLayout title={entry.data.title} description={entry.data.summary} type="article" schema={publicationSchema}>
+  <article class="article shell narrow-shell">
+    <header class="article-header">
+      <a class="eyebrow breadcrumb" href="/academic/#publications">Academic / {entry.data.venue}</a>
+      <h1>{entry.data.title}</h1>
+      <p class="lede">{entry.data.abstract}</p>
+      <div class="tag-row"><span>{entry.data.publicationStatus}</span><span>{entry.data.venue}</span></div>
+    </header>
+    {entry.data.image && <img class="publication-hero" src={entry.data.image} alt="" loading="eager" />}
+    <div class="prose">
+      <h2>Citation</h2><p>{entry.data.citation}</p>
+      <h2>Personal contribution</h2><p>{entry.data.contribution}</p>
+      <Content />
+      <h2>Paper and record</h2>
+      <div class="button-row">
+        {entry.data.journalUrl && <a class="button button-secondary" href={entry.data.journalUrl} target="_blank" rel="noopener">Journal</a>}
+        {entry.data.arxivUrl && <a class="button button-secondary" href={entry.data.arxivUrl} target="_blank" rel="noopener">arXiv</a>}
+        {entry.data.doiUrl && <a class="button button-secondary" href={entry.data.doiUrl} target="_blank" rel="noopener">DOI</a>}
+      </div>
+    </div>
+    {entry.data.pdfUrl && <PdfPreview title={entry.data.title} url={entry.data.pdfUrl} />}
+  </article>
+</BaseLayout>

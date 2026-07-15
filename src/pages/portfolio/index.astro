@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import { filterPublished, sortNewest } from '../../lib/content';
+
+const theses = sortNewest(filterPublished(await getCollection('theses')));
+---
+
+<BaseLayout title="Investment Portfolio" description="A content-gated archive for historical investment theses, attribution, invalidating evidence, and postmortems.">
+  <div class="shell"><PageIntro eyebrow="Historical decision records" title="Investment Portfolio" description="This section is separate from the Quant Lab. It documents fundamentals-driven judgment, what could invalidate a thesis, how positions changed, and what the outcome taught." /></div>
+  <section class="section">
+    <div class="shell">
+      <div class="notice"><strong>Disclosure:</strong> Historical research is not a current recommendation. Records will use delayed publication, closed positions, redacted sizes, or percentage weights.</div>
+      {theses.length > 0 ? (
+        <div class="post-list" style="margin-top: 28px">
+          {theses.map((thesis) => <a class="post-row" href={`/portfolio/${thesis.data.slug}/`}><span class="date-block">{thesis.data.thesisDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short' })}</span><div><h2>{thesis.data.title}</h2><p>{thesis.data.summary}</p></div><span class="text-link">Case study →</span></a>)}
+        </div>
+      ) : (
+        <div class="empty-state" style="margin-top: 28px"><h2>Publication gate is active.</h2><p>No investment case is public yet because the repository does not contain a complete, source-backed historical record with entry context, risks, invalidating evidence, outcome, and privacy review. Draft metadata is excluded from this page, the sitemap, RSS, and generated routes.</p></div>
+      )}
+    </div>
+  </section>
+</BaseLayout>

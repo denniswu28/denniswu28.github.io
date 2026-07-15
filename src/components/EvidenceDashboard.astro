@@ -1,0 +1,121 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+import { compoundReturns, drawdowns, ema, parseReturnsCsv, percent, svgPath } from '../lib/quant';
+
+const dataDirectory = path.join(process.cwd(), 'public', 'data');
+const marketCsv = fs.readFileSync(path.join(dataDirectory, 'market-making-daily-returns.csv'), 'utf8');
+const executionCsv = fs.readFileSync(path.join(dataDirectory, 'best_31_day_vwap_relative_returns_2025-10-15_to_2025-11-14.csv'), 'utf8');
+const metricsCsv = fs.readFileSync(path.join(dataDirectory, 'best_31_day_aggregate_metrics_2025-10-15_to_2025-11-14.csv'), 'utf8');
+
+const marketRows = parseReturnsCsv(marketCsv);
+const marketCompounded = compoundReturns(marketRows);
+const marketDrawdown = drawdowns(marketCompounded);
+const marketSmoothed = ema(marketCompounded, 0.25);
+const executionRows = parseReturnsCsv(executionCsv);
+const executionCompounded = compoundReturns(executionRows);
+const executionSmoothed = ema(executionCompounded, 2 / 6);
+const metricRows = metricsCsv.trim().split(/\r?\n/).slice(1).map((line) => line.split(','));
+const metric = (name: string) => Number(metricRows.find((row) => row[0] === name)?.[1] ?? 0);
+
+const panels = [
+  {
+    id: 'alpha-direction',
+    index: '01',
+    title: 'Alpha and Direction',
+    question: 'How does a short-horizon forecasting system turn market state into a trade decision?',
+    result: 'Method view only. It shows the research path without disclosing proprietary features or production parameters.',
+    tags: ['Phase-space features', 'LSTM state', 'MLflow lifecycle']
+  },
+  {
+    id: 'market-making',
+    index: '02',
+    title: 'Market Making and Backtesting',
+    question: 'What did the sanitized 120-observation return path and drawdown look like?',
+    result: `${marketRows.length} daily observations compound to ${percent(marketCompounded.at(-1) ?? 0)} with a maximum drawdown of ${percent(Math.min(...marketDrawdown))}.`,
+    tags: ['Historical data', '0% baseline', '7-day EMA']
+  },
+  {
+    id: 'optimal-execution',
+    index: '03',
+    title: 'Optimal Execution',
+    question: 'How did the selected run compare with the stored TWAP reference?',
+    result: `The selected run recorded ${metric('slippage_vs_twap_mean').toFixed(2)} bps mean signed slippage versus TWAP, ${metric('slippage_improvement_vs_vwap_reference').toFixed(2)} bps above the matched reference. Positive is favorable.`,
+    tags: ['31 observations', '5-day EMA', 'Aggregate endpoint']
+  },
+  {
+    id: 'factor-research',
+    index: '04',
+    title: 'Factor Research',
+    question: 'How should feature value be inspected across research horizons?',
+    result: 'Method view only. Normalized decay profiles represent the comparison workflow, not a released proprietary factor series.',
+    tags: ['200+ factors', 'Decay analysis', 'Cross-sectional rank']
+  },
+  {
+    id: 'portfolio-risk',
+    index: '05',
+    title: 'Portfolio Risk',
+    question: 'How does reducing exposure change the shape of a stress response?',
+    result: 'Scenario view only. It illustrates the documented reduction from full exposure to 20% without publishing live positions.',
+    tags: ['Exposure limits', 'Stress response', 'Sanitized scenario']
+  }
+] as const;
+---
+
+<div class="evidence-stack">
+  {panels.map((panel) => (
+    <article class="evidence-panel" id={panel.id}>
+      <div class="evidence-copy">
+        <p class="eyebrow">Experiment 01 / {panel.index}</p>
+        <h2>{panel.title}</h2>
+        <p class="question">{panel.question}</p>
+        <p>{panel.result}</p>
+        <div class="tag-row">{panel.tags.map((tag) => <span>{tag}</span>)}</div>
+      </div>
+      <figure class="evidence-visual">
+        {panel.id === 'alpha-direction' && (
+          <div class="signal-flow" role="img" aria-label="Feature state flows through recurrent memory and confidence into a directional decision">
+            <div><span>01</span><strong>Feature state</strong><i style="--level: 74%"></i></div>
+            <div><span>02</span><strong>LSTM memory</strong><i style="--level: 58%"></i></div>
+            <div><span>03</span><strong>Confidence</strong><i style="--level: 82%"></i></div>
+            <div><span>04</span><strong>Direction</strong><i style="--level: 64%"></i></div>
+          </div>
+        )}
+        {panel.id === 'market-making' && (
+          <svg viewBox="0 0 640 210" role="img" aria-labelledby="market-title market-description">
+            <title id="market-title">Market-making cumulative return</title>
+            <desc id="market-description">The exact compounded path and its seven-day exponential moving average across 120 observations.</desc>
+            <g class="chart-grid"><path d="M12 30H628M12 75H628M12 120H628M12 165H628" /></g>
+            <path class="chart-line chart-line-muted" d={svgPath(marketCompounded, 640, 180)} />
+            <path class="chart-line chart-line-primary" d={svgPath(marketSmoothed, 640, 180)} />
+            <text x="12" y="202">FEB 2026</text><text x="628" y="202" text-anchor="end">MAY 2026</text>
+          </svg>
+        )}
+        {panel.id === 'optimal-execution' && (
+          <svg viewBox="0 0 640 210" role="img" aria-labelledby="execution-title execution-description">
+            <title id="execution-title">Execution relative return path</title>
+            <desc id="execution-description">The exact 31-observation compounded path and its five-day exponential moving average.</desc>
+            <g class="chart-grid"><path d="M12 30H628M12 75H628M12 120H628M12 165H628" /></g>
+            <path class="chart-line chart-line-muted" d={svgPath(executionCompounded, 640, 180)} />
+            <path class="chart-line chart-line-primary" d={svgPath(executionSmoothed, 640, 180)} />
+            <text x="12" y="202">OCT 15, 2025</text><text x="628" y="202" text-anchor="end">NOV 14, 2025</text>
+          </svg>
+        )}
+        {panel.id === 'factor-research' && (
+          <div class="decay-view" role="img" aria-label="Three normalized factor families decay across longer research horizons">
+            <span class="decay-line decay-a"></span><span class="decay-line decay-b"></span><span class="decay-line decay-c"></span>
+            <b>Order book</b><b>OHLCV</b><b>Derivatives</b>
+          </div>
+        )}
+        {panel.id === 'portfolio-risk' && (
+          <div class="risk-view" role="img" aria-label="A full-exposure stress response is compared with a reduced 20 percent exposure response">
+            <div><span>Full exposure</span><i style="--risk: 88%"></i></div>
+            <div><span>20% exposure</span><i style="--risk: 28%"></i></div>
+            <p>Pre-event → stress window → post-event</p>
+          </div>
+        )}
+        <figcaption>{panel.id === 'market-making' || panel.id === 'optimal-execution' ? 'Bright line: EMA. Faint line: exact observed path.' : 'Static summary remains understandable without interaction.'}</figcaption>
+      </figure>
+    </article>
+  ))}
+</div>

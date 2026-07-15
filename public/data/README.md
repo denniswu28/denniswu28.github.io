@@ -52,3 +52,19 @@ curve.
 
 `market-making-template.csv` remains available for a future synchronized view
 of equity, fee drag, position, and reference price.
+
+## Historical portfolio equity
+
+`historical-portfolio-equity-2025-08-28-to-2025-11-20.csv` is the sanitized
+source for the historical portfolio case study. It contains only 38 supplied
+account-level total-equity observations. Securities, quantities, trade prices,
+and cash balances are intentionally excluded.
+
+| Column | Unit | Meaning |
+| --- | --- | --- |
+| `date` | ISO date | Date of the supplied account snapshot |
+| `total_equity_usd` | U.S. dollars | Total equity reported in that snapshot |
+
+The case-study return is the simple change from the first observation to the
+last. It is not time-weighted or money-weighted, does not interpolate missing
+dates, and does not claim to capture intraperiod drawdown.

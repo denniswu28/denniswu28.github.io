@@ -1,0 +1,35 @@
+---
+interface Props { title: string; url: string; }
+const { title, url } = Astro.props;
+const dialogId = `pdf-${title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+---
+<div class="pdf-actions" data-pdf-preview>
+  <button class="button button-secondary" type="button" data-open-pdf={dialogId} data-pdf-url={url}>Preview PDF</button>
+  <a class="text-link" href={url} target="_blank" rel="noopener">Download <span aria-hidden="true">↗</span></a>
+  <dialog class="pdf-dialog" id={dialogId} aria-labelledby={`${dialogId}-title`}>
+    <div class="dialog-header">
+      <h2 id={`${dialogId}-title`}>{title}</h2>
+      <button type="button" class="icon-button" data-close-pdf aria-label="Close PDF preview">Close</button>
+    </div>
+    <iframe title={`${title} PDF preview`} data-pdf-frame loading="lazy"></iframe>
+    <p class="dialog-fallback">If the preview does not load, <a href={url} target="_blank" rel="noopener">open the PDF directly</a>.</p>
+  </dialog>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-pdf-preview]').forEach((preview) => {
+    const openButton = preview.querySelector<HTMLButtonElement>('[data-open-pdf]');
+    const dialog = preview.querySelector<HTMLDialogElement>('dialog');
+    const frame = preview.querySelector<HTMLIFrameElement>('[data-pdf-frame]');
+    const closeButton = preview.querySelector<HTMLButtonElement>('[data-close-pdf]');
+    if (!openButton || !dialog || !frame || !closeButton) return;
+    openButton.addEventListener('click', () => {
+      if (!frame.src) frame.src = openButton.dataset.pdfUrl ?? '';
+      dialog.showModal();
+    });
+    closeButton.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+  });
+</script>

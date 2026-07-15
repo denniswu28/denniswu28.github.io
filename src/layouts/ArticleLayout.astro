@@ -1,0 +1,41 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  category: string;
+  publishedAt: Date;
+  updatedAt: Date;
+  readingMinutes: number;
+  tags: string[];
+  disclosures?: string[];
+  schema?: Record<string, unknown>;
+}
+
+const { title, description, category, publishedAt, updatedAt, readingMinutes, tags, disclosures = [], schema } = Astro.props;
+const categoryLabel = category.replace('-', ' ').replace(/\b\w/g, (letter) => letter.toUpperCase());
+---
+
+<BaseLayout title={title} description={description} type="article" schema={schema}>
+  <article class="article shell narrow-shell">
+    <header class="article-header">
+      <a class="eyebrow breadcrumb" href={`/blog/${category}/`}>{categoryLabel}</a>
+      <h1>{title}</h1>
+      <p class="lede">{description}</p>
+      <div class="article-meta">
+        <span>Published <time datetime={publishedAt.toISOString()}>{publishedAt.toLocaleDateString('en-US', { dateStyle: 'medium' })}</time></span>
+        <span>Updated <time datetime={updatedAt.toISOString()}>{updatedAt.toLocaleDateString('en-US', { dateStyle: 'medium' })}</time></span>
+        <span>{readingMinutes} min read</span>
+      </div>
+      <div class="tag-row">{tags.map((tag) => <span>{tag}</span>)}</div>
+    </header>
+    <div class="prose"><slot /></div>
+    {disclosures.length > 0 && (
+      <aside class="disclosure">
+        <h2>Disclosure and limitations</h2>
+        <ul>{disclosures.map((item) => <li>{item}</li>)}</ul>
+      </aside>
+    )}
+  </article>
+</BaseLayout>

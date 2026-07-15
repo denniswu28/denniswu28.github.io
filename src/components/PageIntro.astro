@@ -1,0 +1,15 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  description: string;
+  compact?: boolean;
+}
+const { eyebrow, title, description, compact = false } = Astro.props;
+---
+<header class:list={['page-intro', { 'page-intro-compact': compact }]}>
+  <p class="eyebrow">{eyebrow}</p>
+  <h1>{title}</h1>
+  <p class="lede">{description}</p>
+  <slot />
+</header>

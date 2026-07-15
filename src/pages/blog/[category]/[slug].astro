@@ -1,0 +1,28 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import { filterPublished } from '../../../lib/content';
+
+export async function getStaticPaths() {
+  const articles = filterPublished(await getCollection('articles'));
+  return articles.map((entry) => ({ params: { category: entry.data.category, slug: entry.data.slug }, props: { entry } }));
+}
+
+interface Props { entry: CollectionEntry<'articles'>; }
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: entry.data.title,
+  description: entry.data.abstract,
+  datePublished: entry.data.publishedAt.toISOString(),
+  dateModified: entry.data.updatedAt.toISOString(),
+  author: { '@type': 'Person', name: 'Tianrui Wu' }
+};
+---
+
+<ArticleLayout title={entry.data.title} description={entry.data.abstract} category={entry.data.category} publishedAt={entry.data.publishedAt} updatedAt={entry.data.updatedAt} readingMinutes={entry.data.readingMinutes} tags={entry.data.tags} disclosures={entry.data.disclosures} schema={articleSchema}>
+  <Content />
+  {entry.data.citations.length > 0 && <><h2>Sources</h2><ul>{entry.data.citations.map((citation) => <li><a href={citation.url} target={citation.url.startsWith('http') ? '_blank' : undefined} rel={citation.url.startsWith('http') ? 'noopener' : undefined}>{citation.label}</a></li>)}</ul></>}
+</ArticleLayout>

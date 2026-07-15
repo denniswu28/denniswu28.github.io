@@ -1,0 +1,36 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PortfolioEquityChart from '../../components/PortfolioEquityChart.astro';
+import { filterPublished } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const theses = filterPublished(await getCollection('theses'));
+  return theses.map((entry) => ({ params: { slug: entry.data.slug }, props: { entry } }));
+}
+
+interface Props { entry: CollectionEntry<'theses'>; }
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<BaseLayout title={entry.data.title} description={entry.data.summary} type="article">
+  <article class="article shell narrow-shell">
+    <header class="article-header"><a class="eyebrow" href="/portfolio/">Portfolio / historical thesis</a><h1>{entry.data.title}</h1><p class="lede">{entry.data.summary}</p><div class="tag-row"><span>{entry.data.security}</span><span>{entry.data.privacy}</span></div></header>
+    <div class="prose">
+      <h2>Core thesis</h2><p>{entry.data.coreThesis}</p>
+      <h2>Catalyst and variant view</h2><p>{entry.data.catalyst}</p><p>{entry.data.variantView}</p>
+      <h2>Risks</h2><ul>{entry.data.risks.map((item) => <li>{item}</li>)}</ul>
+      <h2>Invalidating evidence</h2><ul>{entry.data.invalidatingEvidence.map((item) => <li>{item}</li>)}</ul>
+      <h2>Position changes and exit</h2><ul>{entry.data.positionChanges.map((item) => <li>{item}</li>)}</ul><p>{entry.data.exitRationale}</p>
+      <h2>Outcome and postmortem</h2><p>{entry.data.finalOutcome}</p><p>{entry.data.postmortem}</p>
+      {entry.data.equityDataUrl && <PortfolioEquityChart dataUrl={entry.data.equityDataUrl} />}
+      <Content />
+    </div>
+    <aside class="disclosure">
+      <h2>Return methodology</h2><p>{entry.data.returnMethodology}</p>
+      {entry.data.externalLinks.length > 0 && <><h2>Public evidence</h2><ul>{entry.data.externalLinks.map((link) => <li><a href={link.url}>{link.label}</a></li>)}</ul></>}
+      <p>Historical research is not investment advice or a current recommendation.</p>
+    </aside>
+  </article>
+</BaseLayout>
