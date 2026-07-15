@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { profileCards, proofPoints, site } from '../data/site';
+---
+
+<BaseLayout title={site.name} description={site.description}>
+  <section class="hero">
+    <div class="shell hero-grid">
+      <div>
+        <p class="eyebrow">Quantitative research · production systems</p>
+        <h1>Dennis Wu</h1>
+        <p class="hero-positioning"><strong>Quantitative Researcher</strong> | Statistical Modeling, Trading Systems, and Market Microstructure</p>
+        <p class="lede">I build forecasting, execution, and market-analysis systems using machine learning, high-frequency data, and statistical inference, with a research background in physics and cosmology.</p>
+        <div class="button-row">
+          <a class="button" href="/quant/">View Quant Profile</a>
+          <a class="button button-secondary" href="/lab/">Explore Quant Lab</a>
+          <a class="button button-secondary" href="/academic/">Academic Research</a>
+          <a class="button button-quiet" href={site.resume} target="_blank" rel="noopener">Download Resume</a>
+        </div>
+      </div>
+      <aside class="hero-note">
+        <span>PROFILE / EVIDENCE / METHOD</span>
+        <p>Start with the concise profile. Follow any claim into an experiment, article, dataset, repository, or paper.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <div class="section-heading">
+        <div><p class="eyebrow">Four paths</p><h2>Choose the evidence you need.</h2></div>
+        <p>The landing page stays short. Each destination answers a different question: professional credibility, scientific depth, inspectable systems, or historical decision quality.</p>
+      </div>
+      <div class="card-grid">
+        {profileCards.map((card) => (
+          <a class="card" href={card.href}>
+            <p class="eyebrow">{card.eyebrow}</p>
+            <h2>{card.title}</h2>
+            <p>{card.text}</p>
+            <span class="text-link">Open profile <span aria-hidden="true">→</span></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-tight">
+    <div class="shell">
+      <div class="section-heading">
+        <div><p class="eyebrow">Selected proof</p><h2>Credibility at a glance.</h2></div>
+        <p>These markers route to deeper material elsewhere; they are not a second resume.</p>
+      </div>
+      <div class="proof-grid">
+        {proofPoints.map((point, index) => <div class="proof-item"><span>0{index + 1}</span>{point}</div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <div class="section-heading">
+        <div><p class="eyebrow">Evidence chain</p><h2>Claims should be inspectable.</h2></div>
+        <p>Experience claim → interactive demonstration → detailed article → source code or paper. Each layer adds depth without forcing every visitor through the full technical record.</p>
+      </div>
+      <a class="button button-secondary" href="/lab/trading-systems-execution/">Inspect Experiment 01</a>
+    </div>
+  </section>
+</BaseLayout>

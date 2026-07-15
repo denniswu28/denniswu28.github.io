@@ -1,0 +1,71 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import { academicProjects, site } from '../../data/site';
+import { filterPublished } from '../../lib/content';
+
+const publications = filterPublished(await getCollection('publications'));
+---
+
+<BaseLayout title="Academic Research" description="Cosmology, statistical inference, scientific machine learning, survey simulations, and publications.">
+  <div class="shell">
+    <PageIntro eyebrow="Academic profile / cosmology" title="Scientific questions, visual evidence, formal record." description="I study cosmology with statistical inference, scientific machine learning, and large survey simulations. The web profile explains the work; the CV and papers preserve the complete record.">
+      <div class="button-row"><a class="button" href={site.cv} target="_blank" rel="noopener">Download Academic CV</a><a class="button button-secondary" href="#publications">View Publications</a></div>
+    </PageIntro>
+  </div>
+
+  <section class="section">
+    <div class="shell">
+      <div class="section-heading">
+        <div><p class="eyebrow">Research projects</p><h2>Problem, data, contribution, result.</h2></div>
+        <p>Project summaries separate my work from the wider collaboration and link measurable results to the scientific question they support.</p>
+      </div>
+      <div class="project-grid">
+        {academicProjects.map((project) => (
+          <article class="project-card" id={project.id}>
+            <div class="project-media"><img src={project.image} alt={project.alt} loading="lazy" /></div>
+            <div class="project-copy">
+              <p class="eyebrow">{project.institution}</p>
+              <h2>{project.title}</h2>
+              <dl>
+                <dt>Question</dt><dd>{project.problem}</dd>
+                <dt>Data</dt><dd>{project.data}</dd>
+                <dt>Built</dt><dd>{project.contribution}</dd>
+                <dt>Result</dt><dd>{project.result}</dd>
+              </dl>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="publications">
+    <div class="shell">
+      <div class="section-heading">
+        <div><p class="eyebrow">Formal record</p><h2>Selected publications.</h2></div>
+        <p>Each page includes the citation, contribution boundary, publication status, full-paper links, and an on-demand preview.</p>
+      </div>
+      <div class="publication-list">
+        {publications.map((publication) => (
+          <a class="publication-row" href={`/academic/publications/${publication.data.slug}/`}>
+            <span class="venue">{publication.data.venue}</span>
+            <div><h3>{publication.data.title}</h3><p>{publication.data.citation}</p></div>
+            <span class="text-link">Details →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="education">
+    <div class="shell">
+      <div class="section-heading">
+        <div><p class="eyebrow">Education and recognition</p><h2>Physics, mathematics, teaching, and leadership.</h2></div>
+        <p>I am pursuing Physics and Mathematics at the University of Arizona, with prior study and research at Duke. The downloadable CV contains the complete education, teaching, service, and award record.</p>
+      </div>
+      <div class="button-row"><a class="button button-secondary" href="/documents/">Open document library</a></div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import { filterPublished, sortNewest } from '../../lib/content';
+
+const articles = sortNewest(filterPublished(await getCollection('articles')));
+const categories = [
+  ['quant-research', 'Quant Research', 'Fundamentals, microstructure, execution, market making, and reproducible empirical work.'],
+  ['physics', 'Physics', 'Cosmology, survey simulations, scientific inference, papers, and visualization methods.'],
+  ['ai-safety', 'AI Safety', 'Technically grounded evaluation, robustness, oversight, and autonomous-system failure modes.']
+] as const;
+---
+
+<BaseLayout title="Blog" description="Explanatory writing across quantitative research, physics, and technically grounded AI safety.">
+  <div class="shell"><PageIntro eyebrow="The explanatory layer" title="Blog" description="Articles explain the hypotheses, data, methods, interpretation, and limitations behind projects and experiments. Personal writing is not part of this public system." /></div>
+  <section class="section">
+    <div class="shell">
+      <div class="card-grid">
+        {categories.map(([slug, title, description]) => <a class="card" href={`/blog/${slug}/`}><p class="eyebrow">{articles.filter((article) => article.data.category === slug).length} published</p><h2>{title}</h2><p>{description}</p><span class="text-link">Browse track →</span></a>)}
+      </div>
+    </div>
+  </section>
+  <section class="section section-tight">
+    <div class="shell">
+      <div class="section-heading"><div><p class="eyebrow">Latest writing</p><h2>Recent articles.</h2></div><p>Every article includes dates, category, abstract, citations, related evidence, and disclosures.</p></div>
+      <div class="post-list">{articles.map((article) => <a class="post-row" href={`/blog/${article.data.category}/${article.data.slug}/`}><span class="date-block">{article.data.publishedAt.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</span><div><h2>{article.data.title}</h2><p>{article.data.abstract}</p></div><span class="text-link">Read →</span></a>)}</div>
+    </div>
+  </section>
+</BaseLayout>

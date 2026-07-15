@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import { capabilities, experiences } from '../../data/site';
+---
+
+<BaseLayout title="Quantitative Research and Trading" description="Production-focused quantitative research across forecasting, market making, execution, market data, monitoring, and risk.">
+  <div class="shell">
+    <PageIntro eyebrow="Profile / production markets" title="Quantitative Research and Trading" description="I build short-horizon forecasting, execution, market-making, and research infrastructure from data and simulation through monitoring and risk." />
+  </div>
+
+  <section class="section" id="experience">
+    <div class="shell">
+      <div class="section-heading">
+        <div><p class="eyebrow">Experience</p><h2>Research connected to live systems.</h2></div>
+        <p>Each card keeps the mandate concise and links to public or sanitized evidence. Employer data, exact parameters, live positions, and reconstructable strategy logic are excluded.</p>
+      </div>
+      <div class="entry-list">
+        {experiences.map((experience) => (
+          <article class="experience-card" id={experience.id}>
+            <div class="experience-meta">
+              <strong>{experience.organization}</strong>
+              <span>{experience.dates}</span><br />
+              <span>{experience.location}</span>
+            </div>
+            <div class="experience-body">
+              <h2>{experience.role}</h2>
+              <p>{experience.mandate}</p>
+              <ul class="impact-list">{experience.accomplishments.map((item) => <li>{item}</li>)}</ul>
+              <div class="tech-row">{experience.technologies.map((technology) => <span>{technology}</span>)}</div>
+              <div class="button-row"><a class="button button-secondary" href={experience.evidenceHref}>Inspect supporting evidence</a></div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="capabilities">
+    <div class="shell">
+      <div class="section-heading">
+        <div><p class="eyebrow">Capabilities</p><h2>Organized by system.</h2></div>
+        <p>The relevant question is not whether a tool appears in a list. It is which part of a research and production system that tool supports.</p>
+      </div>
+      <div class="capability-grid">
+        {capabilities.map(([title, text]) => <article class="capability"><h3>{title}</h3><p>{text}</p></article>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="independent-projects">
+    <div class="shell">
+      <div class="section-heading">
+        <div><p class="eyebrow">Independent systems</p><h2>Research beyond the role description.</h2></div>
+        <p>Historical crypto market-making work and the IMC Prosperity challenge remain supporting projects. Detailed claims will be added only with documentation and reproducible artifacts.</p>
+      </div>
+      <div class="card-grid">
+        <article class="card"><p class="eyebrow">Crypto infrastructure</p><h3>Market-making research stack</h3><p>Exchange feeds, fee-aware fill simulation, monitoring, and high-speed research loops across Python, Polars, Numba, PyTorch, and Rust.</p></article>
+        <article class="card"><p class="eyebrow">Competition</p><h3>IMC Prosperity 4</h3><p>Algorithmic trading challenge work placed in the top 3% of more than 6,000 teams.</p></article>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

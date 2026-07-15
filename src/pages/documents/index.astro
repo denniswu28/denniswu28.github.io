@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageIntro from '../../components/PageIntro.astro';
+import PdfPreview from '../../components/PdfPreview.astro';
+import { filterPublished } from '../../lib/content';
+
+const documents = filterPublished(await getCollection('documents'));
+---
+
+<BaseLayout title="Documents" description="Quantitative resume, academic CV, publications, and project records with on-demand previews and downloads.">
+  <div class="shell"><PageIntro eyebrow="Formal records" title="Documents" description="A central library for concise professional records and complete academic documents. PDF viewers load only when requested." /></div>
+  <section class="section">
+    <div class="shell document-list">
+      {documents.map((document) => (
+        <article class="document-row">
+          <span class="date-block">{document.data.documentType.replace('-', ' ')}</span>
+          <div><h2>{document.data.title}</h2><p>{document.data.summary}</p></div>
+          {document.data.preview && document.data.previewUrl ? <PdfPreview title={document.data.title} url={document.data.previewUrl} /> : <a class="button button-secondary" href={document.data.fileUrl} target="_blank" rel="noopener">Download</a>}
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
