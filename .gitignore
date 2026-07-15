@@ -3,3 +3,7 @@ node_modules/
 dist/
 .astro/
 coverage/
+
+# Private source records used to prepare the sanitized portfolio case study.
+chatgpt_portfolio_update.csv
+chatgpt_trade_log.csv

@@ -87,6 +87,7 @@ const theses = defineCollection({
     postmortem: z.string(),
     privacy: z.enum(['closed-position', 'delayed', 'aggregated', 'redacted']),
     returnMethodology: z.string(),
+    equityDataUrl: z.string().optional(),
     draft: z.boolean().default(false)
   })
 });

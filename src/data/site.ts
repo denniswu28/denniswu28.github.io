@@ -1,12 +1,16 @@
 export const site = {
-  name: 'Dennis Wu',
-  fullName: 'Tianrui (Dennis) Wu',
+  name: 'Tianrui Wu',
+  fullName: 'Tianrui Wu',
   title: 'Quantitative Researcher',
   description: 'Quantitative researcher applying statistical inference, machine learning, and market microstructure research to production trading systems.',
   url: 'https://denniswu28.github.io',
   email: 'denniswu501@gmail.com',
   github: 'https://github.com/denniswu28',
   linkedin: 'https://www.linkedin.com/in/dennis-tianrui-wu',
+  socialImage: '/images/social-preview.png',
+  socialImageWidth: 1733,
+  socialImageHeight: 908,
+  socialImageAlt: 'Tianrui Wu — quantitative research, cosmology, and systems',
   resume: '/files/Wu,%20Tianrui_Resume_v2.pdf',
   cv: '/files/Wu,%20Tianrui_CV.pdf'
 } as const;
