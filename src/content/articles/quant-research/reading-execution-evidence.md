@@ -16,7 +16,7 @@ tags:
   - execution
   - transaction costs
   - reproducibility
-abstract: The stored 31-day execution artifact supports a TWAP comparison and a compounded relative-return path, but not arrival-price implementation shortfall or a true market-volume VWAP benchmark.
+abstract: The stored 31-day execution artifact supports a TWAP comparison, a compounded relative-return path, and an aggregate fee rate, but not arrival-price implementation shortfall, a true market-volume VWAP benchmark, or fee reduction versus TWAP.
 readingMinutes: 6
 citations:
   - label: Aggregate metric definitions
@@ -37,6 +37,8 @@ An execution chart becomes misleading when a familiar label is attached to data 
 The completed export contains 31 daily strategy returns from October 15 through November 14, 2025. Compounding those values from a zero-percent baseline produces the relative-return path shown in Experiment 01. The exact daily sequence remains visible as a faint trace; a five-day exponential moving average is a display aid rather than a replacement for the observations.
 
 The aggregate record also contains mean signed slippage against a stored one-second TWAP reference. The selected run reports 3.2172 basis points, while the matched reference run reports 0.8791 basis points. Subtracting the two stored endpoints gives a 2.3381 basis-point gap.
+
+The same record reports an aggregate fee rate of -1.7934 basis points, defined as aggregate fee divided by aggregate executed volume under the stored sign convention. No fee series is retained for the TWAP baseline. The chart therefore shows the observed fee rate separately; it does not relabel it as a fee reduction versus TWAP.
 
 Those statements are narrow, but they are reproducible from the published CSV files.
 
@@ -60,10 +62,11 @@ This division prevents a smooth curve from being mistaken for a new measurement.
 
 ## A reusable evidence checklist
 
-Before publishing an execution result, I use five questions:
+Before publishing an execution result, I use six questions:
 
 - Is the sign convention explicit?
 - Does the benchmark exist in the stored data?
+- Are fee levels separated from fee reductions when no benchmark fee series exists?
 - Are daily paths distinguished from aggregate endpoints?
 - Are smoothing and normalization labeled as display choices?
 - Can another reader reproduce every displayed number from the cited artifact?

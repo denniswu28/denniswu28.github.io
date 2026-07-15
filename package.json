@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "data:btc-crash": "node scripts/fetch-btc-crash.mjs",
     "dev": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro dev",
     "build": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro check && cross-env ASTRO_TELEMETRY_DISABLED=1 astro build && node scripts/validate-build.mjs",
     "check": "cross-env ASTRO_TELEMETRY_DISABLED=1 astro check",

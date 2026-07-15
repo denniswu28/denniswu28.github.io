@@ -17,6 +17,7 @@ const required = [
   'blog/physics/shared-simulated-skies/index.html',
   'blog/ai-safety/index.html',
   'documents/index.html',
+  'data/coinbase-btc-usd-2025-10-09-to-2025-10-14-5m.csv',
   '404.html',
   'rss.xml'
 ];
@@ -49,6 +50,18 @@ for (const forbidden of ['href="/private', 'draft-template', 'Unpublished thesis
 }
 
 const htmlFiles = files.filter((file) => file.endsWith('.html'));
+const experimentHtml = fs.readFileSync(path.join(root, 'lab', 'trading-systems-execution', 'index.html'), 'utf8');
+for (const evidenceLabel of [
+  'Deep Limit-Order-Book Architecture',
+  'ILLUSTRATIVE ACCEPTANCE TARGET',
+  '20% BTC + 80% CASH',
+  'TWAP 0.00'
+]) {
+  if (!experimentHtml.includes(evidenceLabel)) throw new Error(`Missing revised Quant Lab evidence: ${evidenceLabel}`);
+}
+for (const obsoleteLabel of ['Method view only', 'Scenario view only']) {
+  if (experimentHtml.includes(obsoleteLabel)) throw new Error(`Obsolete Quant Lab placeholder detected: ${obsoleteLabel}`);
+}
 const socialImageUrl = 'https://denniswu28.github.io/images/social-preview.png';
 for (const htmlFile of htmlFiles) {
   const html = fs.readFileSync(htmlFile, 'utf8');

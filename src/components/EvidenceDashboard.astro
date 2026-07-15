@@ -1,31 +1,79 @@
 ---
 import fs from 'node:fs';
 import path from 'node:path';
-import { compoundReturns, drawdowns, ema, parseReturnsCsv, percent, svgPath } from '../lib/quant';
+import {
+  compoundReturns,
+  drawdowns,
+  ema,
+  equityDrawdowns,
+  exposureEquityPaths,
+  parsePriceCsv,
+  parseReturnsCsv,
+  percent,
+  svgPathScaled
+} from '../lib/quant';
 
 const dataDirectory = path.join(process.cwd(), 'public', 'data');
 const marketCsv = fs.readFileSync(path.join(dataDirectory, 'market-making-daily-returns.csv'), 'utf8');
 const executionCsv = fs.readFileSync(path.join(dataDirectory, 'best_31_day_vwap_relative_returns_2025-10-15_to_2025-11-14.csv'), 'utf8');
 const metricsCsv = fs.readFileSync(path.join(dataDirectory, 'best_31_day_aggregate_metrics_2025-10-15_to_2025-11-14.csv'), 'utf8');
+const btcCsv = fs.readFileSync(path.join(dataDirectory, 'coinbase-btc-usd-2025-10-09-to-2025-10-14-5m.csv'), 'utf8');
 
 const marketRows = parseReturnsCsv(marketCsv);
 const marketCompounded = compoundReturns(marketRows);
 const marketDrawdown = drawdowns(marketCompounded);
 const marketSmoothed = ema(marketCompounded, 0.25);
+const marketMin = Math.min(...marketCompounded, ...marketSmoothed);
+const marketMax = Math.max(...marketCompounded, ...marketSmoothed);
+
 const executionRows = parseReturnsCsv(executionCsv);
 const executionCompounded = compoundReturns(executionRows);
 const executionSmoothed = ema(executionCompounded, 2 / 6);
+const executionMin = Math.min(...executionCompounded, ...executionSmoothed);
+const executionMax = Math.max(...executionCompounded, ...executionSmoothed);
 const metricRows = metricsCsv.trim().split(/\r?\n/).slice(1).map((line) => line.split(','));
 const metric = (name: string) => Number(metricRows.find((row) => row[0] === name)?.[1] ?? 0);
+
+const selectedSlippage = metric('slippage_vs_twap_mean');
+const referenceSlippage = metric('vwap_reference_mean_twap_slippage');
+const slippageGap = metric('slippage_improvement_vs_vwap_reference');
+const aggregateFeeRate = metric('aggregate_fee_rate');
+const benchmarkMin = -2.2;
+const benchmarkMax = 3.6;
+const benchmarkY = (value: number) => 350 - ((value - benchmarkMin) / (benchmarkMax - benchmarkMin)) * 112;
+const twapY = benchmarkY(0);
+const selectedY = benchmarkY(selectedSlippage);
+const referenceY = benchmarkY(referenceSlippage);
+const feeY = benchmarkY(aggregateFeeRate);
+
+const icHorizons = ['1s', '5s', '15s', '30s', '60s', '5m'];
+const illustrativeIc = [0.142, 0.133, 0.119, 0.101, 0.078, 0.041];
+const illustrativeIr = [3.4, 3.2, 2.9, 2.5, 2.1, 1.45];
+
+const btcRows = parsePriceCsv(btcCsv);
+const btcPaths = exposureEquityPaths(btcRows.map((row) => row.close), 0.2);
+const fullDrawdown = equityDrawdowns(btcPaths.full);
+const reducedDrawdown = equityDrawdowns(btcPaths.reduced);
+const fullMaxDrawdown = Math.min(...fullDrawdown);
+const reducedMaxDrawdown = Math.min(...reducedDrawdown);
+const troughIndex = fullDrawdown.indexOf(fullMaxDrawdown);
+const troughX = 48 + (troughIndex / Math.max(fullDrawdown.length - 1, 1)) * (720 - 96);
+const riskMin = -0.13;
+const riskY = (value: number) => 260 - 30 - ((value - riskMin) / (0 - riskMin)) * (260 - 60);
+const riskStart = new Date(btcRows[0].timestamp).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' }).toUpperCase();
+const riskEnd = new Date(btcRows.at(-1)?.timestamp ?? '').toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' }).toUpperCase();
+const troughTime = new Date(btcRows[troughIndex].timestamp).toLocaleString('en-US', {
+  month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'UTC'
+});
 
 const panels = [
   {
     id: 'alpha-direction',
     index: '01',
-    title: 'Alpha and Direction',
-    question: 'How does a short-horizon forecasting system turn market state into a trade decision?',
-    result: 'Method view only. It shows the research path without disclosing proprietary features or production parameters.',
-    tags: ['Phase-space features', 'LSTM state', 'MLflow lifecycle']
+    title: 'Deep Limit-Order-Book Architecture',
+    question: 'How can spatial depth and temporal state be combined in a short-horizon LOB model?',
+    result: 'This original schematic follows the published DeepLOB reference design: a 100 × 40 depth tensor, convolutional feature extraction, a multi-scale Inception module, 64 LSTM units, and three-class softmax output. It is a literature architecture, not a disclosure of production parameters.',
+    tags: ['10 LOB levels', 'CNN + Inception', 'LSTM 64', 'Paper-derived reference']
   },
   {
     id: 'market-making',
@@ -39,25 +87,25 @@ const panels = [
     id: 'optimal-execution',
     index: '03',
     title: 'Optimal Execution',
-    question: 'How did the selected run compare with the stored TWAP reference?',
-    result: `The selected run recorded ${metric('slippage_vs_twap_mean').toFixed(2)} bps mean signed slippage versus TWAP, ${metric('slippage_improvement_vs_vwap_reference').toFixed(2)} bps above the matched reference. Positive is favorable.`,
-    tags: ['31 observations', '5-day EMA', 'Aggregate endpoint']
+    question: 'What do the stored run, TWAP comparison, and fee record actually establish?',
+    result: `Mean signed slippage was +${selectedSlippage.toFixed(2)} bps versus the stored TWAP baseline and +${slippageGap.toFixed(2)} bps above the matched reference. Aggregate fee divided by executed volume was ${aggregateFeeRate.toFixed(2)} bps under the stored sign convention. The export has no separate TWAP fee series, so it cannot support a fee-reduction claim versus TWAP.`,
+    tags: ['31 observed days', 'TWAP baseline', `${slippageGap.toFixed(2)} bps gap`, `${aggregateFeeRate.toFixed(2)} bps fee rate`]
   },
   {
     id: 'factor-research',
     index: '04',
-    title: 'Factor Research',
-    question: 'How should feature value be inspected across research horizons?',
-    result: 'Method view only. Normalized decay profiles represent the comparison workflow, not a released proprietary factor series.',
-    tags: ['200+ factors', 'Decay analysis', 'Cross-sectional rank']
+    title: 'Microstructure Factor Research',
+    question: 'Which common LOB factors are testable, and what should a strong validation profile look like?',
+    result: 'The equations make the candidate signals inspectable. The IC/IR term structure is an explicitly illustrative acceptance target—not an observed or production performance series.',
+    tags: ['Queue imbalance', 'Microprice', 'Order-flow imbalance', 'Illustrative IC / IR target']
   },
   {
     id: 'portfolio-risk',
     index: '05',
     title: 'Portfolio Risk',
-    question: 'How does reducing exposure change the shape of a stress response?',
-    result: 'Scenario view only. It illustrates the documented reduction from full exposure to 20% without publishing live positions.',
-    tags: ['Exposure limits', 'Stress response', 'Sanitized scenario']
+    question: 'How much would a fivefold BTC exposure cut have changed the October 2025 crash path?',
+    result: `Using ${btcRows.length.toLocaleString('en-US')} public Coinbase five-minute closes, the full-exposure path reached a ${percent(fullMaxDrawdown)} maximum drawdown. A pre-event allocation of 20% BTC plus 80% cash reached ${percent(reducedMaxDrawdown)} under the same price path. Both are transparent BTC-only reconstructions, not realized portfolio returns.`,
+    tags: ['Coinbase BTC-USD', '5-minute closes', '20% BTC + 80% cash', 'Counterfactual']
   }
 ] as const;
 ---
@@ -72,50 +120,188 @@ const panels = [
         <p>{panel.result}</p>
         <div class="tag-row">{panel.tags.map((tag) => <span>{tag}</span>)}</div>
       </div>
-      <figure class="evidence-visual">
-        {panel.id === 'alpha-direction' && (
-          <div class="signal-flow" role="img" aria-label="Feature state flows through recurrent memory and confidence into a directional decision">
-            <div><span>01</span><strong>Feature state</strong><i style="--level: 74%"></i></div>
-            <div><span>02</span><strong>LSTM memory</strong><i style="--level: 58%"></i></div>
-            <div><span>03</span><strong>Confidence</strong><i style="--level: 82%"></i></div>
-            <div><span>04</span><strong>Direction</strong><i style="--level: 64%"></i></div>
-          </div>
-        )}
-        {panel.id === 'market-making' && (
+
+      {panel.id === 'alpha-direction' && (
+        <figure class="evidence-visual architecture-visual">
+          <svg viewBox="0 0 720 330" role="img" aria-labelledby="deeplob-title deeplob-description">
+            <title id="deeplob-title">DeepLOB convolutional, Inception, and LSTM architecture</title>
+            <desc id="deeplob-description">One hundred limit-order-book snapshots with ten price levels and four price-volume fields pass through convolutional blocks, a multi-scale Inception module, 64 LSTM units, and a three-class softmax output.</desc>
+            <defs><marker id="architecture-arrow" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="5" markerHeight="5" orient="auto"><path class="architecture-arrow-head" d="M0 0L6 3L0 6Z"/></marker></defs>
+            <g class="architecture-arrows" aria-hidden="true">
+              <path d="M151 164H176"/><path d="M294 164H319"/><path d="M454 164H479"/><path d="M576 164H601"/>
+            </g>
+            <g class="architecture-node architecture-input">
+              <rect x="18" y="68" width="133" height="192" rx="4"/>
+              <text class="architecture-kicker" x="32" y="90">INPUT · 100 × 40</text>
+              <text x="32" y="108">100 recent LOB states</text>
+              <g class="lob-grid" aria-hidden="true">
+                <path d="M32 126H137M32 143H137M32 160H137M32 177H137M32 194H137M32 211H137M32 228H137M58 120V238M84 120V238M110 120V238"/>
+              </g>
+              <text x="37" y="250">pᵃ</text><text x="63" y="250">vᵃ</text><text x="89" y="250">pᵇ</text><text x="115" y="250">vᵇ</text>
+              <text class="architecture-side-label" x="28" y="137">L1</text><text class="architecture-side-label" x="24" y="225">L10</text>
+            </g>
+            <g class="architecture-node">
+              <rect x="176" y="82" width="118" height="164" rx="4"/>
+              <text class="architecture-kicker" x="190" y="105">CNN STACK</text>
+              <rect class="architecture-layer" x="190" y="121" width="90" height="27" rx="2"/>
+              <text x="200" y="139">1×2 @16 · stride 2</text>
+              <rect class="architecture-layer" x="190" y="157" width="90" height="27" rx="2"/>
+              <text x="207" y="175">4×1 @16 ×2</text>
+              <rect class="architecture-layer" x="190" y="193" width="90" height="27" rx="2"/>
+              <text x="207" y="211">depth collapse</text>
+              <text class="architecture-note" x="190" y="235">price / size → spatial depth</text>
+            </g>
+            <g class="architecture-node">
+              <rect x="319" y="60" width="135" height="208" rx="4"/>
+              <text class="architecture-kicker" x="334" y="84">INCEPTION @32</text>
+              <rect class="architecture-layer" x="334" y="101" width="105" height="28" rx="2"/>
+              <text x="347" y="119">1×1 → 3×1 conv</text>
+              <rect class="architecture-layer" x="334" y="139" width="105" height="28" rx="2"/>
+              <text x="347" y="157">1×1 → 5×1 conv</text>
+              <rect class="architecture-layer" x="334" y="177" width="105" height="28" rx="2"/>
+              <text x="344" y="195">3×1 pool → 1×1</text>
+              <path class="architecture-merge" d="M347 219H426M386.5 205V231"/>
+              <text class="architecture-note" x="345" y="248">concat multi-scale time features</text>
+            </g>
+            <g class="architecture-node">
+              <rect x="479" y="98" width="97" height="132" rx="4"/>
+              <text class="architecture-kicker" x="494" y="122">LSTM</text>
+              <circle class="architecture-state" cx="527" cy="163" r="24"/>
+              <path class="architecture-loop" d="M509 147C487 130 488 195 509 179"/>
+              <text class="architecture-state-text" x="516" y="167">64</text>
+              <text class="architecture-note" x="495" y="211">temporal state</text>
+            </g>
+            <g class="architecture-node">
+              <rect x="601" y="86" width="101" height="156" rx="4"/>
+              <text class="architecture-kicker" x="615" y="110">SOFTMAX</text>
+              <rect class="architecture-output negative-output" x="615" y="126" width="73" height="25" rx="2"/>
+              <text x="636" y="143">DOWN</text>
+              <rect class="architecture-output" x="615" y="160" width="73" height="25" rx="2"/>
+              <text x="638" y="177">FLAT</text>
+              <rect class="architecture-output positive-output" x="615" y="194" width="73" height="25" rx="2"/>
+              <text x="641" y="211">UP</text>
+            </g>
+            <text class="architecture-caption" x="18" y="305">REFERENCE ARCHITECTURE · ORIGINAL SCHEMATIC BASED ON ZHANG, ZOHREN &amp; ROBERTS (2018)</text>
+          </svg>
+          <figcaption>Architecture source: <a href="https://arxiv.org/abs/1808.03668">DeepLOB</a>. This diagram is newly drawn from the paper’s component descriptions; it does not copy the published figure.</figcaption>
+        </figure>
+      )}
+
+      {panel.id === 'market-making' && (
+        <figure class="evidence-visual">
           <svg viewBox="0 0 640 210" role="img" aria-labelledby="market-title market-description">
             <title id="market-title">Market-making cumulative return</title>
             <desc id="market-description">The exact compounded path and its seven-day exponential moving average across 120 observations.</desc>
             <g class="chart-grid"><path d="M12 30H628M12 75H628M12 120H628M12 165H628" /></g>
-            <path class="chart-line chart-line-muted" d={svgPath(marketCompounded, 640, 180)} />
-            <path class="chart-line chart-line-primary" d={svgPath(marketSmoothed, 640, 180)} />
+            <path class="chart-line chart-line-muted" d={svgPathScaled(marketCompounded, marketMin, marketMax, 640, 180)} />
+            <path class="chart-line chart-line-primary" d={svgPathScaled(marketSmoothed, marketMin, marketMax, 640, 180)} />
             <text x="12" y="202">FEB 2026</text><text x="628" y="202" text-anchor="end">MAY 2026</text>
           </svg>
-        )}
-        {panel.id === 'optimal-execution' && (
-          <svg viewBox="0 0 640 210" role="img" aria-labelledby="execution-title execution-description">
-            <title id="execution-title">Execution relative return path</title>
-            <desc id="execution-description">The exact 31-observation compounded path and its five-day exponential moving average.</desc>
-            <g class="chart-grid"><path d="M12 30H628M12 75H628M12 120H628M12 165H628" /></g>
-            <path class="chart-line chart-line-muted" d={svgPath(executionCompounded, 640, 180)} />
-            <path class="chart-line chart-line-primary" d={svgPath(executionSmoothed, 640, 180)} />
-            <text x="12" y="202">OCT 15, 2025</text><text x="628" y="202" text-anchor="end">NOV 14, 2025</text>
+          <figcaption>Bright line: 7-day EMA. Faint line: exact observed path. <a href="/data/market-making-daily-returns.csv">Download 120 observations</a>.</figcaption>
+        </figure>
+      )}
+
+      {panel.id === 'optimal-execution' && (
+        <figure class="evidence-visual execution-visual">
+          <svg viewBox="0 0 640 390" role="img" aria-labelledby="execution-title execution-description">
+            <title id="execution-title">Execution return, TWAP slippage, and observed fee rate</title>
+            <desc id="execution-description">The upper panel shows the exact 31-day compounded return and five-day exponential moving average. The lower panel shows observed mean signed slippage endpoints relative to a zero TWAP baseline and the separately observed aggregate fee rate.</desc>
+            <g class="chart-grid"><path d="M16 28H624M16 74H624M16 120H624M16 166H624" /></g>
+            <path class="execution-area" d={`${svgPathScaled(executionSmoothed, executionMin, executionMax, 640, 190, 16, 18)} L624 172 L16 172 Z`} />
+            <path class="chart-line chart-line-muted" d={svgPathScaled(executionCompounded, executionMin, executionMax, 640, 190, 16, 18)} />
+            <path class="chart-line chart-line-primary" d={svgPathScaled(executionSmoothed, executionMin, executionMax, 640, 190, 16, 18)} />
+            <text class="chart-section-label" x="18" y="18">31-DAY VWAP-RELATIVE RETURN · SHARED SCALE</text>
+            <text x="16" y="205">OCT 15, 2025</text><text x="624" y="205" text-anchor="end">NOV 14, 2025</text>
+
+            <text class="chart-section-label" x="18" y="229">OBSERVED AGGREGATE ENDPOINTS · BPS</text>
+            <path class="benchmark-zero" d={`M18 ${twapY}H624`} />
+            <path class="benchmark-line benchmark-selected" d={`M42 ${twapY} C190 ${twapY - 3} 420 ${selectedY + 6} 602 ${selectedY}`} />
+            <path class="benchmark-line benchmark-reference" d={`M42 ${twapY} C190 ${twapY - 1} 420 ${referenceY + 2} 602 ${referenceY}`} />
+            <path class="benchmark-line benchmark-fee" d={`M42 ${twapY} C190 ${twapY + 2} 420 ${feeY - 3} 602 ${feeY}`} />
+            <circle class="benchmark-point selected-point" cx="602" cy={selectedY} r="5"/>
+            <circle class="benchmark-point reference-point" cx="602" cy={referenceY} r="4"/>
+            <circle class="benchmark-point fee-point" cx="602" cy={feeY} r="4"/>
+            <text class="benchmark-label selected-label" x="395" y={selectedY - 9}>SELECTED +{selectedSlippage.toFixed(2)} · VS TWAP</text>
+            <text class="benchmark-label reference-label" x="395" y={referenceY - 8}>MATCHED +{referenceSlippage.toFixed(2)}</text>
+            <text class="benchmark-label fee-label" x="395" y={feeY + 17}>FEE RATE {aggregateFeeRate.toFixed(2)} · SEPARATE</text>
+            <text class="benchmark-label zero-label" x="22" y={twapY - 8}>TWAP 0.00</text>
+            <path class="benchmark-gap" d={`M620 ${selectedY}h-8M616 ${selectedY}V${referenceY}M620 ${referenceY}h-8`} />
+            <text class="benchmark-label gap-label" x="520" y={(selectedY + referenceY) / 2 - 5}>+{slippageGap.toFixed(2)} GAP</text>
           </svg>
-        )}
-        {panel.id === 'factor-research' && (
-          <div class="decay-view" role="img" aria-label="Three normalized factor families decay across longer research horizons">
-            <span class="decay-line decay-a"></span><span class="decay-line decay-b"></span><span class="decay-line decay-c"></span>
-            <b>Order book</b><b>OHLCV</b><b>Derivatives</b>
+          <figcaption>Upper: exact daily relative-return path plus 5-day EMA. Lower: stored aggregate endpoints. The fee rate is observed, but fee reduction versus TWAP is unavailable because no TWAP fee series was retained. <a href="/data/best_31_day_aggregate_metrics_2025-10-15_to_2025-11-14.csv">Inspect metrics</a>.</figcaption>
+        </figure>
+      )}
+
+      {panel.id === 'factor-research' && (
+        <figure class="evidence-visual factor-visual">
+          <div class="factor-formulas" aria-label="Common market microstructure factor equations">
+            <div><span>QUEUE IMBALANCE</span><code>QI<sub>t</sub> = (q<sup>b</sup><sub>1,t</sub> − q<sup>a</sup><sub>1,t</sub>) / (q<sup>b</sup><sub>1,t</sub> + q<sup>a</sup><sub>1,t</sub>)</code></div>
+            <div><span>MICROPRICE</span><code>μ<sub>t</sub> = (p<sup>a</sup><sub>1,t</sub>q<sup>b</sup><sub>1,t</sub> + p<sup>b</sup><sub>1,t</sub>q<sup>a</sup><sub>1,t</sub>) / (q<sup>b</sup><sub>1,t</sub> + q<sup>a</sup><sub>1,t</sub>)</code></div>
+            <div><span>ORDER-FLOW IMBALANCE</span><code>OFI<sub>[t,t+Δ]</sub> = Σ<sub>n</sub> e<sub>n</sub></code><small>e<sub>n</sub>: signed best-queue change from order-book events</small></div>
+            <div><span>TRADE-FLOW IMBALANCE</span><code>TFI<sub>Δ</sub> = (Q<sup>buy</sup><sub>Δ</sub> − Q<sup>sell</sup><sub>Δ</sub>) / (Q<sup>buy</sup><sub>Δ</sub> + Q<sup>sell</sup><sub>Δ</sub>)</code></div>
           </div>
-        )}
-        {panel.id === 'portfolio-risk' && (
-          <div class="risk-view" role="img" aria-label="A full-exposure stress response is compared with a reduced 20 percent exposure response">
-            <div><span>Full exposure</span><i style="--risk: 88%"></i></div>
-            <div><span>20% exposure</span><i style="--risk: 28%"></i></div>
-            <p>Pre-event → stress window → post-event</p>
+          <svg viewBox="0 0 660 360" role="img" aria-labelledby="factor-title factor-description">
+            <title id="factor-title">Illustrative IC and information-ratio term structure</title>
+            <desc id="factor-description">A clearly labeled illustrative acceptance target shows information coefficient declining from 0.142 at one second to 0.041 at five minutes and information ratio declining from 3.4 to 1.45. These values are not observed results.</desc>
+            <text class="illustrative-label" x="330" y="18" text-anchor="middle">ILLUSTRATIVE ACCEPTANCE TARGET · NOT OBSERVED PERFORMANCE</text>
+            <g transform="translate(0 24)">
+              <g class="chart-grid"><path d="M44 18H636M44 64H636M44 110H636" /></g>
+              <path class="factor-threshold" d="M44 104H636"/>
+              <path class="chart-line factor-target-line" d={svgPathScaled(illustrativeIc, 0, 0.16, 660, 138, 44, 18)} />
+              {illustrativeIc.map((value, index) => {
+                const x = 44 + (index / (illustrativeIc.length - 1)) * 572;
+                const y = 138 - 18 - (value / 0.16) * 102;
+                return <circle class="factor-point" cx={x} cy={y} r="3.5"/>;
+              })}
+              <text class="factor-chart-title" x="48" y="34">IC · SPEARMAN(Ft, Rt+h)</text>
+              <text class="factor-end-label" x="552" y="87">0.041 @ 5m</text>
+            </g>
+            <g transform="translate(0 191)">
+              <g class="chart-grid"><path d="M44 18H636M44 64H636M44 110H636" /></g>
+              <path class="factor-threshold" d="M44 93H636"/>
+              <path class="chart-line factor-ir-line" d={svgPathScaled(illustrativeIr, 0, 3.8, 660, 138, 44, 18)} />
+              {illustrativeIr.map((value, index) => {
+                const x = 44 + (index / (illustrativeIr.length - 1)) * 572;
+                const y = 138 - 18 - (value / 3.8) * 102;
+                return <circle class="factor-ir-point" cx={x} cy={y} r="3.5"/>;
+              })}
+              <text class="factor-chart-title" x="48" y="34">ICIR · MEAN(IC) / SD(IC)</text>
+              <text class="factor-end-label factor-ir-label" x="552" y="91">1.45 @ 5m</text>
+              {icHorizons.map((horizon, index) => {
+                const x = 44 + (index / (icHorizons.length - 1)) * 572;
+                return <text x={x} y="137" text-anchor="middle">{horizon}</text>;
+              })}
+            </g>
+          </svg>
+          <figcaption>Equations are common research definitions; OFI follows the best-quote event framing in <a href="https://arxiv.org/abs/1011.6402">Cont, Kukanov &amp; Stoikov</a>. The IC/IR paths are validation targets only and must be replaced by timestamped out-of-sample estimates before being described as results.</figcaption>
+        </figure>
+      )}
+
+      {panel.id === 'portfolio-risk' && (
+        <figure class="evidence-visual risk-visual">
+          <svg viewBox="0 0 720 290" role="img" aria-labelledby="risk-title risk-description">
+            <title id="risk-title">BTC October 2025 drawdown under full and twenty-percent exposure</title>
+            <desc id="risk-description">Coinbase BTC-USD five-minute closing prices from October 9 through October 14, 2025 are converted into drawdowns for a full BTC allocation and a counterfactual allocation of twenty percent BTC plus eighty percent cash. Maximum drawdowns are 11.9 percent and 2.4 percent respectively.</desc>
+            <g class="chart-grid"><path d="M48 30H672M48 91.5H672M48 153H672M48 214.5H672" /></g>
+            <text x="42" y="33" text-anchor="end">0%</text><text x="42" y="95" text-anchor="end">−4%</text><text x="42" y="156" text-anchor="end">−8%</text><text x="42" y="218" text-anchor="end">−12%</text>
+            <line class="event-line" x1={troughX} y1="30" x2={troughX} y2="230"/>
+            <text class="event-label" x={Math.min(troughX + 8, 515)} y="46">CLOSE TROUGH · {troughTime} UTC</text>
+            <path class="chart-line risk-full-line" d={svgPathScaled(fullDrawdown, riskMin, 0, 720, 260, 48, 30)} />
+            <path class="chart-line risk-reduced-line" d={svgPathScaled(reducedDrawdown, riskMin, 0, 720, 260, 48, 30)} />
+            <circle class="risk-full-point" cx={troughX} cy={riskY(fullMaxDrawdown)} r="4.5"/>
+            <circle class="risk-reduced-point" cx={troughX} cy={riskY(reducedDrawdown[troughIndex])} r="4"/>
+            <text class="risk-direct-label risk-reduced-label" x="484" y={riskY(reducedDrawdown.at(-1) ?? 0) - 8}>20% BTC + 80% CASH · MDD {percent(reducedMaxDrawdown)}</text>
+            <text class="risk-direct-label risk-full-label" x="484" y={riskY(fullDrawdown.at(-1) ?? 0) + 17}>100% BTC · MDD {percent(fullMaxDrawdown)}</text>
+            <text x="48" y="278">{riskStart} 2025</text><text x="672" y="278" text-anchor="end">{riskEnd} 2025</text>
+          </svg>
+          <div class="risk-equations" aria-label="Exposure scenario equations">
+            <code>E<sup>100</sup><sub>t</sub> = P<sub>t</sub> / P<sub>0</sub></code>
+            <code>E<sup>20</sup><sub>t</sub> = 0.80 + 0.20(P<sub>t</sub> / P<sub>0</sub>)</code>
+            <code>DD<sub>t</sub> = E<sub>t</sub> / max<sub>s≤t</sub>(E<sub>s</sub>) − 1</code>
           </div>
-        )}
-        <figcaption>{panel.id === 'market-making' || panel.id === 'optimal-execution' ? 'Bright line: EMA. Faint line: exact observed path.' : 'Static summary remains understandable without interaction.'}</figcaption>
-      </figure>
+          <figcaption>Exact close-to-close paths from public Coinbase BTC-USD candles; 20% exposure is a no-trade allocation counterfactual set before the window. It excludes altcoins, derivatives, fees, funding, and intrabar marks. <a href="/data/coinbase-btc-usd-2025-10-09-to-2025-10-14-5m.csv">Download 1,441 candles</a>.</figcaption>
+        </figure>
+      )}
     </article>
   ))}
 </div>

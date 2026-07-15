@@ -1,5 +1,5 @@
 ---
-import { getCollection, render, type CollectionEntry } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageIntro from '../../components/PageIntro.astro';
 import EvidenceDashboard from '../../components/EvidenceDashboard.astro';
@@ -12,28 +12,11 @@ export async function getStaticPaths() {
 
 interface Props { entry: CollectionEntry<'experiments'>; }
 const { entry } = Astro.props;
-const { Content } = await render(entry);
 ---
 
 <BaseLayout title={entry.data.title} description={entry.data.summary}>
   <div class="shell"><PageIntro eyebrow="Quant Lab / Experiment 01" title={entry.data.title} description={entry.data.question}><div class="tag-row"><span>{entry.data.freshness}</span><span>{entry.data.dateRange}</span><span>Updated {entry.data.lastUpdated.toLocaleDateString('en-US', { dateStyle: 'medium' })}</span></div></PageIntro></div>
-  <section class="section section-tight">
-    <div class="shell">
-      <div class="method-grid">
-        <article class="method-card"><h3>Data</h3><p>{entry.data.provenance}</p></article>
-        <article class="method-card"><h3>Method</h3><p>{entry.data.method}</p></article>
-        <article class="method-card"><h3>Parameters</h3><ul>{entry.data.parameters.map((item) => <li>{item}</li>)}</ul></article>
-      </div>
-    </div>
-  </section>
   <section class="section">
     <div class="shell"><EvidenceDashboard /></div>
-  </section>
-  <section class="section section-tight">
-    <div class="shell">
-      <div class="section-heading"><div><p class="eyebrow">Metric definitions</p><h2>Read the numbers precisely.</h2></div><div class="prose"><Content /></div></div>
-      <div class="metric-grid">{entry.data.metrics.map((metric) => <article class="metric"><strong>{metric.value}</strong><span>{metric.label}</span><p>{metric.definition}</p></article>)}</div>
-      <div class="notice" style="margin-top: 24px"><strong>Limitations:</strong><ul>{entry.data.limitations.map((item) => <li>{item}</li>)}</ul></div>
-    </div>
   </section>
 </BaseLayout>
