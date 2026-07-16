@@ -305,9 +305,12 @@ body[data-theme='academic'] .publication-row:hover { border-color: var(--signal)
 .factor-target-line { stroke: var(--signal); stroke-width: 2.5; stroke-dasharray: 8 4; filter: drop-shadow(0 0 4px rgba(var(--signal-rgb), .3)); }
 .factor-ir-line { stroke: var(--positive); stroke-width: 2.5; stroke-dasharray: 8 4; }
 .factor-threshold { fill: none; stroke: rgba(255, 212, 121, .38); stroke-width: 1; stroke-dasharray: 3 4; }
+.factor-axis { fill: none; stroke: rgba(168, 186, 196, .65); stroke-width: 1; }
 .factor-point { fill: var(--signal); stroke: #d8fdff; }
 .factor-ir-point { fill: var(--positive); stroke: #dcffe7; }
 .factor-chart-title { fill: var(--text) !important; font-weight: 600 !important; }
+.factor-axis-label { fill: #8fa3ad !important; font-size: 7.5px !important; }
+.factor-assumption-label { fill: var(--warning) !important; font-weight: 600 !important; }
 .factor-end-label { fill: var(--signal) !important; }
 .factor-ir-label { fill: var(--positive) !important; }
 .chart-summary { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 10px; }
