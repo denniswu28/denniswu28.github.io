@@ -68,8 +68,11 @@ export const experiences = [
     mandate: 'Own strategies end to end, from research and validation through execution, monitoring, and risk.',
     accomplishments: [
       'Developed an LSTM forecasting engine with phase-space features and a managed MLflow lifecycle, then deployed it as a live short-horizon taker strategy.',
-      'Built vectorized and L2 order-queue backtest engines for grid market making and systematic parameter research.',
-      'Architected TWAP, VWAP, and implementation-shortfall execution research across three major exchanges.'
+      'Built a dual-engine backtesting stack—a vectorized research engine and an L2 order-queue tick model—for fast parameter sweeps and higher-fidelity fill analysis.',
+      'Designed and validated grid market-making models with inventory, queue-position, fee, and adverse-selection controls.',
+      'Architected TWAP, VWAP, and implementation-shortfall execution research across three major exchanges.',
+      'Engineered more than 200 multi-frequency OHLCV, order-book, derivatives, and cross-sectional factors with automated decay analysis.',
+      'Led a two-person research pod, reviewing methodology and production code and mentoring junior researchers before live deployment.'
     ],
     technologies: ['Python', 'PyTorch', 'MLflow', 'Polars', 'NumPy', 'REST/WebSocket APIs', 'Linux'],
     evidenceHref: '/lab/trading-systems-execution/#market-making'
@@ -92,13 +95,62 @@ export const experiences = [
 ] as const;
 
 export const capabilities = [
-  ['Forecasting and signal research', 'Short-horizon prediction, feature decay, cross-sectional ranking, and robust validation.'],
-  ['Market making and inventory control', 'Grid construction, queue-aware simulation, inventory limits, and adverse-selection analysis.'],
-  ['Execution and transaction-cost analysis', 'TWAP/VWAP research, slippage measurement, fill analysis, and venue comparison.'],
-  ['Market-data engineering', 'Order-book reconstruction, exchange feeds, event normalization, and reproducible datasets.'],
-  ['Backtesting and simulation', 'Vectorized sweeps, tick-level replay, benchmark construction, and sensitivity analysis.'],
-  ['Production monitoring and risk', 'P&L, exposure, beta, leverage, fee, model, and data-quality monitoring.'],
-  ['Statistical inference and machine learning', 'Bayesian inference, time-series modeling, neural networks, and uncertainty analysis.']
+  {
+    id: 'forecasting',
+    title: 'Forecasting and signal research',
+    text: 'Short-horizon prediction, feature decay, cross-sectional ranking, and robust validation.',
+    kicker: 'Signal lifecycle',
+    visual: 'forecast',
+    labHref: '/lab/trading-systems-execution/#alpha-direction'
+  },
+  {
+    id: 'market-making',
+    title: 'Market making and inventory control',
+    text: 'Grid construction, queue-aware simulation, inventory limits, and adverse-selection analysis.',
+    kicker: 'Quote control',
+    visual: 'market-making',
+    labHref: '/lab/trading-systems-execution/#market-making'
+  },
+  {
+    id: 'execution',
+    title: 'Execution and transaction-cost analysis',
+    text: 'TWAP/VWAP research, slippage measurement, fill analysis, and venue comparison.',
+    kicker: 'Benchmark view',
+    visual: 'execution',
+    labHref: '/lab/trading-systems-execution/#optimal-execution'
+  },
+  {
+    id: 'market-data',
+    title: 'Market-data engineering',
+    text: 'Order-book reconstruction, exchange feeds, event normalization, and reproducible datasets.',
+    kicker: 'Depth reconstruction',
+    visual: 'market-data',
+    labHref: '/lab/trading-systems-execution/#factor-research'
+  },
+  {
+    id: 'backtesting',
+    title: 'Backtesting and simulation',
+    text: 'Vectorized sweeps, tick-level replay, benchmark construction, and sensitivity analysis.',
+    kicker: 'Replay fidelity',
+    visual: 'backtesting',
+    labHref: '/lab/trading-systems-execution/#market-making'
+  },
+  {
+    id: 'risk',
+    title: 'Production monitoring and risk',
+    text: 'P&L, exposure, beta, leverage, fee, model, and data-quality monitoring.',
+    kicker: 'Live controls',
+    visual: 'risk',
+    labHref: '/lab/trading-systems-execution/#portfolio-risk'
+  },
+  {
+    id: 'inference',
+    title: 'Statistical inference and machine learning',
+    text: 'Bayesian inference, time-series modeling, neural networks, and uncertainty analysis.',
+    kicker: 'Model diagnostics',
+    visual: 'inference',
+    labHref: '/lab/trading-systems-execution/#factor-research'
+  }
 ] as const;
 
 export const academicProjects = [

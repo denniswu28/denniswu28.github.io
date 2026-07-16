@@ -72,8 +72,8 @@ const panels = [
     index: '01',
     title: 'Deep Limit-Order-Book Architecture',
     question: 'How can spatial depth and temporal state be combined in a short-horizon LOB model?',
-    result: 'This original schematic follows the published DeepLOB reference design: a 100 × 40 depth tensor, convolutional feature extraction, a multi-scale Inception module, 64 LSTM units, and three-class softmax output. It is a literature architecture, not a disclosure of production parameters.',
-    tags: ['10 LOB levels', 'CNN + Inception', 'LSTM 64', 'Paper-derived reference']
+    result: 'The schematic follows the published DeepLOB design: a 100 × 40 depth tensor, convolutional feature extraction, a multi-scale Inception module, 64 LSTM units, and three-class softmax output.',
+    tags: ['10 LOB levels', 'CNN + Inception', 'LSTM 64']
   },
   {
     id: 'market-making',
@@ -81,7 +81,7 @@ const panels = [
     title: 'Market Making and Backtesting',
     question: 'What did the sanitized 120-observation return path and drawdown look like?',
     result: `${marketRows.length} daily observations compound to ${percent(marketCompounded.at(-1) ?? 0)} with a maximum drawdown of ${percent(Math.min(...marketDrawdown))}.`,
-    tags: ['Historical data', '0% baseline', '7-day EMA']
+    tags: ['Observed data', '0% baseline', '7-day EMA']
   },
   {
     id: 'optimal-execution',
@@ -144,12 +144,12 @@ const panels = [
               <rect x="176" y="82" width="118" height="164" rx="4"/>
               <text class="architecture-kicker" x="190" y="105">CNN STACK</text>
               <rect class="architecture-layer" x="190" y="121" width="90" height="27" rx="2"/>
-              <text x="200" y="139">1×2 @16 · stride 2</text>
+              <text class="architecture-layer-label" x="235" y="139" text-anchor="middle">1×2 @16 · stride 2</text>
               <rect class="architecture-layer" x="190" y="157" width="90" height="27" rx="2"/>
-              <text x="207" y="175">4×1 @16 ×2</text>
+              <text class="architecture-layer-label" x="235" y="175" text-anchor="middle">4×1 @16 ×2</text>
               <rect class="architecture-layer" x="190" y="193" width="90" height="27" rx="2"/>
-              <text x="207" y="211">depth collapse</text>
-              <text class="architecture-note" x="190" y="235">price / size → spatial depth</text>
+              <text class="architecture-layer-label" x="235" y="211" text-anchor="middle">depth collapse</text>
+              <text class="architecture-note" x="235" y="235" text-anchor="middle">price / size → depth</text>
             </g>
             <g class="architecture-node">
               <rect x="319" y="60" width="135" height="208" rx="4"/>
@@ -183,7 +183,7 @@ const panels = [
             </g>
             <text class="architecture-caption" x="18" y="305">REFERENCE ARCHITECTURE · ORIGINAL SCHEMATIC BASED ON ZHANG, ZOHREN &amp; ROBERTS (2018)</text>
           </svg>
-          <figcaption>Architecture source: <a href="https://arxiv.org/abs/1808.03668">DeepLOB</a>. This diagram is newly drawn from the paper’s component descriptions; it does not copy the published figure.</figcaption>
+          <figcaption><a href="https://arxiv.org/abs/1808.03668">DeepLOB — Zhang, Zohren &amp; Roberts (2018)</a>.</figcaption>
         </figure>
       )}
 
@@ -240,11 +240,11 @@ const panels = [
             <div><span>ORDER-FLOW IMBALANCE</span><code>OFI<sub>[t,t+Δ]</sub> = Σ<sub>n</sub> e<sub>n</sub></code><small>e<sub>n</sub>: signed best-queue change from order-book events</small></div>
             <div><span>TRADE-FLOW IMBALANCE</span><code>TFI<sub>Δ</sub> = (Q<sup>buy</sup><sub>Δ</sub> − Q<sup>sell</sup><sub>Δ</sub>) / (Q<sup>buy</sup><sub>Δ</sub> + Q<sup>sell</sup><sub>Δ</sub>)</code></div>
           </div>
+          <p class="illustrative-banner">ILLUSTRATIVE ACCEPTANCE TARGET · NOT OBSERVED PERFORMANCE</p>
           <svg viewBox="0 0 660 360" role="img" aria-labelledby="factor-title factor-description">
             <title id="factor-title">Illustrative IC and information-ratio term structure</title>
             <desc id="factor-description">A clearly labeled illustrative acceptance target shows information coefficient declining from 0.142 at one second to 0.041 at five minutes and information ratio declining from 3.4 to 1.45. These values are not observed results.</desc>
-            <text class="illustrative-label" x="330" y="18" text-anchor="middle">ILLUSTRATIVE ACCEPTANCE TARGET · NOT OBSERVED PERFORMANCE</text>
-            <g transform="translate(0 24)">
+            <g transform="translate(0 8)">
               <g class="chart-grid"><path d="M44 18H636M44 64H636M44 110H636" /></g>
               <path class="factor-threshold" d="M44 104H636"/>
               <path class="chart-line factor-target-line" d={svgPathScaled(illustrativeIc, 0, 0.16, 660, 138, 44, 18)} />
@@ -254,9 +254,8 @@ const panels = [
                 return <circle class="factor-point" cx={x} cy={y} r="3.5"/>;
               })}
               <text class="factor-chart-title" x="48" y="34">IC · SPEARMAN(Ft, Rt+h)</text>
-              <text class="factor-end-label" x="552" y="87">0.041 @ 5m</text>
             </g>
-            <g transform="translate(0 191)">
+            <g transform="translate(0 183)">
               <g class="chart-grid"><path d="M44 18H636M44 64H636M44 110H636" /></g>
               <path class="factor-threshold" d="M44 93H636"/>
               <path class="chart-line factor-ir-line" d={svgPathScaled(illustrativeIr, 0, 3.8, 660, 138, 44, 18)} />
@@ -266,13 +265,16 @@ const panels = [
                 return <circle class="factor-ir-point" cx={x} cy={y} r="3.5"/>;
               })}
               <text class="factor-chart-title" x="48" y="34">ICIR · MEAN(IC) / SD(IC)</text>
-              <text class="factor-end-label factor-ir-label" x="552" y="91">1.45 @ 5m</text>
               {icHorizons.map((horizon, index) => {
                 const x = 44 + (index / (icHorizons.length - 1)) * 572;
                 return <text x={x} y="137" text-anchor="middle">{horizon}</text>;
               })}
             </g>
           </svg>
+          <div class="chart-summary" aria-label="Illustrative factor target endpoints">
+            <span><strong>IC</strong> 0.142 at 1s → 0.041 at 5m</span>
+            <span><strong>ICIR</strong> 3.40 at 1s → 1.45 at 5m</span>
+          </div>
           <figcaption>Equations are common research definitions; OFI follows the best-quote event framing in <a href="https://arxiv.org/abs/1011.6402">Cont, Kukanov &amp; Stoikov</a>. The IC/IR paths are validation targets only and must be replaced by timestamped out-of-sample estimates before being described as results.</figcaption>
         </figure>
       )}
@@ -285,15 +287,17 @@ const panels = [
             <g class="chart-grid"><path d="M48 30H672M48 91.5H672M48 153H672M48 214.5H672" /></g>
             <text x="42" y="33" text-anchor="end">0%</text><text x="42" y="95" text-anchor="end">−4%</text><text x="42" y="156" text-anchor="end">−8%</text><text x="42" y="218" text-anchor="end">−12%</text>
             <line class="event-line" x1={troughX} y1="30" x2={troughX} y2="230"/>
-            <text class="event-label" x={Math.min(troughX + 8, 515)} y="46">CLOSE TROUGH · {troughTime} UTC</text>
             <path class="chart-line risk-full-line" d={svgPathScaled(fullDrawdown, riskMin, 0, 720, 260, 48, 30)} />
             <path class="chart-line risk-reduced-line" d={svgPathScaled(reducedDrawdown, riskMin, 0, 720, 260, 48, 30)} />
             <circle class="risk-full-point" cx={troughX} cy={riskY(fullMaxDrawdown)} r="4.5"/>
             <circle class="risk-reduced-point" cx={troughX} cy={riskY(reducedDrawdown[troughIndex])} r="4"/>
-            <text class="risk-direct-label risk-reduced-label" x="484" y={riskY(reducedDrawdown.at(-1) ?? 0) - 8}>20% BTC + 80% CASH · MDD {percent(reducedMaxDrawdown)}</text>
-            <text class="risk-direct-label risk-full-label" x="484" y={riskY(fullDrawdown.at(-1) ?? 0) + 17}>100% BTC · MDD {percent(fullMaxDrawdown)}</text>
             <text x="48" y="278">{riskStart} 2025</text><text x="672" y="278" text-anchor="end">{riskEnd} 2025</text>
           </svg>
+          <div class="chart-summary risk-summary" aria-label="BTC exposure scenario results">
+            <span><strong>100% BTC</strong> maximum drawdown {percent(fullMaxDrawdown)}</span>
+            <span><strong>20% BTC + 80% CASH</strong> maximum drawdown {percent(reducedMaxDrawdown)}</span>
+            <span><strong>Close trough</strong> {troughTime} UTC</span>
+          </div>
           <div class="risk-equations" aria-label="Exposure scenario equations">
             <code>E<sup>100</sup><sub>t</sub> = P<sub>t</sub> / P<sub>0</sub></code>
             <code>E<sup>20</sup><sub>t</sub> = 0.80 + 0.20(P<sub>t</sub> / P<sub>0</sub>)</code>

@@ -8,22 +8,35 @@ import { filterPublished } from '../../lib/content';
 const publications = filterPublished(await getCollection('publications'));
 ---
 
-<BaseLayout title="Academic Research" description="Cosmology, statistical inference, scientific machine learning, survey simulations, and publications.">
-  <div class="shell">
-    <PageIntro eyebrow="Academic profile / cosmology" title="Scientific questions, visual evidence, formal record." description="I study cosmology with statistical inference, scientific machine learning, and large survey simulations. The web profile explains the work; the CV and papers preserve the complete record.">
-      <div class="button-row"><a class="button" href={site.cv} target="_blank" rel="noopener">Download Academic CV</a><a class="button button-secondary" href="#publications">View Publications</a></div>
-    </PageIntro>
-  </div>
-
-  <section class="section">
-    <div class="shell">
-      <div class="section-heading">
-        <div><p class="eyebrow">Research projects</p><h2>Problem, data, contribution, result.</h2></div>
-        <p>Project summaries separate my work from the wider collaboration and link measurable results to the scientific question they support.</p>
+<BaseLayout title="Academic Research" description="Cosmology, statistical inference, scientific machine learning, survey simulations, and publications." variant="academic">
+  <div class="academic-page">
+    <section class="academic-hero">
+      <div class="academic-shell">
+        <PageIntro eyebrow="Observational cosmology · astrophysics" title="Mapping the universe’s structure, one systematic at a time." description="I study weak lensing, baryon acoustic oscillations, and scientific machine learning for Roman, Rubin, and SPHEREx—turning large simulated surveys into precise, testable cosmological measurements.">
+          <div class="button-row"><a class="button" href={site.cv} target="_blank" rel="noopener">Download Academic CV</a><a class="button button-secondary" href="#publications">View Publications</a></div>
+          <div class="academic-interests" aria-label="Research interests">
+            <span>Weak lensing</span><span>Baryon acoustic oscillations</span><span>Large-scale structure</span><span>Bayesian inference · MCMC</span><span>ML for cosmology</span>
+          </div>
+          <div class="academic-logo-rail" aria-label="Research institutions and collaborations">
+            <span class="academic-logo-label">Research network<br />and collaborations</span>
+            <span><img src="/images/Caltech-logo.png" alt="Caltech" /></span>
+            <span><img src="/images/Duke-logo.png" alt="Duke University" /></span>
+            <span><img src="/images/CERN-logo.png" alt="CERN" /></span>
+            <span><img src="/images/APS-logo.jpg" alt="American Physical Society" /></span>
+          </div>
+        </PageIntro>
       </div>
-      <div class="project-grid">
+    </section>
+
+    <section class="section academic-section">
+      <div class="academic-shell">
+      <div class="section-heading">
+        <div><p class="eyebrow">Research trajectory</p><h2>Questions, methods, and measurable results.</h2></div>
+        <p>Project summaries connect each scientific question to the data, methods, contribution boundary, and measurable result.</p>
+      </div>
+      <div class="project-grid academic-project-grid">
         {academicProjects.map((project) => (
-          <article class="project-card" id={project.id}>
+          <article class="project-card academic-project-card" id={project.id}>
             <div class="project-media"><img src={project.image} alt={project.alt} loading="lazy" /></div>
             <div class="project-copy">
               <p class="eyebrow">{project.institution}</p>
@@ -38,11 +51,11 @@ const publications = filterPublished(await getCollection('publications'));
           </article>
         ))}
       </div>
-    </div>
-  </section>
+      </div>
+    </section>
 
-  <section class="section" id="publications">
-    <div class="shell">
+    <section class="section academic-section" id="publications">
+      <div class="academic-shell">
       <div class="section-heading">
         <div><p class="eyebrow">Formal record</p><h2>Selected publications.</h2></div>
         <p>Each page includes the citation, contribution boundary, publication status, full-paper links, and an on-demand preview.</p>
@@ -56,16 +69,17 @@ const publications = filterPublished(await getCollection('publications'));
           </a>
         ))}
       </div>
-    </div>
-  </section>
+      </div>
+    </section>
 
-  <section class="section" id="education">
-    <div class="shell">
+    <section class="section academic-section" id="education">
+      <div class="academic-shell">
       <div class="section-heading">
         <div><p class="eyebrow">Education and recognition</p><h2>Physics, mathematics, teaching, and leadership.</h2></div>
         <p>I am pursuing Physics and Mathematics at the University of Arizona, with prior study and research at Duke. The downloadable CV contains the complete education, teaching, service, and award record.</p>
       </div>
       <div class="button-row"><a class="button button-secondary" href="/documents/">Open document library</a></div>
-    </div>
-  </section>
+      </div>
+    </section>
+  </div>
 </BaseLayout>

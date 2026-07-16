@@ -1,7 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageIntro from '../../components/PageIntro.astro';
-import { capabilities, experiences } from '../../data/site';
+import CapabilityExplorer from '../../components/CapabilityExplorer.astro';
+import { experiences } from '../../data/site';
 ---
 
 <BaseLayout title="Quantitative Research and Trading" description="Production-focused quantitative research across forecasting, market making, execution, market data, monitoring, and risk.">
@@ -27,7 +28,7 @@ import { capabilities, experiences } from '../../data/site';
               <p>{experience.mandate}</p>
               <ul class="impact-list">{experience.accomplishments.map((item) => <li>{item}</li>)}</ul>
               <div class="tech-row">{experience.technologies.map((technology) => <span>{technology}</span>)}</div>
-              <div class="button-row"><a class="button button-secondary" href={experience.evidenceHref}>Inspect supporting evidence</a></div>
+              <div class="button-row"><a class="button button-secondary" href={experience.evidenceHref}>Learn more</a></div>
             </div>
           </article>
         ))}
@@ -39,11 +40,9 @@ import { capabilities, experiences } from '../../data/site';
     <div class="shell">
       <div class="section-heading">
         <div><p class="eyebrow">Capabilities</p><h2>Organized by system.</h2></div>
-        <p>The relevant question is not whether a tool appears in a list. It is which part of a research and production system that tool supports.</p>
+        <p>Select a capability to preview the system view, then open the related lab module for the full case study.</p>
       </div>
-      <div class="capability-grid">
-        {capabilities.map(([title, text]) => <article class="capability"><h3>{title}</h3><p>{text}</p></article>)}
-      </div>
+      <CapabilityExplorer />
     </div>
   </section>
 

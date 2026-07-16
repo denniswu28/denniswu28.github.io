@@ -6,15 +6,15 @@ import { filterPublished } from '../../lib/content';
 
 const experiments = filterPublished(await getCollection('experiments'));
 const planned = [
-  ['02', 'Grid Market-Making Simulator', 'Historical order-book replay with inventory, fees, latency, and adverse-selection controls.'],
-  ['03', 'Crypto Microstructure Browser', 'Historical trades, spread, depth, imbalance, and lead–lag inspection.'],
+  ['02', 'Grid Market-Making Simulator', 'Recorded order-book replay with inventory, fees, latency, and adverse-selection controls.'],
+  ['03', 'Crypto Microstructure Browser', 'Trade, spread, depth, imbalance, and lead–lag inspection.'],
   ['04', 'Prediction Market Observatory', 'Empirical liquidity, fee, participant, and resolution behavior research.'],
   ['05', 'Research Replications', 'Adapt published market-structure claims to transparent crypto datasets.']
 ] as const;
 ---
 
 <BaseLayout title="Quant Lab" description="Inspectable quantitative experiments organized from question and data through method, results, limitations, and code.">
-  <div class="shell"><PageIntro eyebrow="Application-like evidence" title="Quant Lab" description="Every experiment follows Question → Data → Method → Parameters → Results → Limitations → Code. Historical replay comes before unreliable live infrastructure." /></div>
+  <div class="shell"><PageIntro eyebrow="Application-like evidence" title="Quant Lab" description="Every experiment follows Question → Data → Method → Parameters → Results → Limitations → Code. Reproducible replay comes before unreliable live infrastructure." /></div>
   <section class="section">
     <div class="shell">
       <div class="entry-list">
@@ -22,7 +22,7 @@ const planned = [
           <a class="experiment-card" href={`/lab/${experiment.data.slug}/`}>
             <span class="experiment-number">01</span>
             <div><h2>{experiment.data.title}</h2><p>{experiment.data.summary}</p></div>
-            <span class="state-pill">{experiment.data.freshness}</span>
+            <span class="state-pill">Case study</span>
           </a>
         ))}
         {planned.map(([number, title, description]) => (

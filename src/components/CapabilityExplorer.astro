@@ -1,0 +1,171 @@
+---
+import { capabilities } from '../data/site';
+---
+
+<div class="capability-explorer" data-capability-explorer>
+  <div class="capability-tabs" role="tablist" aria-label="Quantitative capabilities">
+    {capabilities.map((capability, index) => (
+      <button
+        class:list={['capability-tab', { 'is-active': index === 0 }]}
+        type="button"
+        role="tab"
+        id={`capability-tab-${capability.id}`}
+        aria-controls={`capability-panel-${capability.id}`}
+        aria-selected={index === 0 ? 'true' : 'false'}
+        tabindex={index === 0 ? 0 : -1}
+        data-capability-tab={capability.id}
+      >
+        <span class="capability-index">{String(index + 1).padStart(2, '0')}</span>
+        <span>
+          <strong>{capability.title}</strong>
+          <small>{capability.text}</small>
+        </span>
+        <span class="capability-arrow" aria-hidden="true">↗</span>
+      </button>
+    ))}
+  </div>
+
+  <div class="capability-stage">
+    {capabilities.map((capability, index) => (
+      <article
+        class="capability-panel"
+        id={`capability-panel-${capability.id}`}
+        role="tabpanel"
+        aria-labelledby={`capability-tab-${capability.id}`}
+        data-capability-panel={capability.id}
+        hidden={index !== 0}
+      >
+        <div class="capability-panel-copy">
+          <p class="eyebrow">{capability.kicker}</p>
+          <h3>{capability.title}</h3>
+          <p>{capability.text}</p>
+        </div>
+
+        <figure class:list={['capability-visual', `capability-visual-${capability.visual}`]}>
+          {capability.visual === 'forecast' && (
+            <svg viewBox="0 0 640 310" role="img" aria-label="Illustrative signal decay and model-state preview">
+              <g class="capability-gridlines"><path d="M42 42H614M42 101H614M42 160H614M42 219H614M42 278H614" /></g>
+              <path class="capability-line capability-line-muted" d="M42 74C105 84 145 102 202 123S314 161 365 182 493 230 614 256" />
+              <path class="capability-line capability-line-primary" d="M42 63C96 68 139 82 190 105S285 143 337 151 430 157 480 177 555 215 614 236" />
+              <g class="capability-points"><circle cx="42" cy="63" r="5"/><circle cx="190" cy="105" r="5"/><circle cx="337" cy="151" r="5"/><circle cx="480" cy="177" r="5"/><circle cx="614" cy="236" r="5"/></g>
+              <text x="42" y="299">1s</text><text x="322" y="299" text-anchor="middle">prediction horizon</text><text x="614" y="299" text-anchor="end">5m</text>
+            </svg>
+          )}
+
+          {capability.visual === 'market-making' && (
+            <svg viewBox="0 0 640 310" role="img" aria-label="Illustrative inventory-aware bid and ask quote preview">
+              <g class="capability-gridlines"><path d="M42 42H614M42 101H614M42 160H614M42 219H614M42 278H614" /></g>
+              <path class="capability-midline" d="M42 160H614" />
+              <path class="capability-line capability-bid-line" d="M42 216C142 206 229 190 322 170S501 123 614 96" />
+              <path class="capability-line capability-ask-line" d="M42 257C151 245 230 225 322 204S507 158 614 133" />
+              <line class="capability-inventory-line" x1="410" y1="54" x2="410" y2="268"/>
+              <text x="421" y="72">inventory +</text><text x="42" y="299">bid / ask skew</text><text x="614" y="299" text-anchor="end">risk-adjusted quotes</text>
+            </svg>
+          )}
+
+          {capability.visual === 'execution' && (
+            <svg viewBox="0 0 640 310" role="img" aria-label="Illustrative execution benchmark comparison preview">
+              <g class="capability-gridlines"><path d="M42 42H614M42 101H614M42 160H614M42 219H614M42 278H614" /></g>
+              <path class="capability-midline" d="M42 178H614" />
+              <path class="capability-line capability-line-primary" d="M58 178C194 176 344 127 574 94" />
+              <path class="capability-line capability-reference-line" d="M58 178C213 179 355 160 574 151" />
+              <path class="capability-line capability-fee-line" d="M58 178C219 182 388 213 574 231" />
+              <circle class="capability-endpoint capability-endpoint-primary" cx="574" cy="94" r="6"/>
+              <circle class="capability-endpoint capability-endpoint-reference" cx="574" cy="151" r="5"/>
+              <circle class="capability-endpoint capability-endpoint-fee" cx="574" cy="231" r="5"/>
+              <text x="42" y="299">arrival</text><text x="614" y="299" text-anchor="end">aggregate endpoints</text>
+            </svg>
+          )}
+
+          {capability.visual === 'market-data' && (
+            <svg viewBox="0 0 640 310" role="img" aria-label="Illustrative reconstructed order-book depth preview">
+              <path class="capability-midline" d="M320 38V278" />
+              <g class="depth-bids">
+                <rect x="76" y="55" width="244" height="22"/><rect x="118" y="91" width="202" height="22"/>
+                <rect x="158" y="127" width="162" height="22"/><rect x="202" y="163" width="118" height="22"/>
+                <rect x="235" y="199" width="85" height="22"/><rect x="266" y="235" width="54" height="22"/>
+              </g>
+              <g class="depth-asks">
+                <rect x="320" y="55" width="202" height="22"/><rect x="320" y="91" width="174" height="22"/>
+                <rect x="320" y="127" width="143" height="22"/><rect x="320" y="163" width="111" height="22"/>
+                <rect x="320" y="199" width="79" height="22"/><rect x="320" y="235" width="47" height="22"/>
+              </g>
+              <text x="76" y="299">bid depth</text><text x="320" y="299" text-anchor="middle">best quote</text><text x="522" y="299" text-anchor="end">ask depth</text>
+            </svg>
+          )}
+
+          {capability.visual === 'backtesting' && (
+            <svg viewBox="0 0 640 310" role="img" aria-label="Illustrative exact replay and vectorized backtest comparison preview">
+              <g class="capability-gridlines"><path d="M42 42H614M42 101H614M42 160H614M42 219H614M42 278H614" /></g>
+              <path class="capability-line capability-line-muted" d="M42 235L77 224 110 238 142 198 178 204 213 168 246 180 281 135 316 151 351 108 386 124 421 92 456 115 492 75 527 91 563 58 614 72" />
+              <path class="capability-line capability-line-primary" d="M42 234C101 229 130 211 178 199S257 164 316 148 404 113 456 106 547 77 614 70" />
+              <text x="42" y="299">replay start</text><text x="614" y="299" text-anchor="end">out-of-sample window</text>
+            </svg>
+          )}
+
+          {capability.visual === 'risk' && (
+            <svg viewBox="0 0 640 310" role="img" aria-label="Illustrative production risk monitoring preview">
+              <g class="risk-monitor-row"><text x="42" y="64">EXPOSURE</text><rect x="164" y="46" width="410" height="18" rx="9"/><rect class="risk-monitor-fill risk-monitor-good" x="164" y="46" width="238" height="18" rx="9"/></g>
+              <g class="risk-monitor-row"><text x="42" y="117">LEVERAGE</text><rect x="164" y="99" width="410" height="18" rx="9"/><rect class="risk-monitor-fill risk-monitor-warn" x="164" y="99" width="310" height="18" rx="9"/></g>
+              <g class="risk-monitor-row"><text x="42" y="170">BETA</text><rect x="164" y="152" width="410" height="18" rx="9"/><rect class="risk-monitor-fill risk-monitor-good" x="164" y="152" width="172" height="18" rx="9"/></g>
+              <g class="risk-monitor-row"><text x="42" y="223">DATA HEALTH</text><rect x="164" y="205" width="410" height="18" rx="9"/><rect class="risk-monitor-fill risk-monitor-good" x="164" y="205" width="372" height="18" rx="9"/></g>
+              <path class="capability-line capability-drawdown-line" d="M164 263H236L258 274 291 266 340 280 385 267 429 270 483 258 574 261" />
+              <text x="42" y="272">P&amp;L / DD</text>
+            </svg>
+          )}
+
+          {capability.visual === 'inference' && (
+            <svg viewBox="0 0 640 310" role="img" aria-label="Illustrative model calibration and uncertainty preview">
+              <g class="capability-gridlines"><path d="M48 42H592M48 101H592M48 160H592M48 219H592M48 278H592M48 42V278M184 42V278M320 42V278M456 42V278M592 42V278" /></g>
+              <path class="capability-calibration" d="M48 278L592 42" />
+              <path class="capability-line capability-line-primary" d="M48 267C139 233 205 219 274 177S415 111 592 55" />
+              <g class="capability-points"><circle cx="116" cy="239" r="5"/><circle cx="226" cy="199" r="5"/><circle cx="337" cy="144" r="5"/><circle cx="448" cy="105" r="5"/><circle cx="557" cy="66" r="5"/></g>
+              <text x="48" y="299">predicted probability</text><text x="592" y="299" text-anchor="end">observed frequency</text>
+            </svg>
+          )}
+
+          <figcaption>Illustrative system preview. The linked lab page provides the inspectable case study, assumptions, and evidence boundary.</figcaption>
+        </figure>
+
+        <div class="capability-panel-actions">
+          <a class="button button-secondary" href={capability.labHref}>Open lab module <span aria-hidden="true">↗</span></a>
+        </div>
+      </article>
+    ))}
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-capability-explorer]').forEach((explorer) => {
+    const tabs = Array.from(explorer.querySelectorAll<HTMLButtonElement>('[data-capability-tab]'));
+    const panels = Array.from(explorer.querySelectorAll<HTMLElement>('[data-capability-panel]'));
+
+    const activate = (tab: HTMLButtonElement, moveFocus = false) => {
+      const id = tab.dataset.capabilityTab;
+      tabs.forEach((candidate) => {
+        const active = candidate === tab;
+        candidate.classList.toggle('is-active', active);
+        candidate.setAttribute('aria-selected', String(active));
+        candidate.tabIndex = active ? 0 : -1;
+      });
+      panels.forEach((panel) => {
+        panel.hidden = panel.dataset.capabilityPanel !== id;
+      });
+      if (moveFocus) tab.focus();
+    };
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => activate(tab));
+      tab.addEventListener('keydown', (event) => {
+        let nextIndex: number | undefined;
+        if (event.key === 'ArrowDown' || event.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length;
+        if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
+        if (event.key === 'Home') nextIndex = 0;
+        if (event.key === 'End') nextIndex = tabs.length - 1;
+        if (nextIndex === undefined) return;
+        event.preventDefault();
+        activate(tabs[nextIndex], true);
+      });
+    });
+  });
+</script>
