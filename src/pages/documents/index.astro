@@ -8,8 +8,8 @@ import { filterPublished } from '../../lib/content';
 const documents = filterPublished(await getCollection('documents'));
 ---
 
-<BaseLayout title="Documents" description="Quantitative resume, academic CV, publications, and project records with on-demand previews and downloads.">
-  <div class="shell"><PageIntro eyebrow="Formal records" title="Documents" description="A central library for concise professional records and complete academic documents. PDF viewers load only when requested." /></div>
+<BaseLayout title="Documents" description="Quantitative resume, academic CV, publications, and project records.">
+  <div class="shell"><PageIntro eyebrow="Formal records" title="Documents" description="Quantitative resume, academic CV, publications, and project records." /></div>
   <section class="section">
     <div class="shell document-list">
       {documents.map((document) => (

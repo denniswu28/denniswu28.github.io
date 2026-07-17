@@ -5,7 +5,7 @@ import PageIntro from '../../components/PageIntro.astro';
 import { filterPublished } from '../../lib/content';
 
 const experiments = filterPublished(await getCollection('experiments'));
-const planned = [
+const upcoming = [
   ['02', 'Grid Market-Making Simulator', 'Recorded order-book replay with inventory, fees, latency, and adverse-selection controls.'],
   ['03', 'Crypto Microstructure Browser', 'Trade, spread, depth, imbalance, and lead–lag inspection.'],
   ['04', 'Prediction Market Observatory', 'Empirical liquidity, fee, participant, and resolution behavior research.'],
@@ -13,8 +13,8 @@ const planned = [
 ] as const;
 ---
 
-<BaseLayout title="Quant Lab" description="Inspectable quantitative experiments organized from question and data through method, results, limitations, and code.">
-  <div class="shell"><PageIntro eyebrow="Application-like evidence" title="Quant Lab" description="Every experiment follows Question → Data → Method → Parameters → Results → Limitations → Code. Reproducible replay comes before unreliable live infrastructure." /></div>
+<BaseLayout title="Quant Lab" description="Quantitative research in forecasting, market making, execution, microstructure, and risk.">
+  <div class="shell"><PageIntro eyebrow="Research tools" title="Quant Lab" description="Interactive research in forecasting, market making, execution, market microstructure, and risk." /></div>
   <section class="section">
     <div class="shell">
       <div class="entry-list">
@@ -25,11 +25,11 @@ const planned = [
             <span class="state-pill">Case study</span>
           </a>
         ))}
-        {planned.map(([number, title, description]) => (
-          <article class="experiment-card" data-state="planned">
+        {upcoming.map(([number, title, description]) => (
+          <article class="experiment-card" data-state="upcoming">
             <span class="experiment-number">{number}</span>
             <div><h2>{title}</h2><p>{description}</p></div>
-            <span class="state-pill">Planned</span>
+            <span class="state-pill">Upcoming</span>
           </article>
         ))}
       </div>

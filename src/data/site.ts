@@ -24,38 +24,12 @@ export const navigation = [
   { label: 'Documents', href: '/documents/' }
 ] as const;
 
-export const proofPoints = [
-  'Live quantitative trading systems',
-  'Two cosmology publications',
-  'Caltech research fellowship',
-  'Python, PyTorch, C++, Rust, and SQL'
-] as const;
-
-export const profileCards = [
-  {
-    eyebrow: 'Production research',
-    title: 'Quantitative Research and Trading',
-    text: 'Forecasting, execution, market making, and research infrastructure across crypto and equity markets.',
-    href: '/quant/'
-  },
-  {
-    eyebrow: 'Scientific foundation',
-    title: 'Academic Research',
-    text: 'Cosmology, Bayesian inference, neural networks, and next-generation survey simulations.',
-    href: '/academic/'
-  },
-  {
-    eyebrow: 'Inspectable evidence',
-    title: 'Quant Lab',
-    text: 'Historical and sanitized experiments that expose questions, methods, results, and limitations.',
-    href: '/lab/'
-  },
-  {
-    eyebrow: 'Decision records',
-    title: 'Investment Portfolio',
-    text: 'A content-gated archive for historical theses, attribution, invalidating evidence, and postmortems.',
-    href: '/portfolio/'
-  }
+export const homeTopics = [
+  { title: 'Quant Lab', href: '/lab/' },
+  { title: 'Personal Portfolio', href: '/portfolio/' },
+  { title: 'Academic Profile', href: '/academic/' },
+  { title: 'Blog', href: '/blog/' },
+  { title: 'Documents', href: '/documents/' }
 ] as const;
 
 export const experiences = [
@@ -91,6 +65,27 @@ export const experiences = [
     ],
     technologies: ['Python', 'Polars', 'Dask', 'C++', 'SQL', 'Linux'],
     evidenceHref: '/lab/trading-systems-execution/#factor-research'
+  }
+] as const;
+
+export const independentProjects = [
+  {
+    id: 'market-making-research',
+    kicker: 'Crypto infrastructure',
+    title: 'Market-Making Research Stack',
+    summary: 'Live ETH market-making and backtesting on OKX.',
+    bullets: [
+      'Built and deployed a live ETH market-making framework on OKX, combining EWMA flow alphas with a CNN capturing order-book patterns through a phase-space feature representation; averaged 0.5–1% daily return. The project led to recruitment at Qrigin.'
+    ]
+  },
+  {
+    id: 'imc-prosperity',
+    kicker: 'Competition',
+    title: 'IMC Prosperity 4',
+    summary: 'Global algorithmic trading competition.',
+    bullets: [
+      'Ranked in the top 3% of more than 6,000 teams using market making and cross-asset arbitrage driven by fingerprinting of counterparties.'
+    ]
   }
 ] as const;
 

@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageIntro from '../../components/PageIntro.astro';
 import CapabilityExplorer from '../../components/CapabilityExplorer.astro';
-import { experiences } from '../../data/site';
+import { experiences, independentProjects } from '../../data/site';
 ---
 
 <BaseLayout title="Quantitative Research and Trading" description="Production-focused quantitative research across forecasting, market making, execution, market data, monitoring, and risk.">
@@ -38,9 +38,8 @@ import { experiences } from '../../data/site';
 
   <section class="section" id="capabilities">
     <div class="shell">
-      <div class="section-heading">
-        <div><p class="eyebrow">Capabilities</p><h2>Organized by system.</h2></div>
-        <p>Select a capability to preview the system view, then open the related lab module for the full case study.</p>
+      <div class="section-heading section-heading-compact">
+        <div><h2>Capabilities</h2></div>
       </div>
       <CapabilityExplorer />
     </div>
@@ -48,14 +47,69 @@ import { experiences } from '../../data/site';
 
   <section class="section" id="independent-projects">
     <div class="shell">
-      <div class="section-heading">
-        <div><p class="eyebrow">Independent systems</p><h2>Research beyond the role description.</h2></div>
-        <p>Historical crypto market-making work and the IMC Prosperity challenge remain supporting projects. Detailed claims will be added only with documentation and reproducible artifacts.</p>
+      <div class="section-heading section-heading-compact">
+        <div><h2>Independent Systems Research</h2></div>
       </div>
-      <div class="card-grid">
-        <article class="card"><p class="eyebrow">Crypto infrastructure</p><h3>Market-making research stack</h3><p>Exchange feeds, fee-aware fill simulation, monitoring, and high-speed research loops across Python, Polars, Numba, PyTorch, and Rust.</p></article>
-        <article class="card"><p class="eyebrow">Competition</p><h3>IMC Prosperity 4</h3><p>Algorithmic trading challenge work placed in the top 3% of more than 6,000 teams.</p></article>
+      <div class="independent-projects" data-independent-projects>
+        <div class="independent-project-buttons">
+          {independentProjects.map((project) => (
+            <button
+              class="independent-project-button"
+              type="button"
+              id={`independent-button-${project.id}`}
+              aria-expanded="false"
+              aria-controls={`independent-panel-${project.id}`}
+              data-independent-button={project.id}
+            >
+              <span class="eyebrow">{project.kicker}</span>
+              <strong>{project.title}</strong>
+              <small>{project.summary}</small>
+              <span class="independent-project-arrow" aria-hidden="true">+</span>
+            </button>
+          ))}
+        </div>
+        <div class="independent-project-panels" aria-live="polite">
+          {independentProjects.map((project) => (
+            <article
+              class="independent-project-panel"
+              id={`independent-panel-${project.id}`}
+              aria-labelledby={`independent-button-${project.id}`}
+              data-independent-panel={project.id}
+              hidden
+            >
+              <h3>{project.title}</h3>
+              <ul class="impact-list">{project.bullets.map((bullet) => <li>{bullet}</li>)}</ul>
+            </article>
+          ))}
+        </div>
       </div>
     </div>
   </section>
+
+  <script>
+    document.querySelectorAll<HTMLElement>('[data-independent-projects]').forEach((projectGroup) => {
+      const buttons = Array.from(projectGroup.querySelectorAll<HTMLButtonElement>('[data-independent-button]'));
+      const panels = Array.from(projectGroup.querySelectorAll<HTMLElement>('[data-independent-panel]'));
+
+      buttons.forEach((button) => {
+        const id = button.dataset.independentButton;
+        const panel = panels.find((candidate) => candidate.dataset.independentPanel === id);
+        if (!id || !panel) return;
+        button.addEventListener('click', () => {
+          const willOpen = button.getAttribute('aria-expanded') !== 'true';
+          buttons.forEach((candidate) => {
+            candidate.setAttribute('aria-expanded', 'false');
+            candidate.classList.remove('is-active');
+          });
+          panels.forEach((candidate) => { candidate.hidden = true; });
+
+          if (willOpen) {
+            button.setAttribute('aria-expanded', 'true');
+            button.classList.add('is-active');
+            panel.hidden = false;
+          }
+        });
+      });
+    });
+  </script>
 </BaseLayout>

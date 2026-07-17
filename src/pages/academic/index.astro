@@ -62,7 +62,7 @@ const timelineProjects = [
     <div class="academic-legacy-container">
       <section class="academic-profile" aria-labelledby="academic-profile-name">
         <aside class="academic-profile-aside" aria-label="Profile and contact links">
-          <img src="/images/Protrait.jpg" alt="Tianrui Wu at the Grand Canyon" />
+          <img src="/images/portrait.jpg" alt="Portrait of Tianrui Wu" />
           <div class="academic-social-links">
             <a href={`mailto:${site.email}`} aria-label="Email">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z"/></svg>
@@ -200,33 +200,33 @@ const timelineProjects = [
 
   <style is:global>
     html:has(body[data-theme='academic']) {
-      color-scheme: light;
-      background: #f7f5f0;
+      color-scheme: dark;
+      background: #050711;
     }
 
     body[data-theme='academic'] {
-      --void: #f7f5f0;
-      --void-2: #ffffff;
-      --surface: rgba(255, 255, 255, .86);
-      --surface-solid: #ffffff;
-      --surface-raised: #f1eee7;
-      --signal: #7f1728;
-      --signal-rgb: 127, 23, 40;
-      --positive: #2f6548;
-      --warning: #8a5b13;
-      --text: #111111;
-      --text-soft: #555555;
-      --line: rgba(0, 0, 0, .16);
-      --line-strong: rgba(127, 23, 40, .42);
+      --void: #050711;
+      --void-2: #090d1e;
+      --surface: rgba(7, 11, 27, .78);
+      --surface-solid: #0a1025;
+      --surface-raised: rgba(17, 25, 52, .9);
+      --signal: #f0cc72;
+      --signal-rgb: 240, 204, 114;
+      --positive: #b9c7ff;
+      --warning: #ffd690;
+      --text: #f7f8ff;
+      --text-soft: #c5cbe0;
+      --line: rgba(255, 255, 255, .18);
+      --line-strong: rgba(240, 204, 114, .5);
       --display: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       --body: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      color: #111;
-      background: #f7f5f0;
+      color: var(--text);
+      background: #050711;
     }
 
     body[data-theme='academic'] .site-header {
-      border-color: rgba(0, 0, 0, .15);
-      background: rgba(255, 255, 255, .92);
+      border-color: rgba(255, 255, 255, .16);
+      background: rgba(5, 7, 17, .84);
     }
 
     body[data-theme='academic'] .brand-mark {
@@ -234,13 +234,13 @@ const timelineProjects = [
     }
 
     body[data-theme='academic'] .site-footer {
-      border-top: 1px solid rgba(0, 0, 0, .14);
-      color: #222;
-      background: rgba(255, 255, 255, .92);
+      border-top: 1px solid rgba(255, 255, 255, .16);
+      color: var(--text);
+      background: rgba(5, 7, 17, .92);
     }
 
     body[data-theme='academic'] .footer-bottom {
-      border-color: rgba(0, 0, 0, .14);
+      border-color: rgba(255, 255, 255, .14);
     }
 
     .academic-legacy-page {
@@ -248,9 +248,9 @@ const timelineProjects = [
       min-height: 100vh;
       overflow: hidden;
       padding: 1px 0 54px;
-      color: #111;
+      color: var(--text);
       background:
-        linear-gradient(rgba(255, 255, 255, .91), rgba(255, 255, 255, .91)),
+        linear-gradient(180deg, rgba(3, 5, 14, .56), rgba(3, 6, 17, .8)),
         url('/images/academic/jwst-cosmic-cliffs.webp') center top / cover no-repeat;
     }
 
@@ -283,10 +283,10 @@ const timelineProjects = [
       width: 280px;
       height: 280px;
       margin-inline: auto;
-      border: 2px solid #111;
+      border: 2px solid rgba(255, 255, 255, .72);
       border-radius: 8px;
       object-fit: cover;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, .1);
+      box-shadow: 0 18px 50px rgba(0, 0, 0, .36);
     }
 
     .academic-social-links {
@@ -302,13 +302,13 @@ const timelineProjects = [
       height: 46px;
       place-items: center;
       border-radius: 8px;
-      color: #666;
+      color: var(--text-soft);
       transition: color .2s ease, background .2s ease, transform .2s ease;
     }
 
     .academic-social-links a:hover {
-      color: #222;
-      background: rgba(0, 0, 0, .05);
+      color: var(--text);
+      background: rgba(255, 255, 255, .09);
       transform: translateY(-1px);
     }
 
@@ -322,13 +322,13 @@ const timelineProjects = [
       display: flex;
       justify-content: center;
       gap: 8px;
-      color: #555;
+      color: var(--text-soft);
       font-size: .88rem;
     }
 
     .academic-document-links a,
     .academic-timeline-content a {
-      color: #7f1728;
+      color: var(--signal);
       text-decoration: none;
     }
 
@@ -340,7 +340,7 @@ const timelineProjects = [
 
     .academic-profile-copy h1 {
       margin: 0 0 20px;
-      color: #111;
+      color: var(--text);
       font-size: clamp(2.65rem, 6vw, 3.5rem);
       font-weight: 300;
       line-height: 1.1;
@@ -354,7 +354,7 @@ const timelineProjects = [
     .academic-subtitle {
       max-width: 650px;
       margin: 0 0 30px;
-      color: #373737;
+      color: #f0f2ff;
       font-size: 1.1rem;
       font-weight: 650;
       line-height: 1.45;
@@ -373,7 +373,7 @@ const timelineProjects = [
     .academic-section-rule {
       clear: both;
       margin-top: 30px;
-      border-top: 2px solid #111;
+      border-top: 2px solid rgba(255, 255, 255, .76);
     }
 
     .academic-research-section {
@@ -387,7 +387,7 @@ const timelineProjects = [
       z-index: -1;
       inset: 0 -44px;
       background:
-        linear-gradient(rgba(255, 255, 255, .9), rgba(255, 255, 255, .9)),
+        linear-gradient(rgba(3, 5, 14, .68), rgba(3, 6, 17, .82)),
         url('/images/academic/jwst-pillars.webp') right 12% top 80px / min(820px, 92vw) auto no-repeat;
       content: '';
       pointer-events: none;
@@ -404,7 +404,7 @@ const timelineProjects = [
       bottom: 0;
       left: 85px;
       width: 2px;
-      background: #111;
+      background: rgba(255, 255, 255, .72);
       content: '';
     }
 
@@ -421,7 +421,8 @@ const timelineProjects = [
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: #111;
+      background: var(--signal);
+      box-shadow: 0 0 0 4px rgba(240, 204, 114, .14);
       content: '';
     }
 
@@ -430,7 +431,7 @@ const timelineProjects = [
       top: 5px;
       left: -70px;
       width: 55px;
-      color: #111;
+      color: var(--text);
       font-size: .78rem;
       font-weight: 700;
       text-align: right;
@@ -443,7 +444,7 @@ const timelineProjects = [
 
     .academic-timeline-content h2 {
       margin: 0 0 8px;
-      color: #222;
+      color: var(--text);
       font-size: 1.35rem;
       font-weight: 450;
       line-height: 1.35;
@@ -463,6 +464,9 @@ const timelineProjects = [
       width: 150px;
       align-items: center;
       justify-content: flex-end;
+      padding: 6px 9px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, .9);
       transform: translateY(-50%);
     }
 
@@ -485,7 +489,7 @@ const timelineProjects = [
 
     .academic-institution {
       margin: 0 0 14px;
-      color: #4d4d4d;
+      color: var(--text-soft);
       font-size: .93rem;
       font-style: italic;
     }
@@ -511,15 +515,15 @@ const timelineProjects = [
 
     .academic-media-module img {
       width: 100%;
-      border: 2px solid #111;
+      border: 2px solid rgba(255, 255, 255, .62);
       border-radius: 8px;
-      background: #f5f5f5;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, .1);
+      background: #0a1025;
+      box-shadow: 0 18px 48px rgba(0, 0, 0, .3);
     }
 
     .academic-media-module figcaption {
       margin-top: 9px;
-      color: #555;
+      color: var(--text-soft);
       font-size: .86rem;
       line-height: 1.5;
     }
@@ -527,7 +531,7 @@ const timelineProjects = [
     .academic-publication-list {
       display: grid;
       margin-top: 18px;
-      border-top: 1px solid rgba(0, 0, 0, .18);
+      border-top: 1px solid rgba(255, 255, 255, .2);
     }
 
     .academic-publication-list a {
@@ -535,8 +539,8 @@ const timelineProjects = [
       grid-template-columns: 130px 1fr;
       gap: 4px 18px;
       padding: 20px 0;
-      border-bottom: 1px solid rgba(0, 0, 0, .18);
-      color: #111;
+      border-bottom: 1px solid rgba(255, 255, 255, .2);
+      color: var(--text);
     }
 
     .academic-publication-list a:hover {
@@ -545,7 +549,7 @@ const timelineProjects = [
 
     .academic-publication-list span {
       grid-row: 1 / span 2;
-      color: #7f1728;
+      color: var(--signal);
       font-size: .72rem;
       font-weight: 750;
       letter-spacing: .05em;
@@ -558,7 +562,7 @@ const timelineProjects = [
     }
 
     .academic-publication-list small {
-      color: #555;
+      color: var(--text-soft);
       font-size: .84rem;
       line-height: 1.5;
     }
@@ -571,9 +575,9 @@ const timelineProjects = [
       gap: 26px;
       margin-top: 28px;
       padding: 20px;
-      border: 1px solid #ddd;
+      border: 1px solid rgba(255, 255, 255, .24);
       border-radius: 8px;
-      background: rgba(255, 255, 255, .68);
+      background: rgba(255, 255, 255, .9);
     }
 
     .academic-logo-strip img {
@@ -590,8 +594,8 @@ const timelineProjects = [
     .academic-image-credits {
       margin-top: 36px;
       padding-top: 16px;
-      border-top: 1px solid rgba(0, 0, 0, .16);
-      color: #666;
+      border-top: 1px solid rgba(255, 255, 255, .18);
+      color: var(--text-soft);
       font-size: .73rem;
       line-height: 1.55;
     }
@@ -613,17 +617,17 @@ const timelineProjects = [
       max-height: calc(100vh - 128px);
       overflow-y: auto;
       padding: 13px 10px 12px;
-      border: 1px solid rgba(0, 0, 0, .24);
+      border: 1px solid rgba(255, 255, 255, .2);
       border-radius: 8px;
-      color: #171717;
-      background: rgba(255, 255, 255, .94);
-      box-shadow: 0 14px 42px rgba(0, 0, 0, .13);
+      color: var(--text);
+      background: rgba(5, 8, 21, .92);
+      box-shadow: 0 14px 42px rgba(0, 0, 0, .34);
       backdrop-filter: blur(12px);
     }
 
     .academic-page-index-panel > p {
       margin: 0 6px 8px;
-      color: #7f1728;
+      color: var(--signal);
       font-size: .64rem;
       font-weight: 800;
       letter-spacing: .1em;
@@ -645,7 +649,7 @@ const timelineProjects = [
       min-height: 34px;
       align-items: center;
       padding: 5px 5px 5px 8px;
-      color: #4d4d4d;
+      color: var(--text-soft);
       font-size: .7rem;
       font-weight: 650;
       line-height: 1.35;
@@ -662,14 +666,14 @@ const timelineProjects = [
     }
 
     .academic-page-index-panel a span {
-      color: #777;
+      color: #9ea8c8;
       font-size: .61rem;
     }
 
     .academic-page-index-panel a:hover,
     .academic-page-index-panel a[aria-current] {
-      color: #111;
-      background: rgba(127, 23, 40, .08);
+      color: var(--text);
+      background: rgba(240, 204, 114, .11);
     }
 
     .academic-page-index-panel a[aria-current] {
@@ -677,11 +681,11 @@ const timelineProjects = [
     }
 
     .academic-page-index-panel a[aria-current]::before {
-      background: #7f1728;
+      background: var(--signal);
     }
 
     .academic-page-index-panel a[aria-current] span {
-      color: #7f1728;
+      color: var(--signal);
     }
 
     @media (max-width: 1439px) {
@@ -696,10 +700,10 @@ const timelineProjects = [
         justify-content: center;
         gap: 8px;
         padding: 10px 14px;
-        border: 2px solid #7f1728;
+        border: 2px solid var(--signal);
         border-radius: 6px;
-        color: #fff;
-        background: #7f1728;
+        color: #050711;
+        background: var(--signal);
         box-shadow: 0 12px 32px rgba(0, 0, 0, .22);
         cursor: pointer;
         font-size: .72rem;
@@ -709,8 +713,8 @@ const timelineProjects = [
       }
 
       .academic-page-index.is-open .academic-page-index-toggle {
-        color: #7f1728;
-        background: #fff;
+        color: var(--signal);
+        background: #0a1025;
       }
 
       .academic-page-index-panel {
@@ -765,7 +769,7 @@ const timelineProjects = [
       .academic-research-section::before {
         inset-inline: -15px;
         background:
-          linear-gradient(rgba(255, 255, 255, .92), rgba(255, 255, 255, .92)),
+          linear-gradient(rgba(3, 5, 14, .72), rgba(3, 6, 17, .86)),
           url('/images/academic/jwst-pillars.webp') 68% 80px / 720px auto no-repeat;
       }
 

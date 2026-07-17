@@ -12,8 +12,8 @@ const categories = [
 ] as const;
 ---
 
-<BaseLayout title="Blog" description="Explanatory writing across quantitative research, physics, and technically grounded AI safety.">
-  <div class="shell"><PageIntro eyebrow="The explanatory layer" title="Blog" description="Articles explain the hypotheses, data, methods, interpretation, and limitations behind projects and experiments. Personal writing is not part of this public system." /></div>
+<BaseLayout title="Blog" description="Writing across quantitative research, physics, and technically grounded AI safety.">
+  <div class="shell"><PageIntro eyebrow="Writing" title="Blog" description="Articles on quantitative research, physics, cosmology, and AI safety." /></div>
   <section class="section">
     <div class="shell">
       <div class="card-grid">
@@ -23,7 +23,7 @@ const categories = [
   </section>
   <section class="section section-tight">
     <div class="shell">
-      <div class="section-heading"><div><p class="eyebrow">Latest writing</p><h2>Recent articles.</h2></div><p>Every article includes dates, category, abstract, citations, related evidence, and disclosures.</p></div>
+      <div class="section-heading section-heading-compact"><div><p class="eyebrow">Latest writing</p><h2>Recent articles.</h2></div></div>
       <div class="post-list">{articles.map((article) => <a class="post-row" href={`/blog/${article.data.category}/${article.data.slug}/`}><span class="date-block">{article.data.publishedAt.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</span><div><h2>{article.data.title}</h2><p>{article.data.abstract}</p></div><span class="text-link">Read →</span></a>)}</div>
     </div>
   </section>

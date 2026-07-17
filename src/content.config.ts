@@ -47,7 +47,7 @@ const experiments = defineCollection({
     results: z.string(),
     limitations: z.array(z.string()),
     codeUrl: z.string().optional(),
-    freshness: z.enum(['historical', 'static', 'planned']),
+    freshness: z.enum(['historical', 'static', 'upcoming']),
     lastUpdated: z.coerce.date()
   })
 });

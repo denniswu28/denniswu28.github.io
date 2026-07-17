@@ -49,6 +49,35 @@ for (const forbidden of ['href="/private', 'draft-template', 'Unpublished thesis
   if (allText.includes(forbidden)) throw new Error(`Forbidden unpublished output detected: ${forbidden}`);
 }
 
+for (const forbiddenCopy of [
+  'FAVORITE SAYING',
+  'Choose the evidence you need',
+  'The landing page stays short',
+  'Credibility at a glance',
+  'Claims should be inspectable',
+  'Organized by system',
+  'Detailed claims will be added',
+  'Personal writing is not part of this public system',
+  'This section is separate from the Quant Lab',
+  'Every experiment follows Question',
+  'PDF viewers load only when requested',
+  'Publication gate is active',
+  '>Planned<',
+  'data-state=planned'
+]) {
+  if (allText.includes(forbiddenCopy)) throw new Error(`Removed visitor copy detected: ${forbiddenCopy}`);
+}
+
+const homeHtml = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+for (const homeLabel of ['Choose the topic you need.', 'Quant Lab', 'Personal Portfolio', 'Academic Profile', 'Blog', 'Documents', '/images/portrait.jpg']) {
+  if (!homeHtml.includes(homeLabel)) throw new Error(`Missing simplified homepage content: ${homeLabel}`);
+}
+
+const quantHtml = fs.readFileSync(path.join(root, 'quant', 'index.html'), 'utf8');
+for (const quantFeature of ['Independent Systems Research', 'aria-expanded="false"', 'data-independent-button', 'data-independent-panel', 'top 3% of more than 6,000 teams']) {
+  if (!quantHtml.includes(quantFeature)) throw new Error(`Missing independent-project interaction content: ${quantFeature}`);
+}
+
 const htmlFiles = files.filter((file) => file.endsWith('.html'));
 const experimentHtml = fs.readFileSync(path.join(root, 'lab', 'trading-systems-execution', 'index.html'), 'utf8');
 for (const evidenceLabel of [
