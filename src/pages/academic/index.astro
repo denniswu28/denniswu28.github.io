@@ -63,6 +63,7 @@ const splitCitation = (citation: string) => {
 
     <section class="section" id="publications" aria-labelledby="publications-heading">
       <h2 class="rule-heading" id="publications-heading">Publications</h2>
+      <p class="muted">Also listed on <a href={site.ads} target="_blank" rel="noopener">NASA ADS</a>, <a href={site.scholar} target="_blank" rel="noopener">Google Scholar</a> and <a href={site.orcid} target="_blank" rel="noopener">ORCID</a>.</p>
       <ol class="pub-list" reversed>
         {inPreparation.map((paper) => {
           const [before, me, after] = splitCitation(paper.authors);

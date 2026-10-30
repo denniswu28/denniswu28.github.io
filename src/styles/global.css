@@ -100,7 +100,7 @@ code { font: .92em var(--mono); }
 /* Home: side column plus main body */
 .home { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 56px; align-items: start; padding: 40px 0 8px; }
 .home-side { font-size: .93rem; }
-@media (min-width: 861px) and (min-height: 760px) { .home-side { position: sticky; top: 92px; } }
+@media (min-width: 861px) and (min-height: 860px) { .home-side { position: sticky; top: 92px; } }
 .home-photo { display: block; width: 170px; height: 170px; margin: 0 auto 16px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 1px var(--rule); }
 .home-side h1 { margin: 0 0 8px; padding-bottom: 8px; border-bottom: 1px solid var(--rule); font-size: 1.4rem; }
 .side-roles { margin: 0 0 10px; color: var(--ink); line-height: 1.55; }

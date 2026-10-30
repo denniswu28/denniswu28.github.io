@@ -32,7 +32,7 @@ const personSchema = {
   alternateName: site.shortName,
   url: site.url,
   affiliation: { '@type': 'CollegeOrUniversity', name: 'University of Arizona' },
-  sameAs: [site.github, site.linkedin]
+  sameAs: [site.orcid, site.scholar, site.github, site.linkedin]
 };
 const structuredData = schema ? [personSchema, ...(Array.isArray(schema) ? schema : [schema])] : [personSchema];
 ---
