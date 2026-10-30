@@ -13,7 +13,7 @@ const theses = filterPublished(await getCollection('theses'));
   <div class="shell">
     <header class="page-intro">
       <h1>Quantitative research</h1>
-      <p class="lede">I am a quantitative researcher and systematic trader at Qrigin Capital, a crypto proprietary trading firm. I work on short-horizon forecasting, market making and execution, from research and simulation through deployment and monitoring.</p>
+      <p class="lede">I am a quantitative researcher and systematic trader at Qrigin Capital, a startup proprietary trading firm. I work on short-horizon forecasting, market making and execution, from research and simulation through deployment and monitoring.</p>
       <div class="button-row">
         <a class="button" href={site.resume} target="_blank" rel="noopener">Resume (PDF)</a>
         <a class="button button-secondary" href={`mailto:${site.email}`}>Email</a>
@@ -35,7 +35,6 @@ const theses = filterPublished(await getCollection('theses'));
             <span>{experience.dates}</span>
             <span>{experience.organization} · {experience.location}</span>
           </p>
-          <p>{experience.mandate}</p>
           <ul>{experience.accomplishments.map((item) => <li>{item}</li>)}</ul>
           <div class="tech-row">{experience.technologies.map((technology) => <span>{technology}</span>)}</div>
         </article>

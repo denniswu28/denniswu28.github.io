@@ -86,7 +86,7 @@ export const researchProjects = [
     advisor: 'Prof. Tim Eifler',
     paragraphs: [
       'Reconstruction sharpens the baryon acoustic oscillation (BAO) feature by undoing part of the galaxy motion that blurs it. Photometric redshifts smear galaxy positions along the line of sight. I am measuring how much that smearing limits reconstruction, and building a forward model that carries photo-z uncertainty through reconstruction into the standard-ruler calibration for SPHEREx, Roman and Rubin.',
-      'I wrote photorecon, a Python package for transverse BAO reconstruction that follows the pyrecon interface. It is now being tested on low-redshift SPHEREx samples. I found a systematic bias in the MCMC pipeline and cut it sixfold by cross-validating two covariance estimators over a 250-cell grid. With a 25-realization Monte Carlo ensemble, I found the smearing level at which the 20 to 40 percent precision gain from reconstruction stops being significant. A first-author paper is in preparation.'
+      'I developed photorecon, a Python package for transverse BAO reconstruction that follows the pyrecon interface. It is now being tested on low-redshift SPHEREx samples. I found a systematic bias in the MCMC pipeline and cut it sixfold by cross-validating two covariance estimators over a 250-cell grid. With a 25-realization Monte Carlo ensemble, I found the smearing level at which the 20 to 40 percent precision gain from reconstruction stops being significant. A first-author paper is in preparation.'
     ],
     links: [] as { label: string; href: string }[],
     figure: undefined as undefined | { src: string; alt: string; caption: string }
@@ -144,7 +144,7 @@ export const researchProjects = [
     dates: 'Sep 2023–Aug 2024',
     advisor: 'Prof. Daniel Scolnic',
     paragraphs: [
-      'The goal was a common framework for comparing distance-calibration methods across teams, and a test of the JWST and HST distances behind the local Hubble constant. I built a Python pipeline for synthetic stellar catalogs and for extracting features from Hertzsprung–Russell diagrams. I also compared JWST distance measurements across the literature and measured galaxy–dust correlations in SDSS data. This work contributed to Riess et al. (2024).'
+      'The goal was a common framework for comparing distance-calibration methods across teams, and a test of the JWST and HST distances behind the local Hubble constant. I built a Python pipeline for synthetic stellar catalogs and for extracting features from Hertzsprung-Russell diagrams. I also compared JWST distance measurements across the literature and measured galaxy-dust correlations in SDSS data. This work contributed to Riess et al. (2024).'
     ],
     links: [],
     figure: undefined
@@ -155,7 +155,7 @@ export const inPreparation = [
   {
     authors: 'Wu, T., Paillas, E., et al.',
     title: 'BAO Reconstruction with Photometric Redshift Smearing',
-    status: 'In preparation'
+    status: 'Manuscript in preparation'
   }
 ] as const;
 
@@ -216,33 +216,32 @@ export const experiences = [
   {
     id: 'qrigin',
     role: 'Quantitative Researcher and Systematic Trader',
-    organization: 'Qrigin Capital · Crypto proprietary trading · $35M',
+    organization: 'Qrigin Capital · startup proprietary trading firm, $35M',
     dates: 'Aug 2025–present (full time to May 2026, part time since)',
     location: 'Remote',
-    mandate: 'I own strategies end to end, from research and validation through execution, monitoring and risk.',
     accomplishments: [
-      'Developed an LSTM forecasting engine with phase-space features and a managed MLflow lifecycle, then deployed it as a live short-horizon taker strategy.',
-      'Built a dual-engine backtesting stack, with a vectorized research engine and an L2 order-queue tick model, for fast parameter sweeps and higher-fidelity fill analysis.',
-      'Designed and validated grid market-making models with inventory, queue-position, fee and adverse-selection controls.',
-      'Architected TWAP, VWAP and implementation-shortfall execution research across three major exchanges.',
-      'Engineered more than 200 multi-frequency OHLCV, order-book, derivatives and cross-sectional factors with automated decay analysis.',
-      'Led a two-person research pod, reviewing methodology and production code and mentoring junior researchers before live deployment.'
+      'Alpha research: built an LSTM forecasting engine on phase-space features with full MLOps in MLflow, and integrated more than 200 multi-frequency factors with decay analysis and cross-sectional ranking.',
+      'Directional strategy: developed a high-frequency taker strategy on tick data that captures short reversions with a confidence signal, and deployed it live.',
+      'Execution: architected execution algorithms for CTA books, using microstructure timing overlays that modulate child-order aggressiveness, cutting slippage relative to TWAP across major exchanges.',
+      'Market making: built a dual-engine tick-based backtest stack with vectorized L2 queue-position fills, and developed and validated a grid-based market-making strategy.',
+      'Trading operations: tuned model parameters to market conditions and strategy factors, and owned daily operations such as P&L monitoring, transaction-cost and fee analysis, and live risk monitoring.',
+      'Led a two-person research team, mentored junior researchers, and reviewed methodology and production code before deployment.'
     ],
-    technologies: ['Python', 'PyTorch', 'MLflow', 'Polars', 'NumPy', 'REST and WebSocket APIs', 'Linux']
+    technologies: ['Python', 'PyTorch', 'MLflow', 'Polars', 'pandas', 'NumPy', 'REST and WebSocket exchange APIs', 'Linux', 'Git']
   },
   {
     id: 'insightcheck',
     role: 'Quantitative Research Intern',
-    organization: 'InsightCheck Investments · $300M AUM',
+    organization: 'InsightCheck Investments · systematic equity fund with CTA desk, $300M AUM',
     dates: 'Feb 2025–Aug 2025',
     location: 'Shenzhen, China',
-    mandate: 'Market-neutral research and market-data infrastructure across equity and futures markets.',
     accomplishments: [
-      'Combined PCA-derived factors, mean reversion and covariance risk modeling in market-neutral research.',
-      'Built an L3 market-by-order reconstruction engine for the A-share universe.',
-      'Built a distributed backtester that reduced evaluation cycles by approximately ten times.'
+      'Statistical arbitrage: enhanced quantitative models across equity and futures markets, and developed a market-neutral long-short equity strategy combining PCA statistical factors with machine-learning signals and a covariance-based risk model.',
+      'Factor research: researched fundamental and microstructure alpha factors for Chinese A-shares, validated more than 62 intraday factors, and ran cross-sectional portfolio optimization in Polars.',
+      'Order-book engine: independently built an order-book reconstruction engine from L3 market-by-order data, prototyped in Python and migrated to C++, that processes one trading day of the full A-share universe in about one second.',
+      'Built a Dask-based distributed simulation framework that cut model-evaluation time tenfold, to about 15 minutes.'
     ],
-    technologies: ['Python', 'Polars', 'Dask', 'C++', 'SQL', 'Linux']
+    technologies: ['Python', 'Polars', 'Dask', 'C++', 'SQL', 'Linux', 'Git']
   }
 ] as const;
 

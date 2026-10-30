@@ -9,7 +9,7 @@ const publications = filterPublished(await getCollection('publications')).sort(
 );
 // Bold the "Wu, T." author token in each citation.
 const splitCitation = (citation: string) => {
-  const marker = 'Wu, T.';
+  const marker = citation.includes('T. Wu') ? 'T. Wu' : 'Wu, T.';
   const index = citation.indexOf(marker);
   return index === -1 ? [citation, '', ''] : [citation.slice(0, index), marker, citation.slice(index + marker.length)];
 };
@@ -76,7 +76,7 @@ const splitCitation = (citation: string) => {
           const [before, me, after] = splitCitation(publication.data.citation);
           return (
             <li>
-              <span class="pub-title">“{publication.data.title}.”</span> {before}<strong>{me}</strong>{after}
+              {before}<strong>{me}</strong>{after}
               <span class="pub-links">
                 {publication.data.journalUrl && <a href={publication.data.journalUrl} target="_blank" rel="noopener">Journal</a>}
                 {publication.data.arxivUrl && <a href={publication.data.arxivUrl} target="_blank" rel="noopener">arXiv</a>}

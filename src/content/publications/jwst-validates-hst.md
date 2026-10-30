@@ -1,7 +1,7 @@
 ---
 id: publication-jwst-validates-hst
 slug: jwst-validates-hst
-title: JWST Validates HST Distance Measurements
+title: "JWST Validates HST Distance Measurements: Selection of Supernova Subsample Explains Differences in JWST Estimates of Local H₀"
 summary: A comparison of JWST and HST distance-ladder measurements and the role of supernova-subsample selection.
 status: published
 publishedAt: 2024-11-01
@@ -10,7 +10,7 @@ relatedIds: []
 externalLinks:
   - label: arXiv
     url: https://arxiv.org/abs/2408.11770
-citation: "Riess, A. G., Scolnic, D., et al. (Wu, T. included), The Astrophysical Journal 977, 120 (2024)."
+citation: "Riess, A. G., Scolnic, D., et al. (including T. Wu). “JWST Validates HST Distance Measurements: Selection of Supernova Subsample Explains Differences in JWST Estimates of Local H₀.” ApJ 977, 120 (2024). arXiv:2408.11770."
 venue: The Astrophysical Journal
 abstract: The study cross-checks HST Cepheid and Type Ia supernova distance measurements with early JWST subsamples and analyzes why estimates differ across selected samples.
 contribution: Contributed through Duke distance-ladder research and synthetic stellar-catalog analysis. The complete paper remains the source of record for authorship and methods.

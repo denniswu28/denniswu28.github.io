@@ -81,7 +81,7 @@ for (const quantFeature of ['id="experience"', 'id="independent-projects"', 'top
 
 const htmlFiles = files.filter((file) => file.endsWith('.html'));
 const researchHtml = fs.readFileSync(path.join(root, 'academic', 'index.html'), 'utf8');
-for (const researchFeature of ['id="arizona-bao"', 'id="caltech-spherex"', 'id="duke-surveys"', 'id="publications"', 'id="education"', 'id="recognition"', 'In preparation', 'photorecon']) {
+for (const researchFeature of ['id="arizona-bao"', 'id="caltech-spherex"', 'id="duke-surveys"', 'id="publications"', 'id="education"', 'id="recognition"', 'Manuscript in preparation', 'photorecon']) {
   if (!researchHtml.includes(researchFeature)) throw new Error(`Missing research page content: ${researchFeature}`);
 }
 // Plain-style guard: no em dashes or semicolons in the visitor-facing prose of the main pages.
