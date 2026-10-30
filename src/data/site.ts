@@ -54,10 +54,10 @@ export const interests = [
 
 export const education = [
   {
-    degree: 'B.S. in Physics, minor in Mathematics (expected 2027)',
+    degree: 'B.S. in Physics, minor in Mathematics (expected by May 2027)',
     school: 'University of Arizona',
     dates: '2026–2027',
-    note: 'Advisor: Prof. Tim Eifler, Arizona Cosmology Lab'
+    note: 'Advisors: Prof. Tim Eifler, Arizona Cosmology Lab, and Prof. Chi-kwan Chan, EHT Collaboration'
   },
   {
     degree: 'Physics and Mathematics',
@@ -69,9 +69,10 @@ export const education = [
 
 // Newest first. Dates follow the CV.
 export const news = [
-  { date: 'Nov 2026', text: 'Planned talk on BAO reconstruction with photometric-redshift smearing at the Roman Project Infrastructure Teams meeting.' },
-  { date: 'Oct 2026', text: 'Talk on BAO reconstruction with photometric-redshift smearing at the Steward Astronomy Symposium.' },
-  { date: 'Oct 2026', text: 'BAO measurements in the cosmology session of the SPHEREx Science Team Meeting.' },
+  { date: 'Oct 2026', text: 'Gave a TACOS talk on BAO reconstruction with photometric-redshift smearing to a Steward-wide audience.' },
+  { date: 'Oct 2026', text: 'Gave a talk on BAO reconstruction with photometric-redshift smearing at the Steward Astronomy Symposium.' },
+  { date: 'Oct 2026', text: 'Presented BAO measurements in the cosmology session of the SPHEREx Science Team Meeting.' },
+  { date: 'Aug 2026', text: 'Started the TIMESTEP astronomical software engineering internship with Dr. Chi-kwan Chan, working on Event Horizon Telescope data tools.' },
   { date: 'Jun 2026', text: 'Presented BAO measurements at the SPHEREx Science Team face-to-face meeting at IPAC, Caltech.' },
   { date: '2026', text: 'My team won first place at the U.S. Physicists’ Tournament.' },
   { date: 'Feb 2026', text: 'Joined the Arizona Cosmology Lab at Steward Observatory to work with Prof. Tim Eifler.' }
@@ -80,13 +81,14 @@ export const news = [
 export const researchProjects = [
   {
     id: 'arizona-bao',
-    title: 'BAO reconstruction with photometric-redshift smearing',
+    title: 'BAO reconstruction in the presence of photometric-redshift uncertainty',
     group: 'Arizona Cosmology Lab, Steward Observatory, University of Arizona',
     dates: 'Feb 2026–present',
     advisor: 'Prof. Tim Eifler',
     paragraphs: [
-      'Reconstruction sharpens the baryon acoustic oscillation (BAO) feature by undoing part of the galaxy motion that blurs it. Photometric redshifts smear galaxy positions along the line of sight. I am measuring how much that smearing limits reconstruction, and building a forward model that carries photo-z uncertainty through reconstruction into the standard-ruler calibration for SPHEREx, Roman and Rubin.',
-      'I developed photorecon, a Python package for transverse BAO reconstruction that follows the pyrecon interface. It is now being tested on low-redshift SPHEREx samples. I found a systematic bias in the MCMC pipeline and cut it sixfold by cross-validating two covariance estimators over a 250-cell grid. With a 25-realization Monte Carlo ensemble, I found the smearing level at which the 20 to 40 percent precision gain from reconstruction stops being significant. A first-author paper is in preparation.'
+      'Reconstruction sharpens the baryon acoustic oscillation (BAO) feature by undoing part of the galaxy motion that blurs it. Photometric redshifts smear galaxy positions along the line of sight. I test when standard reconstruction still improves BAO distances for samples with SPHEREx-like redshift errors and number densities.',
+      'I developed photorecon, a Python package for transverse BAO reconstruction on photometric galaxy samples that follows the pyrecon interface. It is now being tested for SPHEREx at low redshift. I found a systematic bias in the MCMC pipeline and cut it sixfold by cross-validating two covariance estimators over a 250-cell grid.',
+      'Across 25 DESI AbacusSummit mocks, combining four redshift-precision classes per bin raised the 2D BAO figure of merit by 26 to 271 percent after reconstruction and recovered the input distances within 1.3σ. I identified the operating range of standard reconstruction, a redshift error σ/(1 + z) below about 0.003 and shot noise below about 2.5 times the BAO-scale clustering power, to guide SPHEREx sample selection. A first-author paper is in preparation.'
     ],
     links: [] as { label: string; href: string }[],
     figure: undefined as undefined | { src: string; alt: string; caption: string }
@@ -95,7 +97,7 @@ export const researchProjects = [
     id: 'timestep-hallmark',
     title: 'Hallmark: data management for simulation libraries',
     group: 'TIMESTEP Program, Steward Observatory, University of Arizona',
-    dates: '2026–present',
+    dates: 'Aug 2026–present',
     advisor: 'Dr. Chi-kwan Chan',
     paragraphs: [
       'Event Horizon Telescope simulation libraries hold large numbers of files whose parameters live in their paths. Hallmark is an open-source Python package that decodes those paths into structured parameters and data frames, so a library can be searched and reused. I work on the metadata extraction, Git-based data versioning, and parameter-driven downloads of public-data subsets such as DESI.'
@@ -153,14 +155,14 @@ export const researchProjects = [
 
 export const inPreparation = [
   {
-    authors: 'Wu, T., Paillas, E., et al.',
-    title: 'BAO Reconstruction with Photometric Redshift Smearing',
+    authors: 'Wu, T., Paillas, E., & Eifler, T.',
+    title: 'BAO Reconstruction in the Presence of Photometric Redshift Uncertainty',
     status: 'Manuscript in preparation'
   }
 ] as const;
 
 export const talks = [
-  { date: 'Nov 2026', title: 'BAO Reconstruction with Photometric Redshift Smearing', venue: 'Roman Project Infrastructure Teams Meeting (planned)' },
+  { date: 'Oct 2026', title: 'BAO Reconstruction with Photometric Redshift Smearing', venue: 'TACOS Talk, Arizona Cosmology Lab, Steward Observatory (Steward-wide audience)' },
   { date: 'Oct 2026', title: 'BAO Reconstruction with Photometric Redshift Smearing', venue: 'Steward Astronomy Symposium, University of Arizona' },
   { date: 'Oct 2026', title: 'BAO Measurements, Cosmology Session', venue: 'SPHEREx Science Team Meeting' },
   { date: 'Jun 2026', title: 'BAO Measurements, Cosmology Session', venue: 'SPHEREx Science Team Meeting (Face-to-Face E4), IPAC, Caltech' },
@@ -171,21 +173,15 @@ export const talks = [
 
 export const software = [
   {
-    name: 'photorecon',
-    role: 'Lead developer',
-    text: 'Transverse BAO reconstruction for galaxy samples with photometric-redshift uncertainty, with an interface patterned after pyrecon.',
-    href: undefined as string | undefined
-  },
-  {
     name: 'cosmock',
     role: 'Co-developer',
     text: 'Tomographic weak-lensing convergence maps from input maps and angular power spectra, using point-transformed Gaussian fields.',
     href: 'https://github.com/ivan96eb/cosmock'
   },
   {
-    name: 'Hallmark',
+    name: 'hallmark',
     role: 'Contributor',
-    text: 'Reproducible data management for simulation libraries, motivated by Event Horizon Telescope workflows.',
+    text: 'Reproducible data management for simulation libraries, motivated by Event Horizon Telescope calibration and simulation workflows.',
     href: 'https://github.com/lanisrc/hallmark'
   }
 ] as const;
@@ -220,43 +216,42 @@ export const experiences = [
     dates: 'Aug 2025–present (full time to May 2026, part time since)',
     location: 'Remote',
     accomplishments: [
-      'Alpha research: built an LSTM forecasting engine on phase-space features with full MLOps in MLflow, and integrated more than 200 multi-frequency factors with decay analysis and cross-sectional ranking.',
-      'Directional strategy: developed a high-frequency taker strategy on tick data that captures short reversions with a confidence signal, and deployed it live.',
-      'Execution: architected execution algorithms for CTA books, using microstructure timing overlays that modulate child-order aggressiveness, cutting slippage relative to TWAP across major exchanges.',
-      'Market making: built a dual-engine tick-based backtest stack with vectorized L2 queue-position fills, and developed and validated a grid-based market-making strategy.',
-      'Trading operations: tuned model parameters to market conditions and strategy factors, and owned daily operations such as P&L monitoring, transaction-cost and fee analysis, and live risk monitoring.',
-      'Led a two-person research team, mentored junior researchers, and reviewed methodology and production code before deployment.'
+      'Alpha discovery: built an LSTM forecasting engine on phase-space features with full MLOps in MLflow, and integrated more than 200 multi-frequency factors with decay analysis and cross-sectional ranking, lifting win rates by 3.1 percent.',
+      'Directional strategy: developed a high-frequency taker strategy on tick data that captures short reversions with a confidence signal, deployed live at a post-fee Sharpe ratio of 8.2 over three months on Coinbase International.',
+      'Optimal execution: architected TWAP, VWAP and implementation-shortfall algorithms for CTA books, with microstructure timing overlays on child-order aggressiveness, cutting slippage by about 2 bps against TWAP across major exchanges.',
+      'Market making: built a dual-engine tick backtest stack with vectorized L2 queue-position fills, and developed and validated a grid-based market-making strategy with an out-of-sample Sharpe ratio of 9 over three months.',
+      'Trading and risk: ran CTA books on OKX, Binance and Coinbase, owning P&L, TCA and fee analysis. Managed live risk on $35M with leverage, position and beta limits, and trimmed exposure ahead of the October 2025 crash.',
+      'Led a two-person research team, mentored junior researchers, and reviewed methodology and code before deployment.'
     ],
-    technologies: ['Python', 'PyTorch', 'MLflow', 'Polars', 'pandas', 'NumPy', 'REST and WebSocket exchange APIs', 'Linux', 'Git']
+    technologies: ['Python (PyTorch, MLflow, Polars, pandas, NumPy)', 'CEX APIs (REST and WebSocket)', 'Grafana', 'Linux', 'Git']
   },
   {
     id: 'insightcheck',
-    role: 'Quantitative Research Intern',
+    role: 'Quantitative Researcher',
     organization: 'InsightCheck Investments · systematic equity fund with CTA desk, $300M AUM',
     dates: 'Feb 2025–Aug 2025',
     location: 'Shenzhen, China',
     accomplishments: [
-      'Statistical arbitrage: enhanced quantitative models across equity and futures markets, and developed a market-neutral long-short equity strategy combining PCA statistical factors with machine-learning signals and a covariance-based risk model.',
-      'Factor research: researched fundamental and microstructure alpha factors for Chinese A-shares, validated more than 62 intraday factors, and ran cross-sectional portfolio optimization in Polars.',
-      'Order-book engine: independently built an order-book reconstruction engine from L3 market-by-order data, prototyped in Python and migrated to C++, that processes one trading day of the full A-share universe in about one second.',
-      'Built a Dask-based distributed simulation framework that cut model-evaluation time tenfold, to about 15 minutes.'
+      'Statistical arbitrage: developed a market-neutral long-short equity strategy combining PCA statistical factors and machine-learning signals with a covariance-based risk model, backtested at a post-cost Sharpe ratio of 2.4.',
+      'Factor research: researched fundamental and microstructure alpha factors for Chinese A-shares, validating more than 62 intraday factors with daily IC above 0.01, and ran cross-sectional portfolio optimization in Polars.',
+      'Order-book engine and infrastructure: solely engineered an L3 market-by-order reconstruction engine, prototyped in Python and migrated to C++, that processes the full A-share universe in about one second per day. Built a Dask backtester that cut evaluation cycles tenfold.'
     ],
-    technologies: ['Python', 'Polars', 'Dask', 'C++', 'SQL', 'Linux', 'Git']
+    technologies: ['Python (Polars, Dask)', 'C++', 'SQL', 'Linux', 'Git']
   }
 ] as const;
 
 export const independentProjects = [
   {
-    id: 'market-making-research',
-    title: 'Market-making research stack',
-    dates: '2025',
-    text: 'Built and deployed a live ETH market-making framework on OKX, combining EWMA flow alphas with a CNN that reads order-book patterns through a phase-space feature representation. It averaged 0.5 to 1 percent daily return, and the project led to my recruitment at Qrigin.'
+    id: 'imc-prosperity',
+    title: 'IMC Prosperity 4 Trading Competition',
+    dates: '2026',
+    text: 'Ranked in the top 3 percent of more than 6,000 teams using market making and cross-asset arbitrage driven by counterparty fingerprinting. Python (PyTorch) and Rust.'
   },
   {
-    id: 'imc-prosperity',
-    title: 'IMC Prosperity 4',
-    dates: '2026',
-    text: 'Ranked in the top 3 percent of more than 6,000 teams in a global algorithmic trading competition, using market making and cross-asset arbitrage driven by fingerprinting of counterparties.'
+    id: 'market-making-research',
+    title: 'Crypto market maker with backtest engine',
+    dates: '2025',
+    text: 'Built and deployed a live ETH market-making framework on OKX, combining EWMA flow alphas with a CNN that captures order-book patterns through phase-space features. It averaged 0.5 to 1 percent daily return, and the project led to my recruitment at Qrigin.'
   }
 ] as const;
 
@@ -268,4 +263,4 @@ export const quantCode = [
   }
 ] as const;
 
-export const quantMethods = 'Python (PyTorch, Polars, NumPy, MLflow, Dask), C++, Rust and SQL. Short-horizon forecasting, order-book and queue simulation, execution and transaction-cost analysis, factor research, Bayesian inference and Monte Carlo methods.';
+export const quantMethods = 'Python (PyTorch, Polars, pandas, NumPy, Numba, Dask, MLflow), Rust, C and C++, SQL and Unix. Markets: digital assets, commodity futures, global equities, options (Akuna 101 and 201) and prediction markets.';

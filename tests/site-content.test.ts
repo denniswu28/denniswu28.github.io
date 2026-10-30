@@ -20,7 +20,7 @@ describe('public site content', () => {
     expect(researchProjects.map((project) => project.id)).toEqual(
       expect.arrayContaining(['arizona-bao', 'caltech-spherex', 'duke-surveys'])
     );
-    expect(independentProjects.map((project) => project.title)).toEqual(['Market-making research stack', 'IMC Prosperity 4']);
+    expect(independentProjects.map((project) => project.title)).toEqual(['IMC Prosperity 4 Trading Competition', 'Crypto market maker with backtest engine']);
   });
 
   it('never presents the Duke record as a degree or a transfer', () => {
@@ -32,7 +32,7 @@ describe('public site content', () => {
 
   it('lists news newest first', () => {
     expect(news.length).toBeGreaterThan(2);
-    expect(news[0].date).toBe('Nov 2026');
+    expect(news[0].date).toBe('Oct 2026');
   });
 
   it('does not restore removed interface copy', () => {
