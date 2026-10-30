@@ -77,7 +77,6 @@ export const news = [
   { date: 'Oct 2026', text: 'Presented BAO measurements in the cosmology session of the SPHEREx Science Team Meeting.' },
   { date: 'Aug 2026', text: 'Started the TIMESTEP astronomical software engineering internship with Dr. Chi-kwan Chan, working on Event Horizon Telescope data tools.' },
   { date: 'Jun 2026', text: 'Presented BAO measurements at the SPHEREx Science Team face-to-face meeting at IPAC, Caltech.' },
-  { date: '2026', text: 'My team won first place at the U.S. Physicists’ Tournament.' },
   { date: 'Feb 2026', text: 'Joined the Arizona Cosmology Lab at Steward Observatory to work with Prof. Tim Eifler.' }
 ] as const;
 
@@ -202,7 +201,6 @@ export const outreach = [
 ] as const;
 
 export const awards = [
-  { year: '2026', text: 'First Place, U.S. Physicists’ Tournament (team)' },
   { year: '2026', text: 'Global Wildcat Scholarship, University of Arizona' },
   { year: '2024', text: 'Faculty Scholars Finalist, Duke University' },
   { year: '2024', text: 'Jocelyn Bell Burnell Outstanding Leadership Scholarship, Society of Physics Students' },
