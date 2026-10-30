@@ -1,24 +1,38 @@
 import fs from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { homeTopics, independentProjects } from '../src/data/site';
+import { education, homePaths, independentProjects, navigation, news, researchProjects, site } from '../src/data/site';
 
-describe('simplified public site content', () => {
-  it('keeps the homepage directory short and ordered', () => {
-    expect(homeTopics.map((topic) => topic.title)).toEqual([
-      'Quant Lab',
-      'Personal Portfolio',
-      'Academic Profile',
-      'Blog',
-      'Documents'
-    ]);
+describe('public site content', () => {
+  it('uses one name form everywhere', () => {
+    expect(site.name).toBe('Tianrui (Dennis) Wu');
   });
 
-  it('provides resume-backed details for every independent project', () => {
-    expect(independentProjects.map((project) => project.title)).toEqual([
-      'Market-Making Research Stack',
-      'IMC Prosperity 4'
-    ]);
-    expect(independentProjects.every((project) => project.bullets.length >= 1)).toBe(true);
+  it('keeps the navigation short and ordered', () => {
+    expect(navigation.map((item) => item.label)).toEqual(['Home', 'Research', 'Quant', 'Writing', 'CV']);
+  });
+
+  it('routes academic and trading visitors from a neutral homepage', () => {
+    expect(homePaths.map((path) => path.href)).toEqual(['/academic/', '/quant/']);
+    expect(homePaths.map((path) => path.document.href)).toEqual([site.cv, site.resume]);
+  });
+
+  it('keeps stable anchors used by older links and articles', () => {
+    expect(researchProjects.map((project) => project.id)).toEqual(
+      expect.arrayContaining(['arizona-bao', 'caltech-spherex', 'duke-surveys'])
+    );
+    expect(independentProjects.map((project) => project.title)).toEqual(['Market-making research stack', 'IMC Prosperity 4']);
+  });
+
+  it('never presents the Duke record as a degree or a transfer', () => {
+    const duke = education.find((item) => item.school === 'Duke University');
+    expect(duke?.degree).not.toMatch(/B\.?S\.?|Bachelor|transfer/i);
+    const sources = ['src/data/site.ts', 'src/pages/index.astro', 'src/pages/academic/index.astro'].map((file) => fs.readFileSync(file, 'utf8')).join('\n');
+    expect(sources).not.toMatch(/transferr/i);
+  });
+
+  it('lists news newest first', () => {
+    expect(news.length).toBeGreaterThan(2);
+    expect(news[0].date).toBe('Nov 2026');
   });
 
   it('does not restore removed interface copy', () => {
@@ -30,20 +44,21 @@ describe('simplified public site content', () => {
       'src/pages/portfolio/index.astro',
       'src/pages/documents/index.astro',
       'src/pages/404.astro',
-      'src/styles/global.css'
+      'src/styles/global.css',
+      'src/layouts/BaseLayout.astro'
     ].map((file) => fs.readFileSync(file, 'utf8')).join('\n');
 
     for (const removed of [
       'FAVORITE SAYING',
       'Choose the evidence you need',
+      'Choose the topic you need',
       'Credibility at a glance',
-      'Claims should be inspectable',
       'Organized by system',
-      'Personal writing is not part of this public system',
-      'This section is separate from the Quant Lab',
       'Every experiment follows Question',
       '>Planned<',
-      "data-state='planned'"
+      'fonts.googleapis.com',
+      'Oxanium',
+      'Space Grotesk'
     ]) {
       expect(sources).not.toContain(removed);
     }

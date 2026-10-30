@@ -19,7 +19,7 @@ const publicationSchema = {
   description: entry.data.abstract,
   datePublished: entry.data.publishedAt.toISOString(),
   dateModified: entry.data.updatedAt.toISOString(),
-  author: { '@type': 'Person', name: 'Tianrui Wu' },
+  author: { '@type': 'Person', name: 'Tianrui (Dennis) Wu' },
   isPartOf: entry.data.journalUrl
 };
 ---
@@ -27,7 +27,7 @@ const publicationSchema = {
 <BaseLayout title={entry.data.title} description={entry.data.summary} type="article" schema={publicationSchema}>
   <article class="article shell narrow-shell">
     <header class="article-header">
-      <a class="eyebrow breadcrumb" href="/academic/#publications">Academic / {entry.data.venue}</a>
+      <a class="eyebrow breadcrumb" href="/academic/#publications">Research / {entry.data.venue}</a>
       <h1>{entry.data.title}</h1>
       <p class="lede">{entry.data.abstract}</p>
       <div class="tag-row"><span>{entry.data.publicationStatus}</span><span>{entry.data.venue}</span></div>

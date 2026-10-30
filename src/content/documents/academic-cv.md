@@ -1,8 +1,8 @@
 ---
 id: document-academic-cv
 slug: academic-cv
-title: Academic Curriculum Vitae
-summary: Research appointments, publications, education, teaching, service, and recognition.
+title: Academic curriculum vitae
+summary: Research, publications, talks, education, teaching, service and awards.
 status: published
 publishedAt: 2026-07-15
 updatedAt: 2026-07-15

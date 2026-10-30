@@ -15,7 +15,8 @@ const required = [
   'blog/index.html',
   'blog/quant-research/reading-execution-evidence/index.html',
   'blog/physics/shared-simulated-skies/index.html',
-  'blog/ai-safety/index.html',
+  'fonts/cmu-serif-500-roman.woff2',
+  'favicon.svg',
   'documents/index.html',
   'data/coinbase-btc-usd-2025-10-09-to-2025-10-14-5m.csv',
   '404.html',
@@ -45,7 +46,7 @@ const files = walk(root);
 const textFiles = files.filter((file) => /\.(html|xml|css|js)$/.test(file));
 const allText = textFiles.map((file) => fs.readFileSync(file, 'utf8')).join('\n');
 
-for (const forbidden of ['href="/private', 'draft-template', 'Unpublished thesis template', 'chatgpt_portfolio_update', 'chatgpt_trade_log', 'Dennis Wu', 'Tianrui (Dennis) Wu', 'Build the claim. Show the method.']) {
+for (const forbidden of ['href="/private', 'draft-template', 'Unpublished thesis template', 'chatgpt_portfolio_update', 'chatgpt_trade_log', 'Build the claim. Show the method.', 'fonts.googleapis.com']) {
   if (allText.includes(forbidden)) throw new Error(`Forbidden unpublished output detected: ${forbidden}`);
 }
 
@@ -69,16 +70,28 @@ for (const forbiddenCopy of [
 }
 
 const homeHtml = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
-for (const homeLabel of ['Choose the topic you need.', 'Quant Lab', 'Personal Portfolio', 'Academic Profile', 'Blog', 'Documents', '/images/portrait.jpg']) {
-  if (!homeHtml.includes(homeLabel)) throw new Error(`Missing simplified homepage content: ${homeLabel}`);
+for (const homeLabel of ['Tianrui (Dennis) Wu', 'Arizona Cosmology Lab', 'Qrigin Capital', 'href="/academic/"', 'href="/quant/"', '/images/portrait.jpg']) {
+  if (!homeHtml.includes(homeLabel)) throw new Error(`Missing neutral homepage content: ${homeLabel}`);
 }
 
 const quantHtml = fs.readFileSync(path.join(root, 'quant', 'index.html'), 'utf8');
-for (const quantFeature of ['Independent Systems Research', 'aria-expanded="false"', 'data-independent-button', 'data-independent-panel', 'top 3% of more than 6,000 teams']) {
-  if (!quantHtml.includes(quantFeature)) throw new Error(`Missing independent-project interaction content: ${quantFeature}`);
+for (const quantFeature of ['id="experience"', 'id="independent-projects"', 'top 3 percent of more than 6,000 teams', 'market-making-lab', '/lab/trading-systems-execution/']) {
+  if (!quantHtml.includes(quantFeature)) throw new Error(`Missing quant page content: ${quantFeature}`);
 }
 
 const htmlFiles = files.filter((file) => file.endsWith('.html'));
+const researchHtml = fs.readFileSync(path.join(root, 'academic', 'index.html'), 'utf8');
+for (const researchFeature of ['id="arizona-bao"', 'id="caltech-spherex"', 'id="duke-surveys"', 'id="publications"', 'id="education"', 'id="recognition"', 'In preparation', 'photorecon']) {
+  if (!researchHtml.includes(researchFeature)) throw new Error(`Missing research page content: ${researchFeature}`);
+}
+// Plain-style guard: no em dashes or semicolons in the visitor-facing prose of the main pages.
+for (const page of ['index.html', 'academic/index.html', 'quant/index.html']) {
+  const html = fs.readFileSync(path.join(root, page), 'utf8');
+  const body = html.slice(html.indexOf('<main'), html.indexOf('</main>')).replace(/<script[\s\S]*?<\/script>/g, '').replace(/<style[\s\S]*?<\/style>/g, '').replace(/<[^>]+>/g, ' ').replace(/&[a-z#0-9]+;/gi, ' ');
+  for (const mark of ['—', ';']) {
+    if (body.includes(mark)) throw new Error(`Prose style check failed on ${page}: found "${mark}"`);
+  }
+}
 const experimentHtml = fs.readFileSync(path.join(root, 'lab', 'trading-systems-execution', 'index.html'), 'utf8');
 for (const evidenceLabel of [
   'Deep Limit-Order-Book Architecture',
@@ -96,11 +109,11 @@ for (const htmlFile of htmlFiles) {
   const html = fs.readFileSync(htmlFile, 'utf8');
   for (const socialMeta of [
     `<meta property="og:image" content="${socialImageUrl}">`,
-    `<meta property="og:image:width" content="1733">`,
-    `<meta property="og:image:height" content="908">`,
-    `<meta property="og:image:alt" content="Tianrui Wu — quantitative research, cosmology, and systems">`,
+    `<meta property="og:image:width" content="1200">`,
+    `<meta property="og:image:height" content="630">`,
+    `<meta property="og:image:alt" content="Tianrui (Dennis) Wu: cosmology and quantitative research">`,
     `<meta name="twitter:image" content="${socialImageUrl}">`,
-    `<meta name="twitter:image:alt" content="Tianrui Wu — quantitative research, cosmology, and systems">`
+    `<meta name="twitter:image:alt" content="Tianrui (Dennis) Wu: cosmology and quantitative research">`
   ]) {
     if (!html.includes(socialMeta)) throw new Error(`Missing social metadata in ${path.relative(root, htmlFile)}: ${socialMeta}`);
   }

@@ -1,5 +1,12 @@
 # Website Strategy and Content Guidelines
 
+> **October 2026 direction (owner decision, supersedes sections 1, 2, 3 and 12 where they conflict).**
+> The homepage is neutral: a short bio and two equal paths, one to Research (`/academic/`) for faculty and one to Quant (`/quant/`) for trading recruiters.
+> Content is plain and down to earth, in the style of a typical academic homepage: short first-person prose, dated news, no interactive showcase on the main pages.
+> Navigation is **Home | Research | Quant | Writing | CV**. The Lab and Portfolio pages stay, linked from the Quant page.
+> Visual style: white background, Arizona Blue `#0C234B` header and headings, Arizona Red `#AB0520` buttons and links, Duke Royal Blue `#00539B` for hover and secondary accents. Arial for body text, Computer Modern (self-hosted CMU Serif) for headings, Courier for dates, labels and code. No logos, starfields or glow effects.
+> Name form is **Tianrui (Dennis) Wu** everywhere. Research wording follows the academic CV. Quant wording follows the quant resume.
+
 **Last consolidated:** July 15, 2026  
 **Purpose:** Maintain a recruiter-friendly professional site with clear paths to deeper technical, academic, and investment evidence.
 

@@ -1,115 +1,81 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageIntro from '../../components/PageIntro.astro';
-import CapabilityExplorer from '../../components/CapabilityExplorer.astro';
-import { experiences, independentProjects } from '../../data/site';
+import { experiences, independentProjects, quantCode, quantMethods, site } from '../../data/site';
+import { filterPublished } from '../../lib/content';
+
+const experiments = filterPublished(await getCollection('experiments'));
+const quantArticles = filterPublished(await getCollection('articles')).filter((article) => article.data.category === 'quant-research');
+const theses = filterPublished(await getCollection('theses'));
 ---
 
-<BaseLayout title="Quantitative Research and Trading" description="Production-focused quantitative research across forecasting, market making, execution, market data, monitoring, and risk.">
+<BaseLayout title="Quantitative Research" description="Quantitative research and trading by Tianrui (Dennis) Wu: forecasting, market making, execution research and market-data systems.">
   <div class="shell">
-    <PageIntro eyebrow="Profile / production markets" title="Quantitative Research and Trading" description="I build short-horizon forecasting, execution, market-making, and research infrastructure from data and simulation through monitoring and risk." />
-  </div>
-
-  <section class="section" id="experience">
-    <div class="shell">
-      <div class="section-heading section-heading-compact">
-        <div><p class="eyebrow">Experience</p><h2>Research connected to live systems.</h2></div>
+    <header class="page-intro">
+      <h1>Quantitative research</h1>
+      <p class="lede">I am a quantitative researcher and systematic trader at Qrigin Capital, a crypto proprietary trading firm. I work on short-horizon forecasting, market making and execution, from research and simulation through deployment and monitoring.</p>
+      <div class="button-row">
+        <a class="button" href={site.resume} target="_blank" rel="noopener">Resume (PDF)</a>
+        <a class="button button-secondary" href={`mailto:${site.email}`}>Email</a>
       </div>
-      <div class="entry-list">
-        {experiences.map((experience) => (
-          <article class="experience-card" id={experience.id}>
-            <div class="experience-meta">
-              <strong>{experience.organization}</strong>
-              <span>{experience.dates}</span><br />
-              <span>{experience.location}</span>
-            </div>
-            <div class="experience-body">
-              <h2>{experience.role}</h2>
-              <p>{experience.mandate}</p>
-              <ul class="impact-list">{experience.accomplishments.map((item) => <li>{item}</li>)}</ul>
-              <div class="tech-row">{experience.technologies.map((technology) => <span>{technology}</span>)}</div>
-              <div class="button-row"><a class="button button-secondary" href={experience.evidenceHref}>Learn more</a></div>
-            </div>
-          </article>
+      <nav class="toc" aria-label="On this page">
+        <a href="#experience">Experience</a>
+        <a href="#independent-projects">Projects</a>
+        <a href="#case-studies">Case studies and writing</a>
+        <a href="#capabilities">Methods</a>
+      </nav>
+    </header>
+
+    <section class="section" id="experience" aria-labelledby="experience-heading">
+      <h2 class="rule-heading" id="experience-heading">Experience</h2>
+      {experiences.map((experience) => (
+        <article class="entry" id={experience.id}>
+          <h3>{experience.role}</h3>
+          <p class="meta">
+            <span>{experience.dates}</span>
+            <span>{experience.organization} · {experience.location}</span>
+          </p>
+          <p>{experience.mandate}</p>
+          <ul>{experience.accomplishments.map((item) => <li>{item}</li>)}</ul>
+          <div class="tech-row">{experience.technologies.map((technology) => <span>{technology}</span>)}</div>
+        </article>
+      ))}
+    </section>
+
+    <section class="section" id="independent-projects" aria-labelledby="projects-heading">
+      <h2 class="rule-heading" id="projects-heading">Projects</h2>
+      <ul class="dated-list">
+        {independentProjects.map((project) => (
+          <li id={project.id}><span class="date-block">{project.dates}</span><div><strong>{project.title}</strong><p>{project.text}</p></div></li>
         ))}
-      </div>
-    </div>
-  </section>
+      </ul>
+      <h3 style="margin-top: 22px">Code</h3>
+      <ul class="software-list">
+        {quantCode.map((repo) => (
+          <li><code>{repo.name}</code><p>{repo.text} <a href={repo.href} target="_blank" rel="noopener">{repo.href.replace('https://', '')}</a></p></li>
+        ))}
+      </ul>
+    </section>
 
-  <section class="section" id="capabilities">
-    <div class="shell">
-      <div class="section-heading section-heading-compact">
-        <div><h2>Capabilities</h2></div>
-      </div>
-      <CapabilityExplorer />
-    </div>
-  </section>
+    <section class="section" id="case-studies" aria-labelledby="case-heading">
+      <h2 class="rule-heading" id="case-heading">Case studies and writing</h2>
+      <ul class="software-list">
+        {experiments.map((experiment) => (
+          <li><a href={`/lab/${experiment.data.slug}/`}><strong>{experiment.data.title}</strong></a><p>{experiment.data.summary}</p></li>
+        ))}
+        {quantArticles.map((article) => (
+          <li><a href={`/blog/${article.data.category}/${article.data.slug}/`}><strong>{article.data.title}</strong></a><p>{article.data.summary}</p></li>
+        ))}
+        {theses.map((thesis) => (
+          <li><a href={`/portfolio/${thesis.data.slug}/`}><strong>{thesis.data.title}</strong></a><p>{thesis.data.summary}</p></li>
+        ))}
+      </ul>
+      <p class="notice" style="margin-top: 14px">Case studies use public, synthetic, delayed or aggregated data. Historical research is not investment advice.</p>
+    </section>
 
-  <section class="section" id="independent-projects">
-    <div class="shell">
-      <div class="section-heading section-heading-compact">
-        <div><h2>Independent Systems Research</h2></div>
-      </div>
-      <div class="independent-projects" data-independent-projects>
-        <div class="independent-project-buttons">
-          {independentProjects.map((project) => (
-            <button
-              class="independent-project-button"
-              type="button"
-              id={`independent-button-${project.id}`}
-              aria-expanded="false"
-              aria-controls={`independent-panel-${project.id}`}
-              data-independent-button={project.id}
-            >
-              <span class="eyebrow">{project.kicker}</span>
-              <strong>{project.title}</strong>
-              <small>{project.summary}</small>
-              <span class="independent-project-arrow" aria-hidden="true">+</span>
-            </button>
-          ))}
-        </div>
-        <div class="independent-project-panels" aria-live="polite">
-          {independentProjects.map((project) => (
-            <article
-              class="independent-project-panel"
-              id={`independent-panel-${project.id}`}
-              aria-labelledby={`independent-button-${project.id}`}
-              data-independent-panel={project.id}
-              hidden
-            >
-              <h3>{project.title}</h3>
-              <ul class="impact-list">{project.bullets.map((bullet) => <li>{bullet}</li>)}</ul>
-            </article>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <script>
-    document.querySelectorAll<HTMLElement>('[data-independent-projects]').forEach((projectGroup) => {
-      const buttons = Array.from(projectGroup.querySelectorAll<HTMLButtonElement>('[data-independent-button]'));
-      const panels = Array.from(projectGroup.querySelectorAll<HTMLElement>('[data-independent-panel]'));
-
-      buttons.forEach((button) => {
-        const id = button.dataset.independentButton;
-        const panel = panels.find((candidate) => candidate.dataset.independentPanel === id);
-        if (!id || !panel) return;
-        button.addEventListener('click', () => {
-          const willOpen = button.getAttribute('aria-expanded') !== 'true';
-          buttons.forEach((candidate) => {
-            candidate.setAttribute('aria-expanded', 'false');
-            candidate.classList.remove('is-active');
-          });
-          panels.forEach((candidate) => { candidate.hidden = true; });
-
-          if (willOpen) {
-            button.setAttribute('aria-expanded', 'true');
-            button.classList.add('is-active');
-            panel.hidden = false;
-          }
-        });
-      });
-    });
-  </script>
+    <section class="section" id="capabilities" aria-labelledby="methods-heading">
+      <h2 class="rule-heading" id="methods-heading">Methods</h2>
+      <p>{quantMethods}</p>
+    </section>
+  </div>
 </BaseLayout>

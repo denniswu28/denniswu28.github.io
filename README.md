@@ -1,6 +1,6 @@
-# Dennis Wu — quantitative research portfolio
+# Tianrui (Dennis) Wu: personal website
 
-This branch contains the Astro 6 revamp of `denniswu28.github.io`. The public site is fully static and is designed for GitHub Pages.
+Astro 6 source for `denniswu28.github.io`, a static site for GitHub Pages. The homepage routes faculty to Research and trading recruiters to Quant. See the October 2026 note at the top of `guideline.md` for the current style.
 
 ## Local development
 

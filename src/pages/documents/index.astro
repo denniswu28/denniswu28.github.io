@@ -5,16 +5,19 @@ import PageIntro from '../../components/PageIntro.astro';
 import PdfPreview from '../../components/PdfPreview.astro';
 import { filterPublished } from '../../lib/content';
 
-const documents = filterPublished(await getCollection('documents'));
+const order = ['academic-cv', 'quant-resume'];
+const documents = filterPublished(await getCollection('documents')).sort(
+  (a, b) => order.indexOf(a.data.documentType) - order.indexOf(b.data.documentType)
+);
 ---
 
-<BaseLayout title="Documents" description="Quantitative resume, academic CV, publications, and project records.">
-  <div class="shell"><PageIntro eyebrow="Formal records" title="Documents" description="Quantitative resume, academic CV, publications, and project records." /></div>
+<BaseLayout title="CV and Resume" description="Academic CV and quantitative research resume of Tianrui (Dennis) Wu.">
+  <div class="shell"><PageIntro eyebrow="Documents" title="CV and resume" description="The academic CV is the full research record. The resume is the one-page version for quantitative research roles." /></div>
   <section class="section">
     <div class="shell document-list">
       {documents.map((document) => (
         <article class="document-row">
-          <span class="date-block">{document.data.documentType.replace('-', ' ')}</span>
+          <span class="date-block">{document.data.documentType === 'academic-cv' ? 'Research' : 'Quant'}</span>
           <div><h2>{document.data.title}</h2><p>{document.data.summary}</p></div>
           {document.data.preview && document.data.previewUrl ? <PdfPreview title={document.data.title} url={document.data.previewUrl} /> : <a class="button button-secondary" href={document.data.fileUrl} target="_blank" rel="noopener">Download</a>}
         </article>

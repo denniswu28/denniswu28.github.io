@@ -1,8 +1,8 @@
 ---
 id: document-quant-resume
 slug: quant-resume
-title: Quantitative Research Resume
-summary: Recruiter-focused experience, systems, selected results, education, and technical skills.
+title: Quantitative research resume
+summary: Experience, systems, selected results, education and technical skills.
 status: published
 publishedAt: 2026-07-15
 updatedAt: 2026-07-16

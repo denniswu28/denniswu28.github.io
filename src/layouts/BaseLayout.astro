@@ -9,7 +9,6 @@ interface Props {
   type?: 'website' | 'article';
   noindex?: boolean;
   schema?: Record<string, unknown> | Record<string, unknown>[];
-  variant?: 'default' | 'academic';
 }
 
 const {
@@ -18,20 +17,20 @@ const {
   image,
   type = 'website',
   noindex = false,
-  schema,
-  variant = 'default'
+  schema
 } = Astro.props;
-const pageTitle = title === site.name ? `${site.name} | ${site.title}` : `${title} | ${site.name}`;
+const pageTitle = title === site.name ? site.name : `${title} | ${site.name}`;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
 const imageUrl = new URL(image ?? site.socialImage, Astro.site ?? Astro.url.origin);
 const currentPath = Astro.url.pathname;
+const isCurrent = (href: string) => (href === '/' ? currentPath === '/' : currentPath.startsWith(href));
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
-  name: site.fullName,
-  alternateName: site.name,
+  name: site.name,
+  alternateName: site.shortName,
   url: site.url,
-  jobTitle: site.title,
+  affiliation: { '@type': 'CollegeOrUniversity', name: 'University of Arizona' },
   sameAs: [site.github, site.linkedin]
 };
 const structuredData = schema ? [personSchema, ...(Array.isArray(schema) ? schema : [schema])] : [personSchema];
@@ -61,32 +60,27 @@ const structuredData = schema ? [personSchema, ...(Array.isArray(schema) ? schem
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
     <meta name="twitter:image:alt" content={site.socialImageAlt} />
-    <meta name="theme-color" content={variant === 'academic' ? '#050711' : '#05080d'} />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📈</text></svg>" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=Oxanium:wght@500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <meta name="theme-color" content="#0C234B" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="/fonts/cmu-serif-500-roman.woff2" as="font" type="font/woff2" crossorigin />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
-  <body data-theme={variant}>
+  <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
     <header class="site-header">
       <div class="shell header-inner">
-        <a class="brand" href="/" aria-label="Tianrui Wu, home">
-          <span class="brand-mark" aria-hidden="true">TW</span>
-          <span>{site.name}</span>
-        </a>
-        <nav class="desktop-nav" aria-label="Primary navigation">
+        <a class="brand" href="/">{site.name}</a>
+        <nav class="site-nav" aria-label="Primary navigation">
           {navigation.map((item) => (
-            <a href={item.href} aria-current={currentPath.startsWith(item.href) ? 'page' : undefined}>{item.label}</a>
+            <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>
           ))}
         </nav>
-        <a class="button button-small resume-action" href={site.resume} target="_blank" rel="noopener">Resume PDF <span aria-hidden="true">↗</span></a>
         <details class="mobile-menu">
           <summary aria-label="Open navigation">Menu</summary>
           <nav aria-label="Mobile navigation">
-            {navigation.map((item) => <a href={item.href}>{item.label}</a>)}
-            <a href={site.resume} target="_blank" rel="noopener">Resume PDF</a>
+            {navigation.map((item) => (
+              <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>{item.label}</a>
+            ))}
           </nav>
         </details>
       </div>
@@ -95,30 +89,17 @@ const structuredData = schema ? [personSchema, ...(Array.isArray(schema) ? schem
       <slot />
     </main>
     <footer class="site-footer" id="contact">
-      <div class="shell footer-grid">
-        <div>
-          <p class="eyebrow">Physics · mathematics · quantitative research</p>
-        </div>
-        <div class="footer-links">
+      <div class="shell footer-inner">
+        <span>© {new Date().getFullYear()} {site.name}</span>
+        <span class="footer-links">
           <a href={`mailto:${site.email}`}>{site.email}</a>
           <a href={site.github} target="_blank" rel="noopener">GitHub</a>
           <a href={site.linkedin} target="_blank" rel="noopener">LinkedIn</a>
           <a href="/rss.xml">RSS</a>
-        </div>
-      </div>
-      <div class="shell footer-bottom">
-        <span>© {new Date().getFullYear()} {site.fullName}</span>
-        <span>Historical research is not investment advice.</span>
+        </span>
       </div>
     </footer>
     <script>
-      const root = document.documentElement;
-      const updatePointer = (event: PointerEvent) => {
-        root.style.setProperty('--pointer-x', `${event.clientX}px`);
-        root.style.setProperty('--pointer-y', `${event.clientY}px`);
-      };
-      window.addEventListener('pointermove', updatePointer, { passive: true });
-
       document.querySelectorAll<HTMLDetailsElement>('.mobile-menu').forEach((menu) => {
         menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => menu.removeAttribute('open')));
       });
