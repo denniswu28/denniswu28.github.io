@@ -31,7 +31,7 @@ const category = Astro.params.category!;
   <div class="shell"><PageIntro eyebrow="Writing" title={copy.title} description={copy.description} compact /></div>
   <section class="section">
     <div class="shell">
-      {articles.length > 0 ? <div class="post-list">{articles.map((article) => <a class="post-row" href={`/blog/${category}/${article.data.slug}/`}><span class="date-block">{article.data.publishedAt.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</span><div><h2>{article.data.title}</h2><p>{article.data.abstract}</p></div><span class="text-link">Read →</span></a>)}</div> : <div class="empty-state"><h2>No article is published in this track yet.</h2><p>The category is reserved, but the site will not fabricate a post to fill it. Drafts and private metadata are excluded from the public build.</p></div>}
+      {articles.length > 0 ? <div class="post-list">{articles.map((article) => <a class="post-row" href={`/blog/${category}/${article.data.slug}/`}><span class="date-block">{article.data.publishedAt.toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' })}</span><div><h2>{article.data.title}</h2><p>{article.data.abstract}</p></div><span class="text-link">Read →</span></a>)}</div> : <div class="empty-state"><h2>No article is published in this track yet.</h2><p>The category is reserved, but the site will not fabricate a post to fill it. Drafts and private metadata are excluded from the public build.</p></div>}
     </div>
   </section>
 </BaseLayout>

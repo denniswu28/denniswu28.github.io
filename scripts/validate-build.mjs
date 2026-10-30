@@ -15,7 +15,6 @@ const required = [
   'blog/index.html',
   'blog/quant-research/reading-execution-evidence/index.html',
   'blog/physics/shared-simulated-skies/index.html',
-  'fonts/cmu-serif-500-roman.woff2',
   'favicon.svg',
   'documents/index.html',
   'data/coinbase-btc-usd-2025-10-09-to-2025-10-14-5m.csv',

@@ -13,7 +13,7 @@ externalLinks:
 citation: "Riess, A. G., Scolnic, D., et al. (including T. Wu). “JWST Validates HST Distance Measurements: Selection of Supernova Subsample Explains Differences in JWST Estimates of Local H₀.” ApJ 977, 120 (2024). arXiv:2408.11770."
 venue: The Astrophysical Journal
 abstract: The study cross-checks HST Cepheid and Type Ia supernova distance measurements with early JWST subsamples and analyzes why estimates differ across selected samples.
-contribution: Contributed through Duke distance-ladder research and synthetic stellar-catalog analysis. The complete paper remains the source of record for authorship and methods.
+contribution: "I contributed through distance-ladder work in the Duke Cosmology Group with Prof. Daniel Scolnic. I compared JWST distance measurements across the literature and measured galaxy-dust correlations in SDSS data with SQL and Python."
 publicationStatus: Published
 doiUrl: https://doi.org/10.3847/1538-4357/ad8c21
 arxivUrl: https://arxiv.org/abs/2408.11770
@@ -22,4 +22,4 @@ pdfUrl: https://arxiv.org/pdf/2408.11770
 image: /images/academic/jwst-pillars.webp
 ---
 
-This detail page summarizes the paper's place in the academic record and links to the full publication for the complete analysis.
+See the journal and arXiv versions for the full author list and methods.

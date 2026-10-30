@@ -14,7 +14,7 @@ const theses = sortNewest(filterPublished(await getCollection('theses')));
       <div class="notice"><strong>Disclosure:</strong> Historical research is not a current recommendation. Records will use delayed publication, closed positions, redacted sizes, or percentage weights.</div>
       {theses.length > 0 ? (
         <div class="post-list" style="margin-top: 28px">
-          {theses.map((thesis) => <a class="post-row" href={`/portfolio/${thesis.data.slug}/`}><span class="date-block">{thesis.data.thesisDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short' })}</span><div><h2>{thesis.data.title}</h2><p>{thesis.data.summary}</p></div><span class="text-link">Case study →</span></a>)}
+          {theses.map((thesis) => <a class="post-row" href={`/portfolio/${thesis.data.slug}/`}><span class="date-block">{thesis.data.thesisDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', timeZone: 'UTC' })}</span><div><h2>{thesis.data.title}</h2><p>{thesis.data.summary}</p></div><span class="text-link">Case study →</span></a>)}
         </div>
       ) : (
         <div class="empty-state" style="margin-top: 28px"><h2>No portfolio entries yet.</h2><p>Historical investment case studies will appear here when published.</p></div>

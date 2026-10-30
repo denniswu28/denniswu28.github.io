@@ -58,7 +58,8 @@ describe('public site content', () => {
       '>Planned<',
       'fonts.googleapis.com',
       'Oxanium',
-      'Space Grotesk'
+      'Space Grotesk',
+      'CMU Serif'
     ]) {
       expect(sources).not.toContain(removed);
     }

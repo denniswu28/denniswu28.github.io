@@ -32,15 +32,15 @@ export const homePaths = [
     title: 'Research',
     text: 'Cosmology projects, publications, talks, software, teaching and outreach.',
     href: '/academic/',
-    linkLabel: 'Research page',
-    document: { label: 'Academic CV (PDF)', href: site.cv }
+    linkLabel: 'View page',
+    document: { label: 'CV (PDF)', href: site.cv }
   },
   {
     id: 'quant',
     title: 'Quantitative research',
     text: 'Trading experience, market-making and execution research, and code.',
     href: '/quant/',
-    linkLabel: 'Quant page',
+    linkLabel: 'View page',
     document: { label: 'Resume (PDF)', href: site.resume }
   }
 ] as const;

@@ -35,7 +35,7 @@ const theses = filterPublished(await getCollection('theses'));
             <span>{experience.dates}</span>
             <span>{experience.organization} · {experience.location}</span>
           </p>
-          <ul>{experience.accomplishments.map((item) => <li>{item}</li>)}</ul>
+          <ul>{experience.accomplishments.map((item) => { const i = item.indexOf(': '); return i > 0 && i < 40 ? <li><strong>{item.slice(0, i)}:</strong> {item.slice(i + 2)}</li> : <li>{item}</li>; })}</ul>
           <div class="tech-row">{experience.technologies.map((technology) => <span>{technology}</span>)}</div>
         </article>
       ))}

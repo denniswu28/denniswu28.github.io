@@ -121,7 +121,7 @@ const panels = [
   {panels.map((panel) => (
     <article class="evidence-panel" id={panel.id}>
       <div class="evidence-copy">
-        <p class="eyebrow">Experiment 01 / {panel.index}</p>
+        <p class="eyebrow">Part {Number(panel.index)} of 5</p>
         <h2>{panel.title}</h2>
         <p class="question">{panel.question}</p>
         <p>{panel.result}</p>

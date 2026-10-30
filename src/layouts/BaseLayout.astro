@@ -23,7 +23,8 @@ const pageTitle = title === site.name ? site.name : `${title} | ${site.name}`;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
 const imageUrl = new URL(image ?? site.socialImage, Astro.site ?? Astro.url.origin);
 const currentPath = Astro.url.pathname;
-const isCurrent = (href: string) => (href === '/' ? currentPath === '/' : currentPath.startsWith(href));
+const sectionOf = (path: string) => (path.startsWith('/lab/') || path.startsWith('/portfolio/') ? '/quant/' : path);
+const isCurrent = (href: string) => (href === '/' ? currentPath === '/' : sectionOf(currentPath).startsWith(href));
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
@@ -62,7 +63,6 @@ const structuredData = schema ? [personSchema, ...(Array.isArray(schema) ? schem
     <meta name="twitter:image:alt" content={site.socialImageAlt} />
     <meta name="theme-color" content="#0C234B" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="preload" href="/fonts/cmu-serif-500-roman.woff2" as="font" type="font/woff2" crossorigin />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
   <body>

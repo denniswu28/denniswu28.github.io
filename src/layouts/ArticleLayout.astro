@@ -24,8 +24,8 @@ const categoryLabel = category.replace('-', ' ').replace(/\b\w/g, (letter) => le
       <h1>{title}</h1>
       <p class="lede">{description}</p>
       <div class="article-meta">
-        <span>Published <time datetime={publishedAt.toISOString()}>{publishedAt.toLocaleDateString('en-US', { dateStyle: 'medium' })}</time></span>
-        <span>Updated <time datetime={updatedAt.toISOString()}>{updatedAt.toLocaleDateString('en-US', { dateStyle: 'medium' })}</time></span>
+        <span>Published <time datetime={publishedAt.toISOString()}>{publishedAt.toLocaleDateString('en-US', { dateStyle: 'medium', timeZone: 'UTC' })}</time></span>
+        <span>Updated <time datetime={updatedAt.toISOString()}>{updatedAt.toLocaleDateString('en-US', { dateStyle: 'medium', timeZone: 'UTC' })}</time></span>
         <span>{readingMinutes} min read</span>
       </div>
       <div class="tag-row">{tags.map((tag) => <span>{tag}</span>)}</div>

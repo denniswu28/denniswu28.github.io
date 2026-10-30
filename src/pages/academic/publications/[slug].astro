@@ -1,7 +1,6 @@
 ---
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import PdfPreview from '../../../components/PdfPreview.astro';
 import { filterPublished } from '../../../lib/content';
 
 export async function getStaticPaths() {
@@ -35,15 +34,15 @@ const publicationSchema = {
     {entry.data.image && <img class="publication-hero" src={entry.data.image} alt="" loading="eager" />}
     <div class="prose">
       <h2>Citation</h2><p>{entry.data.citation}</p>
-      <h2>Personal contribution</h2><p>{entry.data.contribution}</p>
+      <h2>My contribution</h2><p>{entry.data.contribution}</p>
       <Content />
-      <h2>Paper and record</h2>
+      <h2>Links</h2>
       <div class="button-row">
         {entry.data.journalUrl && <a class="button button-secondary" href={entry.data.journalUrl} target="_blank" rel="noopener">Journal</a>}
         {entry.data.arxivUrl && <a class="button button-secondary" href={entry.data.arxivUrl} target="_blank" rel="noopener">arXiv</a>}
-        {entry.data.doiUrl && <a class="button button-secondary" href={entry.data.doiUrl} target="_blank" rel="noopener">DOI</a>}
+        {entry.data.pdfUrl && <a class="button button-secondary" href={entry.data.pdfUrl} target="_blank" rel="noopener">PDF</a>}
+        {entry.data.doiUrl && entry.data.doiUrl !== entry.data.journalUrl && <a class="button button-secondary" href={entry.data.doiUrl} target="_blank" rel="noopener">DOI</a>}
       </div>
     </div>
-    {entry.data.pdfUrl && <PdfPreview title={entry.data.title} url={entry.data.pdfUrl} />}
   </article>
 </BaseLayout>
