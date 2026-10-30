@@ -32,7 +32,7 @@ export const navigation = [
 export const homePaths = [
   {
     id: 'research',
-    title: 'Research',
+    title: 'Cosmology research',
     text: 'Cosmology projects, publications, talks, software, teaching and outreach.',
     href: '/academic/',
     linkLabel: 'View page',
@@ -40,7 +40,7 @@ export const homePaths = [
   },
   {
     id: 'quant',
-    title: 'Quantitative research',
+    title: 'Quantitative finance',
     text: 'Trading experience, market-making and execution research, and code.',
     href: '/quant/',
     linkLabel: 'View page',
