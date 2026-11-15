@@ -103,7 +103,7 @@ for (const evidenceLabel of [
 for (const obsoleteLabel of ['Method view only', 'Scenario view only']) {
   if (experimentHtml.includes(obsoleteLabel)) throw new Error(`Obsolete Quant Lab placeholder detected: ${obsoleteLabel}`);
 }
-const socialImageUrl = 'https://denniswu28.github.io/images/social-preview.png';
+const socialImageUrl = 'https://tianruiwu.com/images/social-preview.png';
 for (const htmlFile of htmlFiles) {
   const html = fs.readFileSync(htmlFile, 'utf8');
   for (const socialMeta of [

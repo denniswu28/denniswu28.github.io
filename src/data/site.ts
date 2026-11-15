@@ -6,7 +6,7 @@ export const site = {
   shortName: 'Tianrui Wu',
   title: 'Cosmology and Quantitative Research',
   description: 'Tianrui (Dennis) Wu studies physics at the University of Arizona, works on cosmology in the Arizona Cosmology Lab, and does quantitative research on financial markets.',
-  url: 'https://denniswu28.github.io',
+  url: 'https://tianruiwu.com',
   email: 'denniswu501@gmail.com',
   github: 'https://github.com/denniswu28',
   linkedin: 'https://www.linkedin.com/in/dennis-tianrui-wu',

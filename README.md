@@ -1,6 +1,6 @@
 # Tianrui (Dennis) Wu: personal website
 
-Astro 6 source for `denniswu28.github.io`, a static site for GitHub Pages. The homepage routes faculty to Research and trading recruiters to Quant. See the October 2026 note at the top of `guideline.md` for the current style.
+Astro 6 source for `tianruiwu.com`, a static site served by GitHub Pages. The old address, `denniswu28.github.io`, redirects there. The homepage routes faculty to Research and trading recruiters to Quant. See the October 2026 note at the top of `guideline.md` for the current style.
 
 ## Local development
 

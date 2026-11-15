@@ -7,7 +7,7 @@ export async function GET(context: { site?: URL }) {
   return rss({
     title: 'Tianrui Wu — Research Notes',
     description: 'Public writing on quantitative research, physics, and AI safety.',
-    site: context.site ?? new URL('https://denniswu28.github.io'),
+    site: context.site ?? new URL('https://tianruiwu.com'),
     items: articles.map((article) => ({
       title: article.data.title,
       description: article.data.abstract,
