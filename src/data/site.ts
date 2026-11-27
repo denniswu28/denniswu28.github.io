@@ -57,9 +57,9 @@ export const interests = [
 
 export const education = [
   {
-    degree: 'B.S. in Physics, minor in Mathematics (expected by May 2027)',
+    degree: 'B.S. in Physics, minor in Mathematics (expected December 2026)',
     school: 'University of Arizona',
-    dates: '2026–2027',
+    dates: '2026',
     note: 'Advisors: Prof. Tim Eifler, Arizona Cosmology Lab, and Prof. Chi-kwan Chan, EHT Collaboration'
   },
   {
