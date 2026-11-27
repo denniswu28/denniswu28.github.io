@@ -5,7 +5,7 @@ title: Academic curriculum vitae
 summary: Research, publications, talks, education, teaching, service and awards.
 status: published
 publishedAt: 2026-07-15
-updatedAt: 2026-07-15
+updatedAt: 2026-11-27
 relatedIds: []
 externalLinks: []
 documentType: academic-cv
